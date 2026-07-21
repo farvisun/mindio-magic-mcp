@@ -1,0 +1,16 @@
+/.DS_Store
+/.git
+/.github
+/.distignore
+/.gitignore
+/bin
+/composer.json
+/composer.lock
+/dist
+/phpcs.xml.dist
+/phpunit.xml.dist
+/tests
+/vendor
+/languages/*.po
+/languages/*.mo
+**/.DS_Store

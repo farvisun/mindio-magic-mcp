@@ -1,0 +1,29 @@
+{
+  "name": "farvisun/mindio-magic-mcp",
+  "description": "Mindio Magic MCP is a secure MCP server for WordPress with native Flatsome UX Builder support.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": ">=8.0"
+  },
+  "scripts": {
+    "lint": "find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+    "test:integration": "@php tests/integration/smoke.php",
+    "test:flatsome": "@php tests/integration/flatsome-components.php",
+    "test:admin": "@php tests/integration/admin-ui.php",
+    "test:oauth": "@php tests/integration/oauth-flow.php",
+    "test:expanded": "@php tests/integration/expanded-tools.php",
+    "test:seo-providers": "@php tests/integration/seo-providers.php",
+    "test:localization": "@php tests/integration/localization.php",
+    "test": [
+      "@lint",
+      "@test:integration",
+      "@test:flatsome",
+      "@test:admin",
+      "@test:oauth",
+      "@test:expanded",
+      "@test:localization"
+    ],
+    "build": "bash bin/build-release.sh"
+  }
+}

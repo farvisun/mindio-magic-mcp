@@ -1,0 +1,92 @@
+<?php
+/**
+ * Plugin composition root.
+ *
+ * @package FlatsomeMCP
+ */
+
+namespace FlatsomeMCP;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+final class Plugin {
+	private static ?Plugin $instance = null;
+	private bool $booted = false;
+
+	public static function instance(): Plugin {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	public function boot(): void {
+		if ( $this->booted ) {
+			return;
+		}
+		$this->booted = true;
+
+		Installer::maybe_upgrade();
+
+		$auth        = new Auth();
+		$rate_limiter = new Rate_Limiter();
+		$audit       = new Audit_Log();
+		$registry    = new Tool_Registry( $auth );
+		$webhooks    = new Webhook_Engine();
+
+		( new Content_Tools( $registry ) )->register();
+		( new Gutenberg_Tools( $registry ) )->register();
+		( new Media_Tools( $registry ) )->register();
+		( new SEO_Tools( $registry ) )->register();
+		( new SEO_Provider_Tools( $registry, 'yoast' ) )->register();
+		( new SEO_Provider_Tools( $registry, 'rank_math' ) )->register();
+		( new Site_Tools( $registry ) )->register();
+		( new Comment_Tools( $registry ) )->register();
+		( new User_Tools( $registry ) )->register();
+		( new Search_Tools( $registry ) )->register();
+		( new Automation_Tools( $registry ) )->register();
+		( new Extension_Tools( $registry ) )->register();
+		( new Theme_Tools( $registry ) )->register();
+		( new ACF_Tools( $registry ) )->register();
+		( new Contact_Form_7_Tools( $registry ) )->register();
+		( new WooCommerce_Tools( $registry ) )->register();
+		( new WooCommerce_Operation_Tools( $registry ) )->register();
+		( new Multisite_Tools( $registry ) )->register();
+		( new Developer_Tools( $registry ) )->register();
+		( new Filesystem_Tools( $registry ) )->register();
+		( new Performance_Tools( $registry ) )->register();
+		( new Webhook_Tools( $registry, $webhooks ) )->register();
+		$flatsome_catalog = new Flatsome_Component_Catalog();
+		( new Flatsome_Tools( $registry, new Flatsome_Renderer( $flatsome_catalog ), $flatsome_catalog ) )->register();
+		( new System_Tools( $registry, $audit, $webhooks ) )->register();
+
+		( new MCP_Server( $registry, $auth, $rate_limiter, $audit ) )->register_hooks();
+		( new OAuth_Server( $auth, $rate_limiter ) )->register_hooks();
+		$webhooks->register_hooks();
+
+		if ( is_admin() ) {
+			( new Admin( $auth, $audit, $webhooks, $registry ) )->register_hooks();
+		}
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
+		add_action( 'flatsome_mcp_cleanup_logs', array( Installer::class, 'cleanup_logs' ) );
+		if ( is_multisite() ) {
+			add_action( 'wp_initialize_site', array( Installer::class, 'initialize_site' ), 100 );
+		}
+	}
+
+	public function enqueue_frontend_assets(): void {
+		if ( ! is_singular() ) {
+			return;
+		}
+		$post = get_post();
+		if ( $post && str_contains( $post->post_content, 'fmp-rtl' ) ) {
+			wp_enqueue_style( 'flatsome-mcp-frontend', FLATSOME_MCP_URL . 'assets/css/frontend.css', array(), FLATSOME_MCP_VERSION );
+		}
+	}
+
+	private function __construct() {}
+}

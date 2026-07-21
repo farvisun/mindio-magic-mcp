@@ -1,0 +1,11 @@
+.fmp-rtl,
+.fmp-rtl .text,
+.fmp-rtl .col-inner {
+	direction: rtl;
+}
+
+.fmp-rtl:not(.text-center),
+.fmp-rtl .text:not(.text-center) {
+	text-align: right;
+}
+

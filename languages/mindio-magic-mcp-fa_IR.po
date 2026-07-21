@@ -1,0 +1,4883 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mindio Magic MCP 0.5.4\n"
+"Report-Msgid-Bugs-To: https://github.com/farvisun/mindio-magic-mcp/issues\n"
+"POT-Creation-Date: 2026-07-20 11:49+0330\n"
+"PO-Revision-Date: 2026-07-20 11:53+0330\n"
+"Last-Translator: Mohammad Askari <farvisun@gmail.com>\n"
+"Language-Team: Persian\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Mindio Magic MCP\n"
+
+#: includes/class-admin.php:54 includes/class-admin.php:1388
+msgid "Copy"
+msgstr "کپی"
+
+#: includes/class-admin.php:55
+msgid "Copied"
+msgstr "کپی شد"
+
+#: includes/class-admin.php:56
+msgid "Copy failed. Select and copy the value manually."
+msgstr "کپی ناموفق بود. مقدار را به‌صورت دستی انتخاب و کپی کنید."
+
+#: includes/class-admin.php:57
+msgid "Saving…"
+msgstr "در حال ذخیره…"
+
+#: includes/class-admin.php:58
+msgid "Creating…"
+msgstr "در حال ایجاد…"
+
+#: includes/class-admin.php:59 includes/class-admin.php:894
+msgid "No records match your filters."
+msgstr "هیچ رکوردی با فیلترهای شما مطابقت ندارد."
+
+#. translators: %d: number of visible records.
+#. translators: %d: number of activity records.
+#: includes/class-admin.php:61 includes/class-admin.php:851
+#, php-format
+msgid "%d records"
+msgstr "%d رکورد"
+
+#. translators: 1: visible tool count, 2: total tool count.
+#: includes/class-admin.php:63 includes/class-admin.php:1032
+#, php-format
+msgid "%1$d of %2$d tools visible"
+msgstr "%1$d از %2$d ابزار نمایش داده می‌شود"
+
+#: includes/class-admin.php:64 includes/class-admin.php:1091
+msgid "Exposed"
+msgstr "در دسترس"
+
+#: includes/class-admin.php:65 includes/class-admin.php:67
+#: includes/class-admin.php:1091 includes/class-admin.php:1165
+msgid "Disabled"
+msgstr "غیرفعال"
+
+#: includes/class-admin.php:66 includes/class-admin.php:1165
+msgid "Enabled"
+msgstr "فعال"
+
+#. translators: 1: enabled operation count, 2: total operation count.
+#: includes/class-admin.php:69 includes/class-admin.php:1151
+#, php-format
+msgid "%1$d of %2$d operations enabled"
+msgstr "%1$d از %2$d عملیات فعال است"
+
+#: includes/class-admin.php:76 includes/class-admin.php:77
+#: includes/class-admin.php:240
+msgid "Mindio Magic MCP"
+msgstr "Mindio Magic MCP"
+
+#: includes/class-admin.php:85
+msgid "Open console"
+msgstr "باز کردن کنسول"
+
+#: includes/class-admin.php:104
+msgid "Credential not found."
+msgstr "اعتبارنامه پیدا نشد."
+
+#: includes/class-admin.php:104
+msgid "Credential revoked."
+msgstr "اعتبارنامه لغو شد."
+
+#: includes/class-admin.php:114
+msgid "OAuth client not found."
+msgstr "کارخواه OAuth پیدا نشد."
+
+#: includes/class-admin.php:120
+msgid "OAuth client and its tokens revoked."
+msgstr "کارخواه OAuth و توکن‌های آن لغو شدند."
+
+#: includes/class-admin.php:150
+msgid "Settings saved."
+msgstr "تنظیمات ذخیره شد."
+
+#. translators: 1: exposed tools, 2: disabled tools, 3: enabled operations, 4: disabled operations.
+#: includes/class-admin.php:186
+#, php-format
+msgid ""
+"Tool policy updated: %1$s tools exposed, %2$s tools disabled; %3$s "
+"operations enabled, %4$s operations disabled."
+msgstr ""
+"سیاست ابزار به‌روزرسانی شد: %1$s ابزار در دسترس، %2$s ابزار غیرفعال؛ %3$s "
+"عملیات فعال و %4$s عملیات غیرفعال است."
+
+#: includes/class-admin.php:214 includes/tools/class-webhook-tools.php:55
+msgid "Webhook not found."
+msgstr "وب‌هوک پیدا نشد."
+
+#: includes/class-admin.php:214
+msgid "Webhook removed."
+msgstr "وب‌هوک حذف شد."
+
+#: includes/class-admin.php:239
+msgid "WordPress agent operations"
+msgstr "عملیات عامل‌های وردپرس"
+
+#: includes/class-admin.php:241
+msgid ""
+"Securely connect AI agents, govern access, automate events, and monitor "
+"every tool call from one control plane."
+msgstr ""
+"عامل‌های هوش مصنوعی را ایمن متصل کنید، دسترسی را مدیریت کنید، رویدادها را "
+"خودکار کنید و همهٔ فراخوانی‌های ابزار را از یک مرکز کنترل پایش کنید."
+
+#: includes/class-admin.php:244
+msgid "Service status"
+msgstr "وضعیت سرویس"
+
+#: includes/class-admin.php:248
+msgid "Endpoint online"
+msgstr "نقطهٔ پایانی فعال است"
+
+#: includes/class-admin.php:248
+msgid "Endpoint paused"
+msgstr "نقطهٔ پایانی متوقف است"
+
+#: includes/class-admin.php:253
+msgid "Mindio Magic MCP sections"
+msgstr "بخش‌های Mindio Magic MCP"
+
+#. translators: %s: plugin version number.
+#: includes/class-admin.php:301
+#, php-format
+msgid "Mindio Magic MCP %s"
+msgstr "Mindio Magic MCP نسخهٔ %s"
+
+#: includes/class-admin.php:304
+msgid "Streamable HTTP · JSON-RPC 2.0 · OAuth 2.1"
+msgstr "HTTP جریانی · JSON-RPC 2.0 · OAuth 2.1"
+
+#: includes/class-admin.php:318
+msgid "Action required"
+msgstr "نیازمند اقدام"
+
+#: includes/class-admin.php:318
+msgid "Operation completed"
+msgstr "عملیات با موفقیت انجام شد"
+
+#: includes/class-admin.php:322
+msgid "One-time secret"
+msgstr "راز یک‌بارمصرف"
+
+#: includes/class-admin.php:325
+msgid "one-time secret"
+msgstr "راز یک‌بارمصرف"
+
+#: includes/class-admin.php:327
+msgid ""
+"Store this value in a password manager now. It will not be displayed again."
+msgstr ""
+"این مقدار را همین حالا در یک مدیر رمز عبور ذخیره کنید. دوباره نمایش داده "
+"نخواهد شد."
+
+#: includes/class-admin.php:346
+msgid "Control plane"
+msgstr "مرکز کنترل"
+
+#: includes/class-admin.php:347
+msgid "System overview"
+msgstr "نمای کلی سامانه"
+
+#: includes/class-admin.php:348
+msgid ""
+"A live view of connectivity, access, automation, and recent execution health."
+msgstr "نمایی زنده از اتصال، دسترسی، خودکارسازی و سلامت اجرای اخیر."
+
+#: includes/class-admin.php:352
+msgid "Create credential"
+msgstr "ایجاد اعتبارنامه"
+
+#: includes/class-admin.php:358
+msgid "API keys"
+msgstr "کلیدهای API"
+
+#: includes/class-admin.php:358
+msgid "Long-lived credentials"
+msgstr "اعتبارنامه‌های بلندمدت"
+
+#: includes/class-admin.php:359
+msgid "Dynamically registered"
+msgstr "ثبت‌شده به‌صورت پویا"
+
+#: includes/class-admin.php:359
+msgid "OAuth clients"
+msgstr "کلاینت‌های OAuth"
+
+#: includes/class-admin.php:360
+msgid "Active destinations"
+msgstr "مقصدهای فعال"
+
+#: includes/class-admin.php:360 includes/class-admin.php:671
+#: includes/class-admin.php:1556
+msgid "Webhooks"
+msgstr "وب‌هوک‌ها"
+
+#: includes/class-admin.php:361
+msgid "Latest 50 tool calls"
+msgstr "۵۰ فراخوانی اخیر ابزار"
+
+#: includes/class-admin.php:361
+msgid "Request success"
+msgstr "موفقیت درخواست‌ها"
+
+#: includes/class-admin.php:369
+msgid "Client configuration"
+msgstr "پیکربندی کلاینت"
+
+#: includes/class-admin.php:370
+msgid "Connection endpoints"
+msgstr "نقاط پایانی اتصال"
+
+#: includes/class-admin.php:371
+msgid ""
+"Use the MCP endpoint in your client. OAuth discovery URLs are consumed "
+"automatically."
+msgstr ""
+"از نقطهٔ پایانی MCP در کارخواه خود استفاده کنید. نشانی‌های کشف OAuth به‌صورت "
+"خودکار استفاده می‌شوند."
+
+#: includes/class-admin.php:373
+msgid "Available"
+msgstr "در دسترس"
+
+#: includes/class-admin.php:373
+msgid "Paused"
+msgstr "متوقف"
+
+#: includes/class-admin.php:377
+msgid "MCP endpoint"
+msgstr "نقطهٔ پایانی MCP"
+
+#: includes/class-admin.php:377
+msgid "Paste this URL into your MCP client"
+msgstr "این نشانی را در کارخواه MCP خود وارد کنید"
+
+#: includes/class-admin.php:378
+msgid "Automatic discovery only — not an MCP server URL"
+msgstr "فقط برای کشف خودکار — این نشانی سرور MCP نیست"
+
+#: includes/class-admin.php:378
+msgid "OAuth authorization server"
+msgstr "سرور مجوزدهی OAuth"
+
+#: includes/class-admin.php:379
+msgid "Automatic resource discovery for OAuth clients"
+msgstr "کشف خودکار منبع برای کارخواه‌های OAuth"
+
+#: includes/class-admin.php:379
+msgid "Protected resource metadata"
+msgstr "فرادادهٔ منبع محافظت‌شده"
+
+#: includes/class-admin.php:387
+msgid "Environment"
+msgstr "محیط"
+
+#: includes/class-admin.php:388
+msgid "System readiness"
+msgstr "آمادگی سامانه"
+
+#: includes/class-admin.php:393
+msgid "WordPress"
+msgstr "وردپرس"
+
+#: includes/class-admin.php:394
+msgid "PHP runtime"
+msgstr "محیط اجرای PHP"
+
+#: includes/class-admin.php:395
+msgid "Detected"
+msgstr "شناسایی شد"
+
+#: includes/class-admin.php:395
+msgid "Flatsome theme"
+msgstr "پوستهٔ فلت‌سام"
+
+#: includes/class-admin.php:395
+msgid "Not active"
+msgstr "فعال نیست"
+
+#: includes/class-admin.php:396
+msgid "HTTPS transport"
+msgstr "انتقال HTTPS"
+
+#: includes/class-admin.php:396
+msgid "Recommended"
+msgstr "توصیه می‌شود"
+
+#: includes/class-admin.php:396
+msgid "Secure"
+msgstr "ایمن"
+
+#: includes/class-admin.php:406
+msgid "Deployment path"
+msgstr "مسیر راه‌اندازی"
+
+#: includes/class-admin.php:407
+msgid "Connect an agent in three steps"
+msgstr "اتصال یک عامل در سه گام"
+
+#: includes/class-admin.php:414
+msgid "Issue the least-privileged credential"
+msgstr "صدور اعتبارنامه با کمترین دسترسی"
+
+#: includes/class-admin.php:415
+msgid ""
+"Choose read-only, editor, or administrator scope for a specific WordPress "
+"user."
+msgstr ""
+"برای یک کاربر مشخص وردپرس، سطح فقط‌خواندنی، ویرایشگر یا مدیر را انتخاب کنید."
+
+#: includes/class-admin.php:416
+msgid "Manage credentials"
+msgstr "مدیریت اعتبارنامه‌ها"
+
+#: includes/class-admin.php:422
+msgid "Configure the MCP client"
+msgstr "پیکربندی کلاینت MCP"
+
+#: includes/class-admin.php:423
+msgid ""
+"Add the endpoint above and authenticate with an API key or the OAuth "
+"discovery flow."
+msgstr ""
+"نقطهٔ پایانی بالا را اضافه کنید و با کلید API یا جریان کشف OAuth احراز هویت "
+"شوید."
+
+#: includes/class-admin.php:429
+msgid "Verify and automate"
+msgstr "اعتبارسنجی و خودکارسازی"
+
+#: includes/class-admin.php:430
+msgid ""
+"Run a tool call, review the audit trail, then subscribe downstream systems "
+"to signed events."
+msgstr ""
+"یک ابزار را فراخوانی کنید، ردپای ممیزی را بررسی کنید و سپس سامانه‌های مقصد را "
+"مشترک رویدادهای امضاشده کنید."
+
+#: includes/class-admin.php:431
+msgid "Configure webhooks"
+msgstr "پیکربندی وب‌هوک‌ها"
+
+#: includes/class-admin.php:440
+msgid "Observability"
+msgstr "مشاهده‌پذیری"
+
+#: includes/class-admin.php:441
+msgid "Latest tool activity"
+msgstr "آخرین فعالیت ابزارها"
+
+#: includes/class-admin.php:443
+msgid "View all"
+msgstr "مشاهدهٔ همه"
+
+#: includes/class-admin.php:459
+msgid "No tool activity yet"
+msgstr "هنوز فعالیتی ثبت نشده است"
+
+#: includes/class-admin.php:459
+msgid ""
+"Successful and failed MCP calls will appear here as agents begin using the "
+"endpoint."
+msgstr ""
+"با شروع استفادهٔ عامل‌ها از نقطهٔ پایانی، فراخوانی‌های موفق و ناموفق MCP اینجا "
+"نمایش داده می‌شوند."
+
+#: includes/class-admin.php:472
+msgid "Identity and access"
+msgstr "هویت و دسترسی"
+
+#: includes/class-admin.php:473 includes/class-admin.php:1551
+msgid "Credentials"
+msgstr "اعتبارنامه‌ها"
+
+#: includes/class-admin.php:474
+msgid ""
+"Provision scoped API keys and govern dynamically registered OAuth clients."
+msgstr ""
+"کلیدهای API سطح‌بندی‌شده صادر و کلاینت‌های OAuth ثبت‌شدهٔ پویا را مدیریت کنید."
+
+#. translators: %s: number of active API keys.
+#: includes/class-admin.php:478
+#, php-format
+msgid "%s active API key"
+msgid_plural "%s active API keys"
+msgstr[0] "%s کلید API فعال"
+msgstr[1] "%s کلید API فعال"
+
+#: includes/class-admin.php:486
+msgid "New credential"
+msgstr "اعتبارنامهٔ جدید"
+
+#: includes/class-admin.php:487
+msgid "Generate an API key"
+msgstr "ساخت کلید API"
+
+#: includes/class-admin.php:488
+msgid "The raw key is revealed once after creation."
+msgstr "کلید خام پس از ایجاد فقط یک‌بار نمایش داده می‌شود."
+
+#: includes/class-admin.php:496
+msgid "Credential label"
+msgstr "برچسب اعتبارنامه"
+
+#: includes/class-admin.php:497
+msgid "Production content agent"
+msgstr "عامل محتوای محیط تولید"
+
+#: includes/class-admin.php:498
+msgid "Use a name that identifies the client and environment."
+msgstr "نامی انتخاب کنید که کلاینت و محیط را مشخص کند."
+
+#: includes/class-admin.php:502
+msgid "WordPress user"
+msgstr "کاربر وردپرس"
+
+#: includes/class-admin.php:517
+msgid "Permission scope"
+msgstr "سطح مجوز"
+
+#: includes/class-admin.php:519 includes/class-admin.php:1418
+msgid "Read only"
+msgstr "فقط خواندنی"
+
+#: includes/class-admin.php:520 includes/class-admin.php:1419
+msgid "Editor"
+msgstr "ویرایشگر"
+
+#: includes/class-admin.php:521 includes/class-admin.php:1420
+msgid "Administrator"
+msgstr "مدیر"
+
+#: includes/class-admin.php:527
+msgid "Generate secure key"
+msgstr "ساخت کلید امن"
+
+#: includes/class-admin.php:535
+msgid "Least privilege"
+msgstr "کمترین دسترسی"
+
+#: includes/class-admin.php:536
+msgid "Scope policy"
+msgstr "سیاست سطح دسترسی"
+
+#: includes/class-admin.php:540
+msgid "Inspect content, settings, orders, and logs without modifying the site."
+msgstr "محتوا، تنظیمات، سفارش‌ها و گزارش‌ها را بدون تغییر سایت بررسی می‌کند."
+
+#: includes/class-admin.php:541
+msgid "Create and update content, media, SEO metadata, comments, and products."
+msgstr ""
+"محتوا، رسانه، فرادادهٔ سئو، دیدگاه‌ها و محصولات را ایجاد و به‌روزرسانی می‌کند."
+
+#: includes/class-admin.php:542
+msgid "Manage users, extensions, settings, automation, and privileged tools."
+msgstr ""
+"کاربران، افزونه‌ها، تنظیمات، خودکارسازی و ابزارهای ویژه را مدیریت می‌کند."
+
+#: includes/class-admin.php:546
+msgid ""
+"A scope never exceeds the selected WordPress user’s native capabilities."
+msgstr ""
+"سطح دسترسی هرگز از توانایی‌های بومی کاربر انتخاب‌شدهٔ وردپرس فراتر نمی‌رود."
+
+#: includes/class-admin.php:554
+msgid "API access"
+msgstr "دسترسی API"
+
+#: includes/class-admin.php:555
+msgid "Active API keys"
+msgstr "کلیدهای API فعال"
+
+#: includes/class-admin.php:556
+msgid ""
+"Only hashed credential material is stored. Raw secrets cannot be recovered."
+msgstr "فقط دادهٔ هش‌شدهٔ اعتبارنامه ذخیره می‌شود. رازهای خام قابل بازیابی نیستند."
+
+#: includes/class-admin.php:563
+msgid "Credential"
+msgstr "اعتبارنامه"
+
+#: includes/class-admin.php:564 includes/class-admin.php:863
+msgid "Principal"
+msgstr "هویت اصلی"
+
+#: includes/class-admin.php:565 includes/class-admin.php:864
+msgid "Scope"
+msgstr "سطح دسترسی"
+
+#: includes/class-admin.php:566 includes/class-admin.php:760
+msgid "Created"
+msgstr "زمان ساخت"
+
+#: includes/class-admin.php:567
+msgid "Last used"
+msgstr "آخرین استفاده"
+
+#: includes/class-admin.php:568 includes/class-admin.php:620
+#: includes/class-admin.php:762
+msgid "Actions"
+msgstr "عملیات"
+
+#: includes/class-admin.php:582
+msgid "Revoke this API key? The connected client will immediately lose access."
+msgstr "این کلید API لغو شود؟ کلاینت متصل بلافاصله دسترسی خود را از دست می‌دهد."
+
+#: includes/class-admin.php:587 includes/class-admin.php:650
+msgid "Revoke"
+msgstr "لغو"
+
+#: includes/class-admin.php:596
+msgid "Generate a scoped credential above to connect your first agent."
+msgstr "برای اتصال نخستین عامل، یک اعتبارنامهٔ سطح‌بندی‌شده در بالا بسازید."
+
+#: includes/class-admin.php:596
+msgid "No API keys configured"
+msgstr "هیچ کلید API پیکربندی نشده است"
+
+#: includes/class-admin.php:603
+msgid "OAuth 2.1"
+msgstr "OAuth 2.1"
+
+#: includes/class-admin.php:604
+msgid "Registered OAuth clients"
+msgstr "کلاینت‌های OAuth ثبت‌شده"
+
+#: includes/class-admin.php:605
+msgid "Clients appear here after completing dynamic client registration."
+msgstr "کلاینت‌ها پس از تکمیل ثبت پویای کلاینت در اینجا نمایش داده می‌شوند."
+
+#. translators: %s: number of registered OAuth clients.
+#: includes/class-admin.php:609
+#, php-format
+msgid "%s client"
+msgid_plural "%s clients"
+msgstr[0] "%s کلاینت"
+msgstr[1] "%s کلاینت"
+
+#: includes/class-admin.php:616 includes/class-oauth-server.php:339
+#: includes/class-oauth-server.php:428
+msgid "Client"
+msgstr "کلاینت"
+
+#: includes/class-admin.php:617
+msgid "Client ID"
+msgstr "شناسهٔ کلاینت"
+
+#: includes/class-admin.php:618
+msgid "Redirect URIs"
+msgstr "نشانی‌های بازگشت"
+
+#: includes/class-admin.php:619
+msgid "Registered"
+msgstr "ثبت‌شده"
+
+#: includes/class-admin.php:629
+msgid "Unnamed client"
+msgstr "کلاینت بدون نام"
+
+#: includes/class-admin.php:633
+msgid "client ID"
+msgstr "شناسهٔ کلاینت"
+
+#: includes/class-admin.php:645
+msgid "Revoke this OAuth client and all of its access and refresh tokens?"
+msgstr "این کلاینت OAuth و همهٔ توکن‌های دسترسی و نوسازی آن لغو شوند؟"
+
+#: includes/class-admin.php:659
+msgid ""
+"Compatible clients can register automatically through the OAuth discovery "
+"endpoints."
+msgstr ""
+"کلاینت‌های سازگار می‌توانند از طریق نقاط پایانی کشف OAuth به‌طور خودکار ثبت "
+"شوند."
+
+#: includes/class-admin.php:659
+msgid "No OAuth clients registered"
+msgstr "هیچ کلاینت OAuth ثبت نشده است"
+
+#: includes/class-admin.php:670
+msgid "Event automation"
+msgstr "خودکارسازی رویداد"
+
+#: includes/class-admin.php:672
+msgid ""
+"Deliver signed WordPress and WooCommerce events to trusted HTTPS "
+"destinations."
+msgstr ""
+"رویدادهای امضاشدهٔ وردپرس و ووکامرس را به مقصدهای HTTPS مورداعتماد ارسال کنید."
+
+#. translators: %s: number of webhook destinations.
+#: includes/class-admin.php:676
+#, php-format
+msgid "%s destination"
+msgid_plural "%s destinations"
+msgstr[0] "%s مقصد"
+msgstr[1] "%s مقصد"
+
+#: includes/class-admin.php:684
+msgid "New subscription"
+msgstr "اشتراک جدید"
+
+#: includes/class-admin.php:685
+msgid "Add a webhook destination"
+msgstr "افزودن مقصد وب‌هوک"
+
+#: includes/class-admin.php:686
+msgid "A signing secret is revealed once after the destination is created."
+msgstr "راز امضا پس از ایجاد مقصد فقط یک‌بار نمایش داده می‌شود."
+
+#: includes/class-admin.php:695
+msgid "Destination name"
+msgstr "نام مقصد"
+
+#: includes/class-admin.php:696
+msgid "Automation platform"
+msgstr "سکوی خودکارسازی"
+
+#: includes/class-admin.php:699
+msgid "HTTPS endpoint URL"
+msgstr "نشانی نقطهٔ پایانی HTTPS"
+
+#: includes/class-admin.php:704
+msgid "Events to deliver"
+msgstr "رویدادهای قابل ارسال"
+
+#: includes/class-admin.php:705
+msgid "Select one or more events for this destination."
+msgstr "یک یا چند رویداد برای این مقصد انتخاب کنید."
+
+#: includes/class-admin.php:718
+msgid "Select at least one event before creating the webhook."
+msgstr "پیش از ایجاد وب‌هوک دست‌کم یک رویداد انتخاب کنید."
+
+#: includes/class-admin.php:722
+msgid "Create webhook"
+msgstr "ایجاد وب‌هوک"
+
+#: includes/class-admin.php:730
+msgid "Delivery security"
+msgstr "امنیت ارسال"
+
+#: includes/class-admin.php:731
+msgid "Signed by default"
+msgstr "امضاشده به‌صورت پیش‌فرض"
+
+#: includes/class-admin.php:732
+msgid ""
+"Every delivery includes verification headers and follows a bounded retry "
+"schedule."
+msgstr ""
+"هر ارسال شامل هدرهای اعتبارسنجی است و از برنامهٔ تلاش مجدد محدود پیروی می‌کند."
+
+#: includes/class-admin.php:737
+msgid "Signature"
+msgstr "امضا"
+
+#: includes/class-admin.php:738
+msgid "Algorithm"
+msgstr "الگوریتم"
+
+#: includes/class-admin.php:739
+msgid "Retries"
+msgstr "تلاش‌های مجدد"
+
+#: includes/class-admin.php:739
+msgid "Up to 5 attempts"
+msgstr "حداکثر ۵ تلاش"
+
+#: includes/class-admin.php:740
+msgid "HTTPS with private targets blocked"
+msgstr "HTTPS با مسدودسازی مقصدهای خصوصی"
+
+#: includes/class-admin.php:740
+msgid "Network policy"
+msgstr "سیاست شبکه"
+
+#: includes/class-admin.php:748
+msgid "Subscriptions"
+msgstr "اشتراک‌ها"
+
+#: includes/class-admin.php:749
+msgid "Webhook destinations"
+msgstr "مقصدهای وب‌هوک"
+
+#: includes/class-admin.php:750
+msgid "Configured destinations receive only the events selected for them."
+msgstr "هر مقصد پیکربندی‌شده فقط رویدادهای انتخاب‌شده برای خود را دریافت می‌کند."
+
+#: includes/class-admin.php:757 includes/class-admin.php:916
+msgid "Destination"
+msgstr "مقصد"
+
+#: includes/class-admin.php:758
+msgid "Endpoint"
+msgstr "نقطهٔ پایانی"
+
+#: includes/class-admin.php:759
+msgid "Events"
+msgstr "رویدادها"
+
+#: includes/class-admin.php:761 includes/class-admin.php:918
+msgid "Status"
+msgstr "وضعیت"
+
+#: includes/class-admin.php:774
+msgid "Active"
+msgstr "فعال"
+
+#: includes/class-admin.php:774
+msgid "Inactive"
+msgstr "غیرفعال"
+
+#: includes/class-admin.php:776
+msgid ""
+"Remove this webhook destination? Future matching events will no longer be "
+"delivered."
+msgstr "این مقصد وب‌هوک حذف شود؟ رویدادهای منطبق آینده دیگر ارسال نخواهند شد."
+
+#: includes/class-admin.php:781
+msgid "Remove"
+msgstr "حذف"
+
+#: includes/class-admin.php:790
+msgid "Create a signed subscription above to automate downstream workflows."
+msgstr "برای خودکارسازی گردش‌کارهای مقصد، یک اشتراک امضاشده در بالا ایجاد کنید."
+
+#: includes/class-admin.php:790
+msgid "No webhook destinations"
+msgstr "هیچ مقصد وب‌هوکی وجود ندارد"
+
+#: includes/class-admin.php:810
+msgid "Governance and diagnostics"
+msgstr "حاکمیت و عیب‌یابی"
+
+#: includes/class-admin.php:811
+msgid "Activity & logs"
+msgstr "فعالیت و گزارش‌ها"
+
+#: includes/class-admin.php:812
+msgid ""
+"Inspect tool execution outcomes and webhook delivery health without exposing "
+"sensitive payloads."
+msgstr ""
+"نتایج اجرای ابزار و سلامت ارسال وب‌هوک را بدون افشای داده‌های حساس بررسی کنید."
+
+#: includes/class-admin.php:814
+msgid "Arguments redacted"
+msgstr "آرگومان‌ها پوشانده شده‌اند"
+
+#: includes/class-admin.php:819
+msgid "Latest 100 records"
+msgstr "۱۰۰ رکورد اخیر"
+
+#: includes/class-admin.php:819
+msgid "Successful calls"
+msgstr "فراخوانی‌های موفق"
+
+#: includes/class-admin.php:820
+msgid "Failed calls"
+msgstr "فراخوانی‌های ناموفق"
+
+#: includes/class-admin.php:820
+msgid "Review error codes below"
+msgstr "کدهای خطا را در پایین بررسی کنید"
+
+#: includes/class-admin.php:821
+msgid "Across visible tool calls"
+msgstr "در فراخوانی‌های قابل مشاهده"
+
+#: includes/class-admin.php:821
+msgid "Average duration"
+msgstr "میانگین مدت"
+
+#: includes/class-admin.php:822
+msgid "Delivery attention"
+msgstr "ارسال‌های نیازمند توجه"
+
+#: includes/class-admin.php:822
+msgid "Failed or retrying webhooks"
+msgstr "وب‌هوک‌های ناموفق یا در حال تلاش مجدد"
+
+#: includes/class-admin.php:829
+msgid "Audit trail"
+msgstr "ردپای ممیزی"
+
+#: includes/class-admin.php:830
+msgid "Tool execution"
+msgstr "اجرای ابزار"
+
+#: includes/class-admin.php:831
+msgid ""
+"The latest calls are retained according to your data lifecycle settings."
+msgstr "فراخوانی‌های اخیر مطابق تنظیمات چرخهٔ عمر داده نگه‌داری می‌شوند."
+
+#: includes/class-admin.php:837
+msgid "Search activity"
+msgstr "جست‌وجوی فعالیت"
+
+#: includes/class-admin.php:838
+msgid "Search tool or user…"
+msgstr "جست‌وجوی ابزار یا کاربر…"
+
+#: includes/class-admin.php:841
+msgid "Filter by result"
+msgstr "فیلتر بر اساس نتیجه"
+
+#: includes/class-admin.php:843
+msgid "All results"
+msgstr "همهٔ نتایج"
+
+#: includes/class-admin.php:844
+msgid "Successful"
+msgstr "موفق"
+
+#: includes/class-admin.php:845 includes/class-admin.php:1656
+msgid "Failed"
+msgstr "ناموفق"
+
+#: includes/class-admin.php:861 includes/class-admin.php:915
+msgid "Time"
+msgstr "زمان"
+
+#: includes/class-admin.php:862
+msgid "Tool"
+msgstr "ابزار"
+
+#: includes/class-admin.php:865
+msgid "Result"
+msgstr "نتیجه"
+
+#: includes/class-admin.php:866
+msgid "Duration"
+msgstr "مدت"
+
+#: includes/class-admin.php:886
+msgid "Error"
+msgstr "خطا"
+
+#: includes/class-admin.php:886
+msgid "Success"
+msgstr "موفق"
+
+#: includes/class-admin.php:899
+msgid "No audit records yet"
+msgstr "هنوز رکورد ممیزی وجود ندارد"
+
+#: includes/class-admin.php:899
+msgid ""
+"Tool calls will be recorded here with duration, scope, and sanitized "
+"outcomes."
+msgstr ""
+"فراخوانی‌های ابزار همراه با مدت، سطح دسترسی و نتیجهٔ پاک‌سازی‌شده در اینجا ثبت "
+"می‌شوند."
+
+#: includes/class-admin.php:906
+msgid "Outbound automation"
+msgstr "خودکارسازی خروجی"
+
+#: includes/class-admin.php:907
+msgid "Webhook deliveries"
+msgstr "ارسال‌های وب‌هوک"
+
+#: includes/class-admin.php:908
+msgid ""
+"Delivery status and HTTP outcomes are visible here; event payloads remain "
+"protected."
+msgstr ""
+"وضعیت ارسال و نتایج HTTP اینجا دیده می‌شوند؛ دادهٔ رویداد محافظت‌شده باقی "
+"می‌ماند."
+
+#: includes/class-admin.php:917
+msgid "Event"
+msgstr "رویداد"
+
+#: includes/class-admin.php:919
+msgid "Attempts"
+msgstr "تعداد تلاش"
+
+#: includes/class-admin.php:920
+msgid "HTTP"
+msgstr "HTTP"
+
+#: includes/class-admin.php:921
+msgid "Next attempt"
+msgstr "تلاش بعدی"
+
+#: includes/class-admin.php:929
+msgid "Removed destination"
+msgstr "مقصد حذف‌شده"
+
+#: includes/class-admin.php:943
+msgid ""
+"Delivery attempts will appear after a subscribed WordPress event occurs."
+msgstr "تلاش‌های ارسال پس از وقوع یک رویداد مشترک‌شدهٔ وردپرس نمایش داده می‌شوند."
+
+#: includes/class-admin.php:943
+msgid "No webhook deliveries yet"
+msgstr "هنوز ارسالی برای وب‌هوک ثبت نشده است"
+
+#: includes/class-admin.php:967
+msgid "Other tools"
+msgstr "سایر ابزارها"
+
+#: includes/class-admin.php:968
+msgid "Additional tools registered by this server."
+msgstr "ابزارهای دیگری که این سرور ثبت کرده است."
+
+#: includes/class-admin.php:990
+msgid "Capability governance"
+msgstr "مدیریت قابلیت‌ها"
+
+#: includes/class-admin.php:991
+msgid "MCP tool exposure"
+msgstr "نمایش ابزارهای MCP"
+
+#: includes/class-admin.php:992
+msgid ""
+"Choose which registered capabilities agents can discover and execute on this "
+"site."
+msgstr ""
+"قابلیت‌های ثبت‌شده‌ای را که عامل‌ها می‌توانند در این سایت کشف و اجرا کنند انتخاب "
+"کنید."
+
+#: includes/class-admin.php:996 includes/class-admin.php:1203
+msgid "Save tool policy"
+msgstr "ذخیرهٔ سیاست ابزارها"
+
+#: includes/class-admin.php:1002
+msgid "Current integrations"
+msgstr "یکپارچه‌سازی‌های فعلی"
+
+#: includes/class-admin.php:1002
+msgid "Registered tools"
+msgstr "ابزارهای ثبت‌شده"
+
+#: includes/class-admin.php:1003
+msgid "Advertised in discovery"
+msgstr "اعلام‌شده در فرایند کشف"
+
+#: includes/class-admin.php:1003
+msgid "Exposed tools"
+msgstr "ابزارهای در دسترس"
+
+#: includes/class-admin.php:1004
+msgid "Enabled operations"
+msgstr "عملیات فعال"
+
+#: includes/class-admin.php:1004
+msgid "Granular integration access"
+msgstr "دسترسی جزئی به یکپارچه‌سازی‌ها"
+
+#: includes/class-admin.php:1005
+msgid "Disabled operations"
+msgstr "عملیات غیرفعال"
+
+#: includes/class-admin.php:1005
+msgid "Write operations start disabled"
+msgstr "عملیات نوشتن در ابتدا غیرفعال است"
+
+#: includes/class-admin.php:1014
+msgid "Tool filters and bulk actions"
+msgstr "فیلتر ابزارها و عملیات گروهی"
+
+#: includes/class-admin.php:1018
+msgid "Search tool name or description…"
+msgstr "جست‌وجوی نام یا توضیح ابزار…"
+
+#: includes/class-admin.php:1021
+msgid "Filter by tool group"
+msgstr "فیلتر بر اساس گروه ابزار"
+
+#: includes/class-admin.php:1023
+msgid "All tool groups"
+msgstr "همهٔ گروه‌های ابزار"
+
+#: includes/class-admin.php:1037
+msgid "Enable all tools"
+msgstr "فعال‌سازی همهٔ ابزارها"
+
+#: includes/class-admin.php:1038
+msgid "Disable all tools"
+msgstr "غیرفعال‌سازی همهٔ ابزارها"
+
+#: includes/class-admin.php:1044
+msgid ""
+"Disabled tools are removed from discovery and rejected when called directly. "
+"Expand integration tools to govern each read or write operation "
+"independently. Credentials and permission scopes are not changed."
+msgstr ""
+"ابزارهای غیرفعال از فهرست کشف حذف می‌شوند و فراخوانی مستقیم آن‌ها رد می‌شود. "
+"ابزارهای یکپارچه‌سازی را باز کنید تا هر عملیات خواندن یا نوشتن را مستقل "
+"مدیریت کنید. اطلاعات ورود و دامنه‌های دسترسی تغییر نمی‌کنند."
+
+#. translators: %s: number of tools.
+#: includes/class-admin.php:1070
+#, php-format
+msgid "%s tool"
+msgid_plural "%s tools"
+msgstr[0] "%s ابزار"
+msgstr[1] "%s ابزار"
+
+#. translators: %s: number of integration operations.
+#: includes/class-admin.php:1073 includes/class-admin.php:1120
+#, php-format
+msgid "%s operation"
+msgid_plural "%s operations"
+msgstr[0] "عملیات %s"
+msgstr[1] "عملیات %s"
+
+#: includes/class-admin.php:1080
+msgid "Enable group"
+msgstr "فعال‌سازی گروه"
+
+#. translators: %s: MCP tool name.
+#: includes/class-admin.php:1108
+#, php-format
+msgid "Expose %s tool"
+msgstr "در دسترس قرار دادن ابزار %s"
+
+#: includes/class-admin.php:1124 includes/class-admin.php:1176
+msgid "Destructive"
+msgstr "مخرب"
+
+#: includes/class-admin.php:1126
+msgid "Read operation"
+msgstr "عملیات خواندن"
+
+#: includes/class-admin.php:1136
+msgid "Manage"
+msgstr "مدیریت"
+
+#: includes/class-admin.php:1147
+msgid "Operation policy"
+msgstr "سیاست عملیات"
+
+#: includes/class-admin.php:1156
+msgid "Enable reads"
+msgstr "فعال‌کردن خواندن‌ها"
+
+#: includes/class-admin.php:1157
+msgid "Disable writes"
+msgstr "غیرفعال‌کردن نوشتن‌ها"
+
+#: includes/class-admin.php:1175
+msgid "Read"
+msgstr "خواندن"
+
+#: includes/class-admin.php:1175
+msgid "Write"
+msgstr "نوشتن"
+
+#: includes/class-admin.php:1193
+msgid "No tools match these filters"
+msgstr "هیچ ابزاری با این فیلترها مطابقت ندارد"
+
+#: includes/class-admin.php:1193
+msgid "Try another search term or select a different tool group."
+msgstr "عبارت دیگری را جست‌وجو کنید یا گروه ابزار متفاوتی را انتخاب کنید."
+
+#: includes/class-admin.php:1198
+msgid ""
+"Tool and operation policy changes apply to new MCP requests immediately."
+msgstr ""
+"تغییرات سیاست ابزار و عملیات بلافاصله روی درخواست‌های جدید MCP اعمال می‌شود."
+
+#: includes/class-admin.php:1199
+msgid ""
+"A disabled operation remains unavailable even when its parent integration "
+"tool is exposed."
+msgstr ""
+"عملیات غیرفعال حتی در صورت در دسترس بودن ابزار یکپارچه‌سازی والد، همچنان در "
+"دسترس نخواهد بود."
+
+#: includes/class-admin.php:1215
+msgid "Policy and runtime"
+msgstr "سیاست و محیط اجرا"
+
+#: includes/class-admin.php:1216 includes/class-admin.php:1566
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: includes/class-admin.php:1217
+msgid ""
+"Configure transport limits, browser policy, retention, and privileged "
+"developer capabilities."
+msgstr ""
+"محدودیت‌های انتقال، سیاست مرورگر، نگه‌داری و قابلیت‌های ویژهٔ توسعه‌دهنده را "
+"پیکربندی کنید."
+
+#: includes/class-admin.php:1221 includes/class-admin.php:1341
+msgid "Save changes"
+msgstr "ذخیرهٔ تغییرات"
+
+#: includes/class-admin.php:1234
+msgid "MCP service"
+msgstr "سرویس MCP"
+
+#: includes/class-admin.php:1235
+msgid "Control endpoint availability and bounded request resources."
+msgstr "دردسترس‌بودن نقطهٔ پایانی و منابع محدود هر درخواست را کنترل کنید."
+
+#: includes/class-admin.php:1239
+msgid ""
+"Authenticated clients can discover and call tools through the MCP endpoint."
+msgstr ""
+"کلاینت‌های احرازشده می‌توانند ابزارها را از طریق نقطهٔ پایانی MCP کشف و "
+"فراخوانی کنند."
+
+#: includes/class-admin.php:1239
+msgid "Enable MCP requests"
+msgstr "فعال‌سازی درخواست‌های MCP"
+
+#: includes/class-admin.php:1242
+msgid "Rate limit"
+msgstr "محدودیت نرخ"
+
+#: includes/class-admin.php:1243
+msgid "req / minute"
+msgstr "درخواست / دقیقه"
+
+#: includes/class-admin.php:1244
+msgid "Applied independently to each credential."
+msgstr "برای هر اعتبارنامه به‌طور مستقل اعمال می‌شود."
+
+#: includes/class-admin.php:1247
+msgid "Media upload limit"
+msgstr "محدودیت بارگذاری رسانه"
+
+#: includes/class-admin.php:1249
+msgid "Maximum decoded file size accepted by media tools."
+msgstr "حداکثر اندازهٔ فایل رمزگشایی‌شده که ابزارهای رسانه می‌پذیرند."
+
+#: includes/class-admin.php:1259
+msgid "Browser security"
+msgstr "امنیت مرورگر"
+
+#: includes/class-admin.php:1260
+msgid "Restrict cross-origin browser clients to explicit trusted origins."
+msgstr "کلاینت‌های مرورگر بین‌مبدأیی را به مبدأهای مورداعتماد مشخص محدود کنید."
+
+#: includes/class-admin.php:1265
+msgid "Allowed browser origins"
+msgstr "مبدأهای مجاز مرورگر"
+
+#: includes/class-admin.php:1267
+msgid ""
+"Enter one exact HTTP or HTTPS origin per line. Native MCP clients normally "
+"send no Origin header."
+msgstr ""
+"در هر خط یک مبدأ دقیق HTTP یا HTTPS وارد کنید. کلاینت‌های بومی MCP معمولاً هدر "
+"Origin ارسال نمی‌کنند."
+
+#: includes/class-admin.php:1271
+msgid ""
+"An empty list blocks browser-origin requests while preserving native desktop "
+"and server-side MCP clients."
+msgstr ""
+"فهرست خالی درخواست‌های مبدأ مرورگر را مسدود می‌کند و کلاینت‌های بومی دسکتاپ و "
+"سمت سرور MCP را فعال نگه می‌دارد."
+
+#: includes/class-admin.php:1280
+msgid "Data lifecycle"
+msgstr "چرخهٔ عمر داده"
+
+#: includes/class-admin.php:1281
+msgid "Choose how long operational records remain available for review."
+msgstr "مدت دردسترس‌بودن رکوردهای عملیاتی برای بررسی را تعیین کنید."
+
+#: includes/class-admin.php:1287
+msgid "Audit retention"
+msgstr "نگه‌داری ممیزی"
+
+#: includes/class-admin.php:1288 includes/class-admin.php:1292
+msgid "days"
+msgstr "روز"
+
+#: includes/class-admin.php:1291
+msgid "Webhook retention"
+msgstr "نگه‌داری وب‌هوک"
+
+#: includes/class-admin.php:1302
+msgid "Developer capabilities"
+msgstr "قابلیت‌های توسعه‌دهنده"
+
+#: includes/class-admin.php:1303
+msgid ""
+"Privileged tools are disabled by default and always require administrator "
+"scope."
+msgstr "ابزارهای ویژه به‌طور پیش‌فرض غیرفعال‌اند و همیشه به سطح مدیر نیاز دارند."
+
+#: includes/class-admin.php:1309
+msgid ""
+"Allow bounded text-file reads, directory listings, and searches inside "
+"approved WordPress content roots."
+msgstr ""
+"خواندن محدود فایل متنی، فهرست‌کردن پوشه و جست‌وجو در ریشه‌های محتوای تأییدشده "
+"وردپرس مجاز شود."
+
+#: includes/class-admin.php:1309
+msgid "Read-only filesystem inspection"
+msgstr "بررسی فقط‌خواندنی فایل‌سیستم"
+
+#: includes/class-admin.php:1310
+msgid ""
+"Allow validated SELECT queries against a restricted set of non-sensitive "
+"tables."
+msgstr ""
+"پرس‌وجوهای SELECT اعتبارسنجی‌شده را روی مجموعه‌ای محدود از جدول‌های غیرحساس مجاز "
+"کنید."
+
+#: includes/class-admin.php:1310
+msgid "Bounded read-only SQL"
+msgstr "SQL فقط‌خواندنی محدود"
+
+#: includes/class-admin.php:1311
+msgid "Allowlisted WP-CLI commands"
+msgstr "فرمان‌های مجاز WP-CLI"
+
+#: includes/class-admin.php:1311
+msgid ""
+"Permit safe in-process WP-CLI commands only when WP_CLI is already loaded."
+msgstr ""
+"فرمان‌های امن درون‌پردازهٔ WP-CLI را فقط زمانی مجاز کنید که WP_CLI از قبل "
+"بارگذاری شده باشد."
+
+#: includes/class-admin.php:1316
+msgid ""
+"Enable these capabilities only for controlled administrator agents. Every "
+"invocation is written to the audit trail."
+msgstr ""
+"این قابلیت‌ها را فقط برای عامل‌های مدیر کنترل‌شده فعال کنید. هر فراخوانی در "
+"ردپای ممیزی ثبت می‌شود."
+
+#: includes/class-admin.php:1325
+msgid "Uninstall behavior"
+msgstr "رفتار حذف افزونه"
+
+#: includes/class-admin.php:1326
+msgid "Decide whether operational data survives plugin removal."
+msgstr "تعیین کنید داده‌های عملیاتی پس از حذف افزونه باقی بمانند یا نه."
+
+#: includes/class-admin.php:1330
+msgid "Delete all plugin data on uninstall"
+msgstr "حذف همهٔ داده‌های افزونه هنگام حذف نصب"
+
+#: includes/class-admin.php:1330
+msgid ""
+"Permanently remove credentials, OAuth registrations, webhooks, "
+"configuration, and logs when the plugin is deleted."
+msgstr ""
+"با حذف افزونه، اعتبارنامه‌ها، ثبت‌های OAuth، وب‌هوک‌ها، پیکربندی و گزارش‌ها را "
+"برای همیشه حذف کنید."
+
+#: includes/class-admin.php:1336
+msgid "Configuration changes are audited through WordPress administration."
+msgstr "تغییرات پیکربندی از طریق مدیریت وردپرس ممیزی می‌شوند."
+
+#: includes/class-admin.php:1337
+msgid "Review security-sensitive options before saving."
+msgstr "پیش از ذخیره، گزینه‌های حساس امنیتی را بررسی کنید."
+
+#. translators: %s: label of the value being copied.
+#: includes/class-admin.php:1384
+#, php-format
+msgid "Copy %s"
+msgstr "کپی %s"
+
+#: includes/class-admin.php:1457
+msgid "Content and publishing"
+msgstr "محتوا و انتشار"
+
+#: includes/class-admin.php:1458
+msgid "Posts, pages, custom post types, publishing, and scheduling."
+msgstr "نوشته‌ها، برگه‌ها، انواع نوشتهٔ سفارشی، انتشار و زمان‌بندی."
+
+#: includes/class-admin.php:1463
+msgid "Gutenberg blocks"
+msgstr "بلوک‌های گوتنبرگ"
+
+#: includes/class-admin.php:1464
+msgid ""
+"Structured block discovery, tree editing, duplication, movement, and "
+"patterns."
+msgstr "کشف ساختاریافته بلوک، ویرایش درخت، تکثیر، جابه‌جایی و الگوها."
+
+#: includes/class-admin.php:1469
+msgid "Media and SEO"
+msgstr "رسانه و سئو"
+
+#: includes/class-admin.php:1470
+msgid "Media Library operations and normalized search metadata."
+msgstr "عملیات کتابخانهٔ رسانه و فرادادهٔ استانداردشدهٔ جست‌وجو."
+
+#: includes/class-admin.php:1475
+msgid "Flatsome Builder"
+msgstr "سازندهٔ فلت‌سام"
+
+#: includes/class-admin.php:1476
+msgid "Native-first UX Builder discovery, page creation, and layout editing."
+msgstr "کشف بومی‌محور UX Builder، ساخت برگه و ویرایش چیدمان."
+
+#: includes/class-admin.php:1481
+msgid "People and comments"
+msgstr "کاربران و دیدگاه‌ها"
+
+#: includes/class-admin.php:1482
+msgid "User lifecycle, password recovery, discussion, and moderation."
+msgstr "چرخهٔ عمر کاربر، بازیابی رمز عبور، گفت‌وگو و مدیریت دیدگاه‌ها."
+
+#: includes/class-admin.php:1487
+msgid "Site and discovery"
+msgstr "سایت و جست‌وجو"
+
+#: includes/class-admin.php:1488
+msgid "Curated WordPress settings and cross-content search."
+msgstr "تنظیمات گزینش‌شدهٔ وردپرس و جست‌وجوی یکپارچه در محتوا."
+
+#: includes/class-admin.php:1493
+msgid "Content automation"
+msgstr "خودکارسازی محتوا"
+
+#: includes/class-admin.php:1494
+msgid ""
+"Generation-provider workflows, summaries, translations, and bounded bulk "
+"actions."
+msgstr "گردش‌کارهای ارائه‌دهندهٔ تولید، خلاصه‌سازی، ترجمه و عملیات گروهی محدودشده."
+
+#: includes/class-admin.php:1499
+msgid "Webhook automation"
+msgstr "خودکارسازی وب‌هوک"
+
+#: includes/class-admin.php:1500
+msgid "Signed event destinations and subscription management."
+msgstr "مقصدهای امضاشدهٔ رویداد و مدیریت اشتراک‌ها."
+
+#: includes/class-admin.php:1505
+msgid "Plugins and themes"
+msgstr "افزونه‌ها و پوسته‌ها"
+
+#: includes/class-admin.php:1506
+msgid ""
+"Official-directory package lifecycle, generic theme controls, and child "
+"themes."
+msgstr "چرخه عمر بسته‌های مخزن رسمی، کنترل‌های عمومی پوسته و پوسته‌های فرزند."
+
+#: includes/class-admin.php:1511
+msgid "Plugin integrations"
+msgstr "یکپارچه‌سازی افزونه‌ها"
+
+#: includes/class-admin.php:1512
+msgid "Operation-level controls for ACF Free and Contact Form 7."
+msgstr "کنترل در سطح عملیات برای ACF Free و Contact Form 7."
+
+#: includes/class-admin.php:1517
+msgid "Operations and diagnostics"
+msgstr "عملیات و عیب‌یابی"
+
+#: includes/class-admin.php:1518
+msgid ""
+"Read-only filesystem and database inspection, logs, maintenance, caches, "
+"CDN, and image optimization."
+msgstr ""
+"بررسی فقط‌خواندنی فایل‌سیستم و پایگاه‌داده، گزارش‌ها، نگه‌داری، کش‌ها، CDN و "
+"بهینه‌سازی تصویر."
+
+#: includes/class-admin.php:1523
+msgid "WooCommerce"
+msgstr "ووکامرس"
+
+#: includes/class-admin.php:1524
+msgid ""
+"Products, orders, customers, inventory, and coupon operations when "
+"WooCommerce is active."
+msgstr ""
+"عملیات محصولات، سفارش‌ها، مشتریان، موجودی و کوپن‌ها هنگام فعال‌بودن ووکامرس."
+
+#: includes/class-admin.php:1529
+msgid "Multisite"
+msgstr "چندسایتی"
+
+#: includes/class-admin.php:1530
+msgid "Network site discovery and stateless site-context validation."
+msgstr "کشف سایت‌های شبکه و اعتبارسنجی بدون‌حالتِ زمینهٔ سایت."
+
+#: includes/class-admin.php:1541
+msgid "Overview"
+msgstr "نمای کلی"
+
+#: includes/class-admin.php:1542
+msgid "Health & connection"
+msgstr "سلامت و اتصال"
+
+#: includes/class-admin.php:1546
+msgid "Tools"
+msgstr "ابزارها"
+
+#: includes/class-admin.php:1547
+msgid "Exposure & policy"
+msgstr "نمایش و سیاست"
+
+#: includes/class-admin.php:1552
+msgid "Keys & OAuth"
+msgstr "کلیدها و OAuth"
+
+#: includes/class-admin.php:1557
+msgid "Events & delivery"
+msgstr "رویدادها و ارسال"
+
+#: includes/class-admin.php:1561
+msgid "Activity"
+msgstr "فعالیت"
+
+#: includes/class-admin.php:1562
+msgid "Audit & diagnostics"
+msgstr "ممیزی و عیب‌یابی"
+
+#: includes/class-admin.php:1567
+msgid "Policy & runtime"
+msgstr "سیاست و محیط اجرا"
+
+#: includes/class-admin.php:1611
+msgid "System"
+msgstr "سامانه"
+
+#. translators: %d: WordPress user ID.
+#: includes/class-admin.php:1615
+#, php-format
+msgid "User #%d"
+msgstr "کاربر شمارهٔ %d"
+
+#: includes/class-admin.php:1636
+msgid "A post, page, or custom post is created."
+msgstr "یک نوشته، برگه یا نوع نوشتهٔ سفارشی ایجاد می‌شود."
+
+#: includes/class-admin.php:1637
+msgid "Existing content is updated."
+msgstr "محتوای موجود به‌روزرسانی می‌شود."
+
+#: includes/class-admin.php:1638
+msgid "A new comment is submitted."
+msgstr "یک دیدگاه جدید ثبت می‌شود."
+
+#: includes/class-admin.php:1639
+msgid "WooCommerce creates a new order."
+msgstr "یک سفارش جدید در ووکامرس ایجاد می‌شود."
+
+#: includes/class-admin.php:1655
+msgid "Delivered"
+msgstr "ارسال‌شده"
+
+#: includes/class-admin.php:1657
+msgid "Retrying"
+msgstr "در حال تلاش مجدد"
+
+#: includes/class-admin.php:1658
+msgid "Queued"
+msgstr "در صف"
+
+#: includes/class-admin.php:1676
+msgid "You cannot manage Mindio Magic MCP."
+msgstr "شما اجازهٔ مدیریت Mindio Magic MCP را ندارید."
+
+#: includes/class-admin.php:1686
+msgid "API key created. Copy it now; it cannot be recovered."
+msgstr "کلید API ساخته شد. همین حالا آن را کپی کنید؛ بعداً قابل بازیابی نیست."
+
+#: includes/class-admin.php:1686
+msgid "Webhook created. Copy its signing secret now."
+msgstr "وب‌هوک ساخته شد. راز امضای آن را همین حالا کپی کنید."
+
+#: includes/class-auth.php:63
+msgid ""
+"A valid API key, OAuth token, or WordPress Application Password is required."
+msgstr "یک کلید API، توکن OAuth یا رمز برنامهٔ وردپرس معتبر لازم است."
+
+#: includes/class-auth.php:76
+msgid "The API-key user or scope is invalid."
+msgstr "کاربر یا سطح دسترسی کلید API نامعتبر است."
+
+#: includes/class-auth.php:79
+msgid "The selected user cannot be granted that scope."
+msgstr "کاربر انتخاب‌شده نمی‌تواند این سطح دسترسی را دریافت کند."
+
+#: includes/class-auth.php:93
+msgid "The requested OAuth scope is not available to this user."
+msgstr "سطح دسترسی OAuth درخواستی برای این کاربر در دسترس نیست."
+
+#: includes/class-auth.php:118
+msgid "The refresh token does not belong to this client."
+msgstr "توکن تازه‌سازی به این کارخواه تعلق ندارد."
+
+#: includes/class-auth.php:122
+msgid "The refresh token resource does not match this MCP endpoint."
+msgstr "منبع توکن تازه‌سازی با این نقطهٔ پایانی MCP مطابقت ندارد."
+
+#: includes/class-auth.php:129
+msgid "A refresh request cannot increase its original scope."
+msgstr "درخواست نوسازی نمی‌تواند سطح دسترسی اصلی خود را افزایش دهد."
+
+#: includes/class-auth.php:258
+msgid "Unnamed key"
+msgstr "کلید بدون نام"
+
+#: includes/class-auth.php:282
+msgid "The access token is malformed."
+msgstr "ساختار توکن دسترسی نامعتبر است."
+
+#: includes/class-auth.php:288
+msgid "The access token is invalid or revoked."
+msgstr "توکن دسترسی نامعتبر یا لغوشده است."
+
+#: includes/class-auth.php:295
+msgid "The access token has expired."
+msgstr "توکن دسترسی منقضی شده است."
+
+#: includes/class-auth.php:298
+msgid "The token user no longer has the required access."
+msgstr "کاربر توکن دیگر دسترسی لازم را ندارد."
+
+#: includes/class-auth.php:334
+msgid "The refresh token is malformed."
+msgstr "ساختار توکن تازه‌سازی نامعتبر است."
+
+#: includes/class-auth.php:340
+msgid "The refresh token is invalid, expired, or already used."
+msgstr "توکن تازه‌سازی نامعتبر، منقضی یا قبلاً استفاده شده است."
+
+#: includes/class-block-tree.php:94
+msgid "The requested block position is invalid."
+msgstr "موقعیت درخواستی بلوک معتبر نیست."
+
+#: includes/class-block-tree.php:97
+msgid "At least one parsed block is required."
+msgstr "حداقل یک بلوک تجزیه‌شده لازم است."
+
+#: includes/class-block-tree.php:107 includes/class-block-tree.php:113
+#: includes/class-block-tree.php:125
+#: includes/tools/class-gutenberg-tools.php:163
+#: includes/tools/class-gutenberg-tools.php:180
+msgid ""
+"The block path no longer resolves. Read the current block tree and try again."
+msgstr ""
+"مسیر بلوک دیگر قابل شناسایی نیست. درخت فعلی بلوک را بخوانید و دوباره تلاش "
+"کنید."
+
+#: includes/class-block-tree.php:163
+msgid "A block cannot be moved into itself or one of its descendants."
+msgstr "بلوک را نمی‌توان به داخل خودش یا یکی از زیرمجموعه‌هایش منتقل کرد."
+
+#: includes/class-block-tree.php:167
+msgid "The source block path no longer resolves."
+msgstr "مسیر بلوک مبدأ دیگر قابل شناسایی نیست."
+
+#: includes/class-block-tree.php:185
+msgid "The block path no longer resolves."
+msgstr "مسیر بلوک دیگر قابل شناسایی نیست."
+
+#: includes/class-block-tree.php:196
+msgid "The block tree exceeds the maximum number of blocks."
+msgstr "تعداد بلوک‌های درخت از حداکثر مجاز بیشتر است."
+
+#: includes/class-block-tree.php:199
+msgid "The block tree exceeds the maximum nesting depth."
+msgstr "عمق تودرتویی درخت بلوک از حداکثر مجاز بیشتر است."
+
+#: includes/class-block-tree.php:211
+msgid "Raw HTML must be wrapped in an explicit Gutenberg block."
+msgstr "HTML خام باید در یک بلوک صریح گوتنبرگ قرار گیرد."
+
+#. translators: %s: Gutenberg block type name.
+#: includes/class-block-tree.php:220
+#, php-format
+msgid "The Gutenberg block type %s is not registered on this site."
+msgstr "نوع بلوک گوتنبرگ %s در این سایت ثبت نشده است."
+
+#: includes/class-flatsome-renderer.php:65
+msgid "The target node is invalid."
+msgstr "گرهٔ هدف نامعتبر است."
+
+#: includes/class-flatsome-renderer.php:70
+msgid ""
+"The target UX Builder node was not found. Refresh the page structure and "
+"retry."
+msgstr ""
+"گرهٔ UX Builder هدف پیدا نشد. ساختار صفحه را تازه‌سازی و دوباره تلاش کنید."
+
+#: includes/class-flatsome-renderer.php:76
+msgid "The UX Builder layout could not be parsed."
+msgstr "طرح UX Builder قابل تجزیه نبود."
+
+#: includes/class-flatsome-renderer.php:88
+msgid "The target UX Builder node has no matching closing shortcode."
+msgstr "گرهٔ هدف UX Builder شورت‌کد پایانی منطبق ندارد."
+
+#: includes/class-flatsome-renderer.php:195
+#: includes/tools/class-flatsome-tools.php:780
+msgid "Flatsome components may be nested at most 10 levels deep."
+msgstr "اجزای فلت‌سام را می‌توان حداکثر تا ۱۰ سطح درون هم قرار داد."
+
+#: includes/class-flatsome-renderer.php:200
+#: includes/class-flatsome-renderer.php:393
+msgid "The requested Flatsome component type is not supported."
+msgstr "نوع جزء درخواستی فلت‌سام پشتیبانی نمی‌شود."
+
+#. translators: 1: component type, 2: dependency name.
+#: includes/class-flatsome-renderer.php:207
+#, php-format
+msgid "The %1$s component requires the active %2$s dependency."
+msgstr "جزء %1$s به وابستگی فعال %2$s نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:240
+msgid "A title component requires text."
+msgstr "جزء عنوان به متن نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:247
+msgid ""
+"UX text content may contain body-copy markup only. Use typed components for "
+"headings, media, layouts, and shortcodes."
+msgstr ""
+"محتوای متن UX فقط می‌تواند شامل نشانه‌گذاری متن بدنه باشد. برای عنوان‌ها، "
+"رسانه، چیدمان و شورت‌کدها از اجزای نوع‌دار استفاده کنید."
+
+#: includes/class-flatsome-renderer.php:251
+msgid "A text component requires content."
+msgstr "جزء متن به محتوا نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:258
+msgid "An image component requires a Media Library media_id."
+msgstr "جزء تصویر به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:271
+msgid "A featured box requires a title."
+msgstr "جعبهٔ ویژه به عنوان نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:279
+msgid "An image box requires a Media Library media_id."
+msgstr "جعبهٔ تصویر به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:315
+msgid "A gallery requires at least one Media Library image."
+msgstr "گالری به دست‌کم یک تصویر از کتابخانهٔ رسانه نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:322
+msgid "A video component requires a valid URL."
+msgstr "جزء ویدئو به یک نشانی URL معتبر نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:332
+msgid "A testimonial requires content."
+msgstr "نظر مشتری به محتوا نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:339
+msgid "A team member requires a name."
+msgstr "عضو تیم به نام نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:355
+msgid "A logo component requires a Media Library media_id."
+msgstr "جزء لوگو به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:429
+msgid "A button component requires text."
+msgstr "جزء دکمه به متن نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:437
+msgid "A banner component requires a Media Library media_id."
+msgstr "جزء بنر به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:462
+msgid "A countdown requires a valid deadline."
+msgstr "شمارش معکوس به مهلت زمانی معتبر نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:471
+msgid "A price table requires a title and price."
+msgstr "جدول قیمت به عنوان و قیمت نیاز دارد."
+
+#: includes/class-flatsome-renderer.php:548
+msgid "Watch video"
+msgstr "تماشای ویدئو"
+
+#: includes/class-flatsome-renderer.php:610
+msgid "Social profiles"
+msgstr "نمایه‌های اجتماعی"
+
+#: includes/class-flatsome-renderer.php:617
+msgid "Share this page"
+msgstr "اشتراک‌گذاری این صفحه"
+
+#: includes/class-flatsome-renderer.php:621
+msgid "View location on map"
+msgstr "مشاهدهٔ موقعیت روی نقشه"
+
+#: includes/class-flatsome-renderer.php:632
+msgid "An HTML fallback component requires html."
+msgstr "جزء جایگزین HTML به html نیاز دارد."
+
+#. translators: %s: integration name, for example WooCommerce.
+#: includes/class-integration-dispatcher.php:64
+#, php-format
+msgid ""
+"Run an enabled read operation for the %s integration, or omit operation to "
+"inspect its available read capabilities."
+msgstr ""
+"یک عملیات خواندن فعال برای یکپارچه‌سازی %s اجرا کنید، یا برای مشاهده "
+"قابلیت‌های خواندن موجود، operation را وارد نکنید."
+
+#. translators: %s: integration name, for example WooCommerce.
+#: includes/class-integration-dispatcher.php:69
+#, php-format
+msgid ""
+"Run an administrator-enabled write operation for the %s integration. Write "
+"operations are disabled by default."
+msgstr ""
+"یک عملیات نوشتن فعال‌شده توسط مدیر برای یکپارچه‌سازی %s اجرا کنید. عملیات "
+"نوشتن به‌طور پیش‌فرض غیرفعال است."
+
+#: includes/class-integration-dispatcher.php:81
+msgid ""
+"Enabled integration operation to execute. Omit it to return the operation "
+"catalog."
+msgstr ""
+"عملیات فعال یکپارچه‌سازی برای اجرا. برای دریافت فهرست عملیات، آن را وارد "
+"نکنید."
+
+#: includes/class-integration-dispatcher.php:85
+msgid "Arguments validated against the selected operation schema."
+msgstr "آرگومان‌ها بر اساس شِمای عملیات انتخاب‌شده اعتبارسنجی می‌شوند."
+
+#. translators: %s: required WordPress plugin name.
+#: includes/class-integration-dispatcher.php:116
+#, php-format
+msgid "%s is not installed and active."
+msgstr "%s نصب و فعال نیست."
+
+#: includes/class-integration-dispatcher.php:130
+#: includes/class-tool-registry.php:173
+msgid "Unknown integration operation."
+msgstr "عملیات یکپارچه‌سازی ناشناخته است."
+
+#: includes/class-integration-dispatcher.php:136
+msgid "The access token does not grant this integration operation scope."
+msgstr "توکن دسترسی، دامنه لازم برای این عملیات یکپارچه‌سازی را اعطا نمی‌کند."
+
+#: includes/class-integration-dispatcher.php:145
+msgid "Your WordPress user cannot perform this integration operation."
+msgstr "کاربر وردپرس شما اجازه انجام این عملیات یکپارچه‌سازی را ندارد."
+
+#: includes/class-integration-dispatcher.php:149
+msgid "The integration operation is not callable."
+msgstr "این عملیات یکپارچه‌سازی قابل فراخوانی نیست."
+
+#: includes/class-mcp-server.php:63
+msgid ""
+"This stateless server does not expose an SSE stream or server-managed "
+"sessions."
+msgstr ""
+"این سرور بدون حالت، جریان SSE یا نشست مدیریت‌شده توسط سرور ارائه نمی‌کند."
+
+#: includes/class-mcp-server.php:70
+msgid "The MCP request body exceeds the 25 MB transport limit."
+msgstr "حجم بدنهٔ درخواست MCP از محدودیت انتقال ۲۵ مگابایت بیشتر است."
+
+#: includes/class-mcp-server.php:74
+msgid "The MCP endpoint is disabled by an administrator."
+msgstr "نقطهٔ پایانی MCP به‌دست مدیر غیرفعال شده است."
+
+#: includes/class-mcp-server.php:89
+msgid "Rate limit exceeded."
+msgstr "محدودیت نرخ درخواست رد شد."
+
+#: includes/class-mcp-server.php:98
+msgid "Unsupported MCP-Protocol-Version header."
+msgstr "نسخهٔ هدر MCP-Protocol-Version پشتیبانی نمی‌شود."
+
+#: includes/class-mcp-server.php:103
+msgid "The request body must be one JSON-RPC object."
+msgstr "بدنهٔ درخواست باید یک شیء JSON-RPC باشد."
+
+#: includes/class-mcp-server.php:106
+msgid "Invalid JSON-RPC 2.0 request."
+msgstr "درخواست JSON-RPC 2.0 نامعتبر است."
+
+#: includes/class-mcp-server.php:124
+msgid "JSON-RPC method not found."
+msgstr "روش JSON-RPC پیدا نشد."
+
+#: includes/class-mcp-server.php:144
+msgid "initialize requires protocolVersion."
+msgstr "initialize به protocolVersion نیاز دارد."
+
+#: includes/class-mcp-server.php:156
+msgid "Secure WordPress and Flatsome UX Builder automation."
+msgstr "خودکارسازی امن وردپرس و UX Builder فلت‌سام."
+
+#. translators: 1: site URL, 2: locale.
+#: includes/class-mcp-server.php:161
+#, php-format
+msgid ""
+"Operate %1$s carefully. Prefer drafts, use list/read tools before writes, "
+"and honor the site locale (%2$s). Destructive calls require explicit "
+"confirmation."
+msgstr ""
+"%1$s را با احتیاط مدیریت کنید. پیش‌نویس را ترجیح دهید، پیش از نوشتن از "
+"ابزارهای فهرست/خواندن استفاده کنید و زبان سایت (%2$s) را رعایت کنید. "
+"فراخوانی‌های مخرب به تأیید صریح نیاز دارند."
+
+#: includes/class-mcp-server.php:173
+msgid "tools/call requires a tool name and object arguments."
+msgstr "tools/call به نام ابزار و آرگومان‌های شیء نیاز دارد."
+
+#. translators: %s: MCP tool name.
+#: includes/class-mcp-server.php:180
+#, php-format
+msgid "Unknown tool: %s."
+msgstr "ابزار ناشناخته است: %s."
+
+#: includes/class-mcp-server.php:226
+msgid "The Origin header is not allowed for this MCP server."
+msgstr "هدر Origin برای این سرور MCP مجاز نیست."
+
+#: includes/class-oauth-server.php:99 includes/class-oauth-server.php:100
+#: includes/class-oauth-server.php:310
+msgid "Authorize MCP Client"
+msgstr "اجازه‌دادن به کارخواه MCP"
+
+#: includes/class-oauth-server.php:143
+msgid "Too many client registrations."
+msgstr "تعداد ثبت کلاینت‌ها بیش از حد مجاز است."
+
+#: includes/class-oauth-server.php:150
+msgid "One to ten redirect URIs are required."
+msgstr "واردکردن یک تا ده نشانی بازگشت الزامی است."
+
+#: includes/class-oauth-server.php:154
+msgid "A redirect URI is invalid. Use HTTPS or a loopback HTTP URI."
+msgstr ""
+"یکی از نشانی‌های بازگشت نامعتبر است. از HTTPS یا نشانی HTTP حلقهٔ محلی استفاده "
+"کنید."
+
+#: includes/class-oauth-server.php:160
+msgid ""
+"The OAuth client registry is full. Revoke an unused client before "
+"registering another."
+msgstr ""
+"فهرست کارخواه‌های OAuth پر است. پیش از ثبت کارخواه جدید، یک کارخواه بدون "
+"استفاده را لغو کنید."
+
+#: includes/class-oauth-server.php:166 includes/class-oauth-server.php:308
+#: includes/class-oauth-server.php:397
+msgid "MCP Client"
+msgstr "کارخواه MCP"
+
+#: includes/class-oauth-server.php:184
+msgid "Too many token requests."
+msgstr "تعداد درخواست‌های توکن بیش از حد مجاز است."
+
+#: includes/class-oauth-server.php:191 includes/class-oauth-server.php:566
+msgid "The OAuth client is unknown."
+msgstr "کارخواه OAuth ناشناخته است."
+
+#: includes/class-oauth-server.php:208
+msgid "Only authorization_code and refresh_token are supported."
+msgstr "فقط authorization_code و refresh_token پشتیبانی می‌شوند."
+
+#: includes/class-oauth-server.php:216
+msgid "The authorization code context does not match."
+msgstr "زمینهٔ کد مجوز مطابقت ندارد."
+
+#: includes/class-oauth-server.php:220
+msgid "The authorization code resource does not match."
+msgstr "منبع کد مجوز مطابقت ندارد."
+
+#: includes/class-oauth-server.php:225
+msgid "A valid PKCE code_verifier is required."
+msgstr "یک code_verifier معتبر برای PKCE الزامی است."
+
+#: includes/class-oauth-server.php:229
+msgid "PKCE verification failed."
+msgstr "اعتبارسنجی PKCE ناموفق بود."
+
+#: includes/class-oauth-server.php:258
+msgid ""
+"This authorization request expired. Start the connection again from your MCP "
+"client."
+msgstr ""
+"این درخواست مجوز منقضی شده است. اتصال را دوباره از کارخواه MCP آغاز کنید."
+
+#: includes/class-oauth-server.php:314
+msgid "Authorization request"
+msgstr "درخواست مجوز"
+
+#. translators: %s: OAuth client name.
+#: includes/class-oauth-server.php:319
+#, php-format
+msgid "Allow %s to connect?"
+msgstr "اجازه می‌دهید %s متصل شود؟"
+
+#: includes/class-oauth-server.php:324
+msgid ""
+"Review the requested access before connecting this client to your WordPress "
+"site."
+msgstr ""
+"پیش از اتصال این کارخواه به سایت وردپرس، دسترسی درخواستی را بررسی کنید."
+
+#: includes/class-oauth-server.php:327
+msgid "Signed-in account"
+msgstr "حساب واردشده"
+
+#: includes/class-oauth-server.php:332
+msgid "Signed in as"
+msgstr "واردشده با حساب"
+
+#: includes/class-oauth-server.php:343
+msgid "WordPress site"
+msgstr "سایت وردپرس"
+
+#: includes/class-oauth-server.php:347
+msgid "Returns to"
+msgstr "بازگشت به"
+
+#: includes/class-oauth-server.php:355
+msgid "Requested access"
+msgstr "دسترسی درخواستی"
+
+#: includes/class-oauth-server.php:372
+msgid ""
+"Only approve clients you trust. This client will act with the granted "
+"permissions as your current WordPress user."
+msgstr ""
+"فقط کارخواه‌های مورد اعتماد را تأیید کنید. این کارخواه با مجوزهای اعطاشده و "
+"به‌عنوان کاربر فعلی وردپرس شما عمل می‌کند."
+
+#: includes/class-oauth-server.php:382
+msgid "Approve and connect"
+msgstr "تأیید و اتصال"
+
+#: includes/class-oauth-server.php:384
+msgid "Reject request"
+msgstr "رد درخواست"
+
+#: includes/class-oauth-server.php:398
+msgid "Access request rejected"
+msgstr "درخواست دسترسی رد شد"
+
+#: includes/class-oauth-server.php:398
+msgid "Authorization approved"
+msgstr "مجوز تأیید شد"
+
+#: includes/class-oauth-server.php:415
+msgid "Authorization complete"
+msgstr "فرایند مجوزدهی کامل شد"
+
+#: includes/class-oauth-server.php:415
+msgid "Request closed"
+msgstr "درخواست بسته شد"
+
+#: includes/class-oauth-server.php:421
+msgid "The client can now finish authentication with the access you granted."
+msgstr "کارخواه اکنون می‌تواند احراز هویت را با دسترسی اعطاشده تکمیل کند."
+
+#: includes/class-oauth-server.php:422
+msgid "No access was granted. The client will receive your decision."
+msgstr "هیچ دسترسی‌ای اعطا نشد. تصمیم شما به کارخواه ارسال می‌شود."
+
+#: includes/class-oauth-server.php:429
+msgid "Access"
+msgstr "دسترسی"
+
+#: includes/class-oauth-server.php:429
+msgid "Not granted"
+msgstr "اعطا نشد"
+
+#: includes/class-oauth-server.php:434
+msgid "Returning securely to the MCP client…"
+msgstr "در حال بازگشت امن به کارخواه MCP…"
+
+#: includes/class-oauth-server.php:437
+msgid "Continue to client"
+msgstr "ادامه به کارخواه"
+
+#: includes/class-oauth-server.php:439
+msgid ""
+"Automatic return requires JavaScript. Select Continue to finish the "
+"authorization flow."
+msgstr ""
+"بازگشت خودکار به جاوااسکریپت نیاز دارد. برای تکمیل فرایند مجوزدهی، ادامه را "
+"انتخاب کنید."
+
+#: includes/class-oauth-server.php:448
+msgid "Invalid OAuth request"
+msgstr "درخواست OAuth نامعتبر است"
+
+#: includes/class-oauth-server.php:454
+msgid "Unable to continue"
+msgstr "ادامه ممکن نیست"
+
+#: includes/class-oauth-server.php:455
+msgid "Invalid authorization request"
+msgstr "درخواست مجوز نامعتبر است"
+
+#: includes/class-oauth-server.php:458
+msgid "Error code"
+msgstr "کد خطا"
+
+#: includes/class-oauth-server.php:461
+msgid ""
+"Start the connection again from your MCP client. If the problem continues, "
+"verify the client URL and OAuth configuration."
+msgstr ""
+"اتصال را دوباره از کارخواه MCP آغاز کنید. اگر مشکل ادامه داشت، نشانی کارخواه "
+"و پیکربندی OAuth را بررسی کنید."
+
+#: includes/class-oauth-server.php:462
+msgid "Return to WordPress"
+msgstr "بازگشت به وردپرس"
+
+#: includes/class-oauth-server.php:497
+msgid "Secure WordPress authorization"
+msgstr "مجوزدهی امن وردپرس"
+
+#: includes/class-oauth-server.php:508
+msgid "Protected by WordPress permissions"
+msgstr "محافظت‌شده با مجوزهای وردپرس"
+
+#: includes/class-oauth-server.php:509
+msgid "Tokens are bound to this MCP endpoint"
+msgstr "توکن‌ها به این نقطهٔ پایانی MCP مقید هستند"
+
+#: includes/class-oauth-server.php:525
+msgid "Administrator access"
+msgstr "دسترسی مدیر"
+
+#: includes/class-oauth-server.php:526
+msgid "Editor access"
+msgstr "دسترسی ویرایشگر"
+
+#: includes/class-oauth-server.php:527
+msgid "Read-only access"
+msgstr "دسترسی فقط‌خواندنی"
+
+#: includes/class-oauth-server.php:534
+msgid "View posts, pages, media, settings, and operational activity."
+msgstr "مشاهدهٔ نوشته‌ها، برگه‌ها، رسانه‌ها، تنظیمات و فعالیت‌های عملیاتی."
+
+#: includes/class-oauth-server.php:538
+msgid ""
+"Create and update content, media, comments, SEO metadata, and store data."
+msgstr ""
+"ایجاد و به‌روزرسانی محتوا، رسانه، دیدگاه‌ها، فرادادهٔ سئو و داده‌های فروشگاه."
+
+#: includes/class-oauth-server.php:541
+msgid ""
+"Manage users, plugins, themes, site settings, webhooks, and privileged "
+"operations."
+msgstr ""
+"مدیریت کاربران، افزونه‌ها، پوسته‌ها، تنظیمات سایت، وب‌هوک‌ها و عملیات ویژه."
+
+#: includes/class-oauth-server.php:562
+msgid "Only the code response type is supported."
+msgstr "فقط نوع پاسخ code پشتیبانی می‌شود."
+
+#: includes/class-oauth-server.php:570
+msgid "The redirect URI is not registered for this client."
+msgstr "نشانی بازگشت برای این کلاینت ثبت نشده است."
+
+#: includes/class-oauth-server.php:573
+msgid "OAuth authorization requires PKCE with S256."
+msgstr "مجوز OAuth به PKCE با S256 نیاز دارد."
+
+#: includes/class-oauth-server.php:582
+msgid "Your user cannot grant the requested scope."
+msgstr "کاربر شما نمی‌تواند سطح دسترسی درخواستی را اعطا کند."
+
+#: includes/class-oauth-server.php:607 includes/class-oauth-server.php:626
+msgid "The OAuth resource must exactly identify this MCP endpoint."
+msgstr "منبع OAuth باید دقیقاً همین نقطهٔ پایانی MCP را مشخص کند."
+
+#: includes/class-oauth-server.php:685
+msgid "The authorization code is malformed."
+msgstr "ساختار کد مجوز نامعتبر است."
+
+#: includes/class-oauth-server.php:692
+msgid "The authorization code is invalid, expired, or already used."
+msgstr "کد مجوز نامعتبر، منقضی یا قبلاً استفاده شده است."
+
+#: includes/class-schema-validator.php:31
+msgid "does not match an allowed schema"
+msgstr "با هیچ ساختار مجازی مطابقت ندارد"
+
+#: includes/class-schema-validator.php:36
+msgid "contains a value outside the allowed set"
+msgstr "مقداری خارج از مجموعهٔ مجاز دارد"
+
+#. translators: %s: comma-separated JSON types.
+#: includes/class-schema-validator.php:45
+#, php-format
+msgid "must be of type %s"
+msgstr "باید از نوع %s باشد"
+
+#: includes/class-schema-validator.php:54
+msgid "is shorter than allowed"
+msgstr "کوتاه‌تر از حد مجاز است"
+
+#: includes/class-schema-validator.php:57
+msgid "is longer than allowed"
+msgstr "بلندتر از حد مجاز است"
+
+#: includes/class-schema-validator.php:60
+msgid "has an invalid format"
+msgstr "قالب نامعتبر دارد"
+
+#: includes/class-schema-validator.php:63
+msgid "must be a valid URL"
+msgstr "باید یک URL معتبر باشد"
+
+#: includes/class-schema-validator.php:66
+msgid "must be a valid date-time"
+msgstr "باید تاریخ‌وزمان معتبر باشد"
+
+#: includes/class-schema-validator.php:72
+msgid "is below the minimum"
+msgstr "کمتر از حداقل است"
+
+#: includes/class-schema-validator.php:75
+msgid "is above the maximum"
+msgstr "بیشتر از حداکثر است"
+
+#: includes/class-schema-validator.php:82
+msgid "contains too few items"
+msgstr "تعداد موارد آن کمتر از حد مجاز است"
+
+#: includes/class-schema-validator.php:85
+msgid "contains too many items"
+msgstr "تعداد موارد آن بیشتر از حد مجاز است"
+
+#: includes/class-schema-validator.php:88
+msgid "contains duplicate items"
+msgstr "موارد تکراری دارد"
+
+#: includes/class-schema-validator.php:103
+msgid "is required"
+msgstr "الزامی است"
+
+#: includes/class-schema-validator.php:115
+msgid "is not an allowed property"
+msgstr "ویژگی مجاز نیست"
+
+#. translators: 1: JSON path, 2: validation error.
+#: includes/class-schema-validator.php:151
+#, php-format
+msgid "%1$s %2$s."
+msgstr "%1$s %2$s."
+
+#: includes/class-tool-registry.php:55
+msgid ""
+"Optional installed WordPress locale for localized response messages, for "
+"example fa_IR or en_US."
+msgstr ""
+"زبان نصب‌شدهٔ اختیاری وردپرس برای پیام‌های بومی‌سازی‌شدهٔ پاسخ؛ برای نمونه fa_IR "
+"یا en_US."
+
+#: includes/class-tool-registry.php:60
+msgid ""
+"On multisite, optionally execute this one call in the selected site context."
+msgstr ""
+"در وردپرس چندسایته، این فراخوانی را در صورت نیاز در زمینهٔ سایت انتخاب‌شده "
+"اجرا کنید."
+
+#: includes/class-tool-registry.php:130
+msgid "Unknown tool."
+msgstr "ابزار ناشناخته است."
+
+#: includes/class-tool-registry.php:140
+msgid "The requested response locale is not installed."
+msgstr "زبان درخواستی پاسخ نصب نشده است."
+
+#: includes/class-tool-registry.php:147
+msgid "The access token does not grant this tool scope."
+msgstr "توکن دسترسی، سطح لازم برای این ابزار را ندارد."
+
+#: includes/class-tool-registry.php:158
+msgid "The requested multisite site does not exist."
+msgstr "سایت چندسایتی درخواستی وجود ندارد."
+
+#: includes/class-tool-registry.php:162
+msgid "Your user cannot access the requested site."
+msgstr "کاربر شما به سایت درخواستی دسترسی ندارد."
+
+#: includes/class-tool-registry.php:168
+msgid "This tool is disabled by the site administrator."
+msgstr "این ابزار به‌دست مدیر سایت غیرفعال شده است."
+
+#: includes/class-tool-registry.php:176
+msgid "This integration operation is disabled by the site administrator."
+msgstr "این عملیات یکپارچه‌سازی توسط مدیر سایت غیرفعال شده است."
+
+#: includes/class-tool-registry.php:184
+msgid "Your WordPress user cannot perform this action."
+msgstr "کاربر وردپرس شما اجازهٔ انجام این کار را ندارد."
+
+#: includes/class-tool-registry.php:190
+msgid "The tool failed unexpectedly."
+msgstr "ابزار به‌طور غیرمنتظره با خطا روبه‌رو شد."
+
+#: includes/class-url-guard.php:20
+msgid "The URL is invalid."
+msgstr "URL نامعتبر است."
+
+#: includes/class-url-guard.php:23
+msgid "Only HTTPS URLs are allowed."
+msgstr "فقط نشانی‌های HTTPS مجاز هستند."
+
+#: includes/class-url-guard.php:26
+msgid "URLs containing credentials are not allowed."
+msgstr "نشانی‌های دارای اعتبارنامه مجاز نیستند."
+
+#: includes/class-url-guard.php:31 includes/class-url-guard.php:54
+msgid "Local and private network URLs are not allowed."
+msgstr "نشانی‌های شبکهٔ محلی و خصوصی مجاز نیستند."
+
+#: includes/class-url-guard.php:50
+msgid "The URL host could not be resolved."
+msgstr "میزبان URL قابل شناسایی نبود."
+
+#: includes/class-webhook-engine.php:32
+msgid "Select at least one supported webhook event."
+msgstr "دست‌کم یک رویداد وب‌هوک پشتیبانی‌شده انتخاب کنید."
+
+#: includes/class-webhook-engine.php:36
+msgid "This site already has the maximum of 100 MCP webhooks."
+msgstr "این سایت هم‌اکنون به سقف ۱۰۰ وب‌هوک MCP رسیده است."
+
+#: includes/class-webhook-engine.php:44
+msgid "The webhook secret could not be encrypted on this server."
+msgstr "راز وب‌هوک در این سرور رمزگذاری نشد."
+
+#: includes/class-webhook-engine.php:48
+msgid "Webhook"
+msgstr "وب‌هوک"
+
+#: includes/class-webhook-engine.php:61
+msgid "Store this signing secret now; it will not be shown again."
+msgstr "راز امضا را اکنون ذخیره کنید؛ دوباره نمایش داده نمی‌شود."
+
+#: includes/tools/class-acf-tools.php:25
+msgid "List field groups"
+msgstr "فهرست گروه‌های فیلد"
+
+#: includes/tools/class-acf-tools.php:26
+msgid "List ACF field groups and their field summaries."
+msgstr "فهرست گروه‌های فیلد ACF و خلاصه فیلدهای آن‌ها."
+
+#: includes/tools/class-acf-tools.php:38
+msgid "Get field group"
+msgstr "دریافت گروه فیلد"
+
+#: includes/tools/class-acf-tools.php:39
+msgid "Get one ACF field group and its complete free-field definitions."
+msgstr "دریافت یک گروه فیلد ACF و تعریف کامل فیلدهای رایگان آن."
+
+#: includes/tools/class-acf-tools.php:46
+msgid "Get field value"
+msgstr "دریافت مقدار فیلد"
+
+#: includes/tools/class-acf-tools.php:47
+msgid "Read one ACF value from a post using a field name or key."
+msgstr "خواندن یک مقدار ACF از نوشته با استفاده از نام یا کلید فیلد."
+
+#: includes/tools/class-acf-tools.php:61
+msgid "List ACF post types"
+msgstr "فهرست نوع‌نوشته‌های ACF"
+
+#: includes/tools/class-acf-tools.php:62
+msgid "List custom post types registered through the ACF Free UI."
+msgstr "فهرست نوع‌نوشته‌های سفارشی ثبت‌شده از رابط ACF Free."
+
+#: includes/tools/class-acf-tools.php:69
+msgid "List ACF taxonomies"
+msgstr "فهرست رده‌بندی‌های ACF"
+
+#: includes/tools/class-acf-tools.php:70
+msgid "List taxonomies registered through the ACF Free UI."
+msgstr "فهرست رده‌بندی‌های ثبت‌شده از رابط ACF Free."
+
+#: includes/tools/class-acf-tools.php:77
+msgid "Create or update field group"
+msgstr "ایجاد یا به‌روزرسانی گروه فیلد"
+
+#: includes/tools/class-acf-tools.php:78
+msgid ""
+"Create or update a sanitized ACF field group. Pro-only structures are not "
+"accepted."
+msgstr ""
+"ایجاد یا به‌روزرسانی گروه فیلد پاک‌سازی‌شده ACF. ساختارهای مخصوص نسخه Pro "
+"پذیرفته نمی‌شوند."
+
+#: includes/tools/class-acf-tools.php:85
+msgid "Delete field group"
+msgstr "حذف گروه فیلد"
+
+#: includes/tools/class-acf-tools.php:86
+msgid "Permanently delete an ACF field group after explicit confirmation."
+msgstr "حذف دائمی گروه فیلد ACF پس از تأیید صریح."
+
+#: includes/tools/class-acf-tools.php:94
+msgid "Create or update field"
+msgstr "ایجاد یا به‌روزرسانی فیلد"
+
+#: includes/tools/class-acf-tools.php:95
+msgid "Create or update a native ACF Free field within a field group."
+msgstr "ایجاد یا به‌روزرسانی یک فیلد بومی ACF Free درون گروه فیلد."
+
+#: includes/tools/class-acf-tools.php:102
+msgid "Delete field"
+msgstr "حذف فیلد"
+
+#: includes/tools/class-acf-tools.php:103
+msgid "Permanently delete an ACF field after explicit confirmation."
+msgstr "حذف دائمی فیلد ACF پس از تأیید صریح."
+
+#: includes/tools/class-acf-tools.php:111
+msgid "Update field value"
+msgstr "به‌روزرسانی مقدار فیلد"
+
+#: includes/tools/class-acf-tools.php:112
+msgid "Update one ACF value on a post using a field name or key."
+msgstr "به‌روزرسانی یک مقدار ACF روی نوشته با استفاده از نام یا کلید فیلد."
+
+#: includes/tools/class-acf-tools.php:126
+msgid "Create or update ACF post type"
+msgstr "ایجاد یا به‌روزرسانی نوع‌نوشته ACF"
+
+#: includes/tools/class-acf-tools.php:127
+msgid ""
+"Create or update a custom post type using the ACF Free post-type UI storage."
+msgstr ""
+"ایجاد یا به‌روزرسانی نوع‌نوشته سفارشی با استفاده از ذخیره‌سازی رابط نوع‌نوشته "
+"ACF Free."
+
+#: includes/tools/class-acf-tools.php:134
+msgid "Delete ACF post type"
+msgstr "حذف نوع‌نوشته ACF"
+
+#: includes/tools/class-acf-tools.php:135
+msgid ""
+"Delete an ACF-managed post-type registration, without deleting its content."
+msgstr "حذف ثبت نوع‌نوشته مدیریت‌شده با ACF، بدون حذف محتوای آن."
+
+#: includes/tools/class-acf-tools.php:143
+msgid "Create or update ACF taxonomy"
+msgstr "ایجاد یا به‌روزرسانی رده‌بندی ACF"
+
+#: includes/tools/class-acf-tools.php:144
+msgid "Create or update a taxonomy using the ACF Free taxonomy UI storage."
+msgstr ""
+"ایجاد یا به‌روزرسانی رده‌بندی با استفاده از ذخیره‌سازی رابط رده‌بندی ACF Free."
+
+#: includes/tools/class-acf-tools.php:151
+msgid "Delete ACF taxonomy"
+msgstr "حذف رده‌بندی ACF"
+
+#: includes/tools/class-acf-tools.php:152
+msgid ""
+"Delete an ACF-managed taxonomy registration, without deleting its terms."
+msgstr "حذف ثبت رده‌بندی مدیریت‌شده با ACF، بدون حذف عبارت‌های آن."
+
+#: includes/tools/class-acf-tools.php:192
+msgid "The ACF field group was not found."
+msgstr "گروه فیلد ACF پیدا نشد."
+
+#: includes/tools/class-acf-tools.php:202
+#: includes/tools/class-acf-tools.php:277
+#: includes/tools/class-automation-tools.php:275
+#: includes/tools/class-automation-tools.php:314
+#: includes/tools/class-content-tools.php:204
+#: includes/tools/class-content-tools.php:216
+#: includes/tools/class-gutenberg-tools.php:101
+#: includes/tools/class-gutenberg-tools.php:230
+#: includes/tools/class-seo-provider-tools.php:99
+#: includes/tools/class-seo-provider-tools.php:142
+#: includes/tools/class-seo-tools.php:75 includes/tools/class-seo-tools.php:119
+msgid "Post not found."
+msgstr "نوشته پیدا نشد."
+
+#: includes/tools/class-acf-tools.php:237
+msgid "ACF could not save the field group."
+msgstr "ACF نتوانست گروه فیلد را ذخیره کند."
+
+#: includes/tools/class-acf-tools.php:247
+msgid "ACF could not delete the field group."
+msgstr "ACF نتوانست گروه فیلد را حذف کند."
+
+#: includes/tools/class-acf-tools.php:260
+msgid "ACF could not save the field."
+msgstr "ACF نتوانست فیلد را ذخیره کند."
+
+#: includes/tools/class-acf-tools.php:270
+msgid "ACF could not delete the field."
+msgstr "ACF نتوانست فیلد را حذف کند."
+
+#: includes/tools/class-acf-tools.php:282
+msgid "ACF could not update the field value."
+msgstr "ACF نتوانست مقدار فیلد را به‌روزرسانی کند."
+
+#: includes/tools/class-acf-tools.php:299
+msgid "ACF could not save the post type."
+msgstr "ACF نتوانست نوع‌نوشته را ذخیره کند."
+
+#: includes/tools/class-acf-tools.php:312
+msgid "ACF could not delete the post-type registration."
+msgstr "ACF نتوانست ثبت نوع‌نوشته را حذف کند."
+
+#: includes/tools/class-acf-tools.php:328
+msgid "ACF could not save the taxonomy."
+msgstr "ACF نتوانست رده‌بندی را ذخیره کند."
+
+#: includes/tools/class-acf-tools.php:341
+msgid "ACF could not delete the taxonomy registration."
+msgstr "ACF نتوانست ثبت رده‌بندی را حذف کند."
+
+#: includes/tools/class-acf-tools.php:373
+msgid "Field group title is required."
+msgstr "عنوان گروه فیلد الزامی است."
+
+#: includes/tools/class-acf-tools.php:397
+msgid ""
+"Field name, label, parent, and a native ACF Free field type are required."
+msgstr "نام، برچسب، والد و یک نوع فیلد بومی ACF Free الزامی است."
+
+#: includes/tools/class-acf-tools.php:438
+msgid ""
+"A title and a valid post type key of at most 20 characters are required."
+msgstr "عنوان و کلید معتبر نوع‌نوشته با حداکثر ۲۰ نویسه الزامی است."
+
+#: includes/tools/class-acf-tools.php:456
+msgid ""
+"A title, valid taxonomy key, and at least one existing object type are "
+"required."
+msgstr "عنوان، کلید معتبر رده‌بندی و حداقل یک نوع شیء موجود الزامی است."
+
+#: includes/tools/class-acf-tools.php:618
+msgid "This ACF structure operation requires confirm=true."
+msgstr "این عملیات ساختاری ACF به confirm=true نیاز دارد."
+
+#: includes/tools/class-acf-tools.php:622
+msgid "This operation requires ACF Free 6.1 or newer."
+msgstr "این عملیات به ACF Free نسخه 6.1 یا جدیدتر نیاز دارد."
+
+#: includes/tools/class-automation-tools.php:24
+msgid ""
+"Generate and create a WordPress post through a configured automation "
+"provider. The provider must implement the "
+"flatsome_mcp_automation_generate_post filter."
+msgstr ""
+"یک نوشتهٔ وردپرس را از طریق ارائه‌دهندهٔ خودکارسازی پیکربندی‌شده تولید و ایجاد "
+"می‌کند. ارائه‌دهنده باید فیلتر flatsome_mcp_automation_generate_post را "
+"پیاده‌سازی کند."
+
+#: includes/tools/class-automation-tools.php:49
+msgid ""
+"Summarize supplied content or a readable WordPress post. Uses a configured "
+"provider when available and a local extractive fallback otherwise."
+msgstr ""
+"محتوای ارائه‌شده یا یک نوشتهٔ خواندنی وردپرس را خلاصه می‌کند. در صورت دسترسی از "
+"ارائه‌دهندهٔ پیکربندی‌شده و در غیر این صورت از روش استخراجی محلی استفاده می‌شود."
+
+#: includes/tools/class-automation-tools.php:65
+msgid ""
+"Translate supplied content or a readable WordPress post through a configured "
+"provider. The provider must implement the "
+"flatsome_mcp_automation_translate_content filter."
+msgstr ""
+"محتوای ارائه‌شده یا یک نوشتهٔ خواندنی وردپرس را از طریق ارائه‌دهندهٔ پیکربندی‌شده "
+"ترجمه می‌کند. ارائه‌دهنده باید فیلتر flatsome_mcp_automation_translate_content "
+"را پیاده‌سازی کند."
+
+#: includes/tools/class-automation-tools.php:83
+msgid ""
+"Apply one status or deletion action to up to 50 posts, checking permissions "
+"separately for every post."
+msgstr ""
+"یک عملیات تغییر وضعیت یا حذف را روی حداکثر ۵۰ نوشته اعمال می‌کند و مجوز هر "
+"نوشته را جداگانه بررسی می‌کند."
+
+#: includes/tools/class-automation-tools.php:143
+msgid "The automation provider returned an invalid generated-post payload."
+msgstr "ارائه‌دهندهٔ خودکارسازی دادهٔ نامعتبری برای نوشتهٔ تولیدشده برگرداند."
+
+#: includes/tools/class-automation-tools.php:149
+msgid "The generated post exceeds the allowed title, content, or excerpt size."
+msgstr "نوشتهٔ تولیدشده از اندازهٔ مجاز عنوان، محتوا یا چکیده بیشتر است."
+
+#: includes/tools/class-automation-tools.php:207
+msgid "The automation provider returned an invalid summary payload."
+msgstr "ارائه‌دهندهٔ خودکارسازی دادهٔ نامعتبری برای خلاصه برگرداند."
+
+#: includes/tools/class-automation-tools.php:210
+msgid "The automation summary exceeds the allowed size."
+msgstr "اندازهٔ خلاصهٔ خودکارسازی از حد مجاز بیشتر است."
+
+#: includes/tools/class-automation-tools.php:244
+msgid "The automation provider returned an invalid translation payload."
+msgstr "ارائه‌دهندهٔ خودکارسازی دادهٔ نامعتبری برای ترجمه برگرداند."
+
+#: includes/tools/class-automation-tools.php:247
+msgid "The translated title or content exceeds the allowed size."
+msgstr "اندازهٔ عنوان یا محتوای ترجمه‌شده از حد مجاز بیشتر است."
+
+#: includes/tools/class-automation-tools.php:279
+msgid "Bulk actions are limited to editable content post types."
+msgstr "عملیات گروهی فقط برای نوع نوشته‌های محتوایی قابل ویرایش مجاز است."
+
+#: includes/tools/class-automation-tools.php:283
+msgid "Your WordPress user cannot delete this post."
+msgstr "کاربر وردپرس شما اجازهٔ حذف این نوشته را ندارد."
+
+#: includes/tools/class-automation-tools.php:286
+#: includes/tools/class-content-tools.php:259
+msgid "Permanent deletion requires confirm=true."
+msgstr "حذف دائمی به confirm=true نیاز دارد."
+
+#: includes/tools/class-automation-tools.php:288
+#: includes/tools/class-content-tools.php:263
+msgid "The post could not be deleted."
+msgstr "نوشته حذف نشد."
+
+#: includes/tools/class-automation-tools.php:292
+msgid "Your WordPress user cannot edit this post."
+msgstr "کاربر وردپرس شما اجازهٔ ویرایش این نوشته را ندارد."
+
+#: includes/tools/class-automation-tools.php:297
+msgid "Your WordPress user cannot publish this post."
+msgstr "کاربر وردپرس شما اجازهٔ انتشار این نوشته را ندارد."
+
+#: includes/tools/class-automation-tools.php:309
+msgid "Provide exactly one of post_id or content."
+msgstr "دقیقاً یکی از post_id یا content را وارد کنید."
+
+#: includes/tools/class-automation-tools.php:317
+msgid "The source content exceeds the 2,000,000-character automation limit."
+msgstr "محتوای مبدأ از محدودیت ۲٬۰۰۰٬۰۰۰ نویسه‌ای خودکارسازی بیشتر است."
+
+#. translators: %s: WordPress filter name.
+#: includes/tools/class-automation-tools.php:353
+#, php-format
+msgid "No automation provider is configured. Integrate one with the %s filter."
+msgstr ""
+"هیچ ارائه‌دهندهٔ خودکارسازی تنظیم نشده است. یکی را با فیلتر %s متصل کنید."
+
+#: includes/tools/class-comment-tools.php:24
+msgid ""
+"List comments for moderation with post, status, search, and pagination "
+"filters."
+msgstr ""
+"دیدگاه‌ها را برای مدیریت با فیلترهای نوشته، وضعیت، جست‌وجو و صفحه‌بندی فهرست "
+"می‌کند."
+
+#: includes/tools/class-comment-tools.php:44
+msgid "Approve a pending WordPress comment."
+msgstr "یک دیدگاه در انتظار وردپرس را تأیید می‌کند."
+
+#: includes/tools/class-comment-tools.php:54
+msgid ""
+"Move a comment to Trash, or permanently delete it only with force=true and "
+"confirm=true."
+msgstr ""
+"یک دیدگاه را به زباله‌دان منتقل می‌کند یا فقط با force=true و confirm=true آن "
+"را برای همیشه حذف می‌کند."
+
+#: includes/tools/class-comment-tools.php:73
+msgid "Reply to an existing comment as the authenticated WordPress user."
+msgstr "به‌عنوان کاربر احرازشدهٔ وردپرس به یک دیدگاه موجود پاسخ می‌دهد."
+
+#: includes/tools/class-comment-tools.php:130
+#: includes/tools/class-comment-tools.php:144
+msgid "Comment not found."
+msgstr "دیدگاه پیدا نشد."
+
+#: includes/tools/class-comment-tools.php:133
+msgid "The comment could not be approved."
+msgstr "دیدگاه تأیید نشد."
+
+#: includes/tools/class-comment-tools.php:141
+msgid "Permanent comment deletion requires confirm=true."
+msgstr "حذف دائمی دیدگاه به confirm=true نیاز دارد."
+
+#: includes/tools/class-comment-tools.php:147
+msgid "The comment could not be deleted."
+msgstr "دیدگاه حذف نشد."
+
+#: includes/tools/class-comment-tools.php:155
+msgid "The parent comment or current user is unavailable."
+msgstr "دیدگاه والد یا کاربر جاری در دسترس نیست."
+
+#: includes/tools/class-contact-form-7-tools.php:24
+msgid "List contact forms"
+msgstr "فهرست فرم‌های تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:25
+msgid "List Contact Form 7 forms with shortcode and modification metadata."
+msgstr "فهرست فرم‌های Contact Form 7 همراه با کدکوتاه و فراداده تغییرات."
+
+#: includes/tools/class-contact-form-7-tools.php:38
+msgid "Get contact form"
+msgstr "دریافت فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:39
+msgid ""
+"Get one Contact Form 7 form, mail templates, messages, and additional "
+"settings."
+msgstr "دریافت یک فرم Contact Form 7، قالب‌های ایمیل، پیام‌ها و تنظیمات اضافی."
+
+#: includes/tools/class-contact-form-7-tools.php:46
+msgid "Create contact form"
+msgstr "ایجاد فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:47
+msgid ""
+"Create a Contact Form 7 form from its default template and sanitized "
+"property overrides."
+msgstr ""
+"ایجاد فرم Contact Form 7 از قالب پیش‌فرض آن و مقادیر جایگزین پاک‌سازی‌شده "
+"ویژگی‌ها."
+
+#: includes/tools/class-contact-form-7-tools.php:62
+msgid "Update contact form"
+msgstr "به‌روزرسانی فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:63
+msgid ""
+"Update a Contact Form 7 title or property set with optional optimistic "
+"concurrency."
+msgstr ""
+"به‌روزرسانی عنوان یا مجموعه ویژگی‌های Contact Form 7 با کنترل هم‌زمانی "
+"خوش‌بینانه اختیاری."
+
+#: includes/tools/class-contact-form-7-tools.php:79
+msgid "Duplicate contact form"
+msgstr "تکثیر فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:80
+msgid "Duplicate a Contact Form 7 form and optionally assign a new title."
+msgstr "تکثیر فرم Contact Form 7 و اختصاص اختیاری عنوان جدید."
+
+#: includes/tools/class-contact-form-7-tools.php:94
+msgid "Delete contact form"
+msgstr "حذف فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:95
+msgid "Permanently delete a Contact Form 7 form after explicit confirmation."
+msgstr "حذف دائمی فرم Contact Form 7 پس از تأیید صریح."
+
+#: includes/tools/class-contact-form-7-tools.php:103
+msgid "Submit contact form"
+msgstr "ارسال فرم تماس"
+
+#: includes/tools/class-contact-form-7-tools.php:104
+msgid ""
+"Submit non-file fields through Contact Form 7 validation and delivery. This "
+"can send external email and requires confirmation."
+msgstr ""
+"ارسال فیلدهای غیرفایلی از مسیر اعتبارسنجی و تحویل Contact Form 7. این کار "
+"می‌تواند ایمیل خارجی ارسال کند و به تأیید نیاز دارد."
+
+#: includes/tools/class-contact-form-7-tools.php:161
+msgid "Contact Form 7 does not accept the requested locale."
+msgstr "Contact Form 7 زبان درخواستی را نمی‌پذیرد."
+
+#: includes/tools/class-contact-form-7-tools.php:172
+msgid "Contact Form 7 could not create the form."
+msgstr "Contact Form 7 نتوانست فرم را ایجاد کند."
+
+#: includes/tools/class-contact-form-7-tools.php:199
+msgid "Contact Form 7 could not update the form."
+msgstr "Contact Form 7 نتوانست فرم را به‌روزرسانی کند."
+
+#: includes/tools/class-contact-form-7-tools.php:216
+msgid "Contact Form 7 could not duplicate the form."
+msgstr "Contact Form 7 نتوانست فرم را تکثیر کند."
+
+#: includes/tools/class-contact-form-7-tools.php:229
+msgid "Contact Form 7 could not delete the form."
+msgstr "Contact Form 7 نتوانست فرم را حذف کند."
+
+#: includes/tools/class-contact-form-7-tools.php:235
+msgid "Form submission can send external email and requires confirm=true."
+msgstr "ارسال فرم می‌تواند ایمیل خارجی بفرستد و به confirm=true نیاز دارد."
+
+#: includes/tools/class-contact-form-7-tools.php:243
+msgid "A form submission may contain at most 100 fields."
+msgstr "ارسال فرم می‌تواند حداکثر ۱۰۰ فیلد داشته باشد."
+
+#: includes/tools/class-contact-form-7-tools.php:254
+msgid ""
+"Form field names must be safe and cannot override Contact Form 7 control "
+"fields."
+msgstr ""
+"نام فیلدهای فرم باید امن باشد و نمی‌تواند فیلدهای کنترلی Contact Form 7 را "
+"بازنویسی کند."
+
+#: includes/tools/class-contact-form-7-tools.php:261
+msgid "Form field values must be strings or arrays of strings."
+msgstr "مقادیر فیلد فرم باید رشته یا آرایه‌ای از رشته‌ها باشند."
+
+#: includes/tools/class-contact-form-7-tools.php:294
+msgid "Contact Form 7 form not found."
+msgstr "فرم Contact Form 7 پیدا نشد."
+
+#: includes/tools/class-contact-form-7-tools.php:313
+msgid ""
+"Only form, mail, mail_2, messages, and additional_settings may be updated."
+msgstr ""
+"فقط form، mail، mail_2، messages و additional_settings قابل به‌روزرسانی هستند."
+
+#: includes/tools/class-contact-form-7-tools.php:319
+msgid "The contact form template is unsafe or too large."
+msgstr "قالب فرم تماس ناامن یا بیش از حد بزرگ است."
+
+#: includes/tools/class-contact-form-7-tools.php:369
+msgid "The form changed since it was read. Fetch it again before updating."
+msgstr ""
+"فرم پس از خوانده‌شدن تغییر کرده است. پیش از به‌روزرسانی دوباره آن را دریافت "
+"کنید."
+
+#: includes/tools/class-contact-form-7-tools.php:393
+msgid "Contact form structure changes require confirm=true."
+msgstr "تغییر ساختار فرم تماس به confirm=true نیاز دارد."
+
+#: includes/tools/class-content-tools.php:24
+msgid ""
+"Create a WordPress post, page, or public custom post type as a draft, "
+"pending item, private item, or published item."
+msgstr ""
+"یک نوشته، برگه یا نوع نوشتهٔ سفارشی عمومی وردپرس را به‌صورت پیش‌نویس، در "
+"انتظار، خصوصی یا منتشرشده ایجاد می‌کند."
+
+#: includes/tools/class-content-tools.php:34
+msgid ""
+"Get one WordPress post, page, or custom post type including its editable "
+"content and revision information."
+msgstr ""
+"یک نوشته، برگه یا نوع نوشتهٔ سفارشی وردپرس را همراه با محتوای قابل ویرایش و "
+"اطلاعات بازبینی دریافت می‌کند."
+
+#: includes/tools/class-content-tools.php:49
+msgid ""
+"Update selected fields of an existing WordPress post while preserving "
+"revision history."
+msgstr ""
+"فیلدهای انتخاب‌شدهٔ یک نوشتهٔ موجود وردپرس را با حفظ تاریخچهٔ بازبینی به‌روزرسانی "
+"می‌کند."
+
+#: includes/tools/class-content-tools.php:59
+msgid ""
+"Move a post to Trash, or permanently delete it only when force and confirm "
+"are both true."
+msgstr ""
+"یک نوشته را به زباله‌دان منتقل می‌کند یا فقط زمانی که force و confirm هر دو "
+"درست باشند آن را برای همیشه حذف می‌کند."
+
+#: includes/tools/class-content-tools.php:78
+msgid "Publish an existing post immediately."
+msgstr "یک نوشتهٔ موجود را بلافاصله منتشر می‌کند."
+
+#: includes/tools/class-content-tools.php:88
+msgid ""
+"Schedule an existing post using an ISO-8601 future date-time interpreted in "
+"the site timezone unless an offset is supplied."
+msgstr ""
+"یک نوشتهٔ موجود را با تاریخ و زمان آیندهٔ ISO-8601 زمان‌بندی می‌کند؛ مگر اینکه "
+"اختلاف زمانی داده شود، زمان بر اساس منطقهٔ زمانی سایت تفسیر می‌شود."
+
+#: includes/tools/class-content-tools.php:106
+msgid ""
+"List and search posts, pages, or a custom post type with status, taxonomy, "
+"date-range, and pagination filters."
+msgstr ""
+"نوشته‌ها، برگه‌ها یا یک نوع نوشتهٔ سفارشی را با فیلترهای وضعیت، طبقه‌بندی، بازهٔ "
+"تاریخ و صفحه‌بندی فهرست و جست‌وجو می‌کند."
+
+#: includes/tools/class-content-tools.php:164
+msgid "The post type is not writable."
+msgstr "نوع نوشته قابل ویرایش نیست."
+
+#: includes/tools/class-content-tools.php:169
+#: includes/tools/class-content-tools.php:220
+msgid "Your user cannot publish this post type."
+msgstr "کاربر شما اجازهٔ انتشار این نوع نوشته را ندارد."
+
+#: includes/tools/class-content-tools.php:282
+msgid "The publish date is invalid."
+msgstr "تاریخ انتشار نامعتبر است."
+
+#: includes/tools/class-content-tools.php:285
+msgid "The scheduled date must be at least one minute in the future."
+msgstr "زمان برنامه‌ریزی‌شده باید دست‌کم یک دقیقه در آینده باشد."
+
+#: includes/tools/class-content-tools.php:307
+msgid "The post type is not searchable through this tool."
+msgstr "این نوع نوشته با این ابزار قابل جست‌وجو نیست."
+
+#: includes/tools/class-content-tools.php:310
+msgid "Your user cannot list this non-public post type."
+msgstr "کاربر شما نمی‌تواند این نوع نوشتهٔ غیرعمومی را فهرست کند."
+
+#: includes/tools/class-content-tools.php:349
+msgid "The taxonomy is not attached to this post type."
+msgstr "این طبقه‌بندی به نوع نوشتهٔ موردنظر متصل نیست."
+
+#: includes/tools/class-content-tools.php:442
+msgid "featured_media must be an image attachment or 0."
+msgstr "featured_media باید شناسهٔ یک پیوست تصویری یا ۰ باشد."
+
+#: includes/tools/class-developer-tools.php:31
+msgid ""
+"Run one allowlisted in-process WP-CLI maintenance command. No shell is "
+"spawned; the setting must be enabled and WP_CLI must already be loaded."
+msgstr ""
+"یک فرمان نگه‌داری مجاز WP-CLI را درون پردازه اجرا می‌کند. هیچ پوسته‌ای اجرا "
+"نمی‌شود؛ تنظیم مربوط باید فعال و WP_CLI از قبل بارگذاری شده باشد."
+
+#: includes/tools/class-developer-tools.php:45
+msgid ""
+"Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. "
+"Sensitive credential tables, comments, stacked statements, file access, "
+"locks, and timing functions are denied."
+msgstr ""
+"یک پرس‌وجوی محدود و فقط‌خواندنی SELECT، SHOW، DESCRIBE یا EXPLAIN اجرا می‌کند. "
+"جدول‌های حساس اعتبارنامه، دیدگاه‌ها، دستورهای زنجیره‌ای، دسترسی فایل، قفل‌ها و "
+"توابع زمان‌سنجی ممنوع‌اند."
+
+#: includes/tools/class-developer-tools.php:63
+msgid ""
+"List non-sensitive tables for the current WordPress site with bounded "
+"storage metadata. Requires read-only SQL to be enabled."
+msgstr ""
+"فهرست جدول‌های غیرحساس سایت فعلی وردپرس با فراداده محدود ذخیره‌سازی. مستلزم "
+"فعال‌بودن SQL فقط‌خواندنی است."
+
+#: includes/tools/class-developer-tools.php:73
+msgid ""
+"Describe columns and indexes for one non-sensitive current-site table. No "
+"table rows are returned."
+msgstr ""
+"شرح ستون‌ها و نمایه‌های یک جدول غیرحساس سایت فعلی. هیچ ردیفی از جدول برگردانده "
+"نمی‌شود."
+
+#: includes/tools/class-developer-tools.php:88
+msgid ""
+"Clear WordPress object cache and detected page-cache plugins, or clean the "
+"cache for one post."
+msgstr ""
+"کش اشیای وردپرس و افزونه‌های کش صفحهٔ شناسایی‌شده را پاک می‌کند یا کش یک نوشته "
+"را تمیز می‌کند."
+
+#: includes/tools/class-developer-tools.php:102
+msgid ""
+"Read the tail of WordPress debug.log when WP_DEBUG_LOG is enabled. Common "
+"secret assignments are redacted."
+msgstr ""
+"در صورت فعال‌بودن WP_DEBUG_LOG، انتهای فایل debug.log وردپرس را می‌خواند. "
+"مقداردهی‌های رایج اسرار پوشانده می‌شوند."
+
+#: includes/tools/class-developer-tools.php:120
+msgid "WP-CLI tools are disabled in Mindio Magic MCP settings."
+msgstr "ابزارهای WP-CLI در تنظیمات Mindio Magic MCP غیرفعال‌اند."
+
+#: includes/tools/class-developer-tools.php:123
+msgid ""
+"WP_CLI is not loaded in this process. Use the local WP-CLI MCP transport for "
+"this tool."
+msgstr ""
+"WP_CLI در این پردازه بارگذاری نشده است. برای این ابزار از انتقال محلی WP-CLI "
+"MCP استفاده کنید."
+
+#: includes/tools/class-developer-tools.php:127
+msgid "The WP-CLI command is not allowlisted."
+msgstr "فرمان WP-CLI در فهرست مجاز نیست."
+
+#: includes/tools/class-developer-tools.php:147
+#: includes/tools/class-developer-tools.php:416
+msgid "Read-only SQL is disabled in Mindio Magic MCP settings."
+msgstr "SQL فقط‌خواندنی در تنظیمات Mindio Magic MCP غیرفعال است."
+
+#: includes/tools/class-developer-tools.php:206
+msgid "The requested table is missing or classified as sensitive."
+msgstr "جدول درخواستی وجود ندارد یا حساس طبقه‌بندی شده است."
+
+#: includes/tools/class-developer-tools.php:280
+msgid "No readable debug.log exists inside wp-content."
+msgstr "فایل debug.log خواندنی در wp-content وجود ندارد."
+
+#: includes/tools/class-developer-tools.php:286
+msgid "The debug log could not be opened."
+msgstr "پروندهٔ گزارش اشکال‌زدایی باز نشد."
+
+#: includes/tools/class-developer-tools.php:309
+msgid "Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed."
+msgstr "فقط SELECT، SHOW، DESCRIBE و EXPLAIN مجاز هستند."
+
+#: includes/tools/class-developer-tools.php:312
+msgid "Comments and statement separators are not allowed."
+msgstr "توضیحات و جداکننده‌های عبارت مجاز نیستند."
+
+#: includes/tools/class-developer-tools.php:315
+msgid "The query contains a forbidden operation or function."
+msgstr "پرس‌وجو شامل عملیات یا تابع ممنوع است."
+
+#: includes/tools/class-developer-tools.php:318
+msgid ""
+"The query requests forbidden server, grant, process, or locking information."
+msgstr "پرس‌وجو اطلاعات ممنوع سرور، مجوز، فرایند یا قفل را درخواست می‌کند."
+
+#: includes/tools/class-developer-tools.php:321
+msgid ""
+"Server schemas, identities, variables, and version metadata cannot be "
+"queried."
+msgstr "شِماها، هویت‌ها، متغیرها و فراداده نسخه سرور قابل پرس‌وجو نیستند."
+
+#: includes/tools/class-developer-tools.php:324
+msgid ""
+"Use the table-list tool; raw SHOW is limited to columns and indexes of safe "
+"tables."
+msgstr ""
+"از ابزار فهرست جدول استفاده کنید؛ SHOW خام فقط برای ستون‌ها و نمایه‌های "
+"جدول‌های امن مجاز است."
+
+#: includes/tools/class-developer-tools.php:329
+msgid ""
+"Credential-bearing users, usermeta, and options tables cannot be queried."
+msgstr ""
+"امکان پرس‌وجو از جدول‌های کاربران، usermeta و options که حاوی اعتبارنامه‌اند "
+"وجود ندارد."
+
+#: includes/tools/class-developer-tools.php:333
+msgid "Derived-table subqueries are not supported by the safe SQL validator."
+msgstr "زیرپرس‌وجوهای جدول مشتق‌شده توسط اعتبارسنج امن SQL پشتیبانی نمی‌شوند."
+
+#: includes/tools/class-developer-tools.php:345
+msgid ""
+"Safe SELECT and EXPLAIN queries must reference an allowed current-site table."
+msgstr ""
+"پرس‌وجوهای امن SELECT و EXPLAIN باید به یک جدول مجاز در سایت فعلی ارجاع دهند."
+
+#: includes/tools/class-developer-tools.php:350
+msgid "The query references a missing, cross-site, or sensitive table."
+msgstr "پرس‌وجو به جدولی ناموجود، متعلق به سایت دیگر یا حساس ارجاع می‌دهد."
+
+#: includes/tools/class-developer-tools.php:354
+msgid "Raw postmeta values may contain credentials and cannot be selected."
+msgstr ""
+"مقادیر خام postmeta ممکن است حاوی اطلاعات ورود باشند و قابل انتخاب نیستند."
+
+#: includes/tools/class-extension-tools.php:24
+msgid ""
+"List installed WordPress plugins, versions, activation state, and available "
+"updates."
+msgstr ""
+"افزونه‌های نصب‌شدهٔ وردپرس، نسخه‌ها، وضعیت فعال‌سازی و به‌روزرسانی‌های موجود را "
+"فهرست می‌کند."
+
+#: includes/tools/class-extension-tools.php:34
+msgid "Search the WordPress.org plugin directory without installing anything."
+msgstr "جست‌وجوی مخزن افزونه WordPress.org بدون نصب چیزی."
+
+#: includes/tools/class-extension-tools.php:44
+msgid ""
+"Install a plugin by exact WordPress.org slug. Custom package URLs are never "
+"accepted. Requires confirm=true."
+msgstr ""
+"یک افزونه را با نامک دقیق WordPress.org نصب می‌کند. نشانی بسته‌های سفارشی هرگز "
+"پذیرفته نمی‌شود و confirm=true الزامی است."
+
+#: includes/tools/class-extension-tools.php:63
+msgid ""
+"Update one installed plugin to its latest available version. Requires "
+"confirm=true."
+msgstr ""
+"به‌روزرسانی یک افزونه نصب‌شده به جدیدترین نسخه موجود. به confirm=true نیاز "
+"دارد."
+
+#: includes/tools/class-extension-tools.php:73
+msgid ""
+"Activate an installed plugin by its plugin file, for example akismet/"
+"akismet.php."
+msgstr ""
+"یک افزونهٔ نصب‌شده را با فایل افزونهٔ آن فعال می‌کند؛ برای نمونه akismet/"
+"akismet.php."
+
+#: includes/tools/class-extension-tools.php:83
+msgid ""
+"Deactivate an installed plugin. Mindio Magic MCP cannot deactivate itself through "
+"its own connection."
+msgstr ""
+"یک افزونهٔ نصب‌شده را غیرفعال می‌کند. Mindio Magic MCP نمی‌تواند خود را از طریق اتصال "
+"خودش غیرفعال کند."
+
+#: includes/tools/class-extension-tools.php:93
+msgid ""
+"Permanently delete an inactive plugin. Mindio Magic MCP is protected and "
+"confirm=true is required."
+msgstr ""
+"یک افزونهٔ غیرفعال را برای همیشه حذف می‌کند. Mindio Magic MCP محافظت شده و "
+"confirm=true الزامی است."
+
+#: includes/tools/class-extension-tools.php:111
+msgid ""
+"List installed WordPress themes and identify the active template and child "
+"theme."
+msgstr ""
+"پوسته‌های نصب‌شدهٔ وردپرس را فهرست و قالب فعال و پوستهٔ فرزند را مشخص می‌کند."
+
+#: includes/tools/class-extension-tools.php:121
+msgid "Search the WordPress.org theme directory without installing anything."
+msgstr "جست‌وجوی مخزن پوسته WordPress.org بدون نصب چیزی."
+
+#: includes/tools/class-extension-tools.php:131
+msgid ""
+"Install a theme by exact WordPress.org slug. Custom package URLs are never "
+"accepted. Requires confirm=true."
+msgstr ""
+"نصب پوسته با نامک دقیق WordPress.org. نشانی بسته سفارشی هرگز پذیرفته نمی‌شود. "
+"به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:150
+msgid ""
+"Update one installed theme to its latest available version. Requires "
+"confirm=true."
+msgstr ""
+"به‌روزرسانی یک پوسته نصب‌شده به جدیدترین نسخه موجود. به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:160
+msgid ""
+"Permanently delete an inactive theme. Active themes and their parent themes "
+"are protected. Requires confirm=true."
+msgstr ""
+"حذف دائمی پوسته غیرفعال. پوسته فعال و پوسته والد آن محافظت می‌شوند. به "
+"confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:170
+msgid ""
+"Switch to an installed theme by stylesheet slug. Requires confirm=true "
+"because this changes the public site."
+msgstr ""
+"با نامک شیوه‌نامه به یک پوستهٔ نصب‌شده تغییر می‌دهد. چون سایت عمومی تغییر می‌کند، "
+"confirm=true الزامی است."
+
+#: includes/tools/class-extension-tools.php:252
+msgid "Plugin installation requires confirm=true."
+msgstr "نصب افزونه به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:256
+msgid "The WordPress.org plugin slug is invalid."
+msgstr "نامک افزونهٔ WordPress.org نامعتبر است."
+
+#: includes/tools/class-extension-tools.php:285
+msgid "Plugin installation failed."
+msgstr "نصب افزونه ناموفق بود."
+
+#: includes/tools/class-extension-tools.php:292
+msgid "The plugin installed, but your user cannot activate it."
+msgstr "افزونه نصب شد، اما کاربر شما اجازهٔ فعال‌سازی آن را ندارد."
+
+#: includes/tools/class-extension-tools.php:306
+msgid "Plugin updates require confirm=true."
+msgstr "به‌روزرسانی افزونه به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:331
+msgid "Plugin update failed."
+msgstr "به‌روزرسانی افزونه ناموفق بود."
+
+#: includes/tools/class-extension-tools.php:358
+msgid "Mindio Magic MCP cannot deactivate itself through MCP."
+msgstr "Mindio Magic MCP نمی‌تواند خود را از طریق MCP غیرفعال کند."
+
+#: includes/tools/class-extension-tools.php:370
+msgid "Plugin deletion requires confirm=true."
+msgstr "حذف افزونه به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:377
+msgid "Mindio Magic MCP cannot delete itself."
+msgstr "Mindio Magic MCP نمی‌تواند خود را حذف کند."
+
+#: includes/tools/class-extension-tools.php:380
+msgid "Deactivate the plugin before deleting it."
+msgstr "پیش از حذف، افزونه را غیرفعال کنید."
+
+#: includes/tools/class-extension-tools.php:463
+msgid "Theme installation requires confirm=true."
+msgstr "نصب پوسته به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:467
+msgid "The WordPress.org theme slug is invalid."
+msgstr "نامک پوسته WordPress.org معتبر نیست."
+
+#: includes/tools/class-extension-tools.php:490
+msgid "Theme installation failed."
+msgstr "نصب پوسته ناموفق بود."
+
+#: includes/tools/class-extension-tools.php:498
+msgid "The theme installed, but your user cannot activate it."
+msgstr "پوسته نصب شد، اما کاربر شما اجازه فعال‌سازی آن را ندارد."
+
+#: includes/tools/class-extension-tools.php:509
+msgid "Theme updates require confirm=true."
+msgstr "به‌روزرسانی پوسته به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:534
+msgid "Theme update failed."
+msgstr "به‌روزرسانی پوسته ناموفق بود."
+
+#: includes/tools/class-extension-tools.php:543
+msgid "Theme deletion requires confirm=true."
+msgstr "حذف پوسته به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:550
+msgid "The active theme and its parent theme cannot be deleted."
+msgstr "پوسته فعال و پوسته والد آن قابل حذف نیستند."
+
+#: includes/tools/class-extension-tools.php:565
+msgid "Theme switching requires confirm=true."
+msgstr "تغییر پوسته به confirm=true نیاز دارد."
+
+#: includes/tools/class-extension-tools.php:634
+msgid "The installed plugin file was not found."
+msgstr "پروندهٔ افزونهٔ نصب‌شده پیدا نشد."
+
+#: includes/tools/class-extension-tools.php:653
+msgid "The theme stylesheet slug is invalid."
+msgstr "نامک شیوه‌نامه پوسته معتبر نیست."
+
+#: includes/tools/class-extension-tools.php:657
+msgid "The installed theme is missing or broken."
+msgstr "پوستهٔ نصب‌شده وجود ندارد یا خراب است."
+
+#: includes/tools/class-extension-tools.php:668
+msgid ""
+"This site requires interactive filesystem credentials, so MCP cannot safely "
+"perform the package operation."
+msgstr ""
+"این سایت به اطلاعات ورود تعاملی فایل‌سیستم نیاز دارد؛ بنابراین MCP نمی‌تواند "
+"عملیات بسته را با ایمنی انجام دهد."
+
+#: includes/tools/class-extension-tools.php:673
+#: includes/tools/class-theme-tools.php:513
+msgid "WordPress could not initialize direct filesystem access."
+msgstr "وردپرس نتوانست دسترسی مستقیم فایل‌سیستم را راه‌اندازی کند."
+
+#: includes/tools/class-extension-tools.php:688
+msgid "The WordPress.org API returned an untrusted package URL."
+msgstr "API وردپرس‌دات‌ارگ نشانی بسته نامعتبری برگرداند."
+
+#: includes/tools/class-filesystem-tools.php:27
+msgid ""
+"Read a bounded UTF-8 text file from an allowlisted WordPress content root. "
+"Sensitive files and common secret assignments are redacted."
+msgstr ""
+"خواندن محدود یک فایل متنی UTF-8 از ریشه محتوای وردپرس در فهرست مجاز. فایل‌های "
+"حساس و انتساب‌های رایج اسرار پوشانده می‌شوند."
+
+#: includes/tools/class-filesystem-tools.php:47
+msgid ""
+"List a bounded directory tree inside an allowlisted WordPress content root "
+"without following symbolic links."
+msgstr ""
+"فهرست محدود درخت پوشه در ریشه محتوای وردپرسِ مجاز، بدون دنبال‌کردن پیوندهای "
+"نمادین."
+
+#: includes/tools/class-filesystem-tools.php:67
+msgid ""
+"Search bounded UTF-8 text files for a literal string inside an allowlisted "
+"WordPress content root."
+msgstr ""
+"جست‌وجوی یک رشته دقیق در فایل‌های متنی UTF-8 محدود، داخل ریشه محتوای وردپرسِ "
+"مجاز."
+
+#: includes/tools/class-filesystem-tools.php:106
+msgid "Readable files are limited to 256 KB."
+msgstr "اندازه فایل‌های قابل خواندن به ۲۵۶ کیلوبایت محدود است."
+
+#: includes/tools/class-filesystem-tools.php:110
+msgid "The selected file is not readable UTF-8 text."
+msgstr "فایل انتخاب‌شده متن UTF-8 قابل خواندن نیست."
+
+#: includes/tools/class-filesystem-tools.php:172
+msgid "No requested file extensions are in the text-file allowlist."
+msgstr "هیچ‌یک از پسوندهای درخواستی در فهرست مجاز فایل‌های متنی نیست."
+
+#: includes/tools/class-filesystem-tools.php:227
+msgid "Read-only filesystem tools are disabled in Mindio Magic MCP settings."
+msgstr "ابزارهای فقط‌خواندنی فایل‌سیستم در تنظیمات Mindio Magic MCP غیرفعال هستند."
+
+#: includes/tools/class-filesystem-tools.php:234
+msgid "The requested filesystem root is not allowlisted."
+msgstr "ریشه درخواستی فایل‌سیستم در فهرست مجاز نیست."
+
+#: includes/tools/class-filesystem-tools.php:238
+msgid "Filesystem paths must be safe relative paths without traversal."
+msgstr "مسیرهای فایل‌سیستم باید نسبی و امن باشند و پیمایش مسیر نداشته باشند."
+
+#: includes/tools/class-filesystem-tools.php:243
+msgid "The requested path does not exist inside the selected root."
+msgstr "مسیر درخواستی داخل ریشه انتخاب‌شده وجود ندارد."
+
+#: includes/tools/class-filesystem-tools.php:246
+msgid "The requested path is not the required file or directory type."
+msgstr "مسیر درخواستی از نوع فایل یا پوشه موردنیاز نیست."
+
+#: includes/tools/class-filesystem-tools.php:268
+msgid ""
+"The selected file type or sensitive filename is not readable through MCP."
+msgstr "نوع فایل انتخاب‌شده یا نام حساس آن از طریق MCP قابل خواندن نیست."
+
+#: includes/tools/class-flatsome-tools.php:31
+msgid ""
+"List native-first Flatsome component types, shortcode availability, "
+"dependencies, container rules, and the active Flatsome version."
+msgstr ""
+"انواع اجزای بومی‌محور فلت‌سام، دسترس‌پذیری شورت‌کدها، وابستگی‌ها، قواعد ظرف‌ها و "
+"نسخهٔ فعال فلت‌سام را فهرست می‌کند."
+
+#: includes/tools/class-flatsome-tools.php:41
+msgid ""
+"Create a production-ready Flatsome UX Builder page from declarative "
+"sections, responsive rows, columns, and native-first typed components."
+msgstr ""
+"یک صفحهٔ آمادهٔ انتشار Flatsome UX Builder را از بخش‌های اعلانی، ردیف‌ها و "
+"ستون‌های واکنش‌گرا و اجزای نوع‌دار بومی‌محور ایجاد می‌کند."
+
+#: includes/tools/class-flatsome-tools.php:63
+msgid ""
+"Read a Flatsome page and its stable section, row, and column IDs before "
+"making incremental edits."
+msgstr ""
+"پیش از ویرایش مرحله‌ای، یک برگهٔ فلت‌سام و شناسه‌های پایدار بخش، ردیف و ستون آن "
+"را می‌خواند."
+
+#: includes/tools/class-flatsome-tools.php:73
+msgid ""
+"Append one safe UX Builder section to an existing Flatsome page and return "
+"all new stable node IDs."
+msgstr ""
+"یک بخش امن UX Builder به برگهٔ موجود فلت‌سام می‌افزاید و همهٔ شناسه‌های پایدار "
+"گره‌های جدید را برمی‌گرداند."
+
+#: includes/tools/class-flatsome-tools.php:91
+msgid ""
+"Insert one responsive UX Builder row into a section selected by its stable "
+"section_id."
+msgstr ""
+"یک ردیف واکنش‌گرای UX Builder را در بخشی که با section_id پایدار انتخاب شده "
+"درج می‌کند."
+
+#: includes/tools/class-flatsome-tools.php:110
+msgid ""
+"Insert one native-first typed Flatsome component into a UX Builder column "
+"selected by stable column_id."
+msgstr ""
+"یک جزء نوع‌دار بومی‌محور فلت‌سام را در ستون UX Builder انتخاب‌شده با column_id "
+"پایدار درج می‌کند."
+
+#: includes/tools/class-flatsome-tools.php:161
+msgid "Every custom UX Builder node id must be unique within the page."
+msgstr "شناسهٔ هر گرهٔ سفارشی UX Builder باید در صفحه یکتا باشد."
+
+#: includes/tools/class-flatsome-tools.php:164
+msgid "The generated UX Builder layout exceeds the 4 MB content limit."
+msgstr "طرح تولیدشدهٔ UX Builder از محدودیت محتوای ۴ مگابایت بیشتر است."
+
+#: includes/tools/class-flatsome-tools.php:670
+msgid ""
+"The Flatsome theme (or a Flatsome child theme) must be active for UX Builder "
+"tools."
+msgstr "برای ابزارهای UX Builder باید قالب فلت‌سام یا پوستهٔ فرزند آن فعال باشد."
+
+#: includes/tools/class-flatsome-tools.php:676
+msgid "The Flatsome page was not found."
+msgstr "صفحهٔ فلت‌سام پیدا نشد."
+
+#: includes/tools/class-flatsome-tools.php:692
+msgid "The page changed since it was read. Fetch it again before editing."
+msgstr ""
+"صفحه پس از خواندن تغییر کرده است. پیش از ویرایش دوباره آن را دریافت کنید."
+
+#: includes/tools/class-flatsome-tools.php:701
+msgid "The UX Builder page exceeds the 4 MB content limit."
+msgstr "صفحهٔ UX Builder از محدودیت محتوای ۴ مگابایت بیشتر است."
+
+#: includes/tools/class-flatsome-tools.php:705
+msgid "A Flatsome layout may contain at most 2,000 managed nodes."
+msgstr "یک طرح فلت‌سام می‌تواند حداکثر ۲٬۰۰۰ گرهٔ مدیریت‌شده داشته باشد."
+
+#: includes/tools/class-flatsome-tools.php:769
+msgid ""
+"A Flatsome layout may contain at most 2,000 sections, rows, columns, and "
+"elements combined."
+msgstr ""
+"یک طرح فلت‌سام در مجموع می‌تواند حداکثر ۲٬۰۰۰ بخش، ردیف، ستون و المان داشته "
+"باشد."
+
+#: includes/tools/class-flatsome-tools.php:784
+msgid ""
+"A Flatsome layout may contain at most 2,000 sections, rows, columns, and "
+"components combined."
+msgstr ""
+"یک چیدمان فلت‌سام در مجموع می‌تواند حداکثر ۲٬۰۰۰ بخش، ردیف، ستون و جزء داشته "
+"باشد."
+
+#. translators: %d: WordPress media attachment ID.
+#: includes/tools/class-flatsome-tools.php:823
+#: includes/tools/class-flatsome-tools.php:835
+#: includes/tools/class-woocommerce-tools.php:395
+#, php-format
+msgid "Media ID %d is not an image attachment."
+msgstr "رسانه با شناسهٔ %d یک پیوست تصویری نیست."
+
+#: includes/tools/class-flatsome-tools.php:858
+msgid "The new fragment contains duplicate node IDs."
+msgstr "بخش جدید دارای شناسه‌های گرهٔ تکراری است."
+
+#. translators: %s: Flatsome UX Builder node ID.
+#: includes/tools/class-flatsome-tools.php:866
+#, php-format
+msgid "Node ID %s already exists on the page."
+msgstr "شناسهٔ گره %s از قبل در برگه وجود دارد."
+
+#: includes/tools/class-gutenberg-tools.php:22
+msgid ""
+"List registered Gutenberg block types with category, title, and availability "
+"metadata."
+msgstr ""
+"فهرست انواع بلوک ثبت‌شده گوتنبرگ همراه با دسته، عنوان و فراداده دسترس‌پذیری."
+
+#: includes/tools/class-gutenberg-tools.php:23
+msgid ""
+"Get the registered attributes, supports, styles, and example markup for one "
+"or more Gutenberg block types."
+msgstr ""
+"دریافت ویژگی‌های ثبت‌شده، قابلیت‌ها، سبک‌ها و نشانه‌گذاری نمونه برای یک یا چند "
+"نوع بلوک گوتنبرگ."
+
+#: includes/tools/class-gutenberg-tools.php:24
+msgid ""
+"Read a post as a structured Gutenberg block tree with stable-for-this-"
+"revision index paths."
+msgstr ""
+"خواندن نوشته به‌شکل درخت ساختاریافته بلوک گوتنبرگ با مسیرهای شاخص پایدار برای "
+"این بازبینی."
+
+#: includes/tools/class-gutenberg-tools.php:25
+msgid ""
+"List registered Gutenberg block patterns that can be inserted into posts."
+msgstr "فهرست الگوهای ثبت‌شده بلوک گوتنبرگ که قابل درج در نوشته‌ها هستند."
+
+#: includes/tools/class-gutenberg-tools.php:26
+msgid ""
+"Insert one or more Gutenberg blocks at a root or nested block-tree position."
+msgstr "درج یک یا چند بلوک گوتنبرگ در ریشه یا موقعیت تودرتوی درخت بلوک."
+
+#: includes/tools/class-gutenberg-tools.php:27
+msgid ""
+"Replace the Gutenberg block at an index path while preserving WordPress "
+"revision history."
+msgstr "جایگزینی بلوک گوتنبرگ در یک مسیر شاخص با حفظ تاریخچه بازبینی وردپرس."
+
+#: includes/tools/class-gutenberg-tools.php:28
+msgid "Remove a Gutenberg block and its descendants. Requires confirm=true."
+msgstr "حذف یک بلوک گوتنبرگ و زیرمجموعه‌های آن. به confirm=true نیاز دارد."
+
+#: includes/tools/class-gutenberg-tools.php:29
+msgid "Move a Gutenberg block to another root or nested position."
+msgstr "انتقال یک بلوک گوتنبرگ به ریشه یا موقعیت تودرتوی دیگر."
+
+#: includes/tools/class-gutenberg-tools.php:30
+msgid "Duplicate a Gutenberg block and insert the copy immediately after it."
+msgstr "تکثیر یک بلوک گوتنبرگ و درج نسخه کپی بلافاصله پس از آن."
+
+#: includes/tools/class-gutenberg-tools.php:31
+msgid ""
+"Insert a registered Gutenberg pattern at a root or nested block-tree "
+"position."
+msgstr "درج یک الگوی ثبت‌شده گوتنبرگ در ریشه یا موقعیت تودرتوی درخت بلوک."
+
+#: includes/tools/class-gutenberg-tools.php:72
+msgid "Provide name or names for the block schemas to retrieve."
+msgstr "نام یا نام‌های شِمای بلوک‌های موردنظر برای دریافت را ارائه کنید."
+
+#: includes/tools/class-gutenberg-tools.php:171
+msgid "Removing a block requires confirm=true."
+msgstr "حذف بلوک به confirm=true نیاز دارد."
+
+#: includes/tools/class-gutenberg-tools.php:216
+msgid "The requested Gutenberg pattern is not registered."
+msgstr "الگوی درخواستی گوتنبرگ ثبت نشده است."
+
+#: includes/tools/class-gutenberg-tools.php:234
+msgid ""
+"The post changed after the block tree was read. Fetch the current blocks and "
+"retry."
+msgstr ""
+"نوشته پس از خواندن درخت بلوک تغییر کرده است. بلوک‌های فعلی را دریافت و دوباره "
+"تلاش کنید."
+
+#: includes/tools/class-gutenberg-tools.php:238
+msgid ""
+"This post contains Flatsome UX Builder content. Use Flatsome tools, or pass "
+"force_non_gutenberg=true and confirm=true to override."
+msgstr ""
+"این نوشته محتوای Flatsome UX Builder دارد. از ابزارهای Flatsome استفاده کنید "
+"یا برای بازنویسی force_non_gutenberg=true و confirm=true را ارسال کنید."
+
+#: includes/tools/class-gutenberg-tools.php:246
+msgid "Block markup cannot be empty."
+msgstr "نشانه‌گذاری بلوک نمی‌تواند خالی باشد."
+
+#: includes/tools/class-media-tools.php:24
+msgid ""
+"Upload media from an HTTPS URL or base64 payload. Returns the attachment ID "
+"and direct URL."
+msgstr ""
+"رسانه را از نشانی HTTPS یا دادهٔ base64 بارگذاری می‌کند و شناسهٔ پیوست و نشانی "
+"مستقیم را برمی‌گرداند."
+
+#: includes/tools/class-media-tools.php:46
+msgid ""
+"List and search WordPress Media Library attachments with direct URLs and "
+"image dimensions."
+msgstr ""
+"پیوست‌های کتابخانهٔ رسانهٔ وردپرس را همراه با نشانی مستقیم و ابعاد تصویر فهرست "
+"و جست‌وجو می‌کند."
+
+#: includes/tools/class-media-tools.php:66
+msgid ""
+"Attach an existing Media Library item to a post or detach it with post_id 0."
+msgstr ""
+"یک مورد موجود کتابخانهٔ رسانه را به نوشته متصل می‌کند یا با post_id برابر ۰ آن "
+"را جدا می‌کند."
+
+#: includes/tools/class-media-tools.php:84
+msgid "Permanently delete a Media Library item. Requires confirm=true."
+msgstr ""
+"یک مورد کتابخانهٔ رسانه را برای همیشه حذف کنید. به confirm=true نیاز دارد."
+
+#: includes/tools/class-media-tools.php:118
+msgid "Provide exactly one of source_url or data_base64."
+msgstr "دقیقاً یکی از source_url یا data_base64 را وارد کنید."
+
+#: includes/tools/class-media-tools.php:137
+#: includes/tools/class-media-tools.php:171
+msgid "The temporary upload file could not be created."
+msgstr "فایل موقت بارگذاری ساخته نشد."
+
+#: includes/tools/class-media-tools.php:151
+msgid "The remote server did not return a successful response."
+msgstr "سرور راه دور پاسخ موفقی برنگرداند."
+
+#: includes/tools/class-media-tools.php:160
+#: includes/tools/class-media-tools.php:181
+msgid "The media payload exceeds the configured upload limit."
+msgstr "حجم رسانه از محدودیت بارگذاری تنظیم‌شده بیشتر است."
+
+#: includes/tools/class-media-tools.php:164
+msgid "The base64 media payload is invalid."
+msgstr "دادهٔ رسانهٔ base64 نامعتبر است."
+
+#: includes/tools/class-media-tools.php:167
+msgid "filename is required for base64 uploads."
+msgstr "برای بارگذاری base64 واردکردن filename الزامی است."
+
+#: includes/tools/class-media-tools.php:175
+msgid "The temporary upload file could not be written."
+msgstr "پروندهٔ موقت بارگذاری قابل نوشتن نبود."
+
+#: includes/tools/class-media-tools.php:192
+msgid "The file type is not permitted by WordPress."
+msgstr "این نوع فایل در وردپرس مجاز نیست."
+
+#: includes/tools/class-media-tools.php:267
+msgid "Media attachment not found."
+msgstr "پیوست رسانه پیدا نشد."
+
+#: includes/tools/class-media-tools.php:276
+msgid "Media deletion requires confirm=true."
+msgstr "حذف رسانه به confirm=true نیاز دارد."
+
+#: includes/tools/class-media-tools.php:280
+msgid "The media attachment could not be deleted."
+msgstr "پیوست رسانه حذف نشد."
+
+#: includes/tools/class-multisite-tools.php:27
+msgid ""
+"List WordPress multisite sites the network administrator can target with the "
+"site_id argument."
+msgstr ""
+"سایت‌های وردپرس چندسایته‌ای را فهرست می‌کند که مدیر شبکه می‌تواند با آرگومان "
+"site_id هدف قرار دهد."
+
+#: includes/tools/class-multisite-tools.php:45
+msgid ""
+"Validate a multisite site context. Context is intentionally stateless: pass "
+"this site_id on every subsequent tool call."
+msgstr ""
+"زمینهٔ یک سایت چندسایته را اعتبارسنجی می‌کند. زمینه عمداً بدون حالت است؛ این "
+"site_id را در هر فراخوانی بعدی ابزار ارسال کنید."
+
+#: includes/tools/class-multisite-tools.php:86
+msgid "Site not found."
+msgstr "سایت پیدا نشد."
+
+#: includes/tools/class-multisite-tools.php:91
+msgid "Include this site_id in every tool call that should run on this site."
+msgstr ""
+"این site_id را در هر فراخوانی ابزاری که باید روی این سایت اجرا شود وارد کنید."
+
+#: includes/tools/class-performance-tools.php:24
+msgid ""
+"Request a CDN purge through detected WordPress cache integrations and a "
+"documented extension hook."
+msgstr ""
+"از طریق یکپارچه‌سازی‌های کش شناسایی‌شدهٔ وردپرس و قلاب توسعهٔ مستند، پاک‌سازی CDN "
+"را درخواست می‌کند."
+
+#: includes/tools/class-performance-tools.php:38
+msgid ""
+"Inspect detected cache layers or purge all/page-specific WordPress caches."
+msgstr ""
+"لایه‌های کش شناسایی‌شده را بررسی یا همهٔ کش‌های وردپرس و کش مخصوص یک برگه را پاک "
+"می‌کند."
+
+#: includes/tools/class-performance-tools.php:56
+msgid ""
+"Regenerate WordPress image metadata and sizes, then trigger optimization-"
+"plugin hooks for one image attachment."
+msgstr ""
+"فراداده و اندازه‌های تصویر وردپرس را بازتولید و سپس قلاب‌های افزونهٔ بهینه‌سازی "
+"را برای یک پیوست تصویری اجرا می‌کند."
+
+#: includes/tools/class-performance-tools.php:78
+msgid "A targeted purge URL must belong to this WordPress site."
+msgstr "نشانی پاک‌سازی هدفمند باید متعلق به همین سایت وردپرس باشد."
+
+#: includes/tools/class-performance-tools.php:114
+msgid "purge_post requires post_id."
+msgstr "purge_post به post_id نیاز دارد."
+
+#: includes/tools/class-performance-tools.php:144
+msgid "The media item is not an image attachment."
+msgstr "مورد رسانه یک پیوست تصویری نیست."
+
+#: includes/tools/class-performance-tools.php:148
+msgid "The original image file is missing."
+msgstr "فایل اصلی تصویر وجود ندارد."
+
+#: includes/tools/class-performance-tools.php:153
+msgid "WordPress could not regenerate image sizes."
+msgstr "وردپرس نتوانست اندازه‌های تصویر را بازتولید کند."
+
+#: includes/tools/class-search-tools.php:24
+msgid ""
+"Search across WordPress posts, pages, and public custom post types with "
+"taxonomy, date-range, and pagination filters."
+msgstr ""
+"در نوشته‌ها، برگه‌ها و نوع نوشته‌های سفارشی عمومی وردپرس با فیلترهای طبقه‌بندی، "
+"بازهٔ تاریخ و صفحه‌بندی جست‌وجو می‌کند."
+
+#. translators: %s: WordPress post type name.
+#: includes/tools/class-search-tools.php:61
+#, php-format
+msgid "Post type %s is not searchable."
+msgstr "نوع نوشتهٔ %s قابل جست‌وجو نیست."
+
+#: includes/tools/class-search-tools.php:70
+msgid ""
+"Your user cannot search non-public content for every requested post type."
+msgstr ""
+"کاربر شما اجازهٔ جست‌وجوی محتوای غیرعمومی همهٔ انواع نوشتهٔ درخواستی را ندارد."
+
+#: includes/tools/class-search-tools.php:95
+msgid "The taxonomy does not exist."
+msgstr "طبقه‌بندی وجود ندارد."
+
+#: includes/tools/class-seo-provider-tools.php:35
+msgid "Get post SEO"
+msgstr "دریافت سئوی نوشته"
+
+#: includes/tools/class-seo-provider-tools.php:36
+msgid ""
+"Read title, description, focus keyword, robots, canonical, social, and "
+"schema data for one post."
+msgstr ""
+"خواندن عنوان، توضیحات، کلیدواژه کانونی، robots، نشانی canonical، داده‌های "
+"اجتماعی و شِما برای یک نوشته."
+
+#: includes/tools/class-seo-provider-tools.php:43
+msgid "Get term SEO"
+msgstr "دریافت سئوی عبارت"
+
+#: includes/tools/class-seo-provider-tools.php:44
+msgid ""
+"Read title, description, focus keyword, robots, canonical, and social data "
+"for one taxonomy term."
+msgstr ""
+"خواندن عنوان، توضیحات، کلیدواژه کانونی، robots، نشانی canonical و داده‌های "
+"اجتماعی برای یک عبارت رده‌بندی."
+
+#: includes/tools/class-seo-provider-tools.php:51
+msgid "Get provider settings"
+msgstr "دریافت تنظیمات ارائه‌دهنده"
+
+#: includes/tools/class-seo-provider-tools.php:52
+msgid ""
+"Read a curated set of safe homepage, social, robots, and title settings."
+msgstr ""
+"خواندن مجموعه‌ای گزینش‌شده از تنظیمات امن صفحه نخست، شبکه‌های اجتماعی، robots و "
+"عنوان."
+
+#: includes/tools/class-seo-provider-tools.php:61
+msgid "Update post SEO"
+msgstr "به‌روزرسانی سئوی نوشته"
+
+#: includes/tools/class-seo-provider-tools.php:62
+msgid ""
+"Update an allowlisted set of post SEO and social fields with optional "
+"concurrency protection."
+msgstr ""
+"به‌روزرسانی مجموعه مجاز فیلدهای سئو و اجتماعی نوشته با محافظت اختیاری هم‌زمانی."
+
+#: includes/tools/class-seo-provider-tools.php:69
+msgid "Update term SEO"
+msgstr "به‌روزرسانی سئوی عبارت"
+
+#: includes/tools/class-seo-provider-tools.php:70
+msgid "Update an allowlisted set of taxonomy-term SEO and social fields."
+msgstr "به‌روزرسانی مجموعه مجاز فیلدهای سئو و اجتماعی عبارت رده‌بندی."
+
+#: includes/tools/class-seo-provider-tools.php:77
+msgid "Update provider settings"
+msgstr "به‌روزرسانی تنظیمات ارائه‌دهنده"
+
+#: includes/tools/class-seo-provider-tools.php:78
+msgid ""
+"Update only curated homepage, social, robots, and title settings. Requires "
+"confirmation."
+msgstr ""
+"فقط تنظیمات گزینش‌شده صفحه نخست، شبکه‌های اجتماعی، robots و عنوان را "
+"به‌روزرسانی می‌کند. به تأیید نیاز دارد."
+
+#: includes/tools/class-seo-provider-tools.php:122
+#: includes/tools/class-seo-provider-tools.php:184
+msgid "Taxonomy term not found."
+msgstr "عبارت رده‌بندی پیدا نشد."
+
+#: includes/tools/class-seo-provider-tools.php:145
+msgid ""
+"The post changed since it was read. Fetch it again before updating SEO data."
+msgstr ""
+"نوشته پس از خوانده‌شدن تغییر کرده است. پیش از به‌روزرسانی داده‌های سئو دوباره "
+"آن را دریافت کنید."
+
+#: includes/tools/class-seo-provider-tools.php:154
+msgid ""
+"Yoast SEO Free generates its graph; use schema_page_type and "
+"schema_article_type instead of arbitrary schemas."
+msgstr ""
+"Yoast SEO Free نمودار خود را تولید می‌کند؛ به‌جای شِماهای دلخواه از "
+"schema_page_type و schema_article_type استفاده کنید."
+
+#: includes/tools/class-seo-provider-tools.php:157
+msgid ""
+"Replacing Rank Math schemas requires replace_schemas=true and confirm=true."
+msgstr ""
+"جایگزینی شِماهای Rank Math به replace_schemas=true و confirm=true نیاز دارد."
+
+#: includes/tools/class-seo-provider-tools.php:218
+msgid "Sitewide SEO setting updates require confirm=true."
+msgstr "به‌روزرسانی تنظیمات سراسری سئو به confirm=true نیاز دارد."
+
+#. translators: %s: SEO setting key.
+#: includes/tools/class-seo-provider-tools.php:230
+#, php-format
+msgid "SEO setting \"%s\" is not in the curated allowlist."
+msgstr "تنظیم سئوی «%s» در فهرست مجاز گزینش‌شده نیست."
+
+#. translators: %s: SEO URL field name.
+#: includes/tools/class-seo-provider-tools.php:414
+#: includes/tools/class-seo-tools.php:129
+#, php-format
+msgid "%s must be a valid HTTP(S) URL."
+msgstr "%s باید یک نشانی URL معتبر HTTP(S) باشد."
+
+#: includes/tools/class-seo-provider-tools.php:424
+msgid "Robots directives contain unsupported or contradictory values."
+msgstr "دستورهای robots دارای مقادیر پشتیبانی‌نشده یا متناقض هستند."
+
+#. translators: %s: SEO setting key.
+#: includes/tools/class-seo-provider-tools.php:509
+#, php-format
+msgid "SEO setting \"%s\" has an invalid value or type."
+msgstr "مقدار یا نوع تنظیم سئوی «%s» معتبر نیست."
+
+#: includes/tools/class-seo-provider-tools.php:578
+#: includes/tools/class-seo-tools.php:140
+msgid "Schema JSON is invalid or exceeds 100 KB."
+msgstr "JSON اسکیما نامعتبر است یا از ۱۰۰ کیلوبایت بیشتر شده است."
+
+#: includes/tools/class-seo-provider-tools.php:585
+msgid "Every Rank Math schema must contain a safe @type value."
+msgstr "هر شِمای Rank Math باید یک مقدار امن @type داشته باشد."
+
+#: includes/tools/class-seo-provider-tools.php:589
+msgid "Rank Math schema types must be unique per update."
+msgstr "نوع شِماهای Rank Math در هر به‌روزرسانی باید یکتا باشد."
+
+#: includes/tools/class-seo-tools.php:29
+msgid ""
+"Read normalized SEO, Open Graph, canonical, robots, and schema metadata. "
+"Detects Yoast SEO and Rank Math automatically."
+msgstr ""
+"فرادادهٔ استانداردشدهٔ سئو، Open Graph، نشانی کانونی، robots و schema را "
+"می‌خواند و Yoast SEO و Rank Math را خودکار شناسایی می‌کند."
+
+#: includes/tools/class-seo-tools.php:39
+msgid ""
+"Update normalized SEO metadata. Values are mirrored to active Yoast SEO or "
+"Rank Math fields and retained in a plugin-neutral fallback."
+msgstr ""
+"فرادادهٔ استانداردشدهٔ سئو را به‌روزرسانی می‌کند. مقادیر در فیلدهای فعال Yoast "
+"SEO یا Rank Math بازتاب داده و در یک نسخهٔ پشتیبان مستقل از افزونه نگه‌داری "
+"می‌شوند."
+
+#: includes/tools/class-site-tools.php:24
+msgid ""
+"Read a curated, non-secret set of WordPress general, reading, discussion, "
+"and permalink settings."
+msgstr ""
+"مجموعه‌ای گزینش‌شده و غیرمحرمانه از تنظیمات عمومی، خواندن، گفت‌وگو و پیوندهای "
+"یکتای وردپرس را می‌خواند."
+
+#: includes/tools/class-site-tools.php:34
+msgid ""
+"Update only the allowlisted WordPress site settings. Permalink updates "
+"safely flush rewrite rules."
+msgstr ""
+"فقط تنظیمات مجاز سایت وردپرس را به‌روزرسانی می‌کند. به‌روزرسانی پیوند یکتا، "
+"قوانین بازنویسی را به‌صورت امن تازه‌سازی می‌کند."
+
+#: includes/tools/class-site-tools.php:88
+msgid "Provide at least one setting to update."
+msgstr "دست‌کم یک تنظیم برای به‌روزرسانی ارائه کنید."
+
+#: includes/tools/class-site-tools.php:96
+msgid "Date and time formats cannot contain markup or newlines."
+msgstr "قالب تاریخ و زمان نمی‌تواند شامل نشانه‌گذاری یا خط جدید باشد."
+
+#: includes/tools/class-site-tools.php:104
+msgid "Use an IANA timezone such as Asia/Tehran or a valid UTC offset."
+msgstr ""
+"از یک منطقهٔ زمانی IANA مانند Asia/Tehran یا اختلاف معتبر UTC استفاده کنید."
+
+#: includes/tools/class-site-tools.php:111
+msgid ""
+"The permalink structure must start and end with / and contain only WordPress "
+"rewrite tokens."
+msgstr ""
+"ساختار پیوند یکتا باید با / آغاز و پایان یابد و فقط شامل توکن‌های بازنویسی "
+"وردپرس باشد."
+
+#: includes/tools/class-system-tools.php:28
+msgid ""
+"Get the MCP endpoint, WordPress/Flatsome versions, locale, and capabilities "
+"available to the current credential."
+msgstr ""
+"نقطهٔ پایانی MCP، نسخه‌های وردپرس و فلت‌سام، زبان و قابلیت‌های در دسترس "
+"اعتبارنامهٔ جاری را دریافت می‌کند."
+
+#: includes/tools/class-system-tools.php:38
+msgid "Read the durable MCP audit trail with redacted sensitive inputs."
+msgstr "ردپای پایدار ممیزی MCP را با ورودی‌های حساس پوشانده‌شده می‌خواند."
+
+#: includes/tools/class-system-tools.php:58
+msgid ""
+"Read webhook delivery attempts, response codes, retry state, and optionally "
+"their event payloads."
+msgstr ""
+"تلاش‌های ارسال وب‌هوک، کدهای پاسخ، وضعیت تلاش مجدد و در صورت درخواست داده‌های "
+"رویداد آن‌ها را می‌خواند."
+
+#: includes/tools/class-theme-tools.php:24
+msgid ""
+"Get the active parent/child theme context and declared WordPress feature "
+"support."
+msgstr ""
+"دریافت زمینه پوسته والد/فرزند فعال و پشتیبانی اعلام‌شده قابلیت‌های وردپرس."
+
+#: includes/tools/class-theme-tools.php:34
+msgid ""
+"Read active-theme modifications with sensitive values redacted. Optionally "
+"select specific keys."
+msgstr ""
+"خواندن تغییرات پوسته فعال با پوشاندن مقادیر حساس. کلیدهای مشخص را می‌توان "
+"به‌صورت اختیاری انتخاب کرد."
+
+#: includes/tools/class-theme-tools.php:54
+msgid ""
+"Update only the portable WordPress theme modifications in the documented "
+"allowlist. Requires confirm=true."
+msgstr ""
+"فقط تغییرات قابل‌انتقال پوسته وردپرس در فهرست مجاز مستند را به‌روزرسانی می‌کند. "
+"به confirm=true نیاز دارد."
+
+#: includes/tools/class-theme-tools.php:64
+msgid ""
+"Create a minimal child theme for the active parent theme and optionally "
+"activate it. Requires confirm=true."
+msgstr ""
+"ایجاد پوسته فرزند حداقلی برای پوسته والد فعال و فعال‌سازی اختیاری آن. به "
+"confirm=true نیاز دارد."
+
+#: includes/tools/class-theme-tools.php:85
+msgid ""
+"Read typed, curated Flatsome settings for colors, typography, layout, "
+"header, footer, blog, shop, and performance."
+msgstr ""
+"خواندن تنظیمات نوع‌دار و گزینش‌شده Flatsome برای رنگ، تایپوگرافی، چیدمان، "
+"سربرگ، پابرگ، وبلاگ، فروشگاه و عملکرد."
+
+#: includes/tools/class-theme-tools.php:101
+msgid ""
+"Update typed settings from the curated Flatsome allowlist. Unknown or "
+"structurally unsafe settings are rejected. Requires confirm=true."
+msgstr ""
+"به‌روزرسانی تنظیمات نوع‌دار از فهرست مجاز گزینش‌شده Flatsome. تنظیمات ناشناخته "
+"یا از نظر ساختاری ناامن رد می‌شوند. به confirm=true نیاز دارد."
+
+#: includes/tools/class-theme-tools.php:174
+msgid "Theme modification updates require confirm=true."
+msgstr "به‌روزرسانی تغییرات پوسته به confirm=true نیاز دارد."
+
+#. translators: %s: WordPress theme modification key.
+#: includes/tools/class-theme-tools.php:191
+#: includes/tools/class-theme-tools.php:211
+#, php-format
+msgid "Theme modification \"%s\" is not in the portable write allowlist."
+msgstr "تغییر پوسته «%s» در فهرست مجاز نوشتن قابل‌انتقال نیست."
+
+#: includes/tools/class-theme-tools.php:226
+msgid "Child theme creation requires confirm=true."
+msgstr "ایجاد پوسته فرزند به confirm=true نیاز دارد."
+
+#: includes/tools/class-theme-tools.php:229
+msgid "Your user cannot activate the new child theme."
+msgstr "کاربر شما اجازه فعال‌سازی پوسته فرزند جدید را ندارد."
+
+#: includes/tools/class-theme-tools.php:235
+msgid "Choose a valid child-theme slug that differs from the parent theme."
+msgstr "نامک معتبر و متفاوت از پوسته والد برای پوسته فرزند انتخاب کنید."
+
+#: includes/tools/class-theme-tools.php:240
+msgid "A theme already exists at the requested child-theme slug."
+msgstr "پوسته‌ای با نامک درخواستی پوسته فرزند از قبل وجود دارد."
+
+#: includes/tools/class-theme-tools.php:248
+msgid "WordPress could not create the child-theme directory."
+msgstr "وردپرس نتوانست پوشه پوسته فرزند را ایجاد کند."
+
+#: includes/tools/class-theme-tools.php:259
+msgid "WordPress could not write the child-theme files."
+msgstr "وردپرس نتوانست فایل‌های پوسته فرزند را بنویسد."
+
+#: includes/tools/class-theme-tools.php:297
+msgid "Flatsome setting updates require confirm=true."
+msgstr "به‌روزرسانی تنظیمات Flatsome به confirm=true نیاز دارد."
+
+#. translators: %s: Flatsome theme setting key.
+#: includes/tools/class-theme-tools.php:318
+#: includes/tools/class-theme-tools.php:338
+#, php-format
+msgid "Flatsome setting \"%s\" is not in the curated allowlist."
+msgstr "تنظیم Flatsome «%s» در فهرست مجاز گزینش‌شده نیست."
+
+#: includes/tools/class-theme-tools.php:368
+msgid "Primary color"
+msgstr "رنگ اصلی"
+
+#: includes/tools/class-theme-tools.php:369
+msgid "Secondary color"
+msgstr "رنگ ثانویه"
+
+#: includes/tools/class-theme-tools.php:370
+msgid "Success color"
+msgstr "رنگ موفقیت"
+
+#: includes/tools/class-theme-tools.php:371
+msgid "Alert color"
+msgstr "رنگ هشدار"
+
+#: includes/tools/class-theme-tools.php:372
+msgid "Base text color"
+msgstr "رنگ متن پایه"
+
+#: includes/tools/class-theme-tools.php:373
+msgid "Heading color"
+msgstr "رنگ عنوان‌ها"
+
+#: includes/tools/class-theme-tools.php:374
+msgid "Link color"
+msgstr "رنگ پیوند"
+
+#: includes/tools/class-theme-tools.php:375
+msgid "Link hover color"
+msgstr "رنگ پیوند هنگام اشاره"
+
+#: includes/tools/class-theme-tools.php:376
+msgid "Heading font"
+msgstr "فونت عنوان‌ها"
+
+#: includes/tools/class-theme-tools.php:377
+msgid "Base text font"
+msgstr "فونت متن پایه"
+
+#: includes/tools/class-theme-tools.php:378
+msgid "Navigation font"
+msgstr "فونت ناوبری"
+
+#: includes/tools/class-theme-tools.php:379
+msgid "Alternate font"
+msgstr "فونت جایگزین"
+
+#: includes/tools/class-theme-tools.php:380
+msgid "Base font size percent"
+msgstr "درصد اندازه فونت پایه"
+
+#: includes/tools/class-theme-tools.php:381
+msgid "Mobile font size percent"
+msgstr "درصد اندازه فونت موبایل"
+
+#: includes/tools/class-theme-tools.php:382
+msgid "Body layout"
+msgstr "چیدمان بدنه"
+
+#: includes/tools/class-theme-tools.php:383
+msgid "Content width"
+msgstr "عرض محتوا"
+
+#: includes/tools/class-theme-tools.php:384
+msgid "Boxed site width"
+msgstr "عرض سایت جعبه‌ای"
+
+#: includes/tools/class-theme-tools.php:385
+msgid "Content contrast"
+msgstr "کنتراست محتوا"
+
+#: includes/tools/class-theme-tools.php:386
+msgid "Content background"
+msgstr "پس‌زمینه محتوا"
+
+#: includes/tools/class-theme-tools.php:387
+msgid "Body background"
+msgstr "پس‌زمینه بدنه"
+
+#: includes/tools/class-theme-tools.php:388
+msgid "Header width"
+msgstr "عرض سربرگ"
+
+#: includes/tools/class-theme-tools.php:389
+msgid "Header height"
+msgstr "ارتفاع سربرگ"
+
+#: includes/tools/class-theme-tools.php:390
+msgid "Sticky header height"
+msgstr "ارتفاع سربرگ چسبان"
+
+#: includes/tools/class-theme-tools.php:391
+msgid "Header contrast"
+msgstr "کنتراست سربرگ"
+
+#: includes/tools/class-theme-tools.php:392
+msgid "Sticky header"
+msgstr "سربرگ چسبان"
+
+#: includes/tools/class-theme-tools.php:393
+msgid "Footer area one"
+msgstr "ناحیه نخست پابرگ"
+
+#: includes/tools/class-theme-tools.php:394
+msgid "Footer area two"
+msgstr "ناحیه دوم پابرگ"
+
+#: includes/tools/class-theme-tools.php:395
+msgid "Bottom footer alignment"
+msgstr "تراز پایین پابرگ"
+
+#: includes/tools/class-theme-tools.php:396
+msgid "Bottom footer contrast"
+msgstr "کنتراست پایین پابرگ"
+
+#: includes/tools/class-theme-tools.php:397
+msgid "Left footer text"
+msgstr "متن سمت چپ پابرگ"
+
+#: includes/tools/class-theme-tools.php:398
+msgid "Right footer text"
+msgstr "متن سمت راست پابرگ"
+
+#: includes/tools/class-theme-tools.php:399
+msgid "Blog archive sidebar"
+msgstr "نوار کناری بایگانی وبلاگ"
+
+#: includes/tools/class-theme-tools.php:400
+msgid "Single post sidebar"
+msgstr "نوار کناری نوشته تکی"
+
+#: includes/tools/class-theme-tools.php:401
+msgid "Blog pagination"
+msgstr "صفحه‌بندی وبلاگ"
+
+#: includes/tools/class-theme-tools.php:402
+msgid "Shop sidebar"
+msgstr "نوار کناری فروشگاه"
+
+#: includes/tools/class-theme-tools.php:403
+msgid "Product page layout"
+msgstr "چیدمان صفحه محصول"
+
+#: includes/tools/class-theme-tools.php:404
+msgid "Shop pagination"
+msgstr "صفحه‌بندی فروشگاه"
+
+#: includes/tools/class-theme-tools.php:405
+msgid "Live product search"
+msgstr "جست‌وجوی زنده محصول"
+
+#: includes/tools/class-theme-tools.php:406
+msgid "AJAX add to cart"
+msgstr "افزودن AJAX به سبد خرید"
+
+#: includes/tools/class-theme-tools.php:407
+msgid "Lazy-load images"
+msgstr "بارگذاری تنبل تصاویر"
+
+#: includes/tools/class-theme-tools.php:408
+msgid "Instant page preloading"
+msgstr "پیش‌بارگذاری فوری صفحه"
+
+#: includes/tools/class-theme-tools.php:409
+msgid "Disable emoji scripts"
+msgstr "غیرفعال‌کردن اسکریپت‌های ایموجی"
+
+#: includes/tools/class-theme-tools.php:410
+msgid "Disable WordPress block CSS"
+msgstr "غیرفعال‌کردن CSS بلوک‌های وردپرس"
+
+#: includes/tools/class-theme-tools.php:411
+msgid "Remove jQuery Migrate"
+msgstr "حذف jQuery Migrate"
+
+#. translators: %s: WordPress theme setting key.
+#: includes/tools/class-theme-tools.php:486
+#, php-format
+msgid "Theme setting \"%s\" has an invalid value or type."
+msgstr "مقدار یا نوع تنظیم پوسته «%s» معتبر نیست."
+
+#: includes/tools/class-theme-tools.php:494
+msgid "The active theme is not Flatsome or a Flatsome child theme."
+msgstr "پوسته فعال Flatsome یا پوسته فرزند Flatsome نیست."
+
+#: includes/tools/class-theme-tools.php:500
+msgid "The active stylesheet changed since the agent read the theme context."
+msgstr "شیوه‌نامه فعال پس از خواندن زمینه پوسته توسط عامل تغییر کرده است."
+
+#: includes/tools/class-theme-tools.php:509
+msgid ""
+"This site requires interactive filesystem credentials, so MCP cannot safely "
+"create a child theme."
+msgstr ""
+"این سایت به اطلاعات ورود تعاملی فایل‌سیستم نیاز دارد؛ بنابراین MCP نمی‌تواند "
+"پوسته فرزند را با ایمنی ایجاد کند."
+
+#: includes/tools/class-user-tools.php:47
+msgid ""
+"List WordPress users and roles with search and pagination. Passwords and "
+"secrets are never exposed."
+msgstr ""
+"کاربران و نقش‌های وردپرس را با جست‌وجو و صفحه‌بندی فهرست می‌کند. رمزهای عبور و "
+"اسرار هرگز نمایش داده نمی‌شوند."
+
+#: includes/tools/class-user-tools.php:66
+msgid ""
+"Create a non-administrator WordPress user and optionally email the standard "
+"new-user invitation. Passwords are never returned."
+msgstr ""
+"یک کاربر غیرمدیر وردپرس ایجاد و در صورت درخواست دعوت‌نامهٔ استاندارد کاربر "
+"جدید را ایمیل می‌کند. رمز عبور هرگز برگردانده نمی‌شود."
+
+#: includes/tools/class-user-tools.php:88
+msgid ""
+"Update a non-administrator user profile and optionally assign another non-"
+"administrator role."
+msgstr ""
+"نمایهٔ یک کاربر غیرمدیر را به‌روزرسانی و در صورت درخواست یک نقش غیرمدیر دیگر "
+"به او اختصاص می‌دهد."
+
+#: includes/tools/class-user-tools.php:112
+msgid ""
+"Delete a non-administrator user, optionally reassigning their content. "
+"Requires confirm=true and never permits self-deletion."
+msgstr ""
+"یک کاربر غیرمدیر را حذف و در صورت درخواست محتوای او را واگذار می‌کند. "
+"confirm=true الزامی است و حذف خود کاربر هرگز مجاز نیست."
+
+#: includes/tools/class-user-tools.php:131
+msgid ""
+"Send the normal WordPress password-reset email to a user. Reset keys and "
+"passwords are never returned."
+msgstr ""
+"ایمیل معمول بازنشانی رمز عبور وردپرس را برای یک کاربر ارسال می‌کند. کلیدهای "
+"بازنشانی و رمزهای عبور هرگز برگردانده نمی‌شوند."
+
+#: includes/tools/class-user-tools.php:183
+msgid "Only an editable non-administrator role may be assigned."
+msgstr "فقط یک نقش غیرمدیر قابل ویرایش را می‌توان اختصاص داد."
+
+#: includes/tools/class-user-tools.php:188
+msgid "A valid username and email address are required."
+msgstr "نام کاربری و نشانی ایمیل معتبر الزامی است."
+
+#: includes/tools/class-user-tools.php:210
+msgid ""
+"No password is exposed. The user can set one through the invitation or "
+"password-reset flow."
+msgstr ""
+"هیچ رمز عبوری نمایش داده نمی‌شود. کاربر می‌تواند از طریق دعوت‌نامه یا جریان "
+"بازنشانی رمز عبور آن را تعیین کند."
+
+#: includes/tools/class-user-tools.php:219
+#: includes/tools/class-user-tools.php:264
+#: includes/tools/class-user-tools.php:283
+msgid "User not found."
+msgstr "کاربر پیدا نشد."
+
+#: includes/tools/class-user-tools.php:222
+msgid "Administrator and super-admin accounts cannot be modified through MCP."
+msgstr "حساب‌های مدیر و مدیرکل را نمی‌توان از طریق MCP تغییر داد."
+
+#: includes/tools/class-user-tools.php:234
+msgid "The email address is invalid."
+msgstr "نشانی ایمیل نامعتبر است."
+
+#: includes/tools/class-user-tools.php:244
+msgid "The requested role cannot be assigned."
+msgstr "نقش درخواستی قابل تخصیص نیست."
+
+#: includes/tools/class-user-tools.php:257
+msgid "User deletion requires confirm=true."
+msgstr "حذف کاربر به confirm=true نیاز دارد."
+
+#: includes/tools/class-user-tools.php:260
+msgid "The authenticated user cannot delete itself."
+msgstr "کاربر احرازشده نمی‌تواند حساب خود را حذف کند."
+
+#: includes/tools/class-user-tools.php:267
+msgid "Administrator and super-admin accounts cannot be deleted through MCP."
+msgstr "حساب‌های مدیر و مدیرکل را نمی‌توان از طریق MCP حذف کرد."
+
+#: includes/tools/class-user-tools.php:271
+msgid "The content-reassignment user is invalid."
+msgstr "کاربر مقصد برای واگذاری محتوا نامعتبر است."
+
+#: includes/tools/class-user-tools.php:276
+msgid "The user could not be deleted."
+msgstr "کاربر حذف نشد."
+
+#: includes/tools/class-webhook-tools.php:26
+msgid ""
+"Register a signed HTTPS webhook for WordPress post, comment, or WooCommerce "
+"order events. The signing secret is returned once."
+msgstr ""
+"یک وب‌هوک HTTPS امضاشده برای رویدادهای نوشته، دیدگاه وردپرس یا سفارش ووکامرس "
+"ثبت می‌کند. راز امضا فقط یک‌بار برگردانده می‌شود."
+
+#: includes/tools/class-webhook-tools.php:44
+msgid "Unregister a webhook by ID."
+msgstr "ثبت یک وب‌هوک را با شناسهٔ آن لغو می‌کند."
+
+#: includes/tools/class-webhook-tools.php:63
+msgid "List configured webhooks without revealing signing secrets."
+msgstr "وب‌هوک‌های پیکربندی‌شده را بدون نمایش اسرار امضا فهرست می‌کند."
+
+#: includes/tools/class-woocommerce-operation-tools.php:47
+msgid "Unknown WooCommerce operation."
+msgstr "عملیات ووکامرس ناشناخته است."
+
+#: includes/tools/class-woocommerce-operation-tools.php:50
+msgid "This WooCommerce operation requires confirm=true."
+msgstr "این عملیات ووکامرس به confirm=true نیاز دارد."
+
+#: includes/tools/class-woocommerce-operation-tools.php:90
+msgid "WooCommerce rejected the operation."
+msgstr "ووکامرس عملیات را رد کرد."
+
+#: includes/tools/class-woocommerce-operation-tools.php:125
+msgid "System status"
+msgstr "وضعیت سیستم"
+
+#: includes/tools/class-woocommerce-operation-tools.php:126
+msgid "List status tools"
+msgstr "فهرست ابزارهای وضعیت"
+
+#: includes/tools/class-woocommerce-operation-tools.php:127
+msgid "List products"
+msgstr "فهرست محصولات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:128
+msgid "Get product"
+msgstr "دریافت محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:129
+msgid "List product variations"
+msgstr "فهرست گونه‌های محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:130
+msgid "Get product variation"
+msgstr "دریافت گونه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:131
+msgid "List product categories"
+msgstr "فهرست دسته‌های محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:132
+msgid "Get product category"
+msgstr "دریافت دسته محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:133
+msgid "List product tags"
+msgstr "فهرست برچسب‌های محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:134
+msgid "Get product tag"
+msgstr "دریافت برچسب محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:135
+msgid "List product attributes"
+msgstr "فهرست ویژگی‌های محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:136
+msgid "Get product attribute"
+msgstr "دریافت ویژگی محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:137
+msgid "List attribute terms"
+msgstr "فهرست مقادیر ویژگی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:138
+msgid "Get attribute term"
+msgstr "دریافت مقدار ویژگی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:139
+msgid "List product reviews"
+msgstr "فهرست دیدگاه‌های محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:140
+msgid "Get product review"
+msgstr "دریافت دیدگاه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:141
+msgid "List orders"
+msgstr "فهرست سفارش‌ها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:142
+msgid "Get order"
+msgstr "دریافت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:143
+msgid "List order notes"
+msgstr "فهرست یادداشت‌های سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:144
+msgid "Get order note"
+msgstr "دریافت یادداشت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:145
+msgid "List order refunds"
+msgstr "فهرست بازپرداخت‌های سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:146
+msgid "Get order refund"
+msgstr "دریافت بازپرداخت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:147
+msgid "List coupons"
+msgstr "فهرست کدهای تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:148
+msgid "Get coupon"
+msgstr "دریافت کد تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:149
+msgid "List customers"
+msgstr "فهرست مشتریان"
+
+#: includes/tools/class-woocommerce-operation-tools.php:150
+msgid "Get customer"
+msgstr "دریافت مشتری"
+
+#: includes/tools/class-woocommerce-operation-tools.php:151
+msgid "Get customer downloads"
+msgstr "دریافت دانلودهای مشتری"
+
+#: includes/tools/class-woocommerce-operation-tools.php:152
+msgid "List tax rates"
+msgstr "فهرست نرخ‌های مالیات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:153
+msgid "Get tax rate"
+msgstr "دریافت نرخ مالیات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:154
+msgid "List tax classes"
+msgstr "فهرست رده‌های مالیاتی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:155
+msgid "List shipping zones"
+msgstr "فهرست مناطق ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:156
+msgid "Get shipping zone"
+msgstr "دریافت منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:157
+msgid "List shipping-zone locations"
+msgstr "فهرست مکان‌های منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:158
+msgid "List shipping-zone methods"
+msgstr "فهرست روش‌های منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:159
+msgid "Get shipping-zone method"
+msgstr "دریافت روش منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:160
+msgid "List shipping methods"
+msgstr "فهرست روش‌های ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:161
+msgid "List payment gateways"
+msgstr "فهرست درگاه‌های پرداخت"
+
+#: includes/tools/class-woocommerce-operation-tools.php:162
+msgid "Get payment gateway"
+msgstr "دریافت درگاه پرداخت"
+
+#: includes/tools/class-woocommerce-operation-tools.php:163
+msgid "List setting groups"
+msgstr "فهرست گروه‌های تنظیمات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:164
+msgid "Get setting group"
+msgstr "دریافت گروه تنظیمات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:165
+msgid "Get setting option"
+msgstr "دریافت گزینه تنظیمات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:166
+msgid "List WooCommerce webhooks"
+msgstr "فهرست وب‌هوک‌های ووکامرس"
+
+#: includes/tools/class-woocommerce-operation-tools.php:167
+msgid "Get WooCommerce webhook"
+msgstr "دریافت وب‌هوک ووکامرس"
+
+#: includes/tools/class-woocommerce-operation-tools.php:168
+msgid "List countries"
+msgstr "فهرست کشورها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:169
+msgid "List currencies"
+msgstr "فهرست ارزها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:170
+msgid "List continents"
+msgstr "فهرست قاره‌ها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:171
+msgid "Get sales report"
+msgstr "دریافت گزارش فروش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:172
+msgid "Get top sellers report"
+msgstr "دریافت گزارش پرفروش‌ها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:173
+msgid "Get order totals report"
+msgstr "دریافت گزارش مجموع سفارش‌ها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:174
+msgid "Get product totals report"
+msgstr "دریافت گزارش مجموع محصولات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:175
+msgid "Get customer totals report"
+msgstr "دریافت گزارش مجموع مشتریان"
+
+#: includes/tools/class-woocommerce-operation-tools.php:176
+msgid "Get coupon totals report"
+msgstr "دریافت گزارش مجموع کدهای تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:177
+msgid "Get review totals report"
+msgstr "دریافت گزارش مجموع دیدگاه‌ها"
+
+#: includes/tools/class-woocommerce-operation-tools.php:190
+msgid "Create product"
+msgstr "ایجاد محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:191
+msgid "Update product"
+msgstr "به‌روزرسانی محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:192
+msgid "Delete product"
+msgstr "حذف محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:193
+msgid "Create product variation"
+msgstr "ایجاد گونه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:194
+msgid "Update product variation"
+msgstr "به‌روزرسانی گونه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:195
+msgid "Delete product variation"
+msgstr "حذف گونه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:196
+msgid "Create product category"
+msgstr "ایجاد دسته محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:197
+msgid "Update product category"
+msgstr "به‌روزرسانی دسته محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:198
+msgid "Delete product category"
+msgstr "حذف دسته محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:199
+msgid "Create product tag"
+msgstr "ایجاد برچسب محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:200
+msgid "Update product tag"
+msgstr "به‌روزرسانی برچسب محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:201
+msgid "Delete product tag"
+msgstr "حذف برچسب محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:202
+msgid "Create product attribute"
+msgstr "ایجاد ویژگی محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:203
+msgid "Update product attribute"
+msgstr "به‌روزرسانی ویژگی محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:204
+msgid "Delete product attribute"
+msgstr "حذف ویژگی محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:205
+msgid "Create attribute term"
+msgstr "ایجاد مقدار ویژگی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:206
+msgid "Update attribute term"
+msgstr "به‌روزرسانی مقدار ویژگی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:207
+msgid "Delete attribute term"
+msgstr "حذف مقدار ویژگی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:208
+msgid "Create product review"
+msgstr "ایجاد دیدگاه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:209
+msgid "Update product review"
+msgstr "به‌روزرسانی دیدگاه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:210
+msgid "Delete product review"
+msgstr "حذف دیدگاه محصول"
+
+#: includes/tools/class-woocommerce-operation-tools.php:211
+msgid "Create order"
+msgstr "ایجاد سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:212
+msgid "Update order"
+msgstr "به‌روزرسانی سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:213
+msgid "Delete order"
+msgstr "حذف سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:214
+msgid "Create order note"
+msgstr "ایجاد یادداشت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:215
+msgid "Delete order note"
+msgstr "حذف یادداشت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:216
+msgid "Create order refund"
+msgstr "ایجاد بازپرداخت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:217
+msgid "Delete order refund"
+msgstr "حذف بازپرداخت سفارش"
+
+#: includes/tools/class-woocommerce-operation-tools.php:218
+msgid "Create coupon"
+msgstr "ایجاد کد تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:219
+msgid "Update coupon"
+msgstr "به‌روزرسانی کد تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:220
+msgid "Delete coupon"
+msgstr "حذف کد تخفیف"
+
+#: includes/tools/class-woocommerce-operation-tools.php:221
+msgid "Create customer"
+msgstr "ایجاد مشتری"
+
+#: includes/tools/class-woocommerce-operation-tools.php:222
+msgid "Update customer"
+msgstr "به‌روزرسانی مشتری"
+
+#: includes/tools/class-woocommerce-operation-tools.php:223
+msgid "Delete customer"
+msgstr "حذف مشتری"
+
+#: includes/tools/class-woocommerce-operation-tools.php:224
+msgid "Create tax rate"
+msgstr "ایجاد نرخ مالیات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:225
+msgid "Update tax rate"
+msgstr "به‌روزرسانی نرخ مالیات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:226
+msgid "Delete tax rate"
+msgstr "حذف نرخ مالیات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:227
+msgid "Create tax class"
+msgstr "ایجاد رده مالیاتی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:228
+msgid "Delete tax class"
+msgstr "حذف رده مالیاتی"
+
+#: includes/tools/class-woocommerce-operation-tools.php:229
+msgid "Create shipping zone"
+msgstr "ایجاد منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:230
+msgid "Update shipping zone"
+msgstr "به‌روزرسانی منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:231
+msgid "Delete shipping zone"
+msgstr "حذف منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:232
+msgid "Update shipping-zone locations"
+msgstr "به‌روزرسانی مکان‌های منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:233
+msgid "Create shipping-zone method"
+msgstr "ایجاد روش منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:234
+msgid "Update shipping-zone method"
+msgstr "به‌روزرسانی روش منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:235
+msgid "Delete shipping-zone method"
+msgstr "حذف روش منطقه ارسال"
+
+#: includes/tools/class-woocommerce-operation-tools.php:236
+msgid "Update payment gateway"
+msgstr "به‌روزرسانی درگاه پرداخت"
+
+#: includes/tools/class-woocommerce-operation-tools.php:237
+msgid "Update setting option"
+msgstr "به‌روزرسانی گزینه تنظیمات"
+
+#: includes/tools/class-woocommerce-operation-tools.php:238
+msgid "Create WooCommerce webhook"
+msgstr "ایجاد وب‌هوک ووکامرس"
+
+#: includes/tools/class-woocommerce-operation-tools.php:239
+msgid "Update WooCommerce webhook"
+msgstr "به‌روزرسانی وب‌هوک ووکامرس"
+
+#: includes/tools/class-woocommerce-operation-tools.php:240
+msgid "Delete WooCommerce webhook"
+msgstr "حذف وب‌هوک ووکامرس"
+
+#: includes/tools/class-woocommerce-operation-tools.php:241
+msgid "Run system status tool"
+msgstr "اجرای ابزار وضعیت سیستم"
+
+#. translators: %s: fixed WooCommerce REST API path.
+#: includes/tools/class-woocommerce-operation-tools.php:253
+#, php-format
+msgid "Read WooCommerce data using the fixed %s endpoint."
+msgstr "خواندن داده‌های ووکامرس با استفاده از نقطه پایانی ثابت %s."
+
+#. translators: %s: fixed WooCommerce REST API path.
+#: includes/tools/class-woocommerce-operation-tools.php:271
+#, php-format
+msgid "Mutate WooCommerce data using the fixed %s endpoint."
+msgstr "تغییر داده‌های ووکامرس با استفاده از نقطه پایانی ثابت %s."
+
+#: includes/tools/class-woocommerce-operation-tools.php:318
+msgid "WooCommerce operation payloads may not exceed 512 KB."
+msgstr "حجم داده ورودی عملیات ووکامرس نباید از ۵۱۲ کیلوبایت بیشتر باشد."
+
+#: includes/tools/class-woocommerce-operation-tools.php:324
+msgid "WooCommerce operation payload is too deeply nested or complex."
+msgstr "داده ورودی عملیات ووکامرس بیش از حد تودرتو یا پیچیده است."
+
+#: includes/tools/class-woocommerce-operation-tools.php:327
+msgid ""
+"Secret and password fields are not writable through the WooCommerce MCP "
+"dispatcher."
+msgstr ""
+"فیلدهای رمز و گذرواژه از طریق توزیع‌کننده MCP ووکامرس قابل نوشتن نیستند."
+
+#: includes/tools/class-woocommerce-operation-tools.php:331
+msgid "A WooCommerce payload value is unsafe or too long."
+msgstr "یکی از مقادیر داده ورودی ووکامرس ناامن یا بیش از حد طولانی است."
+
+#: includes/tools/class-woocommerce-operation-tools.php:339
+msgid "WooCommerce payload values must be valid JSON values."
+msgstr "مقادیر داده ورودی ووکامرس باید مقادیر معتبر JSON باشند."
+
+#: includes/tools/class-woocommerce-operation-tools.php:344
+msgid "WooCommerce payload contains an invalid or reserved key."
+msgstr "داده ورودی ووکامرس دارای کلید نامعتبر یا رزروشده است."
+
+#: includes/tools/class-woocommerce-tools.php:27
+msgid ""
+"Create a WooCommerce simple product with pricing, images, categories, SKU, "
+"and inventory fields."
+msgstr ""
+"یک محصول سادهٔ ووکامرس را همراه با قیمت‌گذاری، تصاویر، دسته‌ها، SKU و فیلدهای "
+"موجودی ایجاد می‌کند."
+
+#: includes/tools/class-woocommerce-tools.php:36
+msgid "Update selected fields on an existing WooCommerce product."
+msgstr "فیلدهای انتخاب‌شدهٔ یک محصول موجود ووکامرس را به‌روزرسانی می‌کند."
+
+#: includes/tools/class-woocommerce-tools.php:46
+msgid ""
+"List WooCommerce orders through the HPOS-compatible order API with status, "
+"customer, date, and pagination filters."
+msgstr ""
+"سفارش‌های ووکامرس را از طریق API سفارش سازگار با HPOS و با فیلترهای وضعیت، "
+"مشتری، تاریخ و صفحه‌بندی فهرست می‌کند."
+
+#: includes/tools/class-woocommerce-tools.php:67
+msgid ""
+"List, create, or update WooCommerce customer accounts without exposing "
+"passwords."
+msgstr ""
+"حساب‌های مشتریان ووکامرس را بدون نمایش رمز عبور فهرست، ایجاد یا به‌روزرسانی "
+"می‌کند."
+
+#: includes/tools/class-woocommerce-tools.php:93
+msgid "Set or adjust WooCommerce product stock and stock status."
+msgstr "موجودی و وضعیت موجودی محصول ووکامرس را تعیین یا تنظیم می‌کند."
+
+#: includes/tools/class-woocommerce-tools.php:112
+msgid ""
+"Apply or remove a coupon on an existing WooCommerce order and recalculate "
+"totals. Requires confirm=true."
+msgstr ""
+"یک کد تخفیف را روی سفارش موجود ووکامرس اعمال یا حذف و جمع‌ها را دوباره محاسبه "
+"می‌کند. confirm=true الزامی است."
+
+#: includes/tools/class-woocommerce-tools.php:163
+msgid "Product not found."
+msgstr "محصول پیدا نشد."
+
+#: includes/tools/class-woocommerce-tools.php:166
+msgid "Your user cannot edit this product."
+msgstr "کاربر شما اجازهٔ ویرایش این محصول را ندارد."
+
+#: includes/tools/class-woocommerce-tools.php:225
+#: includes/tools/class-woocommerce-tools.php:259
+msgid "A valid customer email is required."
+msgstr "نشانی ایمیل معتبر مشتری الزامی است."
+
+#: includes/tools/class-woocommerce-tools.php:248
+msgid "Customer not found."
+msgstr "مشتری پیدا نشد."
+
+#: includes/tools/class-woocommerce-tools.php:277
+msgid "Product not found or not editable."
+msgstr "محصول پیدا نشد یا قابل ویرایش نیست."
+
+#: includes/tools/class-woocommerce-tools.php:280
+msgid "Provide stock_quantity, adjustment, or stock_status."
+msgstr "یکی از stock_quantity، adjustment یا stock_status را وارد کنید."
+
+#: includes/tools/class-woocommerce-tools.php:283
+msgid "Use stock_quantity or adjustment, not both."
+msgstr "از stock_quantity یا adjustment استفاده کنید، نه هر دو."
+
+#: includes/tools/class-woocommerce-tools.php:303
+msgid "Order coupon changes require confirm=true."
+msgstr "تغییر کوپن سفارش به confirm=true نیاز دارد."
+
+#: includes/tools/class-woocommerce-tools.php:307
+msgid "Order not found."
+msgstr "سفارش پیدا نشد."
+
+#: includes/tools/class-acf-tools.php:282
+msgid "ACF field not found."
+msgstr "فیلد ACF پیدا نشد."
+
+#~ msgid "A banner element requires a Media Library media_id."
+#~ msgstr "المان بنر به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#~ msgid "A button element requires text."
+#~ msgstr "المان دکمه به متن نیاز دارد."
+
+#~ msgid "A text element requires html."
+#~ msgstr "المان متن به html نیاز دارد."
+
+#~ msgid "An image element requires a Media Library media_id."
+#~ msgstr "المان تصویر به media_id از کتابخانهٔ رسانه نیاز دارد."
+
+#~ msgid "Approve"
+#~ msgstr "تأیید"
+
+#~ msgid ""
+#~ "Create a production-ready Flatsome UX Builder page from declarative "
+#~ "sections, responsive rows, columns, text, images, buttons, and banners."
+#~ msgstr ""
+#~ "یک برگهٔ آمادهٔ تولید فلت‌سام UX Builder را از بخش‌ها، ردیف‌های واکنش‌گرا، "
+#~ "ستون‌ها، متن، تصاویر، دکمه‌ها و بنرهای تعریف‌شده ایجاد می‌کند."
+
+#~ msgid "Deny"
+#~ msgstr "رد"
+
+#~ msgid "Disabled tools"
+#~ msgstr "ابزارهای غیرفعال"
+
+#~ msgid ""
+#~ "Disabled tools are removed from discovery and rejected when called "
+#~ "directly. Credentials and permission scopes are not changed."
+#~ msgstr ""
+#~ "ابزارهای غیرفعال از فهرست کشف حذف می‌شوند و فراخوانی مستقیم آن‌ها رد می‌شود. "
+#~ "اعتبارنامه‌ها و دامنه‌های مجوز تغییری نمی‌کنند."
+
+#~ msgid ""
+#~ "Disabling every tool leaves the MCP connection online but with no "
+#~ "executable capabilities."
+#~ msgstr ""
+#~ "با غیرفعال‌کردن همهٔ ابزارها، اتصال MCP آنلاین می‌ماند اما هیچ قابلیت اجرایی "
+#~ "نخواهد داشت."
+
+#~ msgid "Discovery metadata for OAuth clients"
+#~ msgstr "فرادادهٔ کشف برای کلاینت‌های OAuth"
+
+#~ msgid "Exposure changes apply to new MCP requests immediately."
+#~ msgstr "تغییرات نمایش ابزارها بلافاصله بر درخواست‌های جدید MCP اعمال می‌شوند."
+
+#~ msgid ""
+#~ "Insert a text, image, button, or banner element into a UX Builder column "
+#~ "selected by stable column_id."
+#~ msgstr ""
+#~ "یک عنصر متن، تصویر، دکمه یا بنر را در ستون UX Builder انتخاب‌شده با "
+#~ "column_id پایدار درج می‌کند."
+
+#~ msgid "Label"
+#~ msgstr "برچسب"
+
+#~ msgid "MCP resource and authorization relationship"
+#~ msgstr "رابطهٔ منبع MCP و مجوزدهی"
+
+#~ msgid "Name"
+#~ msgstr "نام"
+
+#~ msgid "No"
+#~ msgstr "خیر"
+
+#~ msgid "OAuth metadata"
+#~ msgstr "فرادادهٔ OAuth"
+
+#~ msgid "Operational domains"
+#~ msgstr "حوزه‌های عملیاتی"
+
+#~ msgid "Primary Streamable HTTP transport"
+#~ msgstr "انتقال اصلی HTTP جریانی"
+
+#~ msgid "Rejected by server policy"
+#~ msgstr "ردشده توسط سیاست سرور"
+
+#~ msgid ""
+#~ "Runtime status, logs, developer maintenance, caches, CDN, and image "
+#~ "optimization."
+#~ msgstr ""
+#~ "وضعیت اجرا، گزارش‌ها، نگه‌داری توسعه‌دهنده، کش‌ها، CDN و بهینه‌سازی تصویر."
+
+#~ msgid "Site"
+#~ msgstr "سایت"
+
+#~ msgid "Supported Flatsome elements are text, image, button, and banner."
+#~ msgstr "المان‌های پشتیبانی‌شدهٔ فلت‌سام متن، تصویر، دکمه و بنر هستند."
+
+#~ msgid "Time (UTC)"
+#~ msgstr "زمان (UTC)"
+
+#, php-format
+#~ msgid "Tool exposure updated: %1$s exposed, %2$s disabled."
+#~ msgstr "سیاست نمایش ابزارها به‌روزرسانی شد: %1$s در دسترس، %2$s غیرفعال."
+
+#~ msgid "Tool groups"
+#~ msgstr "گروه‌های ابزار"
+
+#~ msgid ""
+#~ "Use these URLs when connecting Claude, GPT, or another MCP-compatible "
+#~ "client."
+#~ msgstr ""
+#~ "هنگام اتصال Claude، GPT یا هر کلاینت سازگار با MCP از این نشانی‌ها استفاده "
+#~ "کنید."
+
+#~ msgid ""
+#~ "WordPress extension inventory, installation, activation, and theme "
+#~ "switching."
+#~ msgstr "فهرست افزونه‌ها و پوسته‌های وردپرس، نصب، فعال‌سازی و تغییر پوسته."
+
+#~ msgid "Yes"
+#~ msgstr "بله"
+
+#~ msgid "requests per credential per minute"
+#~ msgstr "درخواست برای هر اعتبارنامه در دقیقه"
