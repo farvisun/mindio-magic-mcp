@@ -1,11 +1,13 @@
 /.DS_Store
 /.git
 /.github
+/.editorconfig
 /.distignore
 /.gitignore
 /bin
 /composer.json
 /composer.lock
+/CONTRIBUTING.md
 /dist
 /phpcs.xml.dist
 /phpunit.xml.dist

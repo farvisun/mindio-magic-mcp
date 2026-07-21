@@ -1,0 +1,33 @@
+name: Feature request
+description: Propose a focused improvement or integration.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: What problem should this solve, and who benefits?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the MCP surface or WordPress behavior you expect.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched existing issues and discussions for similar requests.
+          required: true

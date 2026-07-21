@@ -1,5 +1,10 @@
 # Mindio Magic MCP
 
+[![CI](https://github.com/farvisun/mindio-magic-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/farvisun/mindio-magic-mcp/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/farvisun/mindio-magic-mcp)](https://github.com/farvisun/mindio-magic-mcp/releases/latest)
+[![PHP 8.0+](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![License: GPL-2.0-or-later](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)](LICENSE)
+
 Mindio Magic MCP is a WordPress plugin that exposes a secure, stateless Model Context Protocol server for content, media, site operations, automation, and Flatsome UX Builder page generation.
 
 Mindio Magic MCP is independently developed and is not affiliated with or endorsed by UX Themes. Flatsome is a trademark of its respective owner.
@@ -29,6 +34,26 @@ The MCP endpoint is:
 ```text
 https://example.com/wp-json/flatsome-mcp/v1/mcp
 ```
+
+### Connect an MCP client
+
+Use the endpoint above as the server URL and the generated API key as a bearer token. For clients that accept JSON configuration, the HTTP connection typically looks like this:
+
+```json
+{
+  "mcpServers": {
+    "mindio-magic-mcp": {
+      "type": "http",
+      "url": "https://example.com/wp-json/flatsome-mcp/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer fmp_REPLACE_WITH_YOUR_KEY"
+      }
+    }
+  }
+}
+```
+
+Do not commit API keys to source control. OAuth-capable clients can instead discover the plugin's OAuth 2.1 endpoints automatically from the MCP URL.
 
 The REST namespace intentionally remains `flatsome-mcp/v1` so existing MCP clients, OAuth grants, and integrations continue to work after upgrading to Mindio Magic MCP.
 

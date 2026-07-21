@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.0"
+          coverage: none
+          tools: composer:v2
+
+      - name: Verify tag and plugin versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          plugin_version="$(sed -n "s/^define( 'FLATSOME_MCP_VERSION', '\\([^']*\\)' );$/\\1/p" flatsome-mcp.php)"
+          stable_tag="$(sed -n 's/^Stable tag: //p' readme.txt)"
+          test -n "${plugin_version}"
+          test "${plugin_version}" = "${stable_tag}"
+          echo "version=${plugin_version}" >> "${GITHUB_ENV}"
+
+      - name: Check whether this version is already released
+        id: existing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view "v${version}" >/dev/null 2>&1; then
+            echo "released=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "released=false" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Validate and lint
+        if: steps.existing.outputs.released == 'false'
+        run: |
+          composer validate --strict --no-check-lock
+          composer lint
+
+      - name: Build release assets
+        if: steps.existing.outputs.released == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          composer build
+          archive="dist/mindio-magic-mcp-${version}.zip"
+          unzip -t "${archive}"
+          sha256sum "${archive}" > "${archive}.sha256"
+
+      - name: Publish GitHub release
+        if: steps.existing.outputs.released == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${version}" \
+            dist/*.zip \
+            dist/*.sha256 \
+            --target "${GITHUB_SHA}" \
+            --generate-notes \
+            --title "Mindio Magic MCP v${version}"

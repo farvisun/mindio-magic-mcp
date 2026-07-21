@@ -22,6 +22,7 @@
       "@test:admin",
       "@test:oauth",
       "@test:expanded",
+      "@test:seo-providers",
       "@test:localization"
     ],
     "build": "bash bin/build-release.sh"

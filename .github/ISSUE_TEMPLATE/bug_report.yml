@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible problem with Mindio Magic MCP.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Mindio Magic MCP. Do not include secrets or production data.
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version
+      placeholder: 0.5.4
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: WordPress, PHP, Flatsome, and relevant integration versions.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Configure ...
+        2. Call ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs or screenshots
+      description: Remove API keys, OAuth tokens, webhook secrets, customer data, and private URLs.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I reproduced this on the latest release.
+          required: true
+        - label: I searched existing issues for duplicates.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true
