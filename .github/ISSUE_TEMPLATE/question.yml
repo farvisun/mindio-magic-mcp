@@ -1,0 +1,34 @@
+name: Usage question
+description: Ask about installation, configuration, or client integration.
+title: "[Question]: "
+labels:
+  - question
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Describe what you are trying to accomplish and where you are stuck.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Plugin, WordPress, PHP, and MCP client versions when relevant.
+    validations:
+      required: false
+  - type: textarea
+    id: attempts
+    attributes:
+      label: What have you tried?
+      description: Include sanitized configuration or errors. Never include credentials or production data.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I checked the README and existing issues first.
+          required: true

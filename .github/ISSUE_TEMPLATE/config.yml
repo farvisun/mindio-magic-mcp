@@ -3,6 +3,3 @@ contact_links:
   - name: Security vulnerability
     url: https://github.com/farvisun/mindio-magic-mcp/security/advisories/new
     about: Report security issues privately. Do not open a public issue.
-  - name: Usage question
-    url: https://github.com/farvisun/mindio-magic-mcp/discussions
-    about: Ask installation, configuration, and integration questions.
