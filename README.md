@@ -13,6 +13,14 @@ Mindio Magic MCP is independently developed and is not affiliated with or endors
 
 The plugin implements MCP Streamable HTTP over the WordPress REST API, supports API keys and OAuth 2.1 with PKCE, applies WordPress capability checks to every tool call, and keeps a redacted audit trail.
 
+## Admin console
+
+![Mindio Magic MCP system overview](docs/assets/screenshots/admin-overview.webp)
+
+| Tool governance | Runtime policy |
+| --- | --- |
+| ![Per-tool MCP exposure controls](docs/assets/screenshots/admin-tools.webp) | ![Security and runtime settings](docs/assets/screenshots/admin-settings.webp) |
+
 ## Requirements
 
 - WordPress 6.4 or newer

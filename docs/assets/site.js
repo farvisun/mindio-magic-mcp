@@ -1,7 +1,5 @@
 const releaseApi = "https://api.github.com/repos/farvisun/mindio-magic-mcp/releases/latest";
 
-document.documentElement.classList.add("js");
-
 const syncRelease = async () => {
   try {
     const response = await fetch(releaseApi, {

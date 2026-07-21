@@ -54,8 +54,8 @@
       <section class="hero" id="top">
         <div class="shell hero-grid">
           <div class="reveal">
-            <p class="eyebrow">Open source · GPL-2.0-or-later</p>
-            <h1>Give WordPress a <span class="underline-signal">secure agent</span> interface.</h1>
+            <p class="eyebrow">Open source · Built for WordPress</p>
+            <h1>A secure agent interface for WordPress.</h1>
             <p class="hero-copy">Mindio Magic MCP turns your WordPress site into a capability-aware MCP server—for content, media, automation, WooCommerce, Gutenberg, and native Flatsome page building.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="https://github.com/farvisun/mindio-magic-mcp/releases/download/v0.5.4/mindio-magic-mcp-0.5.4.zip" data-download>
@@ -67,40 +67,10 @@
             <p class="hero-note">WordPress 6.4+ / PHP 8.0+ / No telemetry / No paid tier</p>
           </div>
 
-          <div class="protocol-stage reveal" role="img" aria-label="Illustration of a secure MCP tool request passing authentication, capability, schema, and audit checks">
-            <div class="stage-bar">
-              <span>MCP request pipeline</span>
-              <span class="stage-status">Protected</span>
-            </div>
-            <div class="request-card">
-              <span class="code-key">method</span>: <span class="code-value">"tools/call"</span><br>
-              <span class="code-key">name</span>: <span class="code-value">"create_flatsome_page"</span><br>
-              <span class="code-key">scope</span>: <span class="code-value">"editor"</span>
-            </div>
-            <div class="pipeline">
-              <div class="pipeline-step">
-                <span class="step-dot">01</span>
-                <span class="step-name">Credential verified <span class="step-detail">API key or OAuth 2.1 + PKCE</span></span>
-                <span class="step-ok">PASS</span>
-              </div>
-              <div class="pipeline-step">
-                <span class="step-dot">02</span>
-                <span class="step-name">Capability checked <span class="step-detail">WordPress role + MCP scope</span></span>
-                <span class="step-ok">PASS</span>
-              </div>
-              <div class="pipeline-step">
-                <span class="step-dot">03</span>
-                <span class="step-name">Schema validated <span class="step-detail">Strict input, bounded execution</span></span>
-                <span class="step-ok">PASS</span>
-              </div>
-              <div class="pipeline-step">
-                <span class="step-dot">04</span>
-                <span class="step-name">Activity recorded <span class="step-detail">Redacted audit trail</span></span>
-                <span class="step-ok">PASS</span>
-              </div>
-            </div>
-            <div class="stage-result"><span>200 / native UX Builder output</span><span>48ms</span></div>
-          </div>
+          <figure class="product-shot hero-shot reveal">
+            <img src="assets/screenshots/admin-overview.webp" width="1298" height="1042" alt="Mindio Magic MCP overview showing endpoint status, connection URLs, system readiness, and recent tool activity">
+            <figcaption><span>Live control plane</span><span>Overview · v0.5.4</span></figcaption>
+          </figure>
         </div>
       </section>
 
@@ -113,7 +83,29 @@
         </div>
       </section>
 
-      <section class="section section-dark" id="capabilities">
+      <section class="section product-section" id="product">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <div>
+              <p class="kicker">The actual product</p>
+              <h2>Everything visible. Everything governed.</h2>
+            </div>
+            <p class="section-lead">A focused WordPress-native console for connections, credentials, tool exposure, delivery, audit, and runtime policy.</p>
+          </div>
+          <div class="screenshot-grid">
+            <figure class="product-shot screenshot-primary reveal">
+              <img src="assets/screenshots/admin-tools.webp" width="1278" height="1050" alt="Tools policy screen showing registered and exposed MCP tools with per-tool scope and exposure controls">
+              <figcaption><span>Tool governance</span><span>98 registered capabilities</span></figcaption>
+            </figure>
+            <figure class="product-shot reveal">
+              <img src="assets/screenshots/admin-settings.webp" width="1298" height="1255" alt="Settings screen showing rate limits, browser security, retention, developer capability controls, and uninstall behavior">
+              <figcaption><span>Runtime policy</span><span>Secure defaults</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="capabilities">
         <div class="shell">
           <div class="section-heading reveal">
             <div>
@@ -124,7 +116,7 @@
           </div>
 
           <div class="capability-grid">
-            <article class="capability capability-wide reveal">
+            <article class="capability reveal">
               <span class="capability-number">01 / BUILD</span>
               <h3>Native-first Flatsome generation</h3>
               <p>Create structured UX Builder pages with typed sections, rows, columns, nested components, stable node IDs, revisions, and explicit fallback reporting.</p>
@@ -144,7 +136,7 @@
               <p>Products, orders, customers, inventory, coupons, reports, settings, and more.</p>
               <div class="tool-cloud"><span>woocommerce_read</span><span>woocommerce_write</span></div>
             </article>
-            <article class="capability capability-wide reveal">
+            <article class="capability reveal">
               <span class="capability-number">04 / OPERATE</span>
               <h3>Site operations without the sharp edges</h3>
               <p>Manage media, SEO, comments, users, webhooks, plugin and theme packages, diagnostics, and bounded developer operations. Destructive actions require explicit confirmation.</p>
