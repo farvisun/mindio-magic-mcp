@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mindio Magic MCP — A secure agent interface for WordPress</title>
+    <meta name="description" content="A secure, stateless Model Context Protocol server for WordPress with OAuth 2.1, content automation, and native Flatsome UX Builder support.">
+    <meta name="theme-color" content="#10110f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mindio Magic MCP">
+    <meta property="og:description" content="Give your WordPress site a secure agent interface.">
+    <meta property="og:url" content="https://farvisun.github.io/mindio-magic-mcp/">
+    <link rel="canonical" href="https://farvisun.github.io/mindio-magic-mcp/">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&amp;family=DM+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Mindio Magic MCP",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "WordPress 6.4+",
+        "softwareVersion": "0.5.4",
+        "license": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+        "downloadUrl": "https://github.com/farvisun/mindio-magic-mcp/releases/latest",
+        "codeRepository": "https://github.com/farvisun/mindio-magic-mcp"
+      }
+    </script>
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="#top" aria-label="Mindio Magic MCP home">
+          <span class="brand-mark">M</span>
+          <span>Mindio Magic MCP</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#capabilities">Capabilities</a>
+          <a href="#security">Security</a>
+          <a href="#setup">Setup</a>
+          <a href="https://github.com/farvisun/mindio-magic-mcp" rel="external">GitHub</a>
+          <a class="nav-cta" href="https://github.com/farvisun/mindio-magic-mcp/releases/download/v0.5.4/mindio-magic-mcp-0.5.4.zip" data-download>Download <span data-release-version>v0.5.4</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">Open source · GPL-2.0-or-later</p>
+            <h1>Give WordPress a <span class="underline-signal">secure agent</span> interface.</h1>
+            <p class="hero-copy">Mindio Magic MCP turns your WordPress site into a capability-aware MCP server—for content, media, automation, WooCommerce, Gutenberg, and native Flatsome page building.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://github.com/farvisun/mindio-magic-mcp/releases/download/v0.5.4/mindio-magic-mcp-0.5.4.zip" data-download>
+                Download plugin
+                <span aria-hidden="true">↓</span>
+              </a>
+              <a class="button button-secondary" href="#setup">Connect a client <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="hero-note">WordPress 6.4+ / PHP 8.0+ / No telemetry / No paid tier</p>
+          </div>
+
+          <div class="protocol-stage reveal" role="img" aria-label="Illustration of a secure MCP tool request passing authentication, capability, schema, and audit checks">
+            <div class="stage-bar">
+              <span>MCP request pipeline</span>
+              <span class="stage-status">Protected</span>
+            </div>
+            <div class="request-card">
+              <span class="code-key">method</span>: <span class="code-value">"tools/call"</span><br>
+              <span class="code-key">name</span>: <span class="code-value">"create_flatsome_page"</span><br>
+              <span class="code-key">scope</span>: <span class="code-value">"editor"</span>
+            </div>
+            <div class="pipeline">
+              <div class="pipeline-step">
+                <span class="step-dot">01</span>
+                <span class="step-name">Credential verified <span class="step-detail">API key or OAuth 2.1 + PKCE</span></span>
+                <span class="step-ok">PASS</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="step-dot">02</span>
+                <span class="step-name">Capability checked <span class="step-detail">WordPress role + MCP scope</span></span>
+                <span class="step-ok">PASS</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="step-dot">03</span>
+                <span class="step-name">Schema validated <span class="step-detail">Strict input, bounded execution</span></span>
+                <span class="step-ok">PASS</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="step-dot">04</span>
+                <span class="step-name">Activity recorded <span class="step-detail">Redacted audit trail</span></span>
+                <span class="step-ok">PASS</span>
+              </div>
+            </div>
+            <div class="stage-result"><span>200 / native UX Builder output</span><span>48ms</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Plugin statistics">
+        <div class="shell metric-grid">
+          <div class="metric"><strong>82</strong><span>Core MCP tools</span></div>
+          <div class="metric"><strong>138</strong><span>Integration operations</span></div>
+          <div class="metric"><strong>29</strong><span>Flatsome components</span></div>
+          <div class="metric"><strong>3</strong><span>Permission scopes</span></div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="capabilities">
+        <div class="shell">
+          <div class="section-heading reveal">
+            <div>
+              <p class="kicker">One endpoint. A serious toolkit.</p>
+              <h2>Built for real WordPress operations.</h2>
+            </div>
+            <p class="section-lead">Not a thin chat wrapper. Every tool has a strict schema, a permission boundary, and a predictable response contract.</p>
+          </div>
+
+          <div class="capability-grid">
+            <article class="capability capability-wide reveal">
+              <span class="capability-number">01 / BUILD</span>
+              <h3>Native-first Flatsome generation</h3>
+              <p>Create structured UX Builder pages with typed sections, rows, columns, nested components, stable node IDs, revisions, and explicit fallback reporting.</p>
+              <div class="tool-cloud">
+                <span>create_flatsome_page</span><span>add_section</span><span>add_element</span><span>list_flatsome_components</span>
+              </div>
+            </article>
+            <article class="capability reveal">
+              <span class="capability-number">02 / EDIT</span>
+              <h3>Content + Gutenberg</h3>
+              <p>Publish, schedule, search, and revision-safely edit structured block trees.</p>
+              <div class="tool-cloud"><span>create_post</span><span>update_block</span></div>
+            </article>
+            <article class="capability reveal">
+              <span class="capability-number">03 / SELL</span>
+              <h3>WooCommerce</h3>
+              <p>Products, orders, customers, inventory, coupons, reports, settings, and more.</p>
+              <div class="tool-cloud"><span>woocommerce_read</span><span>woocommerce_write</span></div>
+            </article>
+            <article class="capability capability-wide reveal">
+              <span class="capability-number">04 / OPERATE</span>
+              <h3>Site operations without the sharp edges</h3>
+              <p>Manage media, SEO, comments, users, webhooks, plugin and theme packages, diagnostics, and bounded developer operations. Destructive actions require explicit confirmation.</p>
+              <div class="tool-cloud"><span>upload_media</span><span>update_meta</span><span>register_webhook</span><span>clear_cache</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="security">
+        <div class="shell security-layout">
+          <div class="security-sticky reveal">
+            <p class="kicker">Security is the architecture</p>
+            <h2>Agents get tools. Never a blank check.</h2>
+            <p>MCP scopes constrain credentials, WordPress capabilities constrain users, and exposure policy lets administrators decide which tools exist at all.</p>
+            <a class="button button-secondary" href="https://github.com/farvisun/mindio-magic-mcp/blob/main/SECURITY.md">Read security policy <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="security-list reveal">
+            <article class="security-item">
+              <span class="security-icon">A1</span>
+              <div><h3>OAuth 2.1 + PKCE</h3><p>Dynamic client registration, audience-bound tokens, rotating refresh tokens, and protected-resource discovery.</p></div>
+            </article>
+            <article class="security-item">
+              <span class="security-icon">A2</span>
+              <div><h3>Layered authorization</h3><p>Read-only, editor, and administrator MCP scopes remain bounded by the associated WordPress user's actual capabilities.</p></div>
+            </article>
+            <article class="security-item">
+              <span class="security-icon">A3</span>
+              <div><h3>Strict inputs, safe outputs</h3><p>Schema validation, SSRF controls, HTML sanitization, bounded queries, secret redaction, and explicit destructive-action confirmation.</p></div>
+            </article>
+            <article class="security-item">
+              <span class="security-icon">A4</span>
+              <div><h3>Governable surface</h3><p>Disable individual tools or integration operations. Disabled capabilities disappear from discovery and fail closed on direct calls.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="setup">
+        <div class="shell">
+          <div class="setup-panel reveal">
+            <div class="setup-grid">
+              <div>
+                <p class="kicker kicker-signal">Up and running</p>
+                <h2>Connect in three moves.</h2>
+                <div class="steps">
+                  <div class="step"><div><h3>Install the release ZIP</h3><p>Upload it in Plugins → Add New → Upload Plugin, then activate.</p></div></div>
+                  <div class="step"><div><h3>Create a scoped credential</h3><p>Open Settings → Mindio Magic MCP and choose the smallest suitable scope.</p></div></div>
+                  <div class="step"><div><h3>Add the MCP endpoint</h3><p>Use your site's REST endpoint and the generated bearer token.</p></div></div>
+                </div>
+              </div>
+              <div class="code-window">
+                <div class="code-window-bar"><span>mcp.config.json</span><button class="copy-button" type="button" data-copy-config>Copy config</button></div>
+                <pre data-config><code>{
+  "mcpServers": {
+    "mindio-magic-mcp": {
+      "type": "http",
+      "url": "https://example.com/wp-json/flatsome-mcp/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer fmp_YOUR_KEY"
+      }
+    }
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="integrations" aria-label="Supported integrations">
+        <div class="shell">
+          <p class="integrations-label">Plays well with the stack you already run</p>
+          <div class="integration-list reveal">
+            <span>WordPress</span><span>Flatsome</span><span>WooCommerce</span><span>Gutenberg</span><span>ACF</span><span>Contact Form 7</span><span>Yoast SEO</span><span>Rank Math</span><span>Multisite</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell">
+          <div class="release-card reveal">
+            <div>
+              <p class="kicker">Latest stable release</p>
+              <h2>Ready to install. <span data-release-version>v0.5.4</span></h2>
+              <p>Reproducible package, automated PHP checks, and a published SHA-256 checksum.</p>
+            </div>
+            <div class="release-actions">
+              <a class="button" href="https://github.com/farvisun/mindio-magic-mcp/releases/download/v0.5.4/mindio-magic-mcp-0.5.4.zip" data-download>Download ZIP ↓</a>
+              <a class="checksum-link" href="https://github.com/farvisun/mindio-magic-mcp/releases/download/v0.5.4/mindio-magic-mcp-0.5.4.zip.sha256" data-checksum>Verify SHA-256</a>
+              <a class="checksum-link" href="https://github.com/farvisun/mindio-magic-mcp/releases/tag/v0.5.4" data-release-link>Release notes</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell">
+        <div class="footer-grid">
+          <div class="footer-title">WordPress operations, shaped for agents.</div>
+          <div class="footer-links">
+            <div><span>Project</span><a href="https://github.com/farvisun/mindio-magic-mcp">Source code</a><a href="https://github.com/farvisun/mindio-magic-mcp/releases">Releases</a><a href="https://github.com/farvisun/mindio-magic-mcp/issues">Issues</a></div>
+            <div><span>Policies</span><a href="https://github.com/farvisun/mindio-magic-mcp/blob/main/SECURITY.md">Security</a><a href="https://github.com/farvisun/mindio-magic-mcp/blob/main/LICENSE">GPL license</a><a href="https://github.com/farvisun/mindio-magic-mcp/blob/main/CONTRIBUTING.md">Contributing</a></div>
+          </div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Mohammad Askari</span><span>Independent project. Not affiliated with UX Themes.</span></div>
+      </div>
+    </footer>
+  </body>
+</html>
