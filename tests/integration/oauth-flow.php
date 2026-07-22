@@ -4,7 +4,7 @@
  *
  * Run with WP_PATH=/path/to/wordpress php tests/integration/oauth-flow.php.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -12,7 +12,7 @@ declare(strict_types=1);
 $wp_path = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 3 ) . '/wordpress';
 require rtrim( $wp_path, '/\\' ) . '/wp-load.php';
 
-if ( ! class_exists( '\FlatsomeMCP\OAuth_Server' ) ) {
+if ( ! class_exists( '\MindioMagicMCP\OAuth_Server' ) ) {
 	throw new RuntimeException( 'Activate Mindio Magic MCP before running the OAuth flow test.' );
 }
 
@@ -26,7 +26,9 @@ function fmp_oauth_assert( bool $condition, string $message ): void {
 /** @return mixed */
 function fmp_oauth_invoke( object $object, string $method, mixed ...$arguments ): mixed {
 	$reflection = new ReflectionMethod( $object, $method );
-	$reflection->setAccessible( true );
+	if ( PHP_VERSION_ID < 80100 ) {
+		$reflection->setAccessible( true );
+	}
 	return $reflection->invoke( $object, ...$arguments );
 }
 
@@ -39,11 +41,11 @@ $_SERVER['REMOTE_ADDR']    = '127.0.0.1';
 $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
 $_SERVER['REQUEST_URI']     = '/wp-admin/admin.php?page=flatsome-mcp-oauth-authorize';
 
-$auth         = new \FlatsomeMCP\Auth();
-$oauth        = new \FlatsomeMCP\OAuth_Server( $auth, new \FlatsomeMCP\Rate_Limiter() );
+$auth         = new \MindioMagicMCP\Auth();
+$oauth        = new \MindioMagicMCP\OAuth_Server( $auth, new \MindioMagicMCP\Rate_Limiter() );
 $client_id    = 'fmc_test_' . wp_generate_password( 24, false, false );
 $redirect_uri = 'http://127.0.0.1:48765/callback/flatsome-mcp';
-$clients      = get_option( 'flatsome_mcp_oauth_clients', array() );
+$clients      = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 $clients      = is_array( $clients ) ? $clients : array();
 $original_clients = $clients;
 $access_id    = '';
@@ -54,7 +56,7 @@ $clients[ $client_id ] = array(
 	'client_name'   => 'Integration MCP Client',
 	'redirect_uris' => array( $redirect_uri ),
 );
-update_option( 'flatsome_mcp_oauth_clients', $clients, false );
+update_option( 'mindio_magic_mcp_oauth_clients', $clients, false );
 
 try {
 	$oauth->register_authorization_page();
@@ -79,7 +81,7 @@ try {
 	fmp_oauth_assert( array( $canonical_resource ) === ( $metadata['protected_resources'] ?? null ), 'Authorization metadata does not advertise the canonical protected resource.' );
 
 	$verifier  = str_repeat( 'A', 43 );
-	$challenge = \FlatsomeMCP\Secret_Box::base64url_encode( hash( 'sha256', $verifier, true ) );
+	$challenge = \MindioMagicMCP\Secret_Box::base64url_encode( hash( 'sha256', $verifier, true ) );
 	$params    = array(
 		'response_type'         => 'code',
 		'client_id'             => $client_id,
@@ -92,10 +94,10 @@ try {
 	);
 	$validated = fmp_oauth_invoke( $oauth, 'validate_authorization_request', $params );
 	fmp_oauth_assert( is_array( $validated ) && $canonical_resource === $validated['resource'], 'The complete authorization request did not accept and canonicalize the discovery resource.' );
-	fmp_oauth_assert( \FlatsomeMCP\Auth::SCOPE_ADMIN === $validated['scope'], 'The requested scope hierarchy was not normalized.' );
+	fmp_oauth_assert( \MindioMagicMCP\Auth::SCOPE_ADMIN === $validated['scope'], 'The requested scope hierarchy was not normalized.' );
 
 	ob_start();
-	fmp_oauth_invoke( $oauth, 'render_authorization_consent', $clients[ $client_id ], \FlatsomeMCP\Auth::SCOPE_ADMIN, $params );
+	fmp_oauth_invoke( $oauth, 'render_authorization_consent', $clients[ $client_id ], \MindioMagicMCP\Auth::SCOPE_ADMIN, $params );
 	$consent_html = (string) ob_get_clean();
 	fmp_oauth_assert( str_contains( $consent_html, '<!doctype html>' ), 'The authorization screen is not a standalone document.' );
 	fmp_oauth_assert( str_contains( $consent_html, 'assets/css/oauth.css' ), 'The authorization stylesheet is missing.' );
@@ -109,7 +111,7 @@ try {
 		(int) $admins[0],
 		$client_id,
 		$redirect_uri,
-		\FlatsomeMCP\Auth::SCOPE_ADMIN,
+		\MindioMagicMCP\Auth::SCOPE_ADMIN,
 		$challenge,
 		$canonical_resource
 	);
@@ -136,12 +138,12 @@ try {
 	$refresh_id = (string) ( $refresh_match[1] ?? '' );
 	fmp_oauth_assert( '' !== $access_id && '' !== $refresh_id, 'Issued OAuth token identifiers are malformed.' );
 
-	$stored_tokens = get_option( 'flatsome_mcp_tokens', array() );
+	$stored_tokens = get_option( 'mindio_magic_mcp_tokens', array() );
 	fmp_oauth_assert( $canonical_resource === ( $stored_tokens[ $access_id ]['resource'] ?? '' ), 'The access token was not audience-bound to the canonical MCP endpoint.' );
 
 	$result_url = add_query_arg( array( 'code' => 'test-code', 'state' => 'test-state' ), $redirect_uri );
 	ob_start();
-	fmp_oauth_invoke( $oauth, 'render_authorization_result', true, $clients[ $client_id ], \FlatsomeMCP\Auth::SCOPE_ADMIN, $result_url );
+	fmp_oauth_invoke( $oauth, 'render_authorization_result', true, $clients[ $client_id ], \MindioMagicMCP\Auth::SCOPE_ADMIN, $result_url );
 	$result_html = (string) ob_get_clean();
 	fmp_oauth_assert( str_contains( $result_html, 'data-fmp-oauth-result' ), 'The authorization result handoff screen is missing.' );
 	fmp_oauth_assert( str_contains( $result_html, 'assets/js/oauth.js' ), 'The automatic client handoff script is missing.' );
@@ -151,24 +153,24 @@ try {
 	$development_catalog = dirname( __DIR__, 2 ) . '/languages/mindio-magic-mcp-fa_IR.mo';
 	fmp_oauth_assert( load_textdomain( 'mindio-magic-mcp', $development_catalog ), 'Persian OAuth translations could not be loaded.' );
 	ob_start();
-	fmp_oauth_invoke( $oauth, 'render_authorization_consent', $clients[ $client_id ], \FlatsomeMCP\Auth::SCOPE_ADMIN, $params );
+	fmp_oauth_invoke( $oauth, 'render_authorization_consent', $clients[ $client_id ], \MindioMagicMCP\Auth::SCOPE_ADMIN, $params );
 	$persian_html = (string) ob_get_clean();
 	fmp_oauth_assert( str_contains( $persian_html, 'تأیید و اتصال' ), 'The Persian approve action is not translated.' );
 	fmp_oauth_assert( str_contains( $persian_html, 'دسترسی مدیر' ), 'The Persian permission summary is not translated.' );
 } finally {
-	update_option( 'flatsome_mcp_oauth_clients', $original_clients, false );
+	update_option( 'mindio_magic_mcp_oauth_clients', $original_clients, false );
 
 	if ( '' !== $access_id ) {
-		$tokens = get_option( 'flatsome_mcp_tokens', array() );
+		$tokens = get_option( 'mindio_magic_mcp_tokens', array() );
 		$tokens = is_array( $tokens ) ? $tokens : array();
 		unset( $tokens[ $access_id ] );
-		update_option( 'flatsome_mcp_tokens', $tokens, false );
+		update_option( 'mindio_magic_mcp_tokens', $tokens, false );
 	}
 	if ( '' !== $refresh_id ) {
-		$refresh_tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+		$refresh_tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 		$refresh_tokens = is_array( $refresh_tokens ) ? $refresh_tokens : array();
 		unset( $refresh_tokens[ $refresh_id ] );
-		update_option( 'flatsome_mcp_refresh_tokens', $refresh_tokens, false );
+		update_option( 'mindio_magic_mcp_refresh_tokens', $refresh_tokens, false );
 	}
 }
 

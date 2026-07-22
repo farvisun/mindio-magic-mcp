@@ -4,7 +4,7 @@
  *
  * Run with php tests/integration/localization.php.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);

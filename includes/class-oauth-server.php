@@ -2,10 +2,10 @@
 /**
  * OAuth 2.1 authorization-code server with PKCE for remote MCP clients.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class OAuth_Server {
 	private const AUTHORIZATION_PAGE   = 'flatsome-mcp-oauth-authorize';
-	private const AUTHORIZATION_ACTION = 'flatsome_mcp_oauth_authorize';
+	private const AUTHORIZATION_ACTION = 'mindio_magic_mcp_oauth_authorize';
 
 	private Auth $auth;
 	private Rate_Limiter $rate_limiter;
@@ -32,17 +32,17 @@ final class OAuth_Server {
 	}
 
 	public static function register_rewrite_rules(): void {
-		add_rewrite_rule( '^\.well-known/oauth-protected-resource/?$', 'index.php?flatsome_mcp_well_known=resource', 'top' );
-		add_rewrite_rule( '^\.well-known/oauth-authorization-server/?$', 'index.php?flatsome_mcp_well_known=authorization_server', 'top' );
+		add_rewrite_rule( '^\.well-known/oauth-protected-resource/?$', 'index.php?mindio_magic_mcp_well_known=resource', 'top' );
+		add_rewrite_rule( '^\.well-known/oauth-authorization-server/?$', 'index.php?mindio_magic_mcp_well_known=authorization_server', 'top' );
 	}
 
 	public function query_vars( array $vars ): array {
-		$vars[] = 'flatsome_mcp_well_known';
+		$vars[] = 'mindio_magic_mcp_well_known';
 		return $vars;
 	}
 
 	public function serve_well_known_document(): void {
-		$type = (string) get_query_var( 'flatsome_mcp_well_known' );
+		$type = (string) get_query_var( 'mindio_magic_mcp_well_known' );
 		if ( ! in_array( $type, array( 'resource', 'authorization_server' ), true ) ) {
 			return;
 		}
@@ -116,7 +116,7 @@ final class OAuth_Server {
 			'bearer_methods_supported'              => array( 'header' ),
 			'scopes_supported'                      => array( Auth::SCOPE_READ, Auth::SCOPE_EDITOR, Auth::SCOPE_ADMIN ),
 			'resource_name'                         => get_bloginfo( 'name' ) . ' Mindio Magic MCP',
-			'resource_documentation'                => plugins_url( 'README.md', FLATSOME_MCP_FILE ),
+			'resource_documentation'                => plugins_url( 'README.md', MINDIO_MAGIC_MCP_FILE ),
 		);
 	}
 
@@ -133,7 +133,7 @@ final class OAuth_Server {
 			'token_endpoint_auth_methods_supported' => array( 'none' ),
 			'scopes_supported'                      => array( Auth::SCOPE_READ, Auth::SCOPE_EDITOR, Auth::SCOPE_ADMIN ),
 			'protected_resources'                   => array( $this->canonical_resource() ),
-			'service_documentation'                 => plugins_url( 'README.md', FLATSOME_MCP_FILE ),
+			'service_documentation'                 => plugins_url( 'README.md', MINDIO_MAGIC_MCP_FILE ),
 		);
 	}
 
@@ -171,7 +171,7 @@ final class OAuth_Server {
 			'client_id_issued_at'        => time(),
 		);
 		$clients[ $client_id ] = $record;
-		update_option( 'flatsome_mcp_oauth_clients', $clients, false );
+		update_option( 'mindio_magic_mcp_oauth_clients', $clients, false );
 
 		$response = new \WP_REST_Response( $record, 201 );
 		$response->header( 'Cache-Control', 'no-store' );
@@ -474,7 +474,7 @@ final class OAuth_Server {
 		header( 'X-Content-Type-Options: nosniff' );
 		header( 'Permissions-Policy: camera=(), microphone=(), geolocation=()' );
 		header( "Content-Security-Policy: default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'self'" );
-		wp_enqueue_style( 'magicmcp-oauth', FLATSOME_MCP_URL . 'assets/css/oauth.css', array(), FLATSOME_MCP_VERSION );
+		wp_enqueue_style( 'magicmcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/css/oauth.css', array(), MINDIO_MAGIC_MCP_VERSION );
 		?>
 		<!doctype html>
 		<html <?php language_attributes(); ?>>
@@ -511,7 +511,7 @@ final class OAuth_Server {
 			</div>
 			<?php
 			if ( $load_script ) {
-				wp_enqueue_script( 'magicmcp-oauth', FLATSOME_MCP_URL . 'assets/js/oauth.js', array(), FLATSOME_MCP_VERSION, true );
+				wp_enqueue_script( 'magicmcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/js/oauth.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
 				wp_print_footer_scripts();
 			}
 			?>
@@ -663,7 +663,7 @@ final class OAuth_Server {
 		$secret = Secret_Box::base64url_encode( random_bytes( 32 ) );
 		$raw    = 'fmc_code_' . $id . '_' . $secret;
 		set_transient(
-			'flatsome_mcp_oauth_code_' . $id,
+			'mindio_magic_mcp_oauth_code_' . $id,
 			array(
 				'id'             => $id,
 				'hash'           => hash_hmac( 'sha256', $secret, wp_salt( 'auth' ) . '|flatsome-mcp-code' ),
@@ -684,7 +684,7 @@ final class OAuth_Server {
 		if ( ! preg_match( '/^fmc_code_([a-f0-9]{16})_([A-Za-z0-9_-]{43})$/', $raw, $matches ) ) {
 			return new \WP_Error( 'invalid_code', __( 'The authorization code is malformed.', 'mindio-magic-mcp' ) );
 		}
-		$key    = 'flatsome_mcp_oauth_code_' . $matches[1];
+		$key    = 'mindio_magic_mcp_oauth_code_' . $matches[1];
 		$record = get_transient( $key );
 		delete_transient( $key );
 		$hash = hash_hmac( 'sha256', $matches[2], wp_salt( 'auth' ) . '|flatsome-mcp-code' );
@@ -710,7 +710,7 @@ final class OAuth_Server {
 		if ( ! is_array( $client_parts ) || isset( $client_parts['fragment'] ) ) {
 			return null;
 		}
-		$cached = get_transient( 'flatsome_mcp_client_doc_' . md5( $client_id ) );
+		$cached = get_transient( 'mindio_magic_mcp_client_doc_' . md5( $client_id ) );
 		if ( is_array( $cached ) ) {
 			return $cached;
 		}
@@ -739,7 +739,7 @@ final class OAuth_Server {
 			'client_name'   => sanitize_text_field( (string) ( $document['client_name'] ?? $client_id ) ),
 			'redirect_uris' => $redirects,
 		);
-		set_transient( 'flatsome_mcp_client_doc_' . md5( $client_id ), $client, HOUR_IN_SECONDS );
+		set_transient( 'mindio_magic_mcp_client_doc_' . md5( $client_id ), $client, HOUR_IN_SECONDS );
 		return $client;
 	}
 
@@ -757,7 +757,7 @@ final class OAuth_Server {
 
 	/** @return array<string,array<string,mixed>> */
 	private function clients(): array {
-		$clients = get_option( 'flatsome_mcp_oauth_clients', array() );
+		$clients = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 		return is_array( $clients ) ? $clients : array();
 	}
 

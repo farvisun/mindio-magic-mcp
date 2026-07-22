@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Mindio Magic MCP 0.5.4\n"
+"Project-Id-Version: Mindio Magic MCP 0.5.5\n"
 "Report-Msgid-Bugs-To: https://github.com/farvisun/mindio-magic-mcp/issues\n"
-"POT-Creation-Date: 2026-07-20 11:49+0330\n"
+"POT-Creation-Date: 2026-07-22T09:13:22+00:00\n"
 "PO-Revision-Date: 2026-07-20 11:53+0330\n"
 "Last-Translator: Mohammad Askari <farvisun@gmail.com>\n"
 "Language-Team: Persian\n"
@@ -12,6 +12,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Mindio Magic MCP\n"
+
+#. Plugin Name of the plugin
+#: flatsome-mcp.php includes/class-admin.php:76 includes/class-admin.php:77
+#: includes/class-admin.php:240
+msgid "Mindio Magic MCP"
+msgstr "Mindio Magic MCP"
+
+#. Plugin URI of the plugin
+#: flatsome-mcp.php
+msgid "https://github.com/farvisun/mindio-magic-mcp"
+msgstr "https://github.com/farvisun/mindio-magic-mcp"
+
+#. Description of the plugin
+#: flatsome-mcp.php
+msgid ""
+"A secure MCP server for WordPress that supports Flatsome UX Builder, content "
+"automation, and site management."
+msgstr ""
+"یک سرور امن MCP برای وردپرس با پشتیبانی از UX Builder فلت‌سام، خودکارسازی "
+"محتوا و مدیریت سایت."
+
+#. Author of the plugin
+#: flatsome-mcp.php
+msgid "Mohammad Askari <farvisun@gmail.com>"
+msgstr "Mohammad Askari <farvisun@gmail.com>"
+
+#. Author URI of the plugin
+#: flatsome-mcp.php
+msgid "https://profiles.wordpress.org/farvisun/"
+msgstr "https://profiles.wordpress.org/farvisun/"
 
 #: includes/class-admin.php:54 includes/class-admin.php:1388
 msgid "Copy"
@@ -69,22 +99,17 @@ msgstr "فعال"
 msgid "%1$d of %2$d operations enabled"
 msgstr "%1$d از %2$d عملیات فعال است"
 
-#: includes/class-admin.php:76 includes/class-admin.php:77
-#: includes/class-admin.php:240
-msgid "Mindio Magic MCP"
-msgstr "Mindio Magic MCP"
-
 #: includes/class-admin.php:85
 msgid "Open console"
 msgstr "باز کردن کنسول"
 
 #: includes/class-admin.php:104
-msgid "Credential not found."
-msgstr "اعتبارنامه پیدا نشد."
-
-#: includes/class-admin.php:104
 msgid "Credential revoked."
 msgstr "اعتبارنامه لغو شد."
+
+#: includes/class-admin.php:104
+msgid "Credential not found."
+msgstr "اعتبارنامه پیدا نشد."
 
 #: includes/class-admin.php:114
 msgid "OAuth client not found."
@@ -108,13 +133,13 @@ msgstr ""
 "سیاست ابزار به‌روزرسانی شد: %1$s ابزار در دسترس، %2$s ابزار غیرفعال؛ %3$s "
 "عملیات فعال و %4$s عملیات غیرفعال است."
 
-#: includes/class-admin.php:214 includes/tools/class-webhook-tools.php:55
-msgid "Webhook not found."
-msgstr "وب‌هوک پیدا نشد."
-
 #: includes/class-admin.php:214
 msgid "Webhook removed."
 msgstr "وب‌هوک حذف شد."
+
+#: includes/class-admin.php:214 includes/tools/class-webhook-tools.php:55
+msgid "Webhook not found."
+msgstr "وب‌هوک پیدا نشد."
 
 #: includes/class-admin.php:239
 msgid "WordPress agent operations"
@@ -203,29 +228,29 @@ msgid "Long-lived credentials"
 msgstr "اعتبارنامه‌های بلندمدت"
 
 #: includes/class-admin.php:359
-msgid "Dynamically registered"
-msgstr "ثبت‌شده به‌صورت پویا"
-
-#: includes/class-admin.php:359
 msgid "OAuth clients"
 msgstr "کلاینت‌های OAuth"
 
-#: includes/class-admin.php:360
-msgid "Active destinations"
-msgstr "مقصدهای فعال"
+#: includes/class-admin.php:359
+msgid "Dynamically registered"
+msgstr "ثبت‌شده به‌صورت پویا"
 
 #: includes/class-admin.php:360 includes/class-admin.php:671
 #: includes/class-admin.php:1556
 msgid "Webhooks"
 msgstr "وب‌هوک‌ها"
 
-#: includes/class-admin.php:361
-msgid "Latest 50 tool calls"
-msgstr "۵۰ فراخوانی اخیر ابزار"
+#: includes/class-admin.php:360
+msgid "Active destinations"
+msgstr "مقصدهای فعال"
 
 #: includes/class-admin.php:361
 msgid "Request success"
 msgstr "موفقیت درخواست‌ها"
+
+#: includes/class-admin.php:361
+msgid "Latest 50 tool calls"
+msgstr "۵۰ فراخوانی اخیر ابزار"
 
 #: includes/class-admin.php:369
 msgid "Client configuration"
@@ -260,20 +285,20 @@ msgid "Paste this URL into your MCP client"
 msgstr "این نشانی را در کارخواه MCP خود وارد کنید"
 
 #: includes/class-admin.php:378
-msgid "Automatic discovery only — not an MCP server URL"
-msgstr "فقط برای کشف خودکار — این نشانی سرور MCP نیست"
-
-#: includes/class-admin.php:378
 msgid "OAuth authorization server"
 msgstr "سرور مجوزدهی OAuth"
 
-#: includes/class-admin.php:379
-msgid "Automatic resource discovery for OAuth clients"
-msgstr "کشف خودکار منبع برای کارخواه‌های OAuth"
+#: includes/class-admin.php:378
+msgid "Automatic discovery only — not an MCP server URL"
+msgstr "فقط برای کشف خودکار — این نشانی سرور MCP نیست"
 
 #: includes/class-admin.php:379
 msgid "Protected resource metadata"
 msgstr "فرادادهٔ منبع محافظت‌شده"
+
+#: includes/class-admin.php:379
+msgid "Automatic resource discovery for OAuth clients"
+msgstr "کشف خودکار منبع برای کارخواه‌های OAuth"
 
 #: includes/class-admin.php:387
 msgid "Environment"
@@ -292,12 +317,12 @@ msgid "PHP runtime"
 msgstr "محیط اجرای PHP"
 
 #: includes/class-admin.php:395
-msgid "Detected"
-msgstr "شناسایی شد"
-
-#: includes/class-admin.php:395
 msgid "Flatsome theme"
 msgstr "پوستهٔ فلت‌سام"
+
+#: includes/class-admin.php:395
+msgid "Detected"
+msgstr "شناسایی شد"
 
 #: includes/class-admin.php:395
 msgid "Not active"
@@ -308,12 +333,12 @@ msgid "HTTPS transport"
 msgstr "انتقال HTTPS"
 
 #: includes/class-admin.php:396
-msgid "Recommended"
-msgstr "توصیه می‌شود"
-
-#: includes/class-admin.php:396
 msgid "Secure"
 msgstr "ایمن"
+
+#: includes/class-admin.php:396
+msgid "Recommended"
+msgstr "توصیه می‌شود"
 
 #: includes/class-admin.php:406
 msgid "Deployment path"
@@ -535,12 +560,12 @@ msgid "Revoke"
 msgstr "لغو"
 
 #: includes/class-admin.php:596
-msgid "Generate a scoped credential above to connect your first agent."
-msgstr "برای اتصال نخستین عامل، یک اعتبارنامهٔ سطح‌بندی‌شده در بالا بسازید."
-
-#: includes/class-admin.php:596
 msgid "No API keys configured"
 msgstr "هیچ کلید API پیکربندی نشده است"
+
+#: includes/class-admin.php:596
+msgid "Generate a scoped credential above to connect your first agent."
+msgstr "برای اتصال نخستین عامل، یک اعتبارنامهٔ سطح‌بندی‌شده در بالا بسازید."
 
 #: includes/class-admin.php:603
 msgid "OAuth 2.1"
@@ -592,16 +617,16 @@ msgid "Revoke this OAuth client and all of its access and refresh tokens?"
 msgstr "این کلاینت OAuth و همهٔ توکن‌های دسترسی و نوسازی آن لغو شوند؟"
 
 #: includes/class-admin.php:659
+msgid "No OAuth clients registered"
+msgstr "هیچ کلاینت OAuth ثبت نشده است"
+
+#: includes/class-admin.php:659
 msgid ""
 "Compatible clients can register automatically through the OAuth discovery "
 "endpoints."
 msgstr ""
 "کلاینت‌های سازگار می‌توانند از طریق نقاط پایانی کشف OAuth به‌طور خودکار ثبت "
 "شوند."
-
-#: includes/class-admin.php:659
-msgid "No OAuth clients registered"
-msgstr "هیچ کلاینت OAuth ثبت نشده است"
 
 #: includes/class-admin.php:670
 msgid "Event automation"
@@ -694,12 +719,12 @@ msgid "Up to 5 attempts"
 msgstr "حداکثر ۵ تلاش"
 
 #: includes/class-admin.php:740
-msgid "HTTPS with private targets blocked"
-msgstr "HTTPS با مسدودسازی مقصدهای خصوصی"
-
-#: includes/class-admin.php:740
 msgid "Network policy"
 msgstr "سیاست شبکه"
+
+#: includes/class-admin.php:740
+msgid "HTTPS with private targets blocked"
+msgstr "HTTPS با مسدودسازی مقصدهای خصوصی"
 
 #: includes/class-admin.php:748
 msgid "Subscriptions"
@@ -748,12 +773,12 @@ msgid "Remove"
 msgstr "حذف"
 
 #: includes/class-admin.php:790
-msgid "Create a signed subscription above to automate downstream workflows."
-msgstr "برای خودکارسازی گردش‌کارهای مقصد، یک اشتراک امضاشده در بالا ایجاد کنید."
-
-#: includes/class-admin.php:790
 msgid "No webhook destinations"
 msgstr "هیچ مقصد وب‌هوکی وجود ندارد"
+
+#: includes/class-admin.php:790
+msgid "Create a signed subscription above to automate downstream workflows."
+msgstr "برای خودکارسازی گردش‌کارهای مقصد، یک اشتراک امضاشده در بالا ایجاد کنید."
 
 #: includes/class-admin.php:810
 msgid "Governance and diagnostics"
@@ -775,12 +800,12 @@ msgid "Arguments redacted"
 msgstr "آرگومان‌ها پوشانده شده‌اند"
 
 #: includes/class-admin.php:819
-msgid "Latest 100 records"
-msgstr "۱۰۰ رکورد اخیر"
-
-#: includes/class-admin.php:819
 msgid "Successful calls"
 msgstr "فراخوانی‌های موفق"
+
+#: includes/class-admin.php:819
+msgid "Latest 100 records"
+msgstr "۱۰۰ رکورد اخیر"
 
 #: includes/class-admin.php:820
 msgid "Failed calls"
@@ -791,12 +816,12 @@ msgid "Review error codes below"
 msgstr "کدهای خطا را در پایین بررسی کنید"
 
 #: includes/class-admin.php:821
-msgid "Across visible tool calls"
-msgstr "در فراخوانی‌های قابل مشاهده"
-
-#: includes/class-admin.php:821
 msgid "Average duration"
 msgstr "میانگین مدت"
+
+#: includes/class-admin.php:821
+msgid "Across visible tool calls"
+msgstr "در فراخوانی‌های قابل مشاهده"
 
 #: includes/class-admin.php:822
 msgid "Delivery attention"
@@ -860,12 +885,12 @@ msgid "Duration"
 msgstr "مدت"
 
 #: includes/class-admin.php:886
-msgid "Error"
-msgstr "خطا"
-
-#: includes/class-admin.php:886
 msgid "Success"
 msgstr "موفق"
+
+#: includes/class-admin.php:886
+msgid "Error"
+msgstr "خطا"
 
 #: includes/class-admin.php:899
 msgid "No audit records yet"
@@ -916,13 +941,13 @@ msgid "Removed destination"
 msgstr "مقصد حذف‌شده"
 
 #: includes/class-admin.php:943
+msgid "No webhook deliveries yet"
+msgstr "هنوز ارسالی برای وب‌هوک ثبت نشده است"
+
+#: includes/class-admin.php:943
 msgid ""
 "Delivery attempts will appear after a subscribed WordPress event occurs."
 msgstr "تلاش‌های ارسال پس از وقوع یک رویداد مشترک‌شدهٔ وردپرس نمایش داده می‌شوند."
-
-#: includes/class-admin.php:943
-msgid "No webhook deliveries yet"
-msgstr "هنوز ارسالی برای وب‌هوک ثبت نشده است"
 
 #: includes/class-admin.php:967
 msgid "Other tools"
@@ -953,20 +978,20 @@ msgid "Save tool policy"
 msgstr "ذخیرهٔ سیاست ابزارها"
 
 #: includes/class-admin.php:1002
-msgid "Current integrations"
-msgstr "یکپارچه‌سازی‌های فعلی"
-
-#: includes/class-admin.php:1002
 msgid "Registered tools"
 msgstr "ابزارهای ثبت‌شده"
 
-#: includes/class-admin.php:1003
-msgid "Advertised in discovery"
-msgstr "اعلام‌شده در فرایند کشف"
+#: includes/class-admin.php:1002
+msgid "Current integrations"
+msgstr "یکپارچه‌سازی‌های فعلی"
 
 #: includes/class-admin.php:1003
 msgid "Exposed tools"
 msgstr "ابزارهای در دسترس"
+
+#: includes/class-admin.php:1003
+msgid "Advertised in discovery"
+msgstr "اعلام‌شده در فرایند کشف"
 
 #: includes/class-admin.php:1004
 msgid "Enabled operations"
@@ -1127,15 +1152,15 @@ msgid "Control endpoint availability and bounded request resources."
 msgstr "دردسترس‌بودن نقطهٔ پایانی و منابع محدود هر درخواست را کنترل کنید."
 
 #: includes/class-admin.php:1239
+msgid "Enable MCP requests"
+msgstr "فعال‌سازی درخواست‌های MCP"
+
+#: includes/class-admin.php:1239
 msgid ""
 "Authenticated clients can discover and call tools through the MCP endpoint."
 msgstr ""
 "کلاینت‌های احرازشده می‌توانند ابزارها را از طریق نقطهٔ پایانی MCP کشف و "
 "فراخوانی کنند."
-
-#: includes/class-admin.php:1239
-msgid "Enable MCP requests"
-msgstr "فعال‌سازی درخواست‌های MCP"
 
 #: includes/class-admin.php:1242
 msgid "Rate limit"
@@ -1216,6 +1241,10 @@ msgid ""
 msgstr "ابزارهای ویژه به‌طور پیش‌فرض غیرفعال‌اند و همیشه به سطح مدیر نیاز دارند."
 
 #: includes/class-admin.php:1309
+msgid "Read-only filesystem inspection"
+msgstr "بررسی فقط‌خواندنی فایل‌سیستم"
+
+#: includes/class-admin.php:1309
 msgid ""
 "Allow bounded text-file reads, directory listings, and searches inside "
 "approved WordPress content roots."
@@ -1223,21 +1252,17 @@ msgstr ""
 "خواندن محدود فایل متنی، فهرست‌کردن پوشه و جست‌وجو در ریشه‌های محتوای تأییدشده "
 "وردپرس مجاز شود."
 
-#: includes/class-admin.php:1309
-msgid "Read-only filesystem inspection"
-msgstr "بررسی فقط‌خواندنی فایل‌سیستم"
+#: includes/class-admin.php:1310
+msgid "Database schema inspection"
+msgstr "بررسی ساختار پایگاه‌داده"
 
 #: includes/class-admin.php:1310
 msgid ""
-"Allow validated SELECT queries against a restricted set of non-sensitive "
-"tables."
+"Allow prepared, fixed-shape queries that list non-sensitive tables and "
+"describe their schemas. Table rows are never returned."
 msgstr ""
-"پرس‌وجوهای SELECT اعتبارسنجی‌شده را روی مجموعه‌ای محدود از جدول‌های غیرحساس مجاز "
-"کنید."
-
-#: includes/class-admin.php:1310
-msgid "Bounded read-only SQL"
-msgstr "SQL فقط‌خواندنی محدود"
+"پرس‌وجوهای آماده و با ساختار ثابت برای فهرست‌کردن جدول‌های غیرحساس و توصیف "
+"ساختار آن‌ها مجاز شود. هیچ‌گاه ردیف‌های جدول بازگردانده نمی‌شوند."
 
 #: includes/class-admin.php:1311
 msgid "Allowlisted WP-CLI commands"
@@ -1964,12 +1989,12 @@ msgid "Reject request"
 msgstr "رد درخواست"
 
 #: includes/class-oauth-server.php:398
-msgid "Access request rejected"
-msgstr "درخواست دسترسی رد شد"
-
-#: includes/class-oauth-server.php:398
 msgid "Authorization approved"
 msgstr "مجوز تأیید شد"
+
+#: includes/class-oauth-server.php:398
+msgid "Access request rejected"
+msgstr "درخواست دسترسی رد شد"
 
 #: includes/class-oauth-server.php:415
 msgid "Authorization complete"
@@ -2424,50 +2449,54 @@ msgid "ACF could not delete the field."
 msgstr "ACF نتوانست فیلد را حذف کند."
 
 #: includes/tools/class-acf-tools.php:282
+msgid "ACF field not found."
+msgstr "فیلد ACF پیدا نشد."
+
+#: includes/tools/class-acf-tools.php:287
 msgid "ACF could not update the field value."
 msgstr "ACF نتوانست مقدار فیلد را به‌روزرسانی کند."
 
-#: includes/tools/class-acf-tools.php:299
+#: includes/tools/class-acf-tools.php:365
 msgid "ACF could not save the post type."
 msgstr "ACF نتوانست نوع‌نوشته را ذخیره کند."
 
-#: includes/tools/class-acf-tools.php:312
+#: includes/tools/class-acf-tools.php:378
 msgid "ACF could not delete the post-type registration."
 msgstr "ACF نتوانست ثبت نوع‌نوشته را حذف کند."
 
-#: includes/tools/class-acf-tools.php:328
+#: includes/tools/class-acf-tools.php:394
 msgid "ACF could not save the taxonomy."
 msgstr "ACF نتوانست رده‌بندی را ذخیره کند."
 
-#: includes/tools/class-acf-tools.php:341
+#: includes/tools/class-acf-tools.php:407
 msgid "ACF could not delete the taxonomy registration."
 msgstr "ACF نتوانست ثبت رده‌بندی را حذف کند."
 
-#: includes/tools/class-acf-tools.php:373
+#: includes/tools/class-acf-tools.php:439
 msgid "Field group title is required."
 msgstr "عنوان گروه فیلد الزامی است."
 
-#: includes/tools/class-acf-tools.php:397
+#: includes/tools/class-acf-tools.php:463
 msgid ""
 "Field name, label, parent, and a native ACF Free field type are required."
 msgstr "نام، برچسب، والد و یک نوع فیلد بومی ACF Free الزامی است."
 
-#: includes/tools/class-acf-tools.php:438
+#: includes/tools/class-acf-tools.php:504
 msgid ""
 "A title and a valid post type key of at most 20 characters are required."
 msgstr "عنوان و کلید معتبر نوع‌نوشته با حداکثر ۲۰ نویسه الزامی است."
 
-#: includes/tools/class-acf-tools.php:456
+#: includes/tools/class-acf-tools.php:522
 msgid ""
 "A title, valid taxonomy key, and at least one existing object type are "
 "required."
 msgstr "عنوان، کلید معتبر رده‌بندی و حداقل یک نوع شیء موجود الزامی است."
 
-#: includes/tools/class-acf-tools.php:618
+#: includes/tools/class-acf-tools.php:684
 msgid "This ACF structure operation requires confirm=true."
 msgstr "این عملیات ساختاری ACF به confirm=true نیاز دارد."
 
-#: includes/tools/class-acf-tools.php:622
+#: includes/tools/class-acf-tools.php:688
 msgid "This operation requires ACF Free 6.1 or newer."
 msgstr "این عملیات به ACF Free نسخه 6.1 یا جدیدتر نیاز دارد."
 
@@ -2475,10 +2504,10 @@ msgstr "این عملیات به ACF Free نسخه 6.1 یا جدیدتر نیا�
 msgid ""
 "Generate and create a WordPress post through a configured automation "
 "provider. The provider must implement the "
-"flatsome_mcp_automation_generate_post filter."
+"mindio_magic_mcp_automation_generate_post filter."
 msgstr ""
 "یک نوشتهٔ وردپرس را از طریق ارائه‌دهندهٔ خودکارسازی پیکربندی‌شده تولید و ایجاد "
-"می‌کند. ارائه‌دهنده باید فیلتر flatsome_mcp_automation_generate_post را "
+"می‌کند. ارائه‌دهنده باید فیلتر mindio_magic_mcp_automation_generate_post را "
 "پیاده‌سازی کند."
 
 #: includes/tools/class-automation-tools.php:49
@@ -2493,11 +2522,11 @@ msgstr ""
 msgid ""
 "Translate supplied content or a readable WordPress post through a configured "
 "provider. The provider must implement the "
-"flatsome_mcp_automation_translate_content filter."
+"mindio_magic_mcp_automation_translate_content filter."
 msgstr ""
 "محتوای ارائه‌شده یا یک نوشتهٔ خواندنی وردپرس را از طریق ارائه‌دهندهٔ پیکربندی‌شده "
-"ترجمه می‌کند. ارائه‌دهنده باید فیلتر flatsome_mcp_automation_translate_content "
-"را پیاده‌سازی کند."
+"ترجمه می‌کند. ارائه‌دهنده باید فیلتر "
+"mindio_magic_mcp_automation_translate_content را پیاده‌سازی کند."
 
 #: includes/tools/class-automation-tools.php:83
 msgid ""
@@ -2846,23 +2875,13 @@ msgstr ""
 
 #: includes/tools/class-developer-tools.php:45
 msgid ""
-"Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. "
-"Sensitive credential tables, comments, stacked statements, file access, "
-"locks, and timing functions are denied."
-msgstr ""
-"یک پرس‌وجوی محدود و فقط‌خواندنی SELECT، SHOW، DESCRIBE یا EXPLAIN اجرا می‌کند. "
-"جدول‌های حساس اعتبارنامه، دیدگاه‌ها، دستورهای زنجیره‌ای، دسترسی فایل، قفل‌ها و "
-"توابع زمان‌سنجی ممنوع‌اند."
-
-#: includes/tools/class-developer-tools.php:63
-msgid ""
 "List non-sensitive tables for the current WordPress site with bounded "
-"storage metadata. Requires read-only SQL to be enabled."
+"storage metadata. Requires database inspection to be enabled."
 msgstr ""
 "فهرست جدول‌های غیرحساس سایت فعلی وردپرس با فراداده محدود ذخیره‌سازی. مستلزم "
-"فعال‌بودن SQL فقط‌خواندنی است."
+"فعال‌بودن بررسی پایگاه‌داده است."
 
-#: includes/tools/class-developer-tools.php:73
+#: includes/tools/class-developer-tools.php:55
 msgid ""
 "Describe columns and indexes for one non-sensitive current-site table. No "
 "table rows are returned."
@@ -2870,7 +2889,7 @@ msgstr ""
 "شرح ستون‌ها و نمایه‌های یک جدول غیرحساس سایت فعلی. هیچ ردیفی از جدول برگردانده "
 "نمی‌شود."
 
-#: includes/tools/class-developer-tools.php:88
+#: includes/tools/class-developer-tools.php:70
 msgid ""
 "Clear WordPress object cache and detected page-cache plugins, or clean the "
 "cache for one post."
@@ -2878,7 +2897,7 @@ msgstr ""
 "کش اشیای وردپرس و افزونه‌های کش صفحهٔ شناسایی‌شده را پاک می‌کند یا کش یک نوشته "
 "را تمیز می‌کند."
 
-#: includes/tools/class-developer-tools.php:102
+#: includes/tools/class-developer-tools.php:84
 msgid ""
 "Read the tail of WordPress debug.log when WP_DEBUG_LOG is enabled. Common "
 "secret assignments are redacted."
@@ -2886,11 +2905,11 @@ msgstr ""
 "در صورت فعال‌بودن WP_DEBUG_LOG، انتهای فایل debug.log وردپرس را می‌خواند. "
 "مقداردهی‌های رایج اسرار پوشانده می‌شوند."
 
-#: includes/tools/class-developer-tools.php:120
+#: includes/tools/class-developer-tools.php:102
 msgid "WP-CLI tools are disabled in Mindio Magic MCP settings."
 msgstr "ابزارهای WP-CLI در تنظیمات Mindio Magic MCP غیرفعال‌اند."
 
-#: includes/tools/class-developer-tools.php:123
+#: includes/tools/class-developer-tools.php:105
 msgid ""
 "WP_CLI is not loaded in this process. Use the local WP-CLI MCP transport for "
 "this tool."
@@ -2898,83 +2917,25 @@ msgstr ""
 "WP_CLI در این پردازه بارگذاری نشده است. برای این ابزار از انتقال محلی WP-CLI "
 "MCP استفاده کنید."
 
-#: includes/tools/class-developer-tools.php:127
+#: includes/tools/class-developer-tools.php:109
 msgid "The WP-CLI command is not allowlisted."
 msgstr "فرمان WP-CLI در فهرست مجاز نیست."
 
-#: includes/tools/class-developer-tools.php:147
-#: includes/tools/class-developer-tools.php:416
-msgid "Read-only SQL is disabled in Mindio Magic MCP settings."
-msgstr "SQL فقط‌خواندنی در تنظیمات Mindio Magic MCP غیرفعال است."
-
-#: includes/tools/class-developer-tools.php:206
+#: includes/tools/class-developer-tools.php:163
 msgid "The requested table is missing or classified as sensitive."
 msgstr "جدول درخواستی وجود ندارد یا حساس طبقه‌بندی شده است."
 
-#: includes/tools/class-developer-tools.php:280
+#: includes/tools/class-developer-tools.php:237
 msgid "No readable debug.log exists inside wp-content."
 msgstr "فایل debug.log خواندنی در wp-content وجود ندارد."
 
-#: includes/tools/class-developer-tools.php:286
+#: includes/tools/class-developer-tools.php:243
 msgid "The debug log could not be opened."
 msgstr "پروندهٔ گزارش اشکال‌زدایی باز نشد."
 
-#: includes/tools/class-developer-tools.php:309
-msgid "Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed."
-msgstr "فقط SELECT، SHOW، DESCRIBE و EXPLAIN مجاز هستند."
-
-#: includes/tools/class-developer-tools.php:312
-msgid "Comments and statement separators are not allowed."
-msgstr "توضیحات و جداکننده‌های عبارت مجاز نیستند."
-
-#: includes/tools/class-developer-tools.php:315
-msgid "The query contains a forbidden operation or function."
-msgstr "پرس‌وجو شامل عملیات یا تابع ممنوع است."
-
-#: includes/tools/class-developer-tools.php:318
-msgid ""
-"The query requests forbidden server, grant, process, or locking information."
-msgstr "پرس‌وجو اطلاعات ممنوع سرور، مجوز، فرایند یا قفل را درخواست می‌کند."
-
-#: includes/tools/class-developer-tools.php:321
-msgid ""
-"Server schemas, identities, variables, and version metadata cannot be "
-"queried."
-msgstr "شِماها، هویت‌ها، متغیرها و فراداده نسخه سرور قابل پرس‌وجو نیستند."
-
-#: includes/tools/class-developer-tools.php:324
-msgid ""
-"Use the table-list tool; raw SHOW is limited to columns and indexes of safe "
-"tables."
-msgstr ""
-"از ابزار فهرست جدول استفاده کنید؛ SHOW خام فقط برای ستون‌ها و نمایه‌های "
-"جدول‌های امن مجاز است."
-
-#: includes/tools/class-developer-tools.php:329
-msgid ""
-"Credential-bearing users, usermeta, and options tables cannot be queried."
-msgstr ""
-"امکان پرس‌وجو از جدول‌های کاربران، usermeta و options که حاوی اعتبارنامه‌اند "
-"وجود ندارد."
-
-#: includes/tools/class-developer-tools.php:333
-msgid "Derived-table subqueries are not supported by the safe SQL validator."
-msgstr "زیرپرس‌وجوهای جدول مشتق‌شده توسط اعتبارسنج امن SQL پشتیبانی نمی‌شوند."
-
-#: includes/tools/class-developer-tools.php:345
-msgid ""
-"Safe SELECT and EXPLAIN queries must reference an allowed current-site table."
-msgstr ""
-"پرس‌وجوهای امن SELECT و EXPLAIN باید به یک جدول مجاز در سایت فعلی ارجاع دهند."
-
-#: includes/tools/class-developer-tools.php:350
-msgid "The query references a missing, cross-site, or sensitive table."
-msgstr "پرس‌وجو به جدولی ناموجود، متعلق به سایت دیگر یا حساس ارجاع می‌دهد."
-
-#: includes/tools/class-developer-tools.php:354
-msgid "Raw postmeta values may contain credentials and cannot be selected."
-msgstr ""
-"مقادیر خام postmeta ممکن است حاوی اطلاعات ورود باشند و قابل انتخاب نیستند."
+#: includes/tools/class-developer-tools.php:267
+msgid "Database inspection is disabled in Mindio Magic MCP settings."
+msgstr "بررسی پایگاه‌داده در تنظیمات Mindio Magic MCP غیرفعال است."
 
 #: includes/tools/class-extension-tools.php:24
 msgid ""
@@ -3014,11 +2975,11 @@ msgstr ""
 
 #: includes/tools/class-extension-tools.php:83
 msgid ""
-"Deactivate an installed plugin. Mindio Magic MCP cannot deactivate itself through "
-"its own connection."
+"Deactivate an installed plugin. Mindio Magic MCP cannot deactivate itself "
+"through its own connection."
 msgstr ""
-"یک افزونهٔ نصب‌شده را غیرفعال می‌کند. Mindio Magic MCP نمی‌تواند خود را از طریق اتصال "
-"خودش غیرفعال کند."
+"یک افزونهٔ نصب‌شده را غیرفعال می‌کند. Mindio Magic MCP نمی‌تواند خود را از طریق "
+"اتصال خودش غیرفعال کند."
 
 #: includes/tools/class-extension-tools.php:93
 msgid ""
@@ -3213,7 +3174,8 @@ msgstr "هیچ‌یک از پسوندهای درخواستی در فهرست م�
 
 #: includes/tools/class-filesystem-tools.php:227
 msgid "Read-only filesystem tools are disabled in Mindio Magic MCP settings."
-msgstr "ابزارهای فقط‌خواندنی فایل‌سیستم در تنظیمات Mindio Magic MCP غیرفعال هستند."
+msgstr ""
+"ابزارهای فقط‌خواندنی فایل‌سیستم در تنظیمات Mindio Magic MCP غیرفعال هستند."
 
 #: includes/tools/class-filesystem-tools.php:234
 msgid "The requested filesystem root is not allowlisted."
@@ -3718,21 +3680,21 @@ msgid "Robots directives contain unsupported or contradictory values."
 msgstr "دستورهای robots دارای مقادیر پشتیبانی‌نشده یا متناقض هستند."
 
 #. translators: %s: SEO setting key.
-#: includes/tools/class-seo-provider-tools.php:509
+#: includes/tools/class-seo-provider-tools.php:515
 #, php-format
 msgid "SEO setting \"%s\" has an invalid value or type."
 msgstr "مقدار یا نوع تنظیم سئوی «%s» معتبر نیست."
 
-#: includes/tools/class-seo-provider-tools.php:578
+#: includes/tools/class-seo-provider-tools.php:584
 #: includes/tools/class-seo-tools.php:140
 msgid "Schema JSON is invalid or exceeds 100 KB."
 msgstr "JSON اسکیما نامعتبر است یا از ۱۰۰ کیلوبایت بیشتر شده است."
 
-#: includes/tools/class-seo-provider-tools.php:585
+#: includes/tools/class-seo-provider-tools.php:591
 msgid "Every Rank Math schema must contain a safe @type value."
 msgstr "هر شِمای Rank Math باید یک مقدار امن @type داشته باشد."
 
-#: includes/tools/class-seo-provider-tools.php:589
+#: includes/tools/class-seo-provider-tools.php:595
 msgid "Rank Math schema types must be unique per update."
 msgstr "نوع شِماهای Rank Math در هر به‌روزرسانی باید یکتا باشد."
 
@@ -4759,9 +4721,74 @@ msgstr "تغییر کوپن سفارش به confirm=true نیاز دارد."
 msgid "Order not found."
 msgstr "سفارش پیدا نشد."
 
-#: includes/tools/class-acf-tools.php:282
-msgid "ACF field not found."
-msgstr "فیلد ACF پیدا نشد."
+#~ msgid ""
+#~ "Allow validated SELECT queries against a restricted set of non-sensitive "
+#~ "tables."
+#~ msgstr ""
+#~ "پرس‌وجوهای SELECT اعتبارسنجی‌شده را روی مجموعه‌ای محدود از جدول‌های غیرحساس "
+#~ "مجاز کنید."
+
+#~ msgid "Bounded read-only SQL"
+#~ msgstr "SQL فقط‌خواندنی محدود"
+
+#~ msgid ""
+#~ "Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. "
+#~ "Sensitive credential tables, comments, stacked statements, file access, "
+#~ "locks, and timing functions are denied."
+#~ msgstr ""
+#~ "یک پرس‌وجوی محدود و فقط‌خواندنی SELECT، SHOW، DESCRIBE یا EXPLAIN اجرا "
+#~ "می‌کند. جدول‌های حساس اعتبارنامه، دیدگاه‌ها، دستورهای زنجیره‌ای، دسترسی فایل، "
+#~ "قفل‌ها و توابع زمان‌سنجی ممنوع‌اند."
+
+#~ msgid "Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed."
+#~ msgstr "فقط SELECT، SHOW، DESCRIBE و EXPLAIN مجاز هستند."
+
+#~ msgid "Comments and statement separators are not allowed."
+#~ msgstr "توضیحات و جداکننده‌های عبارت مجاز نیستند."
+
+#~ msgid "The query contains a forbidden operation or function."
+#~ msgstr "پرس‌وجو شامل عملیات یا تابع ممنوع است."
+
+#~ msgid ""
+#~ "The query requests forbidden server, grant, process, or locking "
+#~ "information."
+#~ msgstr "پرس‌وجو اطلاعات ممنوع سرور، مجوز، فرایند یا قفل را درخواست می‌کند."
+
+#~ msgid ""
+#~ "Server schemas, identities, variables, and version metadata cannot be "
+#~ "queried."
+#~ msgstr "شِماها، هویت‌ها، متغیرها و فراداده نسخه سرور قابل پرس‌وجو نیستند."
+
+#~ msgid ""
+#~ "Use the table-list tool; raw SHOW is limited to columns and indexes of "
+#~ "safe tables."
+#~ msgstr ""
+#~ "از ابزار فهرست جدول استفاده کنید؛ SHOW خام فقط برای ستون‌ها و نمایه‌های "
+#~ "جدول‌های امن مجاز است."
+
+#~ msgid ""
+#~ "Credential-bearing users, usermeta, and options tables cannot be queried."
+#~ msgstr ""
+#~ "امکان پرس‌وجو از جدول‌های کاربران، usermeta و options که حاوی اعتبارنامه‌اند "
+#~ "وجود ندارد."
+
+#~ msgid ""
+#~ "Derived-table subqueries are not supported by the safe SQL validator."
+#~ msgstr "زیرپرس‌وجوهای جدول مشتق‌شده توسط اعتبارسنج امن SQL پشتیبانی نمی‌شوند."
+
+#~ msgid ""
+#~ "Safe SELECT and EXPLAIN queries must reference an allowed current-site "
+#~ "table."
+#~ msgstr ""
+#~ "پرس‌وجوهای امن SELECT و EXPLAIN باید به یک جدول مجاز در سایت فعلی ارجاع "
+#~ "دهند."
+
+#~ msgid "The query references a missing, cross-site, or sensitive table."
+#~ msgstr "پرس‌وجو به جدولی ناموجود، متعلق به سایت دیگر یا حساس ارجاع می‌دهد."
+
+#~ msgid "Raw postmeta values may contain credentials and cannot be selected."
+#~ msgstr ""
+#~ "مقادیر خام postmeta ممکن است حاوی اطلاعات ورود باشند و قابل انتخاب نیستند."
 
 #~ msgid "A banner element requires a Media Library media_id."
 #~ msgstr "المان بنر به media_id از کتابخانهٔ رسانه نیاز دارد."

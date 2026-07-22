@@ -2,10 +2,10 @@
 /**
  * Cross-content WordPress search tool.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

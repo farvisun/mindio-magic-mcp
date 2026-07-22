@@ -2,10 +2,10 @@
 /**
  * Enterprise WordPress admin console for configuration and operations.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,27 +29,27 @@ final class Admin {
 	public function register_hooks(): void {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_action( 'admin_post_flatsome_mcp_generate_key', array( $this, 'generate_key' ) );
-		add_action( 'admin_post_flatsome_mcp_revoke_key', array( $this, 'revoke_key' ) );
-		add_action( 'admin_post_flatsome_mcp_remove_oauth_client', array( $this, 'remove_oauth_client' ) );
-		add_action( 'admin_post_flatsome_mcp_save_settings', array( $this, 'save_settings' ) );
-		add_action( 'admin_post_flatsome_mcp_save_tools', array( $this, 'save_tools' ) );
-		add_action( 'admin_post_flatsome_mcp_add_webhook', array( $this, 'add_webhook' ) );
-		add_action( 'admin_post_flatsome_mcp_remove_webhook', array( $this, 'remove_webhook' ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( FLATSOME_MCP_FILE ), array( $this, 'action_links' ) );
+		add_action( 'admin_post_mindio_magic_mcp_generate_key', array( $this, 'generate_key' ) );
+		add_action( 'admin_post_mindio_magic_mcp_revoke_key', array( $this, 'revoke_key' ) );
+		add_action( 'admin_post_mindio_magic_mcp_remove_oauth_client', array( $this, 'remove_oauth_client' ) );
+		add_action( 'admin_post_mindio_magic_mcp_save_settings', array( $this, 'save_settings' ) );
+		add_action( 'admin_post_mindio_magic_mcp_save_tools', array( $this, 'save_tools' ) );
+		add_action( 'admin_post_mindio_magic_mcp_add_webhook', array( $this, 'add_webhook' ) );
+		add_action( 'admin_post_mindio_magic_mcp_remove_webhook', array( $this, 'remove_webhook' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( MINDIO_MAGIC_MCP_FILE ), array( $this, 'action_links' ) );
 	}
 
 	public function enqueue_assets( string $hook_suffix ): void {
-		if ( 'settings_page_magicmcp' !== $hook_suffix ) {
+		if ( 'settings_page_mindio-magic-mcp' !== $hook_suffix ) {
 			return;
 		}
 
 		wp_enqueue_style( 'dashicons' );
-		wp_enqueue_style( 'flatsome-mcp-admin', FLATSOME_MCP_URL . 'assets/css/admin.css', array(), FLATSOME_MCP_VERSION );
-		wp_enqueue_script( 'flatsome-mcp-admin', FLATSOME_MCP_URL . 'assets/js/admin.js', array(), FLATSOME_MCP_VERSION, true );
+		wp_enqueue_style( 'flatsome-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/css/admin.css', array(), MINDIO_MAGIC_MCP_VERSION );
+		wp_enqueue_script( 'flatsome-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/js/admin.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
 		wp_localize_script(
 			'flatsome-mcp-admin',
-			'FlatsomeMCPAdmin',
+			'MindioMagicMCPAdmin',
 			array(
 				'copy'        => __( 'Copy', 'mindio-magic-mcp' ),
 				'copied'      => __( 'Copied', 'mindio-magic-mcp' ),
@@ -76,7 +76,7 @@ final class Admin {
 			__( 'Mindio Magic MCP', 'mindio-magic-mcp' ),
 			__( 'Mindio Magic MCP', 'mindio-magic-mcp' ),
 			'manage_options',
-			'magicmcp',
+			'mindio-magic-mcp',
 			array( $this, 'render' )
 		);
 	}
@@ -88,7 +88,7 @@ final class Admin {
 
 	public function generate_key(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_generate_key' );
+		check_admin_referer( 'mindio_magic_mcp_generate_key' );
 		$user_id = absint( $_POST['user_id'] ?? get_current_user_id() );
 		$scope   = sanitize_key( (string) wp_unslash( $_POST['scope'] ?? Auth::SCOPE_READ ) );
 		$label   = sanitize_text_field( (string) wp_unslash( $_POST['label'] ?? '' ) );
@@ -98,7 +98,7 @@ final class Admin {
 
 	public function revoke_key(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_revoke_key' );
+		check_admin_referer( 'mindio_magic_mcp_revoke_key' );
 		$id      = sanitize_key( (string) wp_unslash( $_POST['token_id'] ?? '' ) );
 		$revoked = $this->auth->revoke_token( $id );
 		$this->flash( $revoked ? 'success' : 'error', $revoked ? __( 'Credential revoked.', 'mindio-magic-mcp' ) : __( 'Credential not found.', 'mindio-magic-mcp' ) );
@@ -107,15 +107,15 @@ final class Admin {
 
 	public function remove_oauth_client(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_remove_oauth_client' );
+		check_admin_referer( 'mindio_magic_mcp_remove_oauth_client' );
 		$client_id = sanitize_text_field( (string) wp_unslash( $_POST['client_id'] ?? '' ) );
-		$clients   = get_option( 'flatsome_mcp_oauth_clients', array() );
+		$clients   = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 		if ( ! is_array( $clients ) || ! isset( $clients[ $client_id ] ) ) {
 			$this->flash( 'error', __( 'OAuth client not found.', 'mindio-magic-mcp' ) );
 			$this->redirect();
 		}
 		unset( $clients[ $client_id ] );
-		update_option( 'flatsome_mcp_oauth_clients', $clients, false );
+		update_option( 'mindio_magic_mcp_oauth_clients', $clients, false );
 		$this->auth->revoke_client_tokens( $client_id );
 		$this->flash( 'success', __( 'OAuth client and its tokens revoked.', 'mindio-magic-mcp' ) );
 		$this->redirect();
@@ -123,7 +123,7 @@ final class Admin {
 
 	public function save_settings(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_save_settings' );
+		check_admin_referer( 'mindio_magic_mcp_save_settings' );
 		$origin_input = sanitize_textarea_field( (string) wp_unslash( $_POST['allowed_origins'] ?? '' ) );
 		$origins = preg_split( '/\R+/', $origin_input ) ?: array();
 		$origins = array_values(
@@ -142,18 +142,18 @@ final class Admin {
 			'webhook_retention_days' => max( 1, min( 365, absint( $_POST['webhook_retention_days'] ?? 14 ) ) ),
 			'allowed_origins'        => array_unique( $origins ),
 			'delete_on_uninstall'    => ! empty( $_POST['delete_on_uninstall'] ),
-			'allow_safe_query'       => ! empty( $_POST['allow_safe_query'] ),
+			'allow_database_inspection'       => ! empty( $_POST['allow_database_inspection'] ),
 			'allow_filesystem_read'  => ! empty( $_POST['allow_filesystem_read'] ),
 			'allow_wp_cli'           => ! empty( $_POST['allow_wp_cli'] ),
 		);
-		update_option( 'flatsome_mcp_settings', $settings, false );
+		update_option( 'mindio_magic_mcp_settings', $settings, false );
 		$this->flash( 'success', __( 'Settings saved.', 'mindio-magic-mcp' ) );
 		$this->redirect();
 	}
 
 	public function save_tools(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_save_tools' );
+		check_admin_referer( 'mindio_magic_mcp_save_tools' );
 		$enabled   = array_values(
 			array_filter(
 				array_map(
@@ -195,7 +195,7 @@ final class Admin {
 
 	public function add_webhook(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_add_webhook' );
+		check_admin_referer( 'mindio_magic_mcp_add_webhook' );
 		$result = $this->webhooks->register_webhook(
 			sanitize_text_field( (string) wp_unslash( $_POST['name'] ?? '' ) ),
 			esc_url_raw( (string) wp_unslash( $_POST['url'] ?? '' ) ),
@@ -206,7 +206,7 @@ final class Admin {
 
 	public function remove_webhook(): void {
 		$this->guard();
-		check_admin_referer( 'flatsome_mcp_remove_webhook' );
+		check_admin_referer( 'mindio_magic_mcp_remove_webhook' );
 		$id      = sanitize_key( (string) wp_unslash( $_POST['webhook_id'] ?? '' ) );
 		$removed = $this->webhooks->unregister_webhook( $id );
 		$this->flash(
@@ -223,7 +223,7 @@ final class Admin {
 
 		$active_tab = $this->current_tab();
 		$settings   = $this->settings();
-		$flash_key  = 'flatsome_mcp_admin_flash_' . get_current_user_id();
+		$flash_key  = 'mindio_magic_mcp_admin_flash_' . get_current_user_id();
 		$flash      = get_transient( $flash_key );
 		delete_transient( $flash_key );
 		?>
@@ -242,7 +242,7 @@ final class Admin {
 					</div>
 				</div>
 				<div class="fmp-masthead__meta" aria-label="<?php esc_attr_e( 'Service status', 'mindio-magic-mcp' ); ?>">
-					<span class="fmp-version"><?php echo esc_html( 'v' . FLATSOME_MCP_VERSION ); ?></span>
+					<span class="fmp-version"><?php echo esc_html( 'v' . MINDIO_MAGIC_MCP_VERSION ); ?></span>
 					<span class="fmp-service-state fmp-service-state--<?php echo ! empty( $settings['enabled'] ) ? 'online' : 'paused'; ?>">
 						<span aria-hidden="true"></span>
 						<?php echo ! empty( $settings['enabled'] ) ? esc_html__( 'Endpoint online', 'mindio-magic-mcp' ) : esc_html__( 'Endpoint paused', 'mindio-magic-mcp' ); ?>
@@ -298,7 +298,7 @@ final class Admin {
 				<span>
 					<?php
 					/* translators: %s: plugin version number. */
-					echo esc_html( sprintf( __( 'Mindio Magic MCP %s', 'mindio-magic-mcp' ), FLATSOME_MCP_VERSION ) );
+					echo esc_html( sprintf( __( 'Mindio Magic MCP %s', 'mindio-magic-mcp' ), MINDIO_MAGIC_MCP_VERSION ) );
 					?>
 				</span>
 				<span><?php esc_html_e( 'Streamable HTTP · JSON-RPC 2.0 · OAuth 2.1', 'mindio-magic-mcp' ); ?></span>
@@ -489,9 +489,9 @@ final class Admin {
 					</div>
 				</div>
 				<form class="fmp-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-loading-label="creating">
-					<input type="hidden" name="action" value="flatsome_mcp_generate_key">
+					<input type="hidden" name="action" value="mindio_magic_mcp_generate_key">
 					<input type="hidden" name="redirect_tab" value="credentials">
-					<?php wp_nonce_field( 'flatsome_mcp_generate_key' ); ?>
+					<?php wp_nonce_field( 'mindio_magic_mcp_generate_key' ); ?>
 					<div class="fmp-field">
 						<label for="fmp-key-label"><?php esc_html_e( 'Credential label', 'mindio-magic-mcp' ); ?></label>
 						<input id="fmp-key-label" class="fmp-control" type="text" name="label" maxlength="200" required placeholder="<?php esc_attr_e( 'Production content agent', 'mindio-magic-mcp' ); ?>">
@@ -580,10 +580,10 @@ final class Admin {
 									<td><?php echo esc_html( $this->format_datetime( (string) ( $token['last_used'] ?? '' ) ) ); ?></td>
 									<td class="fmp-table__action">
 										<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-confirm="<?php esc_attr_e( 'Revoke this API key? The connected client will immediately lose access.', 'mindio-magic-mcp' ); ?>">
-											<input type="hidden" name="action" value="flatsome_mcp_revoke_key">
+											<input type="hidden" name="action" value="mindio_magic_mcp_revoke_key">
 											<input type="hidden" name="redirect_tab" value="credentials">
 											<input type="hidden" name="token_id" value="<?php echo esc_attr( (string) $token['id'] ); ?>">
-											<?php wp_nonce_field( 'flatsome_mcp_revoke_key' ); ?>
+											<?php wp_nonce_field( 'mindio_magic_mcp_revoke_key' ); ?>
 											<button class="fmp-text-button fmp-text-button--danger" type="submit"><?php esc_html_e( 'Revoke', 'mindio-magic-mcp' ); ?></button>
 										</form>
 									</td>
@@ -643,10 +643,10 @@ final class Admin {
 									<td><?php echo esc_html( ! empty( $client['client_id_issued_at'] ) ? $this->format_datetime( gmdate( DATE_ATOM, (int) $client['client_id_issued_at'] ) ) : '—' ); ?></td>
 									<td class="fmp-table__action">
 										<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-confirm="<?php esc_attr_e( 'Revoke this OAuth client and all of its access and refresh tokens?', 'mindio-magic-mcp' ); ?>">
-											<input type="hidden" name="action" value="flatsome_mcp_remove_oauth_client">
+											<input type="hidden" name="action" value="mindio_magic_mcp_remove_oauth_client">
 											<input type="hidden" name="redirect_tab" value="credentials">
 											<input type="hidden" name="client_id" value="<?php echo esc_attr( $client_id ); ?>">
-											<?php wp_nonce_field( 'flatsome_mcp_remove_oauth_client' ); ?>
+											<?php wp_nonce_field( 'mindio_magic_mcp_remove_oauth_client' ); ?>
 											<button class="fmp-text-button fmp-text-button--danger" type="submit"><?php esc_html_e( 'Revoke', 'mindio-magic-mcp' ); ?></button>
 										</form>
 									</td>
@@ -687,9 +687,9 @@ final class Admin {
 					</div>
 				</div>
 				<form class="fmp-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-webhook-form data-loading-label="creating">
-					<input type="hidden" name="action" value="flatsome_mcp_add_webhook">
+					<input type="hidden" name="action" value="mindio_magic_mcp_add_webhook">
 					<input type="hidden" name="redirect_tab" value="webhooks">
-					<?php wp_nonce_field( 'flatsome_mcp_add_webhook' ); ?>
+					<?php wp_nonce_field( 'mindio_magic_mcp_add_webhook' ); ?>
 					<div class="fmp-form-grid">
 						<div class="fmp-field">
 							<label for="fmp-webhook-name"><?php esc_html_e( 'Destination name', 'mindio-magic-mcp' ); ?></label>
@@ -774,10 +774,10 @@ final class Admin {
 									<td><?php $this->render_status_badge( ! empty( $webhook['active'] ) ? __( 'Active', 'mindio-magic-mcp' ) : __( 'Inactive', 'mindio-magic-mcp' ), ! empty( $webhook['active'] ) ? 'success' : 'neutral' ); ?></td>
 									<td class="fmp-table__action">
 										<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-confirm="<?php esc_attr_e( 'Remove this webhook destination? Future matching events will no longer be delivered.', 'mindio-magic-mcp' ); ?>">
-											<input type="hidden" name="action" value="flatsome_mcp_remove_webhook">
+											<input type="hidden" name="action" value="mindio_magic_mcp_remove_webhook">
 											<input type="hidden" name="redirect_tab" value="webhooks">
 											<input type="hidden" name="webhook_id" value="<?php echo esc_attr( (string) $webhook['id'] ); ?>">
-											<?php wp_nonce_field( 'flatsome_mcp_remove_webhook' ); ?>
+											<?php wp_nonce_field( 'mindio_magic_mcp_remove_webhook' ); ?>
 											<button class="fmp-text-button fmp-text-button--danger" type="submit"><?php esc_html_e( 'Remove', 'mindio-magic-mcp' ); ?></button>
 										</form>
 									</td>
@@ -1007,9 +1007,9 @@ final class Admin {
 		</div>
 
 		<form id="fmp-tools-form" class="fmp-tool-manager" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-tool-manager data-loading-label="saving">
-			<input type="hidden" name="action" value="flatsome_mcp_save_tools">
+			<input type="hidden" name="action" value="mindio_magic_mcp_save_tools">
 			<input type="hidden" name="redirect_tab" value="tools">
-			<?php wp_nonce_field( 'flatsome_mcp_save_tools' ); ?>
+			<?php wp_nonce_field( 'mindio_magic_mcp_save_tools' ); ?>
 
 			<section class="fmp-card fmp-tool-controls" aria-label="<?php esc_attr_e( 'Tool filters and bulk actions', 'mindio-magic-mcp' ); ?>">
 				<div class="fmp-tool-controls__filters">
@@ -1223,9 +1223,9 @@ final class Admin {
 		</section>
 
 		<form id="fmp-settings-form" class="fmp-settings-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-loading-label="saving">
-			<input type="hidden" name="action" value="flatsome_mcp_save_settings">
+			<input type="hidden" name="action" value="mindio_magic_mcp_save_settings">
 			<input type="hidden" name="redirect_tab" value="settings">
-			<?php wp_nonce_field( 'flatsome_mcp_save_settings' ); ?>
+			<?php wp_nonce_field( 'mindio_magic_mcp_save_settings' ); ?>
 
 			<section class="fmp-card fmp-settings-group">
 				<div class="fmp-settings-group__intro">
@@ -1307,7 +1307,7 @@ final class Admin {
 					<div class="fmp-switch-stack">
 						<?php
 						$this->render_switch( 'fmp-filesystem-read', 'allow_filesystem_read', ! empty( $settings['allow_filesystem_read'] ), __( 'Read-only filesystem inspection', 'mindio-magic-mcp' ), __( 'Allow bounded text-file reads, directory listings, and searches inside approved WordPress content roots.', 'mindio-magic-mcp' ) );
-						$this->render_switch( 'fmp-safe-query', 'allow_safe_query', ! empty( $settings['allow_safe_query'] ), __( 'Bounded read-only SQL', 'mindio-magic-mcp' ), __( 'Allow validated SELECT queries against a restricted set of non-sensitive tables.', 'mindio-magic-mcp' ) );
+						$this->render_switch( 'fmp-database-inspection', 'allow_database_inspection', ! empty( $settings['allow_database_inspection'] ), __( 'Database schema inspection', 'mindio-magic-mcp' ), __( 'Allow prepared, fixed-shape queries that list non-sensitive tables and describe their schemas. Table rows are never returned.', 'mindio-magic-mcp' ) );
 						$this->render_switch( 'fmp-wp-cli', 'allow_wp_cli', ! empty( $settings['allow_wp_cli'] ), __( 'Allowlisted WP-CLI commands', 'mindio-magic-mcp' ), __( 'Permit safe in-process WP-CLI commands only when WP_CLI is already loaded.', 'mindio-magic-mcp' ) );
 						?>
 					</div>
@@ -1517,7 +1517,7 @@ final class Admin {
 				'label'       => __( 'Operations and diagnostics', 'mindio-magic-mcp' ),
 				'description' => __( 'Read-only filesystem and database inspection, logs, maintenance, caches, CDN, and image optimization.', 'mindio-magic-mcp' ),
 				'icon'        => 'dashicons-performance',
-				'tools'       => array( 'run_wp_cli', 'run_safe_query', 'list_database_tables', 'describe_database_table', 'read_file', 'list_directory', 'search_files', 'clear_cache', 'get_error_logs', 'purge_cdn', 'control_cache', 'trigger_image_optimization', 'get_server_status', 'get_activity_logs', 'get_webhook_logs' ),
+				'tools'       => array( 'run_wp_cli', 'list_database_tables', 'describe_database_table', 'read_file', 'list_directory', 'search_files', 'clear_cache', 'get_error_logs', 'purge_cdn', 'control_cache', 'trigger_image_optimization', 'get_server_status', 'get_activity_logs', 'get_webhook_logs' ),
 			),
 			'woocommerce'  => array(
 				'label'       => __( 'WooCommerce', 'mindio-magic-mcp' ),
@@ -1580,7 +1580,7 @@ final class Admin {
 	/** @return array<string,mixed> */
 	private function settings(): array {
 		return wp_parse_args(
-			get_option( 'flatsome_mcp_settings', array() ),
+			get_option( 'mindio_magic_mcp_settings', array() ),
 			array(
 				'enabled'                => true,
 				'rate_limit'             => 60,
@@ -1589,7 +1589,7 @@ final class Admin {
 				'webhook_retention_days' => 14,
 				'allowed_origins'        => array(),
 				'delete_on_uninstall'    => false,
-				'allow_safe_query'       => false,
+				'allow_database_inspection'       => false,
 				'allow_filesystem_read'  => false,
 				'allow_wp_cli'           => false,
 			)
@@ -1598,7 +1598,7 @@ final class Admin {
 
 	/** @return array<string,array<string,mixed>> */
 	private function oauth_clients(): array {
-		$clients = get_option( 'flatsome_mcp_oauth_clients', array() );
+		$clients = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 		return is_array( $clients ) ? $clients : array();
 	}
 
@@ -1664,7 +1664,7 @@ final class Admin {
 		$tab = in_array( $tab, self::TABS, true ) ? $tab : 'overview';
 		return add_query_arg(
 			array(
-				'page' => 'magicmcp',
+				'page' => 'mindio-magic-mcp',
 				'tab'  => $tab,
 			),
 			admin_url( 'options-general.php' )
@@ -1690,7 +1690,7 @@ final class Admin {
 	}
 
 	private function flash( string $type, string $message, string $secret = '' ): void {
-		set_transient( 'flatsome_mcp_admin_flash_' . get_current_user_id(), compact( 'type', 'message', 'secret' ), 5 * MINUTE_IN_SECONDS );
+		set_transient( 'mindio_magic_mcp_admin_flash_' . get_current_user_id(), compact( 'type', 'message', 'secret' ), 5 * MINUTE_IN_SECONDS );
 	}
 
 	private function redirect(): void {

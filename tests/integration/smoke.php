@@ -2,7 +2,7 @@
 /**
  * Local WordPress smoke test. Run with WP_PATH=/path/to/wordpress php tests/integration/smoke.php.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -12,7 +12,7 @@ $_SERVER['SERVER_NAME'] ??= 'localhost';
 $wp_path = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 3 ) . '/wordpress';
 require rtrim( $wp_path, '/\\' ) . '/wp-load.php';
 
-if ( ! class_exists( '\FlatsomeMCP\Auth' ) ) {
+if ( ! class_exists( '\MindioMagicMCP\Auth' ) ) {
 	throw new RuntimeException( 'Activate Mindio Magic MCP before running the smoke test.' );
 }
 if ( ! did_action( 'rest_api_init' ) ) {
@@ -45,8 +45,8 @@ $admins = get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' =
 fmp_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
 wp_set_current_user( (int) $admins[0] );
 
-$auth       = new \FlatsomeMCP\Auth();
-$credential = $auth->create_api_key( (int) $admins[0], \FlatsomeMCP\Auth::SCOPE_ADMIN, 'Integration smoke test' );
+$auth       = new \MindioMagicMCP\Auth();
+$credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_ADMIN, 'Integration smoke test' );
 fmp_assert( ! is_wp_error( $credential ), 'Could not create smoke-test credential.' );
 $token   = (string) $credential['token'];
 $page_id = 0;
@@ -56,14 +56,22 @@ $read_credential = null;
 $oauth_client_id = '';
 $oauth_token_ids = array();
 $oauth_refresh_ids = array();
-$original_settings = get_option( 'flatsome_mcp_settings', array() );
-$original_disabled_tools = get_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, null );
-update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
+$original_settings = get_option( 'mindio_magic_mcp_settings', array() );
+$original_disabled_tools = get_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, null );
+update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
 
 try {
-	$secret_roundtrip = \FlatsomeMCP\Secret_Box::encrypt( 'integration-secret' );
-	fmp_assert( 'integration-secret' === \FlatsomeMCP\Secret_Box::decrypt( $secret_roundtrip ), 'Webhook secret encryption round-trip failed.' );
-	fmp_assert( '' === \FlatsomeMCP\Secret_Box::decrypt( 's1:broken' ), 'Malformed encrypted secret was accepted.' );
+	$secret_roundtrip = \MindioMagicMCP\Secret_Box::encrypt( 'integration-secret' );
+	fmp_assert( 'integration-secret' === \MindioMagicMCP\Secret_Box::decrypt( $secret_roundtrip ), 'Webhook secret encryption round-trip failed.' );
+	fmp_assert( '' === \MindioMagicMCP\Secret_Box::decrypt( 's1:broken' ), 'Malformed encrypted secret was accepted.' );
+	$rate_identity = 'prefix-regression';
+	$rate_bucket   = 'integration';
+	$rate_limiter  = new \MindioMagicMCP\Rate_Limiter();
+	$rate_limiter->consume( $rate_identity, $rate_bucket );
+	$rate_slot = (int) floor( time() / 60 );
+	$rate_key  = 'mindio_magic_mcp_rate_limit_' . md5( $rate_bucket . '|' . $rate_identity . '|' . $rate_slot );
+	fmp_assert( 1 === (int) get_transient( $rate_key ), 'The rate-limit transient does not use the unique plugin prefix.' );
+	delete_transient( $rate_key );
 
 	$initialize = fmp_rpc(
 		$token,
@@ -74,12 +82,13 @@ try {
 
 	$list = fmp_rpc( $token, 'tools/list' );
 	$tool_names = array_column( $list['result']['tools'], 'name' );
-	foreach ( array( 'create_post', 'upload_media', 'update_meta', 'register_webhook', 'list_flatsome_components', 'create_flatsome_page', 'add_element', 'summarize_content', 'bulk_actions', 'run_safe_query', 'control_cache' ) as $required_tool ) {
+	foreach ( array( 'create_post', 'upload_media', 'update_meta', 'register_webhook', 'list_flatsome_components', 'create_flatsome_page', 'add_element', 'summarize_content', 'bulk_actions', 'list_database_tables', 'describe_database_table', 'control_cache' ) as $required_tool ) {
 		fmp_assert( in_array( $required_tool, $tool_names, true ), 'Missing tool: ' . $required_tool );
 	}
+	fmp_assert( ! in_array( 'run_safe_query', $tool_names, true ), 'The request-supplied SQL tool is still exposed.' );
 	fmp_assert( count( $tool_names ) >= 55, 'The base tool registry is incomplete.' );
 
-	update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, array( 'summarize_content' ), false );
+	update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array( 'summarize_content' ), false );
 	$governed_list  = fmp_rpc( $token, 'tools/list' );
 	$governed_names = array_column( $governed_list['result']['tools'], 'name' );
 	fmp_assert( ! in_array( 'summarize_content', $governed_names, true ) && in_array( 'create_post', $governed_names, true ), 'Tool discovery did not enforce the administrator exposure policy.' );
@@ -92,7 +101,7 @@ try {
 		)
 	);
 	fmp_assert( ! empty( $disabled_call['result']['isError'] ) && 'tool_disabled' === $disabled_call['result']['structuredContent']['error'], 'A disabled tool was callable directly.' );
-	update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
+	update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
 
 	$component_list = fmp_rpc( $token, 'tools/call', array( 'name' => 'list_flatsome_components', 'arguments' => array() ) );
 	$component_data = $component_list['result']['structuredContent'] ?? array();
@@ -148,22 +157,31 @@ try {
 	);
 	fmp_assert( ! empty( $blocked_webhook['result']['isError'] ) && 'private_url' === $blocked_webhook['result']['structuredContent']['error'], 'Webhook SSRF guard failed.' );
 
-	$sql_settings = $original_settings;
-	$sql_settings['allow_safe_query'] = true;
-	update_option( 'flatsome_mcp_settings', $sql_settings, false );
-	$safe_query = fmp_rpc(
+	$removed_query = fmp_rpc(
 		$token,
 		'tools/call',
-		array( 'name' => 'run_safe_query', 'arguments' => array( 'sql' => 'SELECT ID, post_title FROM ' . $GLOBALS['wpdb']->posts . ' ORDER BY ID DESC LIMIT 999999', 'limit' => 2 ) )
+		array( 'name' => 'run_safe_query', 'arguments' => array( 'sql' => 'SELECT * FROM ' . $GLOBALS['wpdb']->users ) )
 	);
-	fmp_assert( empty( $safe_query['result']['isError'] ) && $safe_query['result']['structuredContent']['row_count'] <= 2, 'Read-only SQL outer limit was not bounded.' );
-	$sensitive_query = fmp_rpc(
+	fmp_assert( -32602 === ( $removed_query['error']['code'] ?? null ) && str_contains( (string) ( $removed_query['error']['message'] ?? '' ), 'Unknown tool' ), 'Request-supplied SQL still reached a tool callback: ' . wp_json_encode( $removed_query ) );
+
+	$database_settings                              = $original_settings;
+	$database_settings['allow_database_inspection'] = true;
+	update_option( 'mindio_magic_mcp_settings', $database_settings, false );
+	$table_list = fmp_rpc(
 		$token,
 		'tools/call',
-		array( 'name' => 'run_safe_query', 'arguments' => array( 'sql' => 'SELECT * FROM ' . $GLOBALS['wpdb']->users, 'limit' => 2 ) )
+		array( 'name' => 'list_database_tables', 'arguments' => array() )
 	);
-	fmp_assert( ! empty( $sensitive_query['result']['isError'] ) && 'sensitive_table_forbidden' === $sensitive_query['result']['structuredContent']['error'], 'Read-only SQL exposed a credential-bearing table.' );
-	update_option( 'flatsome_mcp_settings', $original_settings, false );
+	$table_names = array_column( (array) ( $table_list['result']['structuredContent']['tables'] ?? array() ), 'table' );
+	fmp_assert( empty( $table_list['result']['isError'] ) && in_array( 'posts', $table_names, true ) && ! in_array( 'users', $table_names, true ), 'Prepared database inspection did not preserve the safe table inventory.' );
+	$table_description = fmp_rpc(
+		$token,
+		'tools/call',
+		array( 'name' => 'describe_database_table', 'arguments' => array( 'table' => 'posts' ) )
+	);
+	$column_names = array_column( (array) ( $table_description['result']['structuredContent']['columns'] ?? array() ), 'name' );
+	fmp_assert( empty( $table_description['result']['isError'] ) && in_array( 'ID', $column_names, true ), 'Prepared database schema inspection no longer works.' );
+	update_option( 'mindio_magic_mcp_settings', $original_settings, false );
 
 	$created = fmp_rpc(
 		$token,
@@ -304,7 +322,7 @@ try {
 	fmp_assert( empty( $deleted['result']['isError'] ), 'Post deletion failed.' );
 	$post_id = 0;
 
-	$read_credential = $auth->create_api_key( (int) $admins[0], \FlatsomeMCP\Auth::SCOPE_READ, 'Integration read-only test' );
+	$read_credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_READ, 'Integration read-only test' );
 	fmp_assert( ! is_wp_error( $read_credential ), 'Could not create read-only credential.' );
 	$read_list = fmp_rpc( (string) $read_credential['token'], 'tools/list' );
 	$read_names = array_column( $read_list['result']['tools'], 'name' );
@@ -356,7 +374,7 @@ try {
 	fmp_assert( 201 === $register_response->get_status() && str_starts_with( (string) $registered_client['client_id'], 'fmc_' ), 'OAuth dynamic client registration failed.' );
 	$oauth_client_id = (string) $registered_client['client_id'];
 	$resource = untrailingslashit( rest_url( 'flatsome-mcp/v1/mcp' ) );
-	$issued_oauth = $auth->issue_oauth_tokens( (int) $admins[0], \FlatsomeMCP\Auth::SCOPE_READ, $oauth_client_id, $resource );
+	$issued_oauth = $auth->issue_oauth_tokens( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_READ, $oauth_client_id, $resource );
 	fmp_assert( ! is_wp_error( $issued_oauth ), 'OAuth token issuance failed.' );
 	preg_match( '/^fmo_([a-f0-9]{16})_/', (string) $issued_oauth['access_token'], $oauth_access_match );
 	preg_match( '/^fmr_([a-f0-9]{16})_/', (string) $issued_oauth['refresh_token'], $oauth_refresh_match );
@@ -394,11 +412,11 @@ try {
 		JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
 	) . PHP_EOL;
 } finally {
-	update_option( 'flatsome_mcp_settings', $original_settings, false );
+	update_option( 'mindio_magic_mcp_settings', $original_settings, false );
 	if ( null === $original_disabled_tools ) {
-		delete_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION );
+		delete_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION );
 	} else {
-		update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, $original_disabled_tools, false );
+		update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, $original_disabled_tools, false );
 	}
 	if ( $post_id ) {
 		wp_delete_post( $post_id, true );
@@ -414,24 +432,24 @@ try {
 		$auth->revoke_token( (string) $read_credential['id'] );
 	}
 	if ( '' !== $oauth_client_id ) {
-		$clients = get_option( 'flatsome_mcp_oauth_clients', array() );
+		$clients = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 		unset( $clients[ $oauth_client_id ] );
-		update_option( 'flatsome_mcp_oauth_clients', $clients, false );
+		update_option( 'mindio_magic_mcp_oauth_clients', $clients, false );
 		$auth->revoke_client_tokens( $oauth_client_id );
 	}
-	$oauth_tokens = get_option( 'flatsome_mcp_tokens', array() );
+	$oauth_tokens = get_option( 'mindio_magic_mcp_tokens', array() );
 	foreach ( array_filter( $oauth_token_ids ) as $oauth_token_id ) {
 		unset( $oauth_tokens[ $oauth_token_id ] );
 	}
-	update_option( 'flatsome_mcp_tokens', $oauth_tokens, false );
-	$oauth_refresh_tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+	update_option( 'mindio_magic_mcp_tokens', $oauth_tokens, false );
+	$oauth_refresh_tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 	foreach ( array_filter( $oauth_refresh_ids ) as $oauth_refresh_id ) {
 		unset( $oauth_refresh_tokens[ $oauth_refresh_id ] );
 	}
-	update_option( 'flatsome_mcp_refresh_tokens', $oauth_refresh_tokens, false );
+	update_option( 'mindio_magic_mcp_refresh_tokens', $oauth_refresh_tokens, false );
 	global $wpdb;
-	$wpdb->delete( \FlatsomeMCP\Installer::audit_table(), array( 'token_id' => (string) $credential['id'] ) );
+	$wpdb->delete( \MindioMagicMCP\Installer::audit_table(), array( 'token_id' => (string) $credential['id'] ) );
 	if ( is_array( $read_credential ) ) {
-		$wpdb->delete( \FlatsomeMCP\Installer::audit_table(), array( 'token_id' => (string) $read_credential['id'] ) );
+		$wpdb->delete( \MindioMagicMCP\Installer::audit_table(), array( 'token_id' => (string) $read_credential['id'] ) );
 	}
 }

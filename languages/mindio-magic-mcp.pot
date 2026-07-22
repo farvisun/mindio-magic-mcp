@@ -1,24 +1,49 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Mohammad Askari
-# This file is distributed under the same license as the Mindio Magic MCP package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Copyright (C) 2026 Mohammad Askari <farvisun@gmail.com>
+# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mindio Magic MCP 0.5.4\n"
+"Project-Id-Version: Mindio Magic MCP 0.5.5\n"
 "Report-Msgid-Bugs-To: https://github.com/farvisun/mindio-magic-mcp/issues\n"
-"POT-Creation-Date: 2026-07-20 11:49+0330\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2026-07-22T09:13:22+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: mindio-magic-mcp\n"
 
-#: includes/class-admin.php:54 includes/class-admin.php:1388
+#. Plugin Name of the plugin
+#: flatsome-mcp.php
+#: includes/class-admin.php:76
+#: includes/class-admin.php:77
+#: includes/class-admin.php:240
+msgid "Mindio Magic MCP"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: flatsome-mcp.php
+msgid "https://github.com/farvisun/mindio-magic-mcp"
+msgstr ""
+
+#. Description of the plugin
+#: flatsome-mcp.php
+msgid "A secure MCP server for WordPress that supports Flatsome UX Builder, content automation, and site management."
+msgstr ""
+
+#. Author of the plugin
+#: flatsome-mcp.php
+msgid "Mohammad Askari <farvisun@gmail.com>"
+msgstr ""
+
+#. Author URI of the plugin
+#: flatsome-mcp.php
+msgid "https://profiles.wordpress.org/farvisun/"
+msgstr ""
+
+#: includes/class-admin.php:54
+#: includes/class-admin.php:1388
 msgid "Copy"
 msgstr ""
 
@@ -38,45 +63,48 @@ msgstr ""
 msgid "Creating…"
 msgstr ""
 
-#: includes/class-admin.php:59 includes/class-admin.php:894
+#: includes/class-admin.php:59
+#: includes/class-admin.php:894
 msgid "No records match your filters."
 msgstr ""
 
 #. translators: %d: number of visible records.
 #. translators: %d: number of activity records.
-#: includes/class-admin.php:61 includes/class-admin.php:851
+#: includes/class-admin.php:61
+#: includes/class-admin.php:851
 #, php-format
 msgid "%d records"
 msgstr ""
 
 #. translators: 1: visible tool count, 2: total tool count.
-#: includes/class-admin.php:63 includes/class-admin.php:1032
+#: includes/class-admin.php:63
+#: includes/class-admin.php:1032
 #, php-format
 msgid "%1$d of %2$d tools visible"
 msgstr ""
 
-#: includes/class-admin.php:64 includes/class-admin.php:1091
+#: includes/class-admin.php:64
+#: includes/class-admin.php:1091
 msgid "Exposed"
 msgstr ""
 
-#: includes/class-admin.php:65 includes/class-admin.php:67
-#: includes/class-admin.php:1091 includes/class-admin.php:1165
+#: includes/class-admin.php:65
+#: includes/class-admin.php:67
+#: includes/class-admin.php:1091
+#: includes/class-admin.php:1165
 msgid "Disabled"
 msgstr ""
 
-#: includes/class-admin.php:66 includes/class-admin.php:1165
+#: includes/class-admin.php:66
+#: includes/class-admin.php:1165
 msgid "Enabled"
 msgstr ""
 
 #. translators: 1: enabled operation count, 2: total operation count.
-#: includes/class-admin.php:69 includes/class-admin.php:1151
+#: includes/class-admin.php:69
+#: includes/class-admin.php:1151
 #, php-format
 msgid "%1$d of %2$d operations enabled"
-msgstr ""
-
-#: includes/class-admin.php:76 includes/class-admin.php:77
-#: includes/class-admin.php:240
-msgid "Mindio Magic MCP"
 msgstr ""
 
 #: includes/class-admin.php:85
@@ -84,11 +112,11 @@ msgid "Open console"
 msgstr ""
 
 #: includes/class-admin.php:104
-msgid "Credential not found."
+msgid "Credential revoked."
 msgstr ""
 
 #: includes/class-admin.php:104
-msgid "Credential revoked."
+msgid "Credential not found."
 msgstr ""
 
 #: includes/class-admin.php:114
@@ -106,17 +134,16 @@ msgstr ""
 #. translators: 1: exposed tools, 2: disabled tools, 3: enabled operations, 4: disabled operations.
 #: includes/class-admin.php:186
 #, php-format
-msgid ""
-"Tool policy updated: %1$s tools exposed, %2$s tools disabled; %3$s "
-"operations enabled, %4$s operations disabled."
-msgstr ""
-
-#: includes/class-admin.php:214 includes/tools/class-webhook-tools.php:55
-msgid "Webhook not found."
+msgid "Tool policy updated: %1$s tools exposed, %2$s tools disabled; %3$s operations enabled, %4$s operations disabled."
 msgstr ""
 
 #: includes/class-admin.php:214
 msgid "Webhook removed."
+msgstr ""
+
+#: includes/class-admin.php:214
+#: includes/tools/class-webhook-tools.php:55
+msgid "Webhook not found."
 msgstr ""
 
 #: includes/class-admin.php:239
@@ -124,9 +151,7 @@ msgid "WordPress agent operations"
 msgstr ""
 
 #: includes/class-admin.php:241
-msgid ""
-"Securely connect AI agents, govern access, automate events, and monitor "
-"every tool call from one control plane."
+msgid "Securely connect AI agents, govern access, automate events, and monitor every tool call from one control plane."
 msgstr ""
 
 #: includes/class-admin.php:244
@@ -172,8 +197,7 @@ msgid "one-time secret"
 msgstr ""
 
 #: includes/class-admin.php:327
-msgid ""
-"Store this value in a password manager now. It will not be displayed again."
+msgid "Store this value in a password manager now. It will not be displayed again."
 msgstr ""
 
 #: includes/class-admin.php:346
@@ -185,8 +209,7 @@ msgid "System overview"
 msgstr ""
 
 #: includes/class-admin.php:348
-msgid ""
-"A live view of connectivity, access, automation, and recent execution health."
+msgid "A live view of connectivity, access, automation, and recent execution health."
 msgstr ""
 
 #: includes/class-admin.php:352
@@ -202,28 +225,29 @@ msgid "Long-lived credentials"
 msgstr ""
 
 #: includes/class-admin.php:359
-msgid "Dynamically registered"
+msgid "OAuth clients"
 msgstr ""
 
 #: includes/class-admin.php:359
-msgid "OAuth clients"
+msgid "Dynamically registered"
+msgstr ""
+
+#: includes/class-admin.php:360
+#: includes/class-admin.php:671
+#: includes/class-admin.php:1556
+msgid "Webhooks"
 msgstr ""
 
 #: includes/class-admin.php:360
 msgid "Active destinations"
 msgstr ""
 
-#: includes/class-admin.php:360 includes/class-admin.php:671
-#: includes/class-admin.php:1556
-msgid "Webhooks"
+#: includes/class-admin.php:361
+msgid "Request success"
 msgstr ""
 
 #: includes/class-admin.php:361
 msgid "Latest 50 tool calls"
-msgstr ""
-
-#: includes/class-admin.php:361
-msgid "Request success"
 msgstr ""
 
 #: includes/class-admin.php:369
@@ -235,9 +259,7 @@ msgid "Connection endpoints"
 msgstr ""
 
 #: includes/class-admin.php:371
-msgid ""
-"Use the MCP endpoint in your client. OAuth discovery URLs are consumed "
-"automatically."
+msgid "Use the MCP endpoint in your client. OAuth discovery URLs are consumed automatically."
 msgstr ""
 
 #: includes/class-admin.php:373
@@ -257,19 +279,19 @@ msgid "Paste this URL into your MCP client"
 msgstr ""
 
 #: includes/class-admin.php:378
-msgid "Automatic discovery only — not an MCP server URL"
-msgstr ""
-
-#: includes/class-admin.php:378
 msgid "OAuth authorization server"
 msgstr ""
 
-#: includes/class-admin.php:379
-msgid "Automatic resource discovery for OAuth clients"
+#: includes/class-admin.php:378
+msgid "Automatic discovery only — not an MCP server URL"
 msgstr ""
 
 #: includes/class-admin.php:379
 msgid "Protected resource metadata"
+msgstr ""
+
+#: includes/class-admin.php:379
+msgid "Automatic resource discovery for OAuth clients"
 msgstr ""
 
 #: includes/class-admin.php:387
@@ -289,11 +311,11 @@ msgid "PHP runtime"
 msgstr ""
 
 #: includes/class-admin.php:395
-msgid "Detected"
+msgid "Flatsome theme"
 msgstr ""
 
 #: includes/class-admin.php:395
-msgid "Flatsome theme"
+msgid "Detected"
 msgstr ""
 
 #: includes/class-admin.php:395
@@ -305,11 +327,11 @@ msgid "HTTPS transport"
 msgstr ""
 
 #: includes/class-admin.php:396
-msgid "Recommended"
+msgid "Secure"
 msgstr ""
 
 #: includes/class-admin.php:396
-msgid "Secure"
+msgid "Recommended"
 msgstr ""
 
 #: includes/class-admin.php:406
@@ -325,9 +347,7 @@ msgid "Issue the least-privileged credential"
 msgstr ""
 
 #: includes/class-admin.php:415
-msgid ""
-"Choose read-only, editor, or administrator scope for a specific WordPress "
-"user."
+msgid "Choose read-only, editor, or administrator scope for a specific WordPress user."
 msgstr ""
 
 #: includes/class-admin.php:416
@@ -339,9 +359,7 @@ msgid "Configure the MCP client"
 msgstr ""
 
 #: includes/class-admin.php:423
-msgid ""
-"Add the endpoint above and authenticate with an API key or the OAuth "
-"discovery flow."
+msgid "Add the endpoint above and authenticate with an API key or the OAuth discovery flow."
 msgstr ""
 
 #: includes/class-admin.php:429
@@ -349,9 +367,7 @@ msgid "Verify and automate"
 msgstr ""
 
 #: includes/class-admin.php:430
-msgid ""
-"Run a tool call, review the audit trail, then subscribe downstream systems "
-"to signed events."
+msgid "Run a tool call, review the audit trail, then subscribe downstream systems to signed events."
 msgstr ""
 
 #: includes/class-admin.php:431
@@ -375,22 +391,20 @@ msgid "No tool activity yet"
 msgstr ""
 
 #: includes/class-admin.php:459
-msgid ""
-"Successful and failed MCP calls will appear here as agents begin using the "
-"endpoint."
+msgid "Successful and failed MCP calls will appear here as agents begin using the endpoint."
 msgstr ""
 
 #: includes/class-admin.php:472
 msgid "Identity and access"
 msgstr ""
 
-#: includes/class-admin.php:473 includes/class-admin.php:1551
+#: includes/class-admin.php:473
+#: includes/class-admin.php:1551
 msgid "Credentials"
 msgstr ""
 
 #: includes/class-admin.php:474
-msgid ""
-"Provision scoped API keys and govern dynamically registered OAuth clients."
+msgid "Provision scoped API keys and govern dynamically registered OAuth clients."
 msgstr ""
 
 #. translators: %s: number of active API keys.
@@ -433,15 +447,18 @@ msgstr ""
 msgid "Permission scope"
 msgstr ""
 
-#: includes/class-admin.php:519 includes/class-admin.php:1418
+#: includes/class-admin.php:519
+#: includes/class-admin.php:1418
 msgid "Read only"
 msgstr ""
 
-#: includes/class-admin.php:520 includes/class-admin.php:1419
+#: includes/class-admin.php:520
+#: includes/class-admin.php:1419
 msgid "Editor"
 msgstr ""
 
-#: includes/class-admin.php:521 includes/class-admin.php:1420
+#: includes/class-admin.php:521
+#: includes/class-admin.php:1420
 msgid "Administrator"
 msgstr ""
 
@@ -470,8 +487,7 @@ msgid "Manage users, extensions, settings, automation, and privileged tools."
 msgstr ""
 
 #: includes/class-admin.php:546
-msgid ""
-"A scope never exceeds the selected WordPress user’s native capabilities."
+msgid "A scope never exceeds the selected WordPress user’s native capabilities."
 msgstr ""
 
 #: includes/class-admin.php:554
@@ -483,23 +499,25 @@ msgid "Active API keys"
 msgstr ""
 
 #: includes/class-admin.php:556
-msgid ""
-"Only hashed credential material is stored. Raw secrets cannot be recovered."
+msgid "Only hashed credential material is stored. Raw secrets cannot be recovered."
 msgstr ""
 
 #: includes/class-admin.php:563
 msgid "Credential"
 msgstr ""
 
-#: includes/class-admin.php:564 includes/class-admin.php:863
+#: includes/class-admin.php:564
+#: includes/class-admin.php:863
 msgid "Principal"
 msgstr ""
 
-#: includes/class-admin.php:565 includes/class-admin.php:864
+#: includes/class-admin.php:565
+#: includes/class-admin.php:864
 msgid "Scope"
 msgstr ""
 
-#: includes/class-admin.php:566 includes/class-admin.php:760
+#: includes/class-admin.php:566
+#: includes/class-admin.php:760
 msgid "Created"
 msgstr ""
 
@@ -507,7 +525,8 @@ msgstr ""
 msgid "Last used"
 msgstr ""
 
-#: includes/class-admin.php:568 includes/class-admin.php:620
+#: includes/class-admin.php:568
+#: includes/class-admin.php:620
 #: includes/class-admin.php:762
 msgid "Actions"
 msgstr ""
@@ -516,16 +535,17 @@ msgstr ""
 msgid "Revoke this API key? The connected client will immediately lose access."
 msgstr ""
 
-#: includes/class-admin.php:587 includes/class-admin.php:650
+#: includes/class-admin.php:587
+#: includes/class-admin.php:650
 msgid "Revoke"
 msgstr ""
 
 #: includes/class-admin.php:596
-msgid "Generate a scoped credential above to connect your first agent."
+msgid "No API keys configured"
 msgstr ""
 
 #: includes/class-admin.php:596
-msgid "No API keys configured"
+msgid "Generate a scoped credential above to connect your first agent."
 msgstr ""
 
 #: includes/class-admin.php:603
@@ -548,7 +568,8 @@ msgid_plural "%s clients"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-admin.php:616 includes/class-oauth-server.php:339
+#: includes/class-admin.php:616
+#: includes/class-oauth-server.php:339
 #: includes/class-oauth-server.php:428
 msgid "Client"
 msgstr ""
@@ -578,13 +599,11 @@ msgid "Revoke this OAuth client and all of its access and refresh tokens?"
 msgstr ""
 
 #: includes/class-admin.php:659
-msgid ""
-"Compatible clients can register automatically through the OAuth discovery "
-"endpoints."
+msgid "No OAuth clients registered"
 msgstr ""
 
 #: includes/class-admin.php:659
-msgid "No OAuth clients registered"
+msgid "Compatible clients can register automatically through the OAuth discovery endpoints."
 msgstr ""
 
 #: includes/class-admin.php:670
@@ -592,9 +611,7 @@ msgid "Event automation"
 msgstr ""
 
 #: includes/class-admin.php:672
-msgid ""
-"Deliver signed WordPress and WooCommerce events to trusted HTTPS "
-"destinations."
+msgid "Deliver signed WordPress and WooCommerce events to trusted HTTPS destinations."
 msgstr ""
 
 #. translators: %s: number of webhook destinations.
@@ -654,9 +671,7 @@ msgid "Signed by default"
 msgstr ""
 
 #: includes/class-admin.php:732
-msgid ""
-"Every delivery includes verification headers and follows a bounded retry "
-"schedule."
+msgid "Every delivery includes verification headers and follows a bounded retry schedule."
 msgstr ""
 
 #: includes/class-admin.php:737
@@ -676,11 +691,11 @@ msgid "Up to 5 attempts"
 msgstr ""
 
 #: includes/class-admin.php:740
-msgid "HTTPS with private targets blocked"
+msgid "Network policy"
 msgstr ""
 
 #: includes/class-admin.php:740
-msgid "Network policy"
+msgid "HTTPS with private targets blocked"
 msgstr ""
 
 #: includes/class-admin.php:748
@@ -695,7 +710,8 @@ msgstr ""
 msgid "Configured destinations receive only the events selected for them."
 msgstr ""
 
-#: includes/class-admin.php:757 includes/class-admin.php:916
+#: includes/class-admin.php:757
+#: includes/class-admin.php:916
 msgid "Destination"
 msgstr ""
 
@@ -707,7 +723,8 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: includes/class-admin.php:761 includes/class-admin.php:918
+#: includes/class-admin.php:761
+#: includes/class-admin.php:918
 msgid "Status"
 msgstr ""
 
@@ -720,9 +737,7 @@ msgid "Inactive"
 msgstr ""
 
 #: includes/class-admin.php:776
-msgid ""
-"Remove this webhook destination? Future matching events will no longer be "
-"delivered."
+msgid "Remove this webhook destination? Future matching events will no longer be delivered."
 msgstr ""
 
 #: includes/class-admin.php:781
@@ -730,11 +745,11 @@ msgid "Remove"
 msgstr ""
 
 #: includes/class-admin.php:790
-msgid "Create a signed subscription above to automate downstream workflows."
+msgid "No webhook destinations"
 msgstr ""
 
 #: includes/class-admin.php:790
-msgid "No webhook destinations"
+msgid "Create a signed subscription above to automate downstream workflows."
 msgstr ""
 
 #: includes/class-admin.php:810
@@ -746,9 +761,7 @@ msgid "Activity & logs"
 msgstr ""
 
 #: includes/class-admin.php:812
-msgid ""
-"Inspect tool execution outcomes and webhook delivery health without exposing "
-"sensitive payloads."
+msgid "Inspect tool execution outcomes and webhook delivery health without exposing sensitive payloads."
 msgstr ""
 
 #: includes/class-admin.php:814
@@ -756,11 +769,11 @@ msgid "Arguments redacted"
 msgstr ""
 
 #: includes/class-admin.php:819
-msgid "Latest 100 records"
+msgid "Successful calls"
 msgstr ""
 
 #: includes/class-admin.php:819
-msgid "Successful calls"
+msgid "Latest 100 records"
 msgstr ""
 
 #: includes/class-admin.php:820
@@ -772,11 +785,11 @@ msgid "Review error codes below"
 msgstr ""
 
 #: includes/class-admin.php:821
-msgid "Across visible tool calls"
+msgid "Average duration"
 msgstr ""
 
 #: includes/class-admin.php:821
-msgid "Average duration"
+msgid "Across visible tool calls"
 msgstr ""
 
 #: includes/class-admin.php:822
@@ -796,8 +809,7 @@ msgid "Tool execution"
 msgstr ""
 
 #: includes/class-admin.php:831
-msgid ""
-"The latest calls are retained according to your data lifecycle settings."
+msgid "The latest calls are retained according to your data lifecycle settings."
 msgstr ""
 
 #: includes/class-admin.php:837
@@ -820,11 +832,13 @@ msgstr ""
 msgid "Successful"
 msgstr ""
 
-#: includes/class-admin.php:845 includes/class-admin.php:1656
+#: includes/class-admin.php:845
+#: includes/class-admin.php:1656
 msgid "Failed"
 msgstr ""
 
-#: includes/class-admin.php:861 includes/class-admin.php:915
+#: includes/class-admin.php:861
+#: includes/class-admin.php:915
 msgid "Time"
 msgstr ""
 
@@ -841,11 +855,11 @@ msgid "Duration"
 msgstr ""
 
 #: includes/class-admin.php:886
-msgid "Error"
+msgid "Success"
 msgstr ""
 
 #: includes/class-admin.php:886
-msgid "Success"
+msgid "Error"
 msgstr ""
 
 #: includes/class-admin.php:899
@@ -853,9 +867,7 @@ msgid "No audit records yet"
 msgstr ""
 
 #: includes/class-admin.php:899
-msgid ""
-"Tool calls will be recorded here with duration, scope, and sanitized "
-"outcomes."
+msgid "Tool calls will be recorded here with duration, scope, and sanitized outcomes."
 msgstr ""
 
 #: includes/class-admin.php:906
@@ -867,9 +879,7 @@ msgid "Webhook deliveries"
 msgstr ""
 
 #: includes/class-admin.php:908
-msgid ""
-"Delivery status and HTTP outcomes are visible here; event payloads remain "
-"protected."
+msgid "Delivery status and HTTP outcomes are visible here; event payloads remain protected."
 msgstr ""
 
 #: includes/class-admin.php:917
@@ -893,12 +903,11 @@ msgid "Removed destination"
 msgstr ""
 
 #: includes/class-admin.php:943
-msgid ""
-"Delivery attempts will appear after a subscribed WordPress event occurs."
+msgid "No webhook deliveries yet"
 msgstr ""
 
 #: includes/class-admin.php:943
-msgid "No webhook deliveries yet"
+msgid "Delivery attempts will appear after a subscribed WordPress event occurs."
 msgstr ""
 
 #: includes/class-admin.php:967
@@ -918,29 +927,28 @@ msgid "MCP tool exposure"
 msgstr ""
 
 #: includes/class-admin.php:992
-msgid ""
-"Choose which registered capabilities agents can discover and execute on this "
-"site."
+msgid "Choose which registered capabilities agents can discover and execute on this site."
 msgstr ""
 
-#: includes/class-admin.php:996 includes/class-admin.php:1203
+#: includes/class-admin.php:996
+#: includes/class-admin.php:1203
 msgid "Save tool policy"
-msgstr ""
-
-#: includes/class-admin.php:1002
-msgid "Current integrations"
 msgstr ""
 
 #: includes/class-admin.php:1002
 msgid "Registered tools"
 msgstr ""
 
-#: includes/class-admin.php:1003
-msgid "Advertised in discovery"
+#: includes/class-admin.php:1002
+msgid "Current integrations"
 msgstr ""
 
 #: includes/class-admin.php:1003
 msgid "Exposed tools"
+msgstr ""
+
+#: includes/class-admin.php:1003
+msgid "Advertised in discovery"
 msgstr ""
 
 #: includes/class-admin.php:1004
@@ -984,10 +992,7 @@ msgid "Disable all tools"
 msgstr ""
 
 #: includes/class-admin.php:1044
-msgid ""
-"Disabled tools are removed from discovery and rejected when called directly. "
-"Expand integration tools to govern each read or write operation "
-"independently. Credentials and permission scopes are not changed."
+msgid "Disabled tools are removed from discovery and rejected when called directly. Expand integration tools to govern each read or write operation independently. Credentials and permission scopes are not changed."
 msgstr ""
 
 #. translators: %s: number of tools.
@@ -999,7 +1004,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: number of integration operations.
-#: includes/class-admin.php:1073 includes/class-admin.php:1120
+#: includes/class-admin.php:1073
+#: includes/class-admin.php:1120
 #, php-format
 msgid "%s operation"
 msgid_plural "%s operations"
@@ -1016,7 +1022,8 @@ msgstr ""
 msgid "Expose %s tool"
 msgstr ""
 
-#: includes/class-admin.php:1124 includes/class-admin.php:1176
+#: includes/class-admin.php:1124
+#: includes/class-admin.php:1176
 msgid "Destructive"
 msgstr ""
 
@@ -1057,31 +1064,28 @@ msgid "Try another search term or select a different tool group."
 msgstr ""
 
 #: includes/class-admin.php:1198
-msgid ""
-"Tool and operation policy changes apply to new MCP requests immediately."
+msgid "Tool and operation policy changes apply to new MCP requests immediately."
 msgstr ""
 
 #: includes/class-admin.php:1199
-msgid ""
-"A disabled operation remains unavailable even when its parent integration "
-"tool is exposed."
+msgid "A disabled operation remains unavailable even when its parent integration tool is exposed."
 msgstr ""
 
 #: includes/class-admin.php:1215
 msgid "Policy and runtime"
 msgstr ""
 
-#: includes/class-admin.php:1216 includes/class-admin.php:1566
+#: includes/class-admin.php:1216
+#: includes/class-admin.php:1566
 msgid "Settings"
 msgstr ""
 
 #: includes/class-admin.php:1217
-msgid ""
-"Configure transport limits, browser policy, retention, and privileged "
-"developer capabilities."
+msgid "Configure transport limits, browser policy, retention, and privileged developer capabilities."
 msgstr ""
 
-#: includes/class-admin.php:1221 includes/class-admin.php:1341
+#: includes/class-admin.php:1221
+#: includes/class-admin.php:1341
 msgid "Save changes"
 msgstr ""
 
@@ -1094,12 +1098,11 @@ msgid "Control endpoint availability and bounded request resources."
 msgstr ""
 
 #: includes/class-admin.php:1239
-msgid ""
-"Authenticated clients can discover and call tools through the MCP endpoint."
+msgid "Enable MCP requests"
 msgstr ""
 
 #: includes/class-admin.php:1239
-msgid "Enable MCP requests"
+msgid "Authenticated clients can discover and call tools through the MCP endpoint."
 msgstr ""
 
 #: includes/class-admin.php:1242
@@ -1135,15 +1138,11 @@ msgid "Allowed browser origins"
 msgstr ""
 
 #: includes/class-admin.php:1267
-msgid ""
-"Enter one exact HTTP or HTTPS origin per line. Native MCP clients normally "
-"send no Origin header."
+msgid "Enter one exact HTTP or HTTPS origin per line. Native MCP clients normally send no Origin header."
 msgstr ""
 
 #: includes/class-admin.php:1271
-msgid ""
-"An empty list blocks browser-origin requests while preserving native desktop "
-"and server-side MCP clients."
+msgid "An empty list blocks browser-origin requests while preserving native desktop and server-side MCP clients."
 msgstr ""
 
 #: includes/class-admin.php:1280
@@ -1158,7 +1157,8 @@ msgstr ""
 msgid "Audit retention"
 msgstr ""
 
-#: includes/class-admin.php:1288 includes/class-admin.php:1292
+#: includes/class-admin.php:1288
+#: includes/class-admin.php:1292
 msgid "days"
 msgstr ""
 
@@ -1171,29 +1171,23 @@ msgid "Developer capabilities"
 msgstr ""
 
 #: includes/class-admin.php:1303
-msgid ""
-"Privileged tools are disabled by default and always require administrator "
-"scope."
-msgstr ""
-
-#: includes/class-admin.php:1309
-msgid ""
-"Allow bounded text-file reads, directory listings, and searches inside "
-"approved WordPress content roots."
+msgid "Privileged tools are disabled by default and always require administrator scope."
 msgstr ""
 
 #: includes/class-admin.php:1309
 msgid "Read-only filesystem inspection"
 msgstr ""
 
-#: includes/class-admin.php:1310
-msgid ""
-"Allow validated SELECT queries against a restricted set of non-sensitive "
-"tables."
+#: includes/class-admin.php:1309
+msgid "Allow bounded text-file reads, directory listings, and searches inside approved WordPress content roots."
 msgstr ""
 
 #: includes/class-admin.php:1310
-msgid "Bounded read-only SQL"
+msgid "Database schema inspection"
+msgstr ""
+
+#: includes/class-admin.php:1310
+msgid "Allow prepared, fixed-shape queries that list non-sensitive tables and describe their schemas. Table rows are never returned."
 msgstr ""
 
 #: includes/class-admin.php:1311
@@ -1201,14 +1195,11 @@ msgid "Allowlisted WP-CLI commands"
 msgstr ""
 
 #: includes/class-admin.php:1311
-msgid ""
-"Permit safe in-process WP-CLI commands only when WP_CLI is already loaded."
+msgid "Permit safe in-process WP-CLI commands only when WP_CLI is already loaded."
 msgstr ""
 
 #: includes/class-admin.php:1316
-msgid ""
-"Enable these capabilities only for controlled administrator agents. Every "
-"invocation is written to the audit trail."
+msgid "Enable these capabilities only for controlled administrator agents. Every invocation is written to the audit trail."
 msgstr ""
 
 #: includes/class-admin.php:1325
@@ -1224,9 +1215,7 @@ msgid "Delete all plugin data on uninstall"
 msgstr ""
 
 #: includes/class-admin.php:1330
-msgid ""
-"Permanently remove credentials, OAuth registrations, webhooks, "
-"configuration, and logs when the plugin is deleted."
+msgid "Permanently remove credentials, OAuth registrations, webhooks, configuration, and logs when the plugin is deleted."
 msgstr ""
 
 #: includes/class-admin.php:1336
@@ -1256,9 +1245,7 @@ msgid "Gutenberg blocks"
 msgstr ""
 
 #: includes/class-admin.php:1464
-msgid ""
-"Structured block discovery, tree editing, duplication, movement, and "
-"patterns."
+msgid "Structured block discovery, tree editing, duplication, movement, and patterns."
 msgstr ""
 
 #: includes/class-admin.php:1469
@@ -1298,9 +1285,7 @@ msgid "Content automation"
 msgstr ""
 
 #: includes/class-admin.php:1494
-msgid ""
-"Generation-provider workflows, summaries, translations, and bounded bulk "
-"actions."
+msgid "Generation-provider workflows, summaries, translations, and bounded bulk actions."
 msgstr ""
 
 #: includes/class-admin.php:1499
@@ -1316,9 +1301,7 @@ msgid "Plugins and themes"
 msgstr ""
 
 #: includes/class-admin.php:1506
-msgid ""
-"Official-directory package lifecycle, generic theme controls, and child "
-"themes."
+msgid "Official-directory package lifecycle, generic theme controls, and child themes."
 msgstr ""
 
 #: includes/class-admin.php:1511
@@ -1334,9 +1317,7 @@ msgid "Operations and diagnostics"
 msgstr ""
 
 #: includes/class-admin.php:1518
-msgid ""
-"Read-only filesystem and database inspection, logs, maintenance, caches, "
-"CDN, and image optimization."
+msgid "Read-only filesystem and database inspection, logs, maintenance, caches, CDN, and image optimization."
 msgstr ""
 
 #: includes/class-admin.php:1523
@@ -1344,9 +1325,7 @@ msgid "WooCommerce"
 msgstr ""
 
 #: includes/class-admin.php:1524
-msgid ""
-"Products, orders, customers, inventory, and coupon operations when "
-"WooCommerce is active."
+msgid "Products, orders, customers, inventory, and coupon operations when WooCommerce is active."
 msgstr ""
 
 #: includes/class-admin.php:1529
@@ -1444,8 +1423,7 @@ msgid "Webhook created. Copy its signing secret now."
 msgstr ""
 
 #: includes/class-auth.php:63
-msgid ""
-"A valid API key, OAuth token, or WordPress Application Password is required."
+msgid "A valid API key, OAuth token, or WordPress Application Password is required."
 msgstr ""
 
 #: includes/class-auth.php:76
@@ -1508,12 +1486,12 @@ msgstr ""
 msgid "At least one parsed block is required."
 msgstr ""
 
-#: includes/class-block-tree.php:107 includes/class-block-tree.php:113
+#: includes/class-block-tree.php:107
+#: includes/class-block-tree.php:113
 #: includes/class-block-tree.php:125
 #: includes/tools/class-gutenberg-tools.php:163
 #: includes/tools/class-gutenberg-tools.php:180
-msgid ""
-"The block path no longer resolves. Read the current block tree and try again."
+msgid "The block path no longer resolves. Read the current block tree and try again."
 msgstr ""
 
 #: includes/class-block-tree.php:163
@@ -1551,9 +1529,7 @@ msgid "The target node is invalid."
 msgstr ""
 
 #: includes/class-flatsome-renderer.php:70
-msgid ""
-"The target UX Builder node was not found. Refresh the page structure and "
-"retry."
+msgid "The target UX Builder node was not found. Refresh the page structure and retry."
 msgstr ""
 
 #: includes/class-flatsome-renderer.php:76
@@ -1585,9 +1561,7 @@ msgid "A title component requires text."
 msgstr ""
 
 #: includes/class-flatsome-renderer.php:247
-msgid ""
-"UX text content may contain body-copy markup only. Use typed components for "
-"headings, media, layouts, and shortcodes."
+msgid "UX text content may contain body-copy markup only. Use typed components for headings, media, layouts, and shortcodes."
 msgstr ""
 
 #: includes/class-flatsome-renderer.php:251
@@ -1665,23 +1639,17 @@ msgstr ""
 #. translators: %s: integration name, for example WooCommerce.
 #: includes/class-integration-dispatcher.php:64
 #, php-format
-msgid ""
-"Run an enabled read operation for the %s integration, or omit operation to "
-"inspect its available read capabilities."
+msgid "Run an enabled read operation for the %s integration, or omit operation to inspect its available read capabilities."
 msgstr ""
 
 #. translators: %s: integration name, for example WooCommerce.
 #: includes/class-integration-dispatcher.php:69
 #, php-format
-msgid ""
-"Run an administrator-enabled write operation for the %s integration. Write "
-"operations are disabled by default."
+msgid "Run an administrator-enabled write operation for the %s integration. Write operations are disabled by default."
 msgstr ""
 
 #: includes/class-integration-dispatcher.php:81
-msgid ""
-"Enabled integration operation to execute. Omit it to return the operation "
-"catalog."
+msgid "Enabled integration operation to execute. Omit it to return the operation catalog."
 msgstr ""
 
 #: includes/class-integration-dispatcher.php:85
@@ -1712,9 +1680,7 @@ msgid "The integration operation is not callable."
 msgstr ""
 
 #: includes/class-mcp-server.php:63
-msgid ""
-"This stateless server does not expose an SSE stream or server-managed "
-"sessions."
+msgid "This stateless server does not expose an SSE stream or server-managed sessions."
 msgstr ""
 
 #: includes/class-mcp-server.php:70
@@ -1756,10 +1722,7 @@ msgstr ""
 #. translators: 1: site URL, 2: locale.
 #: includes/class-mcp-server.php:161
 #, php-format
-msgid ""
-"Operate %1$s carefully. Prefer drafts, use list/read tools before writes, "
-"and honor the site locale (%2$s). Destructive calls require explicit "
-"confirmation."
+msgid "Operate %1$s carefully. Prefer drafts, use list/read tools before writes, and honor the site locale (%2$s). Destructive calls require explicit confirmation."
 msgstr ""
 
 #: includes/class-mcp-server.php:173
@@ -1776,7 +1739,8 @@ msgstr ""
 msgid "The Origin header is not allowed for this MCP server."
 msgstr ""
 
-#: includes/class-oauth-server.php:99 includes/class-oauth-server.php:100
+#: includes/class-oauth-server.php:99
+#: includes/class-oauth-server.php:100
 #: includes/class-oauth-server.php:310
 msgid "Authorize MCP Client"
 msgstr ""
@@ -1794,12 +1758,11 @@ msgid "A redirect URI is invalid. Use HTTPS or a loopback HTTP URI."
 msgstr ""
 
 #: includes/class-oauth-server.php:160
-msgid ""
-"The OAuth client registry is full. Revoke an unused client before "
-"registering another."
+msgid "The OAuth client registry is full. Revoke an unused client before registering another."
 msgstr ""
 
-#: includes/class-oauth-server.php:166 includes/class-oauth-server.php:308
+#: includes/class-oauth-server.php:166
+#: includes/class-oauth-server.php:308
 #: includes/class-oauth-server.php:397
 msgid "MCP Client"
 msgstr ""
@@ -1808,7 +1771,8 @@ msgstr ""
 msgid "Too many token requests."
 msgstr ""
 
-#: includes/class-oauth-server.php:191 includes/class-oauth-server.php:566
+#: includes/class-oauth-server.php:191
+#: includes/class-oauth-server.php:566
 msgid "The OAuth client is unknown."
 msgstr ""
 
@@ -1833,9 +1797,7 @@ msgid "PKCE verification failed."
 msgstr ""
 
 #: includes/class-oauth-server.php:258
-msgid ""
-"This authorization request expired. Start the connection again from your MCP "
-"client."
+msgid "This authorization request expired. Start the connection again from your MCP client."
 msgstr ""
 
 #: includes/class-oauth-server.php:314
@@ -1849,9 +1811,7 @@ msgid "Allow %s to connect?"
 msgstr ""
 
 #: includes/class-oauth-server.php:324
-msgid ""
-"Review the requested access before connecting this client to your WordPress "
-"site."
+msgid "Review the requested access before connecting this client to your WordPress site."
 msgstr ""
 
 #: includes/class-oauth-server.php:327
@@ -1875,9 +1835,7 @@ msgid "Requested access"
 msgstr ""
 
 #: includes/class-oauth-server.php:372
-msgid ""
-"Only approve clients you trust. This client will act with the granted "
-"permissions as your current WordPress user."
+msgid "Only approve clients you trust. This client will act with the granted permissions as your current WordPress user."
 msgstr ""
 
 #: includes/class-oauth-server.php:382
@@ -1889,11 +1847,11 @@ msgid "Reject request"
 msgstr ""
 
 #: includes/class-oauth-server.php:398
-msgid "Access request rejected"
+msgid "Authorization approved"
 msgstr ""
 
 #: includes/class-oauth-server.php:398
-msgid "Authorization approved"
+msgid "Access request rejected"
 msgstr ""
 
 #: includes/class-oauth-server.php:415
@@ -1929,9 +1887,7 @@ msgid "Continue to client"
 msgstr ""
 
 #: includes/class-oauth-server.php:439
-msgid ""
-"Automatic return requires JavaScript. Select Continue to finish the "
-"authorization flow."
+msgid "Automatic return requires JavaScript. Select Continue to finish the authorization flow."
 msgstr ""
 
 #: includes/class-oauth-server.php:448
@@ -1951,9 +1907,7 @@ msgid "Error code"
 msgstr ""
 
 #: includes/class-oauth-server.php:461
-msgid ""
-"Start the connection again from your MCP client. If the problem continues, "
-"verify the client URL and OAuth configuration."
+msgid "Start the connection again from your MCP client. If the problem continues, verify the client URL and OAuth configuration."
 msgstr ""
 
 #: includes/class-oauth-server.php:462
@@ -1989,14 +1943,11 @@ msgid "View posts, pages, media, settings, and operational activity."
 msgstr ""
 
 #: includes/class-oauth-server.php:538
-msgid ""
-"Create and update content, media, comments, SEO metadata, and store data."
+msgid "Create and update content, media, comments, SEO metadata, and store data."
 msgstr ""
 
 #: includes/class-oauth-server.php:541
-msgid ""
-"Manage users, plugins, themes, site settings, webhooks, and privileged "
-"operations."
+msgid "Manage users, plugins, themes, site settings, webhooks, and privileged operations."
 msgstr ""
 
 #: includes/class-oauth-server.php:562
@@ -2015,7 +1966,8 @@ msgstr ""
 msgid "Your user cannot grant the requested scope."
 msgstr ""
 
-#: includes/class-oauth-server.php:607 includes/class-oauth-server.php:626
+#: includes/class-oauth-server.php:607
+#: includes/class-oauth-server.php:626
 msgid "The OAuth resource must exactly identify this MCP endpoint."
 msgstr ""
 
@@ -2096,14 +2048,11 @@ msgid "%1$s %2$s."
 msgstr ""
 
 #: includes/class-tool-registry.php:55
-msgid ""
-"Optional installed WordPress locale for localized response messages, for "
-"example fa_IR or en_US."
+msgid "Optional installed WordPress locale for localized response messages, for example fa_IR or en_US."
 msgstr ""
 
 #: includes/class-tool-registry.php:60
-msgid ""
-"On multisite, optionally execute this one call in the selected site context."
+msgid "On multisite, optionally execute this one call in the selected site context."
 msgstr ""
 
 #: includes/class-tool-registry.php:130
@@ -2154,7 +2103,8 @@ msgstr ""
 msgid "URLs containing credentials are not allowed."
 msgstr ""
 
-#: includes/class-url-guard.php:31 includes/class-url-guard.php:54
+#: includes/class-url-guard.php:31
+#: includes/class-url-guard.php:54
 msgid "Local and private network URLs are not allowed."
 msgstr ""
 
@@ -2227,9 +2177,7 @@ msgid "Create or update field group"
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:78
-msgid ""
-"Create or update a sanitized ACF field group. Pro-only structures are not "
-"accepted."
+msgid "Create or update a sanitized ACF field group. Pro-only structures are not accepted."
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:85
@@ -2269,8 +2217,7 @@ msgid "Create or update ACF post type"
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:127
-msgid ""
-"Create or update a custom post type using the ACF Free post-type UI storage."
+msgid "Create or update a custom post type using the ACF Free post-type UI storage."
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:134
@@ -2278,8 +2225,7 @@ msgid "Delete ACF post type"
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:135
-msgid ""
-"Delete an ACF-managed post-type registration, without deleting its content."
+msgid "Delete an ACF-managed post-type registration, without deleting its content."
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:143
@@ -2295,8 +2241,7 @@ msgid "Delete ACF taxonomy"
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:152
-msgid ""
-"Delete an ACF-managed taxonomy registration, without deleting its terms."
+msgid "Delete an ACF-managed taxonomy registration, without deleting its terms."
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:192
@@ -2313,7 +2258,8 @@ msgstr ""
 #: includes/tools/class-gutenberg-tools.php:230
 #: includes/tools/class-seo-provider-tools.php:99
 #: includes/tools/class-seo-provider-tools.php:142
-#: includes/tools/class-seo-tools.php:75 includes/tools/class-seo-tools.php:119
+#: includes/tools/class-seo-tools.php:75
+#: includes/tools/class-seo-tools.php:119
 msgid "Post not found."
 msgstr ""
 
@@ -2334,77 +2280,67 @@ msgid "ACF could not delete the field."
 msgstr ""
 
 #: includes/tools/class-acf-tools.php:282
+msgid "ACF field not found."
+msgstr ""
+
+#: includes/tools/class-acf-tools.php:287
 msgid "ACF could not update the field value."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:299
+#: includes/tools/class-acf-tools.php:365
 msgid "ACF could not save the post type."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:312
+#: includes/tools/class-acf-tools.php:378
 msgid "ACF could not delete the post-type registration."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:328
+#: includes/tools/class-acf-tools.php:394
 msgid "ACF could not save the taxonomy."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:341
+#: includes/tools/class-acf-tools.php:407
 msgid "ACF could not delete the taxonomy registration."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:373
+#: includes/tools/class-acf-tools.php:439
 msgid "Field group title is required."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:397
-msgid ""
-"Field name, label, parent, and a native ACF Free field type are required."
+#: includes/tools/class-acf-tools.php:463
+msgid "Field name, label, parent, and a native ACF Free field type are required."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:438
-msgid ""
-"A title and a valid post type key of at most 20 characters are required."
+#: includes/tools/class-acf-tools.php:504
+msgid "A title and a valid post type key of at most 20 characters are required."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:456
-msgid ""
-"A title, valid taxonomy key, and at least one existing object type are "
-"required."
+#: includes/tools/class-acf-tools.php:522
+msgid "A title, valid taxonomy key, and at least one existing object type are required."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:618
+#: includes/tools/class-acf-tools.php:684
 msgid "This ACF structure operation requires confirm=true."
 msgstr ""
 
-#: includes/tools/class-acf-tools.php:622
+#: includes/tools/class-acf-tools.php:688
 msgid "This operation requires ACF Free 6.1 or newer."
 msgstr ""
 
 #: includes/tools/class-automation-tools.php:24
-msgid ""
-"Generate and create a WordPress post through a configured automation "
-"provider. The provider must implement the "
-"flatsome_mcp_automation_generate_post filter."
+msgid "Generate and create a WordPress post through a configured automation provider. The provider must implement the mindio_magic_mcp_automation_generate_post filter."
 msgstr ""
 
 #: includes/tools/class-automation-tools.php:49
-msgid ""
-"Summarize supplied content or a readable WordPress post. Uses a configured "
-"provider when available and a local extractive fallback otherwise."
+msgid "Summarize supplied content or a readable WordPress post. Uses a configured provider when available and a local extractive fallback otherwise."
 msgstr ""
 
 #: includes/tools/class-automation-tools.php:65
-msgid ""
-"Translate supplied content or a readable WordPress post through a configured "
-"provider. The provider must implement the "
-"flatsome_mcp_automation_translate_content filter."
+msgid "Translate supplied content or a readable WordPress post through a configured provider. The provider must implement the mindio_magic_mcp_automation_translate_content filter."
 msgstr ""
 
 #: includes/tools/class-automation-tools.php:83
-msgid ""
-"Apply one status or deletion action to up to 50 posts, checking permissions "
-"separately for every post."
+msgid "Apply one status or deletion action to up to 50 posts, checking permissions separately for every post."
 msgstr ""
 
 #: includes/tools/class-automation-tools.php:143
@@ -2472,9 +2408,7 @@ msgid "No automation provider is configured. Integrate one with the %s filter."
 msgstr ""
 
 #: includes/tools/class-comment-tools.php:24
-msgid ""
-"List comments for moderation with post, status, search, and pagination "
-"filters."
+msgid "List comments for moderation with post, status, search, and pagination filters."
 msgstr ""
 
 #: includes/tools/class-comment-tools.php:44
@@ -2482,9 +2416,7 @@ msgid "Approve a pending WordPress comment."
 msgstr ""
 
 #: includes/tools/class-comment-tools.php:54
-msgid ""
-"Move a comment to Trash, or permanently delete it only with force=true and "
-"confirm=true."
+msgid "Move a comment to Trash, or permanently delete it only with force=true and confirm=true."
 msgstr ""
 
 #: includes/tools/class-comment-tools.php:73
@@ -2525,9 +2457,7 @@ msgid "Get contact form"
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:39
-msgid ""
-"Get one Contact Form 7 form, mail templates, messages, and additional "
-"settings."
+msgid "Get one Contact Form 7 form, mail templates, messages, and additional settings."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:46
@@ -2535,9 +2465,7 @@ msgid "Create contact form"
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:47
-msgid ""
-"Create a Contact Form 7 form from its default template and sanitized "
-"property overrides."
+msgid "Create a Contact Form 7 form from its default template and sanitized property overrides."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:62
@@ -2545,9 +2473,7 @@ msgid "Update contact form"
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:63
-msgid ""
-"Update a Contact Form 7 title or property set with optional optimistic "
-"concurrency."
+msgid "Update a Contact Form 7 title or property set with optional optimistic concurrency."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:79
@@ -2571,9 +2497,7 @@ msgid "Submit contact form"
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:104
-msgid ""
-"Submit non-file fields through Contact Form 7 validation and delivery. This "
-"can send external email and requires confirmation."
+msgid "Submit non-file fields through Contact Form 7 validation and delivery. This can send external email and requires confirmation."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:161
@@ -2605,9 +2529,7 @@ msgid "A form submission may contain at most 100 fields."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:254
-msgid ""
-"Form field names must be safe and cannot override Contact Form 7 control "
-"fields."
+msgid "Form field names must be safe and cannot override Contact Form 7 control fields."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:261
@@ -2619,8 +2541,7 @@ msgid "Contact Form 7 form not found."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:313
-msgid ""
-"Only form, mail, mail_2, messages, and additional_settings may be updated."
+msgid "Only form, mail, mail_2, messages, and additional_settings may be updated."
 msgstr ""
 
 #: includes/tools/class-contact-form-7-tools.php:319
@@ -2636,27 +2557,19 @@ msgid "Contact form structure changes require confirm=true."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:24
-msgid ""
-"Create a WordPress post, page, or public custom post type as a draft, "
-"pending item, private item, or published item."
+msgid "Create a WordPress post, page, or public custom post type as a draft, pending item, private item, or published item."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:34
-msgid ""
-"Get one WordPress post, page, or custom post type including its editable "
-"content and revision information."
+msgid "Get one WordPress post, page, or custom post type including its editable content and revision information."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:49
-msgid ""
-"Update selected fields of an existing WordPress post while preserving "
-"revision history."
+msgid "Update selected fields of an existing WordPress post while preserving revision history."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:59
-msgid ""
-"Move a post to Trash, or permanently delete it only when force and confirm "
-"are both true."
+msgid "Move a post to Trash, or permanently delete it only when force and confirm are both true."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:78
@@ -2664,15 +2577,11 @@ msgid "Publish an existing post immediately."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:88
-msgid ""
-"Schedule an existing post using an ISO-8601 future date-time interpreted in "
-"the site timezone unless an offset is supplied."
+msgid "Schedule an existing post using an ISO-8601 future date-time interpreted in the site timezone unless an offset is supplied."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:106
-msgid ""
-"List and search posts, pages, or a custom post type with status, taxonomy, "
-"date-range, and pagination filters."
+msgid "List and search posts, pages, or a custom post type with status, taxonomy, date-range, and pagination filters."
 msgstr ""
 
 #: includes/tools/class-content-tools.php:164
@@ -2709,128 +2618,55 @@ msgid "featured_media must be an image attachment or 0."
 msgstr ""
 
 #: includes/tools/class-developer-tools.php:31
-msgid ""
-"Run one allowlisted in-process WP-CLI maintenance command. No shell is "
-"spawned; the setting must be enabled and WP_CLI must already be loaded."
+msgid "Run one allowlisted in-process WP-CLI maintenance command. No shell is spawned; the setting must be enabled and WP_CLI must already be loaded."
 msgstr ""
 
 #: includes/tools/class-developer-tools.php:45
-msgid ""
-"Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. "
-"Sensitive credential tables, comments, stacked statements, file access, "
-"locks, and timing functions are denied."
+msgid "List non-sensitive tables for the current WordPress site with bounded storage metadata. Requires database inspection to be enabled."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:63
-msgid ""
-"List non-sensitive tables for the current WordPress site with bounded "
-"storage metadata. Requires read-only SQL to be enabled."
+#: includes/tools/class-developer-tools.php:55
+msgid "Describe columns and indexes for one non-sensitive current-site table. No table rows are returned."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:73
-msgid ""
-"Describe columns and indexes for one non-sensitive current-site table. No "
-"table rows are returned."
+#: includes/tools/class-developer-tools.php:70
+msgid "Clear WordPress object cache and detected page-cache plugins, or clean the cache for one post."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:88
-msgid ""
-"Clear WordPress object cache and detected page-cache plugins, or clean the "
-"cache for one post."
+#: includes/tools/class-developer-tools.php:84
+msgid "Read the tail of WordPress debug.log when WP_DEBUG_LOG is enabled. Common secret assignments are redacted."
 msgstr ""
 
 #: includes/tools/class-developer-tools.php:102
-msgid ""
-"Read the tail of WordPress debug.log when WP_DEBUG_LOG is enabled. Common "
-"secret assignments are redacted."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:120
 msgid "WP-CLI tools are disabled in Mindio Magic MCP settings."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:123
-msgid ""
-"WP_CLI is not loaded in this process. Use the local WP-CLI MCP transport for "
-"this tool."
+#: includes/tools/class-developer-tools.php:105
+msgid "WP_CLI is not loaded in this process. Use the local WP-CLI MCP transport for this tool."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:127
+#: includes/tools/class-developer-tools.php:109
 msgid "The WP-CLI command is not allowlisted."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:147
-#: includes/tools/class-developer-tools.php:416
-msgid "Read-only SQL is disabled in Mindio Magic MCP settings."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:206
+#: includes/tools/class-developer-tools.php:163
 msgid "The requested table is missing or classified as sensitive."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:280
+#: includes/tools/class-developer-tools.php:237
 msgid "No readable debug.log exists inside wp-content."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:286
+#: includes/tools/class-developer-tools.php:243
 msgid "The debug log could not be opened."
 msgstr ""
 
-#: includes/tools/class-developer-tools.php:309
-msgid "Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:312
-msgid "Comments and statement separators are not allowed."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:315
-msgid "The query contains a forbidden operation or function."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:318
-msgid ""
-"The query requests forbidden server, grant, process, or locking information."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:321
-msgid ""
-"Server schemas, identities, variables, and version metadata cannot be "
-"queried."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:324
-msgid ""
-"Use the table-list tool; raw SHOW is limited to columns and indexes of safe "
-"tables."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:329
-msgid ""
-"Credential-bearing users, usermeta, and options tables cannot be queried."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:333
-msgid "Derived-table subqueries are not supported by the safe SQL validator."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:345
-msgid ""
-"Safe SELECT and EXPLAIN queries must reference an allowed current-site table."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:350
-msgid "The query references a missing, cross-site, or sensitive table."
-msgstr ""
-
-#: includes/tools/class-developer-tools.php:354
-msgid "Raw postmeta values may contain credentials and cannot be selected."
+#: includes/tools/class-developer-tools.php:267
+msgid "Database inspection is disabled in Mindio Magic MCP settings."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:24
-msgid ""
-"List installed WordPress plugins, versions, activation state, and available "
-"updates."
+msgid "List installed WordPress plugins, versions, activation state, and available updates."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:34
@@ -2838,39 +2674,27 @@ msgid "Search the WordPress.org plugin directory without installing anything."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:44
-msgid ""
-"Install a plugin by exact WordPress.org slug. Custom package URLs are never "
-"accepted. Requires confirm=true."
+msgid "Install a plugin by exact WordPress.org slug. Custom package URLs are never accepted. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:63
-msgid ""
-"Update one installed plugin to its latest available version. Requires "
-"confirm=true."
+msgid "Update one installed plugin to its latest available version. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:73
-msgid ""
-"Activate an installed plugin by its plugin file, for example akismet/"
-"akismet.php."
+msgid "Activate an installed plugin by its plugin file, for example akismet/akismet.php."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:83
-msgid ""
-"Deactivate an installed plugin. Mindio Magic MCP cannot deactivate itself through "
-"its own connection."
+msgid "Deactivate an installed plugin. Mindio Magic MCP cannot deactivate itself through its own connection."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:93
-msgid ""
-"Permanently delete an inactive plugin. Mindio Magic MCP is protected and "
-"confirm=true is required."
+msgid "Permanently delete an inactive plugin. Mindio Magic MCP is protected and confirm=true is required."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:111
-msgid ""
-"List installed WordPress themes and identify the active template and child "
-"theme."
+msgid "List installed WordPress themes and identify the active template and child theme."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:121
@@ -2878,27 +2702,19 @@ msgid "Search the WordPress.org theme directory without installing anything."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:131
-msgid ""
-"Install a theme by exact WordPress.org slug. Custom package URLs are never "
-"accepted. Requires confirm=true."
+msgid "Install a theme by exact WordPress.org slug. Custom package URLs are never accepted. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:150
-msgid ""
-"Update one installed theme to its latest available version. Requires "
-"confirm=true."
+msgid "Update one installed theme to its latest available version. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:160
-msgid ""
-"Permanently delete an inactive theme. Active themes and their parent themes "
-"are protected. Requires confirm=true."
+msgid "Permanently delete an inactive theme. Active themes and their parent themes are protected. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:170
-msgid ""
-"Switch to an installed theme by stylesheet slug. Requires confirm=true "
-"because this changes the public site."
+msgid "Switch to an installed theme by stylesheet slug. Requires confirm=true because this changes the public site."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:252
@@ -2990,9 +2806,7 @@ msgid "The installed theme is missing or broken."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:668
-msgid ""
-"This site requires interactive filesystem credentials, so MCP cannot safely "
-"perform the package operation."
+msgid "This site requires interactive filesystem credentials, so MCP cannot safely perform the package operation."
 msgstr ""
 
 #: includes/tools/class-extension-tools.php:673
@@ -3005,21 +2819,15 @@ msgid "The WordPress.org API returned an untrusted package URL."
 msgstr ""
 
 #: includes/tools/class-filesystem-tools.php:27
-msgid ""
-"Read a bounded UTF-8 text file from an allowlisted WordPress content root. "
-"Sensitive files and common secret assignments are redacted."
+msgid "Read a bounded UTF-8 text file from an allowlisted WordPress content root. Sensitive files and common secret assignments are redacted."
 msgstr ""
 
 #: includes/tools/class-filesystem-tools.php:47
-msgid ""
-"List a bounded directory tree inside an allowlisted WordPress content root "
-"without following symbolic links."
+msgid "List a bounded directory tree inside an allowlisted WordPress content root without following symbolic links."
 msgstr ""
 
 #: includes/tools/class-filesystem-tools.php:67
-msgid ""
-"Search bounded UTF-8 text files for a literal string inside an allowlisted "
-"WordPress content root."
+msgid "Search bounded UTF-8 text files for a literal string inside an allowlisted WordPress content root."
 msgstr ""
 
 #: includes/tools/class-filesystem-tools.php:106
@@ -3055,44 +2863,31 @@ msgid "The requested path is not the required file or directory type."
 msgstr ""
 
 #: includes/tools/class-filesystem-tools.php:268
-msgid ""
-"The selected file type or sensitive filename is not readable through MCP."
+msgid "The selected file type or sensitive filename is not readable through MCP."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:31
-msgid ""
-"List native-first Flatsome component types, shortcode availability, "
-"dependencies, container rules, and the active Flatsome version."
+msgid "List native-first Flatsome component types, shortcode availability, dependencies, container rules, and the active Flatsome version."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:41
-msgid ""
-"Create a production-ready Flatsome UX Builder page from declarative "
-"sections, responsive rows, columns, and native-first typed components."
+msgid "Create a production-ready Flatsome UX Builder page from declarative sections, responsive rows, columns, and native-first typed components."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:63
-msgid ""
-"Read a Flatsome page and its stable section, row, and column IDs before "
-"making incremental edits."
+msgid "Read a Flatsome page and its stable section, row, and column IDs before making incremental edits."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:73
-msgid ""
-"Append one safe UX Builder section to an existing Flatsome page and return "
-"all new stable node IDs."
+msgid "Append one safe UX Builder section to an existing Flatsome page and return all new stable node IDs."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:91
-msgid ""
-"Insert one responsive UX Builder row into a section selected by its stable "
-"section_id."
+msgid "Insert one responsive UX Builder row into a section selected by its stable section_id."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:110
-msgid ""
-"Insert one native-first typed Flatsome component into a UX Builder column "
-"selected by stable column_id."
+msgid "Insert one native-first typed Flatsome component into a UX Builder column selected by stable column_id."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:161
@@ -3104,9 +2899,7 @@ msgid "The generated UX Builder layout exceeds the 4 MB content limit."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:670
-msgid ""
-"The Flatsome theme (or a Flatsome child theme) must be active for UX Builder "
-"tools."
+msgid "The Flatsome theme (or a Flatsome child theme) must be active for UX Builder tools."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:676
@@ -3126,15 +2919,11 @@ msgid "A Flatsome layout may contain at most 2,000 managed nodes."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:769
-msgid ""
-"A Flatsome layout may contain at most 2,000 sections, rows, columns, and "
-"elements combined."
+msgid "A Flatsome layout may contain at most 2,000 sections, rows, columns, and elements combined."
 msgstr ""
 
 #: includes/tools/class-flatsome-tools.php:784
-msgid ""
-"A Flatsome layout may contain at most 2,000 sections, rows, columns, and "
-"components combined."
+msgid "A Flatsome layout may contain at most 2,000 sections, rows, columns, and components combined."
 msgstr ""
 
 #. translators: %d: WordPress media attachment ID.
@@ -3156,37 +2945,27 @@ msgid "Node ID %s already exists on the page."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:22
-msgid ""
-"List registered Gutenberg block types with category, title, and availability "
-"metadata."
+msgid "List registered Gutenberg block types with category, title, and availability metadata."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:23
-msgid ""
-"Get the registered attributes, supports, styles, and example markup for one "
-"or more Gutenberg block types."
+msgid "Get the registered attributes, supports, styles, and example markup for one or more Gutenberg block types."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:24
-msgid ""
-"Read a post as a structured Gutenberg block tree with stable-for-this-"
-"revision index paths."
+msgid "Read a post as a structured Gutenberg block tree with stable-for-this-revision index paths."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:25
-msgid ""
-"List registered Gutenberg block patterns that can be inserted into posts."
+msgid "List registered Gutenberg block patterns that can be inserted into posts."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:26
-msgid ""
-"Insert one or more Gutenberg blocks at a root or nested block-tree position."
+msgid "Insert one or more Gutenberg blocks at a root or nested block-tree position."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:27
-msgid ""
-"Replace the Gutenberg block at an index path while preserving WordPress "
-"revision history."
+msgid "Replace the Gutenberg block at an index path while preserving WordPress revision history."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:28
@@ -3202,9 +2981,7 @@ msgid "Duplicate a Gutenberg block and insert the copy immediately after it."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:31
-msgid ""
-"Insert a registered Gutenberg pattern at a root or nested block-tree "
-"position."
+msgid "Insert a registered Gutenberg pattern at a root or nested block-tree position."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:72
@@ -3220,15 +2997,11 @@ msgid "The requested Gutenberg pattern is not registered."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:234
-msgid ""
-"The post changed after the block tree was read. Fetch the current blocks and "
-"retry."
+msgid "The post changed after the block tree was read. Fetch the current blocks and retry."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:238
-msgid ""
-"This post contains Flatsome UX Builder content. Use Flatsome tools, or pass "
-"force_non_gutenberg=true and confirm=true to override."
+msgid "This post contains Flatsome UX Builder content. Use Flatsome tools, or pass force_non_gutenberg=true and confirm=true to override."
 msgstr ""
 
 #: includes/tools/class-gutenberg-tools.php:246
@@ -3236,20 +3009,15 @@ msgid "Block markup cannot be empty."
 msgstr ""
 
 #: includes/tools/class-media-tools.php:24
-msgid ""
-"Upload media from an HTTPS URL or base64 payload. Returns the attachment ID "
-"and direct URL."
+msgid "Upload media from an HTTPS URL or base64 payload. Returns the attachment ID and direct URL."
 msgstr ""
 
 #: includes/tools/class-media-tools.php:46
-msgid ""
-"List and search WordPress Media Library attachments with direct URLs and "
-"image dimensions."
+msgid "List and search WordPress Media Library attachments with direct URLs and image dimensions."
 msgstr ""
 
 #: includes/tools/class-media-tools.php:66
-msgid ""
-"Attach an existing Media Library item to a post or detach it with post_id 0."
+msgid "Attach an existing Media Library item to a post or detach it with post_id 0."
 msgstr ""
 
 #: includes/tools/class-media-tools.php:84
@@ -3303,15 +3071,11 @@ msgid "The media attachment could not be deleted."
 msgstr ""
 
 #: includes/tools/class-multisite-tools.php:27
-msgid ""
-"List WordPress multisite sites the network administrator can target with the "
-"site_id argument."
+msgid "List WordPress multisite sites the network administrator can target with the site_id argument."
 msgstr ""
 
 #: includes/tools/class-multisite-tools.php:45
-msgid ""
-"Validate a multisite site context. Context is intentionally stateless: pass "
-"this site_id on every subsequent tool call."
+msgid "Validate a multisite site context. Context is intentionally stateless: pass this site_id on every subsequent tool call."
 msgstr ""
 
 #: includes/tools/class-multisite-tools.php:86
@@ -3323,20 +3087,15 @@ msgid "Include this site_id in every tool call that should run on this site."
 msgstr ""
 
 #: includes/tools/class-performance-tools.php:24
-msgid ""
-"Request a CDN purge through detected WordPress cache integrations and a "
-"documented extension hook."
+msgid "Request a CDN purge through detected WordPress cache integrations and a documented extension hook."
 msgstr ""
 
 #: includes/tools/class-performance-tools.php:38
-msgid ""
-"Inspect detected cache layers or purge all/page-specific WordPress caches."
+msgid "Inspect detected cache layers or purge all/page-specific WordPress caches."
 msgstr ""
 
 #: includes/tools/class-performance-tools.php:56
-msgid ""
-"Regenerate WordPress image metadata and sizes, then trigger optimization-"
-"plugin hooks for one image attachment."
+msgid "Regenerate WordPress image metadata and sizes, then trigger optimization-plugin hooks for one image attachment."
 msgstr ""
 
 #: includes/tools/class-performance-tools.php:78
@@ -3360,9 +3119,7 @@ msgid "WordPress could not regenerate image sizes."
 msgstr ""
 
 #: includes/tools/class-search-tools.php:24
-msgid ""
-"Search across WordPress posts, pages, and public custom post types with "
-"taxonomy, date-range, and pagination filters."
+msgid "Search across WordPress posts, pages, and public custom post types with taxonomy, date-range, and pagination filters."
 msgstr ""
 
 #. translators: %s: WordPress post type name.
@@ -3372,8 +3129,7 @@ msgid "Post type %s is not searchable."
 msgstr ""
 
 #: includes/tools/class-search-tools.php:70
-msgid ""
-"Your user cannot search non-public content for every requested post type."
+msgid "Your user cannot search non-public content for every requested post type."
 msgstr ""
 
 #: includes/tools/class-search-tools.php:95
@@ -3385,9 +3141,7 @@ msgid "Get post SEO"
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:36
-msgid ""
-"Read title, description, focus keyword, robots, canonical, social, and "
-"schema data for one post."
+msgid "Read title, description, focus keyword, robots, canonical, social, and schema data for one post."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:43
@@ -3395,9 +3149,7 @@ msgid "Get term SEO"
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:44
-msgid ""
-"Read title, description, focus keyword, robots, canonical, and social data "
-"for one taxonomy term."
+msgid "Read title, description, focus keyword, robots, canonical, and social data for one taxonomy term."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:51
@@ -3405,8 +3157,7 @@ msgid "Get provider settings"
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:52
-msgid ""
-"Read a curated set of safe homepage, social, robots, and title settings."
+msgid "Read a curated set of safe homepage, social, robots, and title settings."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:61
@@ -3414,9 +3165,7 @@ msgid "Update post SEO"
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:62
-msgid ""
-"Update an allowlisted set of post SEO and social fields with optional "
-"concurrency protection."
+msgid "Update an allowlisted set of post SEO and social fields with optional concurrency protection."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:69
@@ -3432,9 +3181,7 @@ msgid "Update provider settings"
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:78
-msgid ""
-"Update only curated homepage, social, robots, and title settings. Requires "
-"confirmation."
+msgid "Update only curated homepage, social, robots, and title settings. Requires confirmation."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:122
@@ -3443,19 +3190,15 @@ msgid "Taxonomy term not found."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:145
-msgid ""
-"The post changed since it was read. Fetch it again before updating SEO data."
+msgid "The post changed since it was read. Fetch it again before updating SEO data."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:154
-msgid ""
-"Yoast SEO Free generates its graph; use schema_page_type and "
-"schema_article_type instead of arbitrary schemas."
+msgid "Yoast SEO Free generates its graph; use schema_page_type and schema_article_type instead of arbitrary schemas."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:157
-msgid ""
-"Replacing Rank Math schemas requires replace_schemas=true and confirm=true."
+msgid "Replacing Rank Math schemas requires replace_schemas=true and confirm=true."
 msgstr ""
 
 #: includes/tools/class-seo-provider-tools.php:218
@@ -3480,46 +3223,38 @@ msgid "Robots directives contain unsupported or contradictory values."
 msgstr ""
 
 #. translators: %s: SEO setting key.
-#: includes/tools/class-seo-provider-tools.php:509
+#: includes/tools/class-seo-provider-tools.php:515
 #, php-format
 msgid "SEO setting \"%s\" has an invalid value or type."
 msgstr ""
 
-#: includes/tools/class-seo-provider-tools.php:578
+#: includes/tools/class-seo-provider-tools.php:584
 #: includes/tools/class-seo-tools.php:140
 msgid "Schema JSON is invalid or exceeds 100 KB."
 msgstr ""
 
-#: includes/tools/class-seo-provider-tools.php:585
+#: includes/tools/class-seo-provider-tools.php:591
 msgid "Every Rank Math schema must contain a safe @type value."
 msgstr ""
 
-#: includes/tools/class-seo-provider-tools.php:589
+#: includes/tools/class-seo-provider-tools.php:595
 msgid "Rank Math schema types must be unique per update."
 msgstr ""
 
 #: includes/tools/class-seo-tools.php:29
-msgid ""
-"Read normalized SEO, Open Graph, canonical, robots, and schema metadata. "
-"Detects Yoast SEO and Rank Math automatically."
+msgid "Read normalized SEO, Open Graph, canonical, robots, and schema metadata. Detects Yoast SEO and Rank Math automatically."
 msgstr ""
 
 #: includes/tools/class-seo-tools.php:39
-msgid ""
-"Update normalized SEO metadata. Values are mirrored to active Yoast SEO or "
-"Rank Math fields and retained in a plugin-neutral fallback."
+msgid "Update normalized SEO metadata. Values are mirrored to active Yoast SEO or Rank Math fields and retained in a plugin-neutral fallback."
 msgstr ""
 
 #: includes/tools/class-site-tools.php:24
-msgid ""
-"Read a curated, non-secret set of WordPress general, reading, discussion, "
-"and permalink settings."
+msgid "Read a curated, non-secret set of WordPress general, reading, discussion, and permalink settings."
 msgstr ""
 
 #: includes/tools/class-site-tools.php:34
-msgid ""
-"Update only the allowlisted WordPress site settings. Permalink updates "
-"safely flush rewrite rules."
+msgid "Update only the allowlisted WordPress site settings. Permalink updates safely flush rewrite rules."
 msgstr ""
 
 #: includes/tools/class-site-tools.php:88
@@ -3535,15 +3270,11 @@ msgid "Use an IANA timezone such as Asia/Tehran or a valid UTC offset."
 msgstr ""
 
 #: includes/tools/class-site-tools.php:111
-msgid ""
-"The permalink structure must start and end with / and contain only WordPress "
-"rewrite tokens."
+msgid "The permalink structure must start and end with / and contain only WordPress rewrite tokens."
 msgstr ""
 
 #: includes/tools/class-system-tools.php:28
-msgid ""
-"Get the MCP endpoint, WordPress/Flatsome versions, locale, and capabilities "
-"available to the current credential."
+msgid "Get the MCP endpoint, WordPress/Flatsome versions, locale, and capabilities available to the current credential."
 msgstr ""
 
 #: includes/tools/class-system-tools.php:38
@@ -3551,45 +3282,31 @@ msgid "Read the durable MCP audit trail with redacted sensitive inputs."
 msgstr ""
 
 #: includes/tools/class-system-tools.php:58
-msgid ""
-"Read webhook delivery attempts, response codes, retry state, and optionally "
-"their event payloads."
+msgid "Read webhook delivery attempts, response codes, retry state, and optionally their event payloads."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:24
-msgid ""
-"Get the active parent/child theme context and declared WordPress feature "
-"support."
+msgid "Get the active parent/child theme context and declared WordPress feature support."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:34
-msgid ""
-"Read active-theme modifications with sensitive values redacted. Optionally "
-"select specific keys."
+msgid "Read active-theme modifications with sensitive values redacted. Optionally select specific keys."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:54
-msgid ""
-"Update only the portable WordPress theme modifications in the documented "
-"allowlist. Requires confirm=true."
+msgid "Update only the portable WordPress theme modifications in the documented allowlist. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:64
-msgid ""
-"Create a minimal child theme for the active parent theme and optionally "
-"activate it. Requires confirm=true."
+msgid "Create a minimal child theme for the active parent theme and optionally activate it. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:85
-msgid ""
-"Read typed, curated Flatsome settings for colors, typography, layout, "
-"header, footer, blog, shop, and performance."
+msgid "Read typed, curated Flatsome settings for colors, typography, layout, header, footer, blog, shop, and performance."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:101
-msgid ""
-"Update typed settings from the curated Flatsome allowlist. Unknown or "
-"structurally unsafe settings are rejected. Requires confirm=true."
+msgid "Update typed settings from the curated Flatsome allowlist. Unknown or structurally unsafe settings are rejected. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:174
@@ -3829,39 +3546,27 @@ msgid "The active stylesheet changed since the agent read the theme context."
 msgstr ""
 
 #: includes/tools/class-theme-tools.php:509
-msgid ""
-"This site requires interactive filesystem credentials, so MCP cannot safely "
-"create a child theme."
+msgid "This site requires interactive filesystem credentials, so MCP cannot safely create a child theme."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:47
-msgid ""
-"List WordPress users and roles with search and pagination. Passwords and "
-"secrets are never exposed."
+msgid "List WordPress users and roles with search and pagination. Passwords and secrets are never exposed."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:66
-msgid ""
-"Create a non-administrator WordPress user and optionally email the standard "
-"new-user invitation. Passwords are never returned."
+msgid "Create a non-administrator WordPress user and optionally email the standard new-user invitation. Passwords are never returned."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:88
-msgid ""
-"Update a non-administrator user profile and optionally assign another non-"
-"administrator role."
+msgid "Update a non-administrator user profile and optionally assign another non-administrator role."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:112
-msgid ""
-"Delete a non-administrator user, optionally reassigning their content. "
-"Requires confirm=true and never permits self-deletion."
+msgid "Delete a non-administrator user, optionally reassigning their content. Requires confirm=true and never permits self-deletion."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:131
-msgid ""
-"Send the normal WordPress password-reset email to a user. Reset keys and "
-"passwords are never returned."
+msgid "Send the normal WordPress password-reset email to a user. Reset keys and passwords are never returned."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:183
@@ -3873,9 +3578,7 @@ msgid "A valid username and email address are required."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:210
-msgid ""
-"No password is exposed. The user can set one through the invitation or "
-"password-reset flow."
+msgid "No password is exposed. The user can set one through the invitation or password-reset flow."
 msgstr ""
 
 #: includes/tools/class-user-tools.php:219
@@ -3917,9 +3620,7 @@ msgid "The user could not be deleted."
 msgstr ""
 
 #: includes/tools/class-webhook-tools.php:26
-msgid ""
-"Register a signed HTTPS webhook for WordPress post, comment, or WooCommerce "
-"order events. The signing secret is returned once."
+msgid "Register a signed HTTPS webhook for WordPress post, comment, or WooCommerce order events. The signing secret is returned once."
 msgstr ""
 
 #: includes/tools/class-webhook-tools.php:44
@@ -4383,9 +4084,7 @@ msgid "WooCommerce operation payload is too deeply nested or complex."
 msgstr ""
 
 #: includes/tools/class-woocommerce-operation-tools.php:327
-msgid ""
-"Secret and password fields are not writable through the WooCommerce MCP "
-"dispatcher."
+msgid "Secret and password fields are not writable through the WooCommerce MCP dispatcher."
 msgstr ""
 
 #: includes/tools/class-woocommerce-operation-tools.php:331
@@ -4401,9 +4100,7 @@ msgid "WooCommerce payload contains an invalid or reserved key."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:27
-msgid ""
-"Create a WooCommerce simple product with pricing, images, categories, SKU, "
-"and inventory fields."
+msgid "Create a WooCommerce simple product with pricing, images, categories, SKU, and inventory fields."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:36
@@ -4411,15 +4108,11 @@ msgid "Update selected fields on an existing WooCommerce product."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:46
-msgid ""
-"List WooCommerce orders through the HPOS-compatible order API with status, "
-"customer, date, and pagination filters."
+msgid "List WooCommerce orders through the HPOS-compatible order API with status, customer, date, and pagination filters."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:67
-msgid ""
-"List, create, or update WooCommerce customer accounts without exposing "
-"passwords."
+msgid "List, create, or update WooCommerce customer accounts without exposing passwords."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:93
@@ -4427,9 +4120,7 @@ msgid "Set or adjust WooCommerce product stock and stock status."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:112
-msgid ""
-"Apply or remove a coupon on an existing WooCommerce order and recalculate "
-"totals. Requires confirm=true."
+msgid "Apply or remove a coupon on an existing WooCommerce order and recalculate totals. Requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:163
@@ -4467,8 +4158,4 @@ msgstr ""
 
 #: includes/tools/class-woocommerce-tools.php:307
 msgid "Order not found."
-msgstr ""
-
-#: includes/tools/class-acf-tools.php:282
-msgid "ACF field not found."
 msgstr ""

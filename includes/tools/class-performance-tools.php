@@ -2,10 +2,10 @@
 /**
  * Cache, CDN, and image-optimization integration tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -93,12 +93,12 @@ final class Performance_Tools {
 			\autoptimizeCache::clearall();
 			$providers[] = 'autoptimize';
 		}
-		do_action( 'flatsome_mcp_purge_cdn', $url );
+		do_action( 'mindio_magic_mcp_purge_cdn', $url );
 		return array(
 			'purge_requested' => true,
 			'url'             => $url,
 			'providers'       => $providers,
-			'extension_hook'  => 'flatsome_mcp_purge_cdn',
+			'extension_hook'  => 'mindio_magic_mcp_purge_cdn',
 		);
 	}
 
@@ -133,7 +133,7 @@ final class Performance_Tools {
 			}
 			do_action( 'litespeed_purge_all' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- LiteSpeed Cache integration hook.
 		}
-		do_action( 'flatsome_mcp_cache_cleared', $post_id );
+		do_action( 'mindio_magic_mcp_cache_cleared', $post_id );
 		return array( 'action' => $action, 'post_id' => $post_id, 'purged' => true, 'providers' => $providers );
 	}
 
@@ -153,14 +153,14 @@ final class Performance_Tools {
 			return is_wp_error( $metadata ) ? $metadata : new \WP_Error( 'metadata_generation_failed', __( 'WordPress could not regenerate image sizes.', 'mindio-magic-mcp' ) );
 		}
 		wp_update_attachment_metadata( $media_id, $metadata );
-		do_action( 'flatsome_mcp_optimize_attachment', $media_id, $file, $metadata );
+		do_action( 'mindio_magic_mcp_optimize_attachment', $media_id, $file, $metadata );
 		return array(
 			'media_id'        => $media_id,
 			'url'             => wp_get_attachment_url( $media_id ) ?: '',
 			'width'           => (int) ( $metadata['width'] ?? 0 ),
 			'height'          => (int) ( $metadata['height'] ?? 0 ),
 			'generated_sizes' => array_keys( (array) ( $metadata['sizes'] ?? array() ) ),
-			'extension_hook'  => 'flatsome_mcp_optimize_attachment',
+			'extension_hook'  => 'mindio_magic_mcp_optimize_attachment',
 		);
 	}
 

@@ -2,10 +2,10 @@
 /**
  * Guarded plugin and theme lifecycle tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -200,7 +200,7 @@ final class Extension_Tools {
 				'network_active'   => is_multisite() && is_plugin_active_for_network( $file ),
 				'update_available' => is_object( $updates ) && isset( $updates->response[ $file ] ),
 				'new_version'      => is_object( $updates ) && isset( $updates->response[ $file ] ) ? (string) $updates->response[ $file ]->new_version : '',
-				'protected'        => plugin_basename( FLATSOME_MCP_FILE ) === $file,
+				'protected'        => plugin_basename( MINDIO_MAGIC_MCP_FILE ) === $file,
 			);
 		}
 		return array( 'plugins' => $items );
@@ -354,7 +354,7 @@ final class Extension_Tools {
 		if ( is_wp_error( $file ) ) {
 			return $file;
 		}
-		if ( plugin_basename( FLATSOME_MCP_FILE ) === $file ) {
+		if ( plugin_basename( MINDIO_MAGIC_MCP_FILE ) === $file ) {
 			return new \WP_Error( 'self_deactivation_forbidden', __( 'Mindio Magic MCP cannot deactivate itself through MCP.', 'mindio-magic-mcp' ) );
 		}
 		if ( ! is_plugin_active( $file ) ) {
@@ -373,7 +373,7 @@ final class Extension_Tools {
 		if ( is_wp_error( $file ) ) {
 			return $file;
 		}
-		if ( plugin_basename( FLATSOME_MCP_FILE ) === $file ) {
+		if ( plugin_basename( MINDIO_MAGIC_MCP_FILE ) === $file ) {
 			return new \WP_Error( 'protected_plugin', __( 'Mindio Magic MCP cannot delete itself.', 'mindio-magic-mcp' ) );
 		}
 		if ( is_plugin_active( $file ) || ( is_multisite() && is_plugin_active_for_network( $file ) ) ) {

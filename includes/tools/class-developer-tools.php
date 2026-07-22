@@ -2,10 +2,10 @@
 /**
  * Bounded developer and diagnostic tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,26 +41,8 @@ final class Developer_Tools {
 			'manage_options'
 		);
 		$this->registry->register(
-			'run_safe_query',
-			__( 'Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. Sensitive credential tables, comments, stacked statements, file access, locks, and timing functions are denied.', 'mindio-magic-mcp' ),
-			array(
-				'type'       => 'object',
-				'properties' => array(
-					'sql'   => array( 'type' => 'string', 'minLength' => 1, 'maxLength' => 20000 ),
-					'limit' => array( 'type' => 'integer', 'minimum' => 1, 'maximum' => 500 ),
-				),
-				'required'             => array( 'sql' ),
-				'additionalProperties' => false,
-			),
-			array( 'type' => 'object' ),
-			array( $this, 'run_safe_query' ),
-			Auth::SCOPE_ADMIN,
-			'manage_options',
-			array( 'readOnlyHint' => true )
-		);
-		$this->registry->register(
 			'list_database_tables',
-			__( 'List non-sensitive tables for the current WordPress site with bounded storage metadata. Requires read-only SQL to be enabled.', 'mindio-magic-mcp' ),
+			__( 'List non-sensitive tables for the current WordPress site with bounded storage metadata. Requires database inspection to be enabled.', 'mindio-magic-mcp' ),
 			array( 'type' => 'object', 'properties' => array(), 'additionalProperties' => false ),
 			array( 'type' => 'object' ),
 			array( $this, 'list_database_tables' ),
@@ -115,7 +97,7 @@ final class Developer_Tools {
 
 	/** @return array<string,mixed>|\WP_Error */
 	public function run_wp_cli( array $args ): array|\WP_Error {
-		$settings = get_option( 'flatsome_mcp_settings', array() );
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
 		if ( empty( $settings['allow_wp_cli'] ) ) {
 			return new \WP_Error( 'wp_cli_disabled', __( 'WP-CLI tools are disabled in Mindio Magic MCP settings.', 'mindio-magic-mcp' ) );
 		}
@@ -140,34 +122,9 @@ final class Developer_Tools {
 	}
 
 	/** @return array<string,mixed>|\WP_Error */
-	public function run_safe_query( array $args ): array|\WP_Error {
-		global $wpdb;
-		$settings = get_option( 'flatsome_mcp_settings', array() );
-		if ( empty( $settings['allow_safe_query'] ) ) {
-			return new \WP_Error( 'safe_query_disabled', __( 'Read-only SQL is disabled in Mindio Magic MCP settings.', 'mindio-magic-mcp' ) );
-		}
-		$sql   = trim( (string) $args['sql'] );
-		$limit = max( 1, min( 500, absint( $args['limit'] ?? 200 ) ) );
-		$check = $this->validate_query( $sql );
-		if ( is_wp_error( $check ) ) {
-			return $check;
-		}
-		if ( preg_match( '/^SELECT\b/i', $sql ) ) {
-			$sql = $this->cap_select_limit( $sql, $limit );
-		}
-
-		$rows = $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Fail-closed read-only validator above; this is the explicitly opt-in SQL tool and each request must return current data.
-		if ( '' !== $wpdb->last_error ) {
-			return new \WP_Error( 'query_failed', $wpdb->last_error );
-		}
-		$bounded = $this->bound_rows( array_slice( (array) $rows, 0, $limit ) );
-		return array( 'row_count' => count( $bounded['rows'] ), 'limit' => $limit, 'truncated' => $bounded['truncated'], 'rows' => $bounded['rows'] );
-	}
-
-	/** @return array<string,mixed>|\WP_Error */
 	public function list_database_tables( array $args = array() ): array|\WP_Error {
 		unset( $args );
-		$enabled = $this->ensure_safe_query_enabled();
+		$enabled = $this->ensure_database_inspection_enabled();
 		if ( is_wp_error( $enabled ) ) {
 			return $enabled;
 		}
@@ -195,7 +152,7 @@ final class Developer_Tools {
 
 	/** @return array<string,mixed>|\WP_Error */
 	public function describe_database_table( array $args ): array|\WP_Error {
-		$enabled = $this->ensure_safe_query_enabled();
+		$enabled = $this->ensure_database_inspection_enabled();
 		if ( is_wp_error( $enabled ) ) {
 			return $enabled;
 		}
@@ -263,7 +220,7 @@ final class Developer_Tools {
 			do_action( $post_id ? 'litespeed_purge_post' : 'litespeed_purge_all', $post_id ?: null );
 			$providers[] = 'litespeed';
 		}
-		do_action( 'flatsome_mcp_cache_cleared', $post_id );
+		do_action( 'mindio_magic_mcp_cache_cleared', $post_id );
 		return array( 'cleared' => true, 'post_id' => $post_id, 'providers' => array_values( array_unique( $providers ) ) );
 	}
 
@@ -302,124 +259,19 @@ final class Developer_Tools {
 		return array( 'enabled' => defined( 'WP_DEBUG_LOG' ) && (bool) WP_DEBUG_LOG, 'file' => basename( $real_path ), 'line_count' => count( $lines ), 'lines' => $lines );
 	}
 
-	/** @return true|\WP_Error */
-	private function validate_query( string $sql ): bool|\WP_Error {
-		global $wpdb;
-		if ( ! preg_match( '/^(SELECT|SHOW|DESCRIBE|DESC|EXPLAIN)\b/i', $sql ) ) {
-			return new \WP_Error( 'query_not_read_only', __( 'Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed.', 'mindio-magic-mcp' ) );
-		}
-		if ( preg_match( '/(;|--|#|\/\*|\*\/)/', $sql ) ) {
-			return new \WP_Error( 'query_syntax_forbidden', __( 'Comments and statement separators are not allowed.', 'mindio-magic-mcp' ) );
-		}
-		if ( preg_match( '/\b(INSERT|UPDATE|DELETE|REPLACE|ALTER|DROP|CREATE|TRUNCATE|GRANT|REVOKE|CALL|HANDLER|DO|LOCK|UNLOCK|INTO\s+(?:OUTFILE|DUMPFILE)|LOAD_FILE|SLEEP|BENCHMARK|GET_LOCK|RELEASE_LOCK)\b/i', $sql ) ) {
-			return new \WP_Error( 'query_operation_forbidden', __( 'The query contains a forbidden operation or function.', 'mindio-magic-mcp' ) );
-		}
-		if ( preg_match( '/\b(PROCESSLIST|SHOW\s+(?:GRANTS|CREATE\s+USER|ENGINE)|FOR\s+SHARE|PROCEDURE\s+ANALYSE)\b/i', $sql ) ) {
-			return new \WP_Error( 'query_introspection_forbidden', __( 'The query requests forbidden server, grant, process, or locking information.', 'mindio-magic-mcp' ) );
-		}
-		if ( preg_match( '/\b(INFORMATION_SCHEMA|PERFORMANCE_SCHEMA|MYSQL\.|SYS\.|@@|CURRENT_USER|SESSION_USER|SYSTEM_USER|VERSION\s*\(|DATABASE\s*\()/i', $sql ) ) {
-			return new \WP_Error( 'query_server_metadata_forbidden', __( 'Server schemas, identities, variables, and version metadata cannot be queried.', 'mindio-magic-mcp' ) );
-		}
-		if ( preg_match( '/^SHOW\b/i', $sql ) && ! preg_match( '/^SHOW\s+(?:COLUMNS|FIELDS|INDEX|INDEXES|KEYS)\s+(?:FROM|IN)\s+/i', $sql ) ) {
-			return new \WP_Error( 'query_show_forbidden', __( 'Use the table-list tool; raw SHOW is limited to columns and indexes of safe tables.', 'mindio-magic-mcp' ) );
-		}
-		$sensitive = array( $wpdb->users, $wpdb->usermeta, $wpdb->options );
-		foreach ( $sensitive as $table ) {
-			if ( preg_match( '/(?:`|\b)' . preg_quote( $table, '/' ) . '(?:`|\b)/i', $sql ) ) {
-				return new \WP_Error( 'sensitive_table_forbidden', __( 'Credential-bearing users, usermeta, and options tables cannot be queried.', 'mindio-magic-mcp' ) );
-			}
-		}
-		if ( preg_match( '/\b(?:FROM|JOIN)\s*\(/i', $sql ) ) {
-			return new \WP_Error( 'query_subquery_forbidden', __( 'Derived-table subqueries are not supported by the safe SQL validator.', 'mindio-magic-mcp' ) );
-		}
-		preg_match_all( '/\b(?:FROM|JOIN)\s+`?([A-Za-z0-9_]+)`?/i', $sql, $matches );
-		$table_names = (array) ( $matches[1] ?? array() );
-		if ( preg_match( '/^(?:DESCRIBE|DESC)\s+`?([A-Za-z0-9_]+)`?/i', $sql, $describe_match ) ) {
-			$table_names[] = $describe_match[1];
-		}
-		if ( preg_match( '/^SHOW\s+(?:COLUMNS|FIELDS|INDEX|INDEXES|KEYS)\s+(?:FROM|IN)\s+`?([A-Za-z0-9_]+)`?/i', $sql, $show_match ) ) {
-			$table_names[] = $show_match[1];
-		}
-		$table_names = array_values( array_unique( $table_names ) );
-		if ( preg_match( '/^(?:SELECT|EXPLAIN)\b/i', $sql ) && ! $table_names ) {
-			return new \WP_Error( 'query_table_required', __( 'Safe SELECT and EXPLAIN queries must reference an allowed current-site table.', 'mindio-magic-mcp' ) );
-		}
-		$allowed = $this->safe_database_tables();
-		foreach ( $table_names as $table ) {
-			if ( ! isset( $allowed[ $table ] ) ) {
-				return new \WP_Error( 'database_table_forbidden', __( 'The query references a missing, cross-site, or sensitive table.', 'mindio-magic-mcp' ) );
-			}
-		}
-		if ( in_array( $wpdb->postmeta, $table_names, true ) && preg_match( '/\bmeta_value\b/i', $sql ) ) {
-			return new \WP_Error( 'postmeta_values_forbidden', __( 'Raw postmeta values may contain credentials and cannot be selected.', 'mindio-magic-mcp' ) );
-		}
-		return true;
-	}
-
-	private function cap_select_limit( string $sql, int $limit ): string {
-		$pattern = '/\s+LIMIT\s+(\d+)(?:\s*,\s*(\d+)|\s+OFFSET\s+(\d+))?\s*$/i';
-		if ( ! preg_match( $pattern, $sql, $matches, PREG_OFFSET_CAPTURE ) ) {
-			return $sql . ' LIMIT ' . $limit;
-		}
-		$first     = (int) $matches[1][0];
-		$has_comma = isset( $matches[2][0] ) && '' !== $matches[2][0];
-		$has_offset = isset( $matches[3][0] ) && '' !== $matches[3][0];
-		$row_count = $has_comma ? (int) $matches[2][0] : $first;
-		$offset    = $has_comma ? $first : ( $has_offset ? (int) $matches[3][0] : 0 );
-		$replacement = ' LIMIT ' . min( $limit, max( 0, $row_count ) );
-		if ( $offset > 0 ) {
-			$replacement .= ' OFFSET ' . $offset;
-		}
-		return substr( $sql, 0, (int) $matches[0][1] ) . $replacement;
-	}
-
-	/** @return array{rows:array<int,array<string,mixed>>,truncated:bool} */
-	private function bound_rows( array $rows ): array {
-		$max_total = 2 * MB_IN_BYTES;
-		$max_cell  = 64 * KB_IN_BYTES;
-		$total     = 0;
-		$output    = array();
-		$truncated = false;
-		foreach ( $rows as $row ) {
-			if ( isset( $row['meta_key'], $row['meta_value'] ) && preg_match( '/(?:password|passwd|secret|token|authorization|api[_-]?key|private[_-]?key|license|purchase)/i', (string) $row['meta_key'] ) ) {
-				$row['meta_value'] = '[REDACTED]'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- This is result redaction, not a query constraint.
-			}
-			$bounded_row = array();
-			foreach ( (array) $row as $key => $value ) {
-				if ( is_string( $value ) ) {
-					$value = wp_check_invalid_utf8( $value, true );
-					$remaining = max( 0, $max_total - $total );
-					$allowed   = min( $max_cell, $remaining );
-					if ( strlen( $value ) > $allowed ) {
-						$value = function_exists( 'mb_strcut' ) ? mb_strcut( $value, 0, $allowed, 'UTF-8' ) : wp_check_invalid_utf8( substr( $value, 0, $allowed ), true );
-						$value .= '…';
-						$truncated = true;
-					}
-					$total += strlen( $value );
-				}
-				$bounded_row[ (string) $key ] = $value;
-			}
-			$output[] = $bounded_row;
-			if ( $total >= $max_total ) {
-				$truncated = true;
-				break;
-			}
-		}
-		return array( 'rows' => $output, 'truncated' => $truncated );
-	}
-
 	/** @return bool|\WP_Error */
-	private function ensure_safe_query_enabled(): bool|\WP_Error {
-		$settings = get_option( 'flatsome_mcp_settings', array() );
-		return ! empty( $settings['allow_safe_query'] )
+	private function ensure_database_inspection_enabled(): bool|\WP_Error {
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
+		return ! empty( $settings['allow_database_inspection'] )
 			? true
-			: new \WP_Error( 'safe_query_disabled', __( 'Read-only SQL is disabled in Mindio Magic MCP settings.', 'mindio-magic-mcp' ) );
+			: new \WP_Error( 'database_inspection_disabled', __( 'Database inspection is disabled in Mindio Magic MCP settings.', 'mindio-magic-mcp' ) );
 	}
 
 	/** @return array<string,string> Physical table => prefix-redacted logical name. */
 	private function safe_database_tables(): array {
 		global $wpdb;
-		$tables = $wpdb->get_col( 'SHOW TABLES' ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Server-derived allowlist for explicit inspection must reflect current tables.
+		$like   = $wpdb->esc_like( $wpdb->prefix ) . '%';
+		$tables = $wpdb->get_col( $wpdb->prepare( 'SHOW TABLES LIKE %s', $like ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Server-derived allowlist for explicit inspection must reflect current-site tables.
 		$safe   = array();
 		foreach ( (array) $tables as $table ) {
 			$table = (string) $table;
@@ -427,7 +279,7 @@ final class Developer_Tools {
 				continue;
 			}
 			$logical = substr( $table, strlen( $wpdb->prefix ) );
-			if ( ! $logical || preg_match( '/^(?:options|users|usermeta|comments|commentmeta|woocommerce_api_keys|woocommerce_sessions|woocommerce_payment_tokens|woocommerce_payment_tokenmeta|wc_webhooks|wc_orders|wc_order_|wc_customer_|actionscheduler_|flatsome_mcp_)/i', $logical ) ) {
+			if ( ! $logical || preg_match( '/^(?:options|users|usermeta|comments|commentmeta|woocommerce_api_keys|woocommerce_sessions|woocommerce_payment_tokens|woocommerce_payment_tokenmeta|wc_webhooks|wc_orders|wc_order_|wc_customer_|actionscheduler_|mindio_magic_mcp_)/i', $logical ) ) {
 				continue;
 			}
 			$safe[ $table ] = $logical;

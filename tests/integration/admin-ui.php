@@ -4,7 +4,7 @@
  *
  * Run with WP_PATH=/path/to/wordpress php tests/integration/admin-ui.php.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -12,7 +12,7 @@ declare(strict_types=1);
 $wp_path = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 3 ) . '/wordpress';
 require rtrim( $wp_path, '/\\' ) . '/wp-load.php';
 
-if ( ! class_exists( '\FlatsomeMCP\Admin' ) ) {
+if ( ! class_exists( '\MindioMagicMCP\Admin' ) ) {
 	throw new RuntimeException( 'Activate Mindio Magic MCP before running the admin UI test.' );
 }
 
@@ -23,14 +23,14 @@ function fmp_admin_assert( bool $condition, string $message ): void {
 	}
 }
 
-final class FMP_Admin_Plugin_Dependency_Fixture extends \FlatsomeMCP\Integration_Dispatcher {
+final class FMP_Admin_Plugin_Dependency_Fixture extends \MindioMagicMCP\Integration_Dispatcher {
 	/** @var array<int,string> */
 	private array $plugin_files;
 	/** @var array<int,string> */
 	private array $text_domains;
 
 	/** @param array<int,string> $plugin_files @param array<int,string> $text_domains */
-	public function __construct( \FlatsomeMCP\Tool_Registry $registry, string $name, array $plugin_files, array $text_domains ) {
+	public function __construct( \MindioMagicMCP\Tool_Registry $registry, string $name, array $plugin_files, array $text_domains ) {
 		$this->plugin_files = $plugin_files;
 		$this->text_domains = $text_domains;
 		parent::__construct( $registry, $name, 'Dependency fixture' );
@@ -69,18 +69,18 @@ fmp_admin_assert( ! empty( $admins ), 'The WordPress fixture needs an administra
 wp_set_current_user( (int) $admins[0] );
 switch_to_locale( 'en_US' );
 
-$auth     = new \FlatsomeMCP\Auth();
-$dependency_registry = new \FlatsomeMCP\Tool_Registry( $auth );
+$auth     = new \MindioMagicMCP\Auth();
+$dependency_registry = new \MindioMagicMCP\Tool_Registry( $auth );
 ( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'missing_fixture', array( 'missing-fixture/missing.php' ), array( 'missing-fixture' ) ) )->register();
 ( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'installed_fixture', array( 'flatsome-mcp/flatsome-mcp.php' ), array( 'mindio-magic-mcp' ) ) )->register();
 $dependency_catalog = array_column( $dependency_registry->catalog(), null, 'name' );
 fmp_admin_assert( ! isset( $dependency_catalog['missing_fixture_read'] ), 'An integration tool was registered without its plugin dependency.' );
 fmp_admin_assert( isset( $dependency_catalog['installed_fixture_read'] ), 'An installed plugin integration was not registered for policy management.' );
 
-$dependency_admin = new \FlatsomeMCP\Admin(
+$dependency_admin = new \MindioMagicMCP\Admin(
 	$auth,
-	new \FlatsomeMCP\Audit_Log(),
-	new \FlatsomeMCP\Webhook_Engine(),
+	new \MindioMagicMCP\Audit_Log(),
+	new \MindioMagicMCP\Webhook_Engine(),
 	$dependency_registry
 );
 $_GET['tab'] = 'tools';
@@ -90,45 +90,45 @@ $dependency_html = (string) ob_get_clean();
 fmp_admin_assert( str_contains( $dependency_html, 'installed_fixture_read' ), 'Installed integration controls are missing from the tool manager.' );
 fmp_admin_assert( ! str_contains( $dependency_html, 'missing_fixture_read' ), 'Missing integration controls leaked into the tool manager.' );
 
-$registry = new \FlatsomeMCP\Tool_Registry( $auth );
+$registry = new \MindioMagicMCP\Tool_Registry( $auth );
 $schema   = array( 'type' => 'object', 'properties' => array(), 'additionalProperties' => false );
 $callback = static fn(): array => array( 'ok' => true );
-$registry->register( 'create_post', 'Create content.', $schema, $schema, $callback, \FlatsomeMCP\Auth::SCOPE_EDITOR, 'edit_posts' );
-$registry->register( 'upload_media', 'Upload media.', $schema, $schema, $callback, \FlatsomeMCP\Auth::SCOPE_EDITOR, 'upload_files' );
-$registry->register( 'get_server_status', 'Inspect server status.', $schema, $schema, $callback, \FlatsomeMCP\Auth::SCOPE_READ, 'read', array( 'readOnlyHint' => true ) );
+$registry->register( 'create_post', 'Create content.', $schema, $schema, $callback, \MindioMagicMCP\Auth::SCOPE_EDITOR, 'edit_posts' );
+$registry->register( 'upload_media', 'Upload media.', $schema, $schema, $callback, \MindioMagicMCP\Auth::SCOPE_EDITOR, 'upload_files' );
+$registry->register( 'get_server_status', 'Inspect server status.', $schema, $schema, $callback, \MindioMagicMCP\Auth::SCOPE_READ, 'read', array( 'readOnlyHint' => true ) );
 $registry->register(
 	'integration_read',
 	'Inspect integration records.',
 	array( 'type' => 'object', 'properties' => array( 'operation' => array( 'type' => 'string' ) ), 'additionalProperties' => false ),
 	$schema,
 	$callback,
-	\FlatsomeMCP\Auth::SCOPE_READ,
+	\MindioMagicMCP\Auth::SCOPE_READ,
 	'read',
 	array( 'readOnlyHint' => true ),
 	array(
 		'operations' => array(
-			'list_records'  => array( 'label' => 'List records', 'description' => 'List safe integration records.', 'mode' => 'read', 'scope' => \FlatsomeMCP\Auth::SCOPE_READ ),
-			'delete_record' => array( 'label' => 'Delete record', 'description' => 'Delete one integration record.', 'mode' => 'write', 'scope' => \FlatsomeMCP\Auth::SCOPE_ADMIN, 'destructive' => true ),
+			'list_records'  => array( 'label' => 'List records', 'description' => 'List safe integration records.', 'mode' => 'read', 'scope' => \MindioMagicMCP\Auth::SCOPE_READ ),
+			'delete_record' => array( 'label' => 'Delete record', 'description' => 'Delete one integration record.', 'mode' => 'write', 'scope' => \MindioMagicMCP\Auth::SCOPE_ADMIN, 'destructive' => true ),
 		),
 	)
 );
 
-$original_exposure = get_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, null );
-$original_operation_policy = get_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, null );
+$original_exposure = get_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, null );
+$original_operation_policy = get_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, null );
 try {
 	$policy_summary = $registry->update_exposure( array( 'create_post', 'unknown_tool', 123 ) );
 	$operation_summary = $registry->update_operation_exposure( array( 'integration_read:list_records', 'integration_read:unknown', 123 ) );
 	$policy_catalog = array_column( $registry->catalog(), null, 'name' );
 } finally {
 	if ( null === $original_exposure ) {
-		delete_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION );
+		delete_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION );
 	} else {
-		update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, $original_exposure, false );
+		update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, $original_exposure, false );
 	}
 	if ( null === $original_operation_policy ) {
-		delete_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION );
+		delete_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION );
 	} else {
-		update_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, $original_operation_policy, false );
+		update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $original_operation_policy, false );
 	}
 }
 fmp_admin_assert( 1 === $policy_summary['exposed'] && 3 === $policy_summary['disabled'], 'Exposure updates did not retain only registered submitted tools.' );
@@ -136,10 +136,10 @@ fmp_admin_assert( 1 === $operation_summary['exposed'] && 1 === $operation_summar
 fmp_admin_assert( ! empty( $policy_catalog['create_post']['exposed'] ) && empty( $policy_catalog['upload_media']['exposed'] ), 'The persisted exposure state is not reflected in the registry catalog.' );
 fmp_admin_assert( ! empty( $policy_catalog['integration_read']['operations'][0]['exposed'] ) && empty( $policy_catalog['integration_read']['operations'][1]['exposed'] ), 'The operation policy is not reflected in the registry catalog.' );
 
-$admin = new \FlatsomeMCP\Admin(
+$admin = new \MindioMagicMCP\Admin(
 	$auth,
-	new \FlatsomeMCP\Audit_Log(),
-	new \FlatsomeMCP\Webhook_Engine(),
+	new \MindioMagicMCP\Audit_Log(),
+	new \MindioMagicMCP\Webhook_Engine(),
 	$registry
 );
 
@@ -176,6 +176,7 @@ fmp_admin_assert( 2 === substr_count( $tools_html, 'name="enabled_operations[]"'
 fmp_admin_assert( str_contains( $tools_html, 'data-operation-disclosure' ) && str_contains( $tools_html, 'data-operation-enable-reads' ) && str_contains( $tools_html, 'data-operation-disable-writes' ), 'Granular operation controls are missing.' );
 fmp_admin_assert( str_contains( $tools_html, 'Content and publishing' ) && str_contains( $tools_html, 'Media and SEO' ) && str_contains( $tools_html, 'Operations and diagnostics' ), 'Registered tools were not grouped by domain.' );
 fmp_admin_assert( str_contains( $rendered_tabs['settings'], 'Read-only filesystem inspection' ), 'The filesystem read opt-in setting is missing.' );
+fmp_admin_assert( str_contains( $rendered_tabs['settings'], 'Database schema inspection' ) && ! str_contains( $rendered_tabs['settings'], 'validated SELECT queries' ), 'The fixed-shape database inspection setting is missing.' );
 
 $_GET['tab'] = 'unsupported';
 ob_start();
@@ -189,11 +190,11 @@ $admin->render();
 $array_fallback_html = (string) ob_get_clean();
 fmp_admin_assert( str_contains( $array_fallback_html, 'System overview' ), 'Non-scalar tabs do not fall back to Overview.' );
 
-$admin->enqueue_assets( 'settings_page_magicmcp' );
+$admin->enqueue_assets( 'settings_page_mindio-magic-mcp' );
 fmp_admin_assert( wp_style_is( 'flatsome-mcp-admin', 'enqueued' ), 'Admin stylesheet was not enqueued.' );
 fmp_admin_assert( wp_script_is( 'flatsome-mcp-admin', 'enqueued' ), 'Admin script was not enqueued.' );
-fmp_admin_assert( is_file( FLATSOME_MCP_DIR . 'assets/css/admin.css' ), 'Admin stylesheet is missing.' );
-fmp_admin_assert( is_file( FLATSOME_MCP_DIR . 'assets/js/admin.js' ), 'Admin script is missing.' );
+fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/css/admin.css' ), 'Admin stylesheet is missing.' );
+fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/js/admin.js' ), 'Admin script is missing.' );
 
 unload_textdomain( 'mindio-magic-mcp' );
 $development_catalog = dirname( __DIR__, 2 ) . '/languages/mindio-magic-mcp-fa_IR.mo';

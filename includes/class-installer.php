@@ -2,10 +2,10 @@
 /**
  * Database installation and retention jobs.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,7 +42,7 @@ final class Installer {
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		if ( ! is_plugin_active_for_network( plugin_basename( FLATSOME_MCP_FILE ) ) ) {
+		if ( ! is_plugin_active_for_network( plugin_basename( MINDIO_MAGIC_MCP_FILE ) ) ) {
 			return;
 		}
 		switch_to_blog( (int) $site->blog_id );
@@ -51,7 +51,7 @@ final class Installer {
 	}
 
 	private static function deactivate_site(): void {
-		wp_clear_scheduled_hook( 'flatsome_mcp_cleanup_logs' );
+		wp_clear_scheduled_hook( 'mindio_magic_mcp_cleanup_logs' );
 		flush_rewrite_rules( false );
 	}
 
@@ -67,34 +67,34 @@ final class Installer {
 	}
 
 	public static function maybe_upgrade(): void {
-		if ( FLATSOME_MCP_DB_VERSION !== (string) get_option( 'flatsome_mcp_db_version', '' ) ) {
+		if ( MINDIO_MAGIC_MCP_DB_VERSION !== (string) get_option( 'mindio_magic_mcp_db_version', '' ) ) {
 			self::install_tables();
-			update_option( 'flatsome_mcp_db_version', FLATSOME_MCP_DB_VERSION, false );
+			update_option( 'mindio_magic_mcp_db_version', MINDIO_MAGIC_MCP_DB_VERSION, false );
 		}
-		$current = get_option( 'flatsome_mcp_settings', array() );
+		$current = get_option( 'mindio_magic_mcp_settings', array() );
 		$merged  = wp_parse_args( is_array( $current ) ? $current : array(), self::defaults() );
 		if ( $merged !== $current ) {
-			update_option( 'flatsome_mcp_settings', $merged, false );
+			update_option( 'mindio_magic_mcp_settings', $merged, false );
 		}
-		if ( ! wp_next_scheduled( 'flatsome_mcp_cleanup_logs' ) ) {
-			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'flatsome_mcp_cleanup_logs' );
+		if ( ! wp_next_scheduled( 'mindio_magic_mcp_cleanup_logs' ) ) {
+			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'mindio_magic_mcp_cleanup_logs' );
 		}
 	}
 
 	public static function audit_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'flatsome_mcp_audit_log';
+		return $wpdb->prefix . 'mindio_magic_mcp_audit_log';
 	}
 
 	public static function webhook_log_table(): string {
 		global $wpdb;
-		return $wpdb->prefix . 'flatsome_mcp_webhook_log';
+		return $wpdb->prefix . 'mindio_magic_mcp_webhook_log';
 	}
 
 	public static function cleanup_logs(): void {
 		global $wpdb;
 
-		$settings      = get_option( 'flatsome_mcp_settings', array() );
+		$settings      = get_option( 'mindio_magic_mcp_settings', array() );
 		$audit_days    = max( 1, min( 365, absint( $settings['audit_retention_days'] ?? 30 ) ) );
 		$webhook_days  = max( 1, min( 365, absint( $settings['webhook_retention_days'] ?? 14 ) ) );
 		$audit_cutoff   = gmdate( 'Y-m-d H:i:s', time() - ( $audit_days * DAY_IN_SECONDS ) );
@@ -152,11 +152,11 @@ final class Installer {
 
 	private static function install_site(): void {
 		self::install_tables();
-		$current = get_option( 'flatsome_mcp_settings', array() );
-		update_option( 'flatsome_mcp_settings', wp_parse_args( is_array( $current ) ? $current : array(), self::defaults() ), false );
-		update_option( 'flatsome_mcp_db_version', FLATSOME_MCP_DB_VERSION, false );
-		if ( ! wp_next_scheduled( 'flatsome_mcp_cleanup_logs' ) ) {
-			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'flatsome_mcp_cleanup_logs' );
+		$current = get_option( 'mindio_magic_mcp_settings', array() );
+		update_option( 'mindio_magic_mcp_settings', wp_parse_args( is_array( $current ) ? $current : array(), self::defaults() ), false );
+		update_option( 'mindio_magic_mcp_db_version', MINDIO_MAGIC_MCP_DB_VERSION, false );
+		if ( ! wp_next_scheduled( 'mindio_magic_mcp_cleanup_logs' ) ) {
+			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'mindio_magic_mcp_cleanup_logs' );
 		}
 		flush_rewrite_rules( false );
 	}
@@ -171,7 +171,7 @@ final class Installer {
 			'webhook_retention_days' => 14,
 			'allowed_origins'        => array(),
 			'delete_on_uninstall'    => false,
-			'allow_safe_query'       => false,
+			'allow_database_inspection'       => false,
 			'allow_filesystem_read'  => false,
 			'allow_wp_cli'           => false,
 		);

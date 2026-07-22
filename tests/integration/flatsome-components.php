@@ -4,7 +4,7 @@
  *
  * Run with php tests/integration/flatsome-components.php.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -37,8 +37,8 @@ $media_id = wp_insert_attachment(
 );
 fmp_component_assert( $media_id > 0, 'Could not register the component-test image.' );
 
-$catalog  = new \FlatsomeMCP\Flatsome_Component_Catalog();
-$renderer = new \FlatsomeMCP\Flatsome_Renderer( $catalog );
+$catalog  = new \MindioMagicMCP\Flatsome_Component_Catalog();
+$renderer = new \MindioMagicMCP\Flatsome_Renderer( $catalog );
 $expected_shortcodes = array(
 	'title'              => 'title',
 	'text'               => 'ux_text',
@@ -101,10 +101,10 @@ try {
 	$discovery = $catalog->discovery();
 	fmp_component_assert( '3.20.7' === $discovery['flatsome_version'], 'Unexpected Flatsome test version.' );
 	fmp_component_assert( 29 === count( $discovery['components'] ), 'The component catalog is incomplete.' );
-	$tool_set      = new \FlatsomeMCP\Flatsome_Tools( new \FlatsomeMCP\Tool_Registry( new \FlatsomeMCP\Auth() ), $renderer, $catalog );
+	$tool_set      = new \MindioMagicMCP\Flatsome_Tools( new \MindioMagicMCP\Tool_Registry( new \MindioMagicMCP\Auth() ), $renderer, $catalog );
 	$schema_method = new ReflectionMethod( $tool_set, 'element_schema' );
 	$schema         = $schema_method->invoke( $tool_set );
-	$validator      = new \FlatsomeMCP\Schema_Validator();
+	$validator      = new \MindioMagicMCP\Schema_Validator();
 
 	foreach ( $fixtures as $type => $fixture ) {
 		fmp_component_assert( true === $validator->validate( $fixture, $schema ), 'The strict schema rejected ' . $type . '.' );

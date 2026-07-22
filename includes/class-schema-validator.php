@@ -2,10 +2,10 @@
 /**
  * Small, fail-closed JSON Schema validator for tool inputs.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -2,10 +2,10 @@
 /**
  * Unified SEO metadata tools with Yoast and Rank Math adapters.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -77,14 +77,14 @@ final class SEO_Tools {
 
 		$provider = $this->provider();
 		$meta     = array(
-			'meta_title'       => (string) get_post_meta( $post_id, '_flatsome_mcp_meta_title', true ),
-			'meta_description' => (string) get_post_meta( $post_id, '_flatsome_mcp_meta_description', true ),
-			'canonical_url'    => (string) get_post_meta( $post_id, '_flatsome_mcp_canonical', true ),
-			'robots'          => get_post_meta( $post_id, '_flatsome_mcp_robots', true ) ?: array( 'index' => true, 'follow' => true ),
-			'og_title'         => (string) get_post_meta( $post_id, '_flatsome_mcp_og_title', true ),
-			'og_description'   => (string) get_post_meta( $post_id, '_flatsome_mcp_og_description', true ),
-			'og_image_url'     => (string) get_post_meta( $post_id, '_flatsome_mcp_og_image', true ),
-			'schema'           => get_post_meta( $post_id, '_flatsome_mcp_schema', true ) ?: array(),
+			'meta_title'       => (string) get_post_meta( $post_id, '_mindio_magic_mcp_meta_title', true ),
+			'meta_description' => (string) get_post_meta( $post_id, '_mindio_magic_mcp_meta_description', true ),
+			'canonical_url'    => (string) get_post_meta( $post_id, '_mindio_magic_mcp_canonical', true ),
+			'robots'          => get_post_meta( $post_id, '_mindio_magic_mcp_robots', true ) ?: array( 'index' => true, 'follow' => true ),
+			'og_title'         => (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_title', true ),
+			'og_description'   => (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_description', true ),
+			'og_image_url'     => (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_image', true ),
+			'schema'           => get_post_meta( $post_id, '_mindio_magic_mcp_schema', true ) ?: array(),
 		);
 
 		if ( 'yoast' === $provider ) {
@@ -148,26 +148,26 @@ final class SEO_Tools {
 		}
 		$provider = $this->provider();
 		$strings  = array(
-			'meta_title'       => '_flatsome_mcp_meta_title',
-			'meta_description' => '_flatsome_mcp_meta_description',
-			'og_title'         => '_flatsome_mcp_og_title',
-			'og_description'   => '_flatsome_mcp_og_description',
+			'meta_title'       => '_mindio_magic_mcp_meta_title',
+			'meta_description' => '_mindio_magic_mcp_meta_description',
+			'og_title'         => '_mindio_magic_mcp_og_title',
+			'og_description'   => '_mindio_magic_mcp_og_description',
 		);
 		foreach ( $strings as $input => $key ) {
 			if ( array_key_exists( $input, $args ) ) {
 				update_post_meta( $post_id, $key, sanitize_text_field( (string) $args[ $input ] ) );
 			}
 		}
-		foreach ( array( 'canonical_url' => '_flatsome_mcp_canonical', 'og_image_url' => '_flatsome_mcp_og_image' ) as $input => $key ) {
+		foreach ( array( 'canonical_url' => '_mindio_magic_mcp_canonical', 'og_image_url' => '_mindio_magic_mcp_og_image' ) as $input => $key ) {
 			if ( array_key_exists( $input, $args ) ) {
 				update_post_meta( $post_id, $key, $args[ $input ] );
 			}
 		}
 		if ( isset( $args['robots'] ) ) {
-			update_post_meta( $post_id, '_flatsome_mcp_robots', $args['robots'] );
+			update_post_meta( $post_id, '_mindio_magic_mcp_robots', $args['robots'] );
 		}
 		if ( isset( $args['schema'] ) ) {
-			update_post_meta( $post_id, '_flatsome_mcp_schema', $args['schema'] );
+			update_post_meta( $post_id, '_mindio_magic_mcp_schema', $args['schema'] );
 		}
 
 		if ( 'yoast' === $provider ) {
@@ -205,7 +205,7 @@ final class SEO_Tools {
 			}
 		}
 
-		do_action( 'flatsome_mcp_seo_updated', $post_id, $args, $provider );
+		do_action( 'mindio_magic_mcp_seo_updated', $post_id, $args, $provider );
 		return $this->get_meta( array( 'post_id' => $post_id ) );
 	}
 
@@ -213,7 +213,7 @@ final class SEO_Tools {
 		if ( 'generic' !== $this->provider() || ! is_singular() ) {
 			return $title;
 		}
-		$custom = (string) get_post_meta( get_queried_object_id(), '_flatsome_mcp_meta_title', true );
+		$custom = (string) get_post_meta( get_queried_object_id(), '_mindio_magic_mcp_meta_title', true );
 		return '' !== $custom ? $custom : $title;
 	}
 
@@ -222,7 +222,7 @@ final class SEO_Tools {
 			return $canonical_url;
 		}
 		$post_id = $post instanceof \WP_Post ? $post->ID : absint( $post );
-		$custom  = (string) get_post_meta( $post_id, '_flatsome_mcp_canonical', true );
+		$custom  = (string) get_post_meta( $post_id, '_mindio_magic_mcp_canonical', true );
 		return '' !== $custom ? $custom : $canonical_url;
 	}
 
@@ -232,10 +232,10 @@ final class SEO_Tools {
 			return $robots;
 		}
 		$post_id = get_queried_object_id();
-		if ( ! metadata_exists( 'post', $post_id, '_flatsome_mcp_robots' ) ) {
+		if ( ! metadata_exists( 'post', $post_id, '_mindio_magic_mcp_robots' ) ) {
 			return $robots;
 		}
-		$stored = (array) get_post_meta( $post_id, '_flatsome_mcp_robots', true );
+		$stored = (array) get_post_meta( $post_id, '_mindio_magic_mcp_robots', true );
 		if ( isset( $stored['index'] ) && ! $stored['index'] ) {
 			unset( $robots['index'] );
 			$robots['noindex'] = true;
@@ -254,10 +254,10 @@ final class SEO_Tools {
 		$post_id  = get_queried_object_id();
 		$provider = $this->provider();
 		if ( 'generic' === $provider ) {
-			$description = (string) get_post_meta( $post_id, '_flatsome_mcp_meta_description', true );
-			$og_title    = (string) get_post_meta( $post_id, '_flatsome_mcp_og_title', true );
-			$og_desc     = (string) get_post_meta( $post_id, '_flatsome_mcp_og_description', true );
-			$og_image    = (string) get_post_meta( $post_id, '_flatsome_mcp_og_image', true );
+			$description = (string) get_post_meta( $post_id, '_mindio_magic_mcp_meta_description', true );
+			$og_title    = (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_title', true );
+			$og_desc     = (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_description', true );
+			$og_image    = (string) get_post_meta( $post_id, '_mindio_magic_mcp_og_image', true );
 			if ( '' !== $description ) {
 				echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
 			}
@@ -272,7 +272,7 @@ final class SEO_Tools {
 			}
 		}
 
-		$schema = get_post_meta( $post_id, '_flatsome_mcp_schema', true );
+		$schema = get_post_meta( $post_id, '_mindio_magic_mcp_schema', true );
 		if ( ! empty( $schema ) ) {
 			$json = wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT );
 			if ( is_string( $json ) ) {

@@ -2,10 +2,10 @@
 /**
  * Conditional WordPress multisite discovery and per-call context tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

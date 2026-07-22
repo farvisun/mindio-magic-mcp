@@ -2,10 +2,10 @@
 /**
  * Provider-specific Yoast SEO Free and Rank Math Free operation families.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -173,7 +173,7 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 		if ( is_array( $prepared_schemas ) ) {
 			$this->replace_rank_math_schemas( $post->ID, $prepared_schemas );
 		}
-		do_action( 'flatsome_mcp_provider_seo_updated', $this->provider, 'post', $post->ID, $clean );
+		do_action( 'mindio_magic_mcp_provider_seo_updated', $this->provider, 'post', $post->ID, $clean );
 		return $this->get_post_seo( array( 'post_id' => $post->ID ) );
 	}
 
@@ -208,7 +208,7 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 				update_term_meta( $term->term_id, 'rank_math_robots', $clean['robots'] );
 			}
 		}
-		do_action( 'flatsome_mcp_provider_seo_updated', $this->provider, 'term', $term->term_id, $clean );
+		do_action( 'mindio_magic_mcp_provider_seo_updated', $this->provider, 'term', $term->term_id, $clean );
 		return $this->get_term_seo( array( 'term_id' => $term->term_id, 'taxonomy' => $term->taxonomy ) );
 	}
 
@@ -239,7 +239,7 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 			$this->write_setting( $specs[ $logical ], $clean );
 			$changed[] = $logical;
 		}
-		do_action( 'flatsome_mcp_provider_seo_settings_updated', $this->provider, $changed );
+		do_action( 'mindio_magic_mcp_provider_seo_settings_updated', $this->provider, $changed );
 		$result            = $this->get_settings( array() );
 		$result['updated'] = $changed;
 		return $result;
@@ -458,8 +458,7 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 		if ( 'yoast' === $this->provider ) {
 			return \WPSEO_Options::get( $spec['key'] );
 		}
-		$options = (array) get_option( 'rank-math-options-titles', array() );
-		return $options[ $spec['key'] ] ?? null;
+		return \RankMath\Helper::get_settings( 'titles.' . $spec['key'], null );
 	}
 
 	private function write_setting( array $spec, mixed $value ): void {
@@ -467,9 +466,16 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 			\WPSEO_Options::set( $spec['key'], $value );
 			return;
 		}
-		$options                 = (array) get_option( 'rank-math-options-titles', array() );
+		$options                 = (array) \RankMath\Helper::get_settings( 'titles', array() );
 		$options[ $spec['key'] ] = $value;
-		update_option( 'rank-math-options-titles', $options, false );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Rank Math owns this settings lifecycle hook.
+		do_action( 'rank_math/settings/before_save', 'titles', $options );
+		\RankMath\Helper::update_all_settings( null, $options, null );
+		if ( function_exists( 'rank_math' ) && isset( rank_math()->settings ) ) {
+			rank_math()->settings->reset();
+		}
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Rank Math owns this settings lifecycle hook.
+		do_action( 'rank_math/settings/after_save', 'titles', array( $spec['key'] => $value ) );
 	}
 
 	/** @return mixed|\WP_Error */

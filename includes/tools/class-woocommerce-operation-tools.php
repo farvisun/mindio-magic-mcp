@@ -2,10 +2,10 @@
 /**
  * Broad WooCommerce Free coverage through fixed internal wc/v3 routes.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

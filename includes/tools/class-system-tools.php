@@ -2,10 +2,10 @@
 /**
  * Monitoring and server-introspection tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -80,7 +80,7 @@ final class System_Tools {
 		unset( $args );
 		$theme = wp_get_theme();
 		return array(
-			'plugin_version'  => FLATSOME_MCP_VERSION,
+			'plugin_version'  => MINDIO_MAGIC_MCP_VERSION,
 			'wordpress_version' => get_bloginfo( 'version' ),
 			'php_version'     => PHP_VERSION,
 			'mcp_endpoint'    => rest_url( 'flatsome-mcp/v1/mcp' ),

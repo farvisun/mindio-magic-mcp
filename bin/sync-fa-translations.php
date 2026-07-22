@@ -5,7 +5,7 @@
  *
  * This development helper is excluded from release archives.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -50,6 +50,9 @@ function fmp_fa_po_field( string $entry, string $field ): ?string {
 /** @return string|array{0:string,1:string}|null */
 function fmp_fa_translation( string $msgid, ?string $plural ): string|array|null {
 	$translations = array(
+		'https://github.com/farvisun/mindio-magic-mcp'                                                                                          => 'https://github.com/farvisun/mindio-magic-mcp',
+		'Mohammad Askari <farvisun@gmail.com>'                                                                                                  => 'Mohammad Askari <farvisun@gmail.com>',
+		'https://profiles.wordpress.org/farvisun/'                                                                                               => 'https://profiles.wordpress.org/farvisun/',
 		'ACF field not found.'                                                                                                                   => 'فیلد ACF پیدا نشد.',
 		'Enabled'                                                                                                                              => 'فعال',
 		'%1$d of %2$d operations enabled'                                                                                                      => '%1$d از %2$d عملیات فعال است',
@@ -71,6 +74,10 @@ function fmp_fa_translation( string $msgid, ?string $plural ): string|array|null
 		'A disabled operation remains unavailable even when its parent integration tool is exposed.'                                          => 'عملیات غیرفعال حتی در صورت در دسترس بودن ابزار یکپارچه‌سازی والد، همچنان در دسترس نخواهد بود.',
 		'Allow bounded text-file reads, directory listings, and searches inside approved WordPress content roots.'                            => 'خواندن محدود فایل متنی، فهرست‌کردن پوشه و جست‌وجو در ریشه‌های محتوای تأییدشده وردپرس مجاز شود.',
 		'Read-only filesystem inspection'                                                                                                       => 'بررسی فقط‌خواندنی فایل‌سیستم',
+		'Database schema inspection'                                                                                                            => 'بررسی ساختار پایگاه‌داده',
+		'Allow prepared, fixed-shape queries that list non-sensitive tables and describe their schemas. Table rows are never returned.'       => 'پرس‌وجوهای آماده و با ساختار ثابت برای فهرست‌کردن جدول‌های غیرحساس و توصیف ساختار آن‌ها مجاز شود. هیچ‌گاه ردیف‌های جدول بازگردانده نمی‌شوند.',
+		'List non-sensitive tables for the current WordPress site with bounded storage metadata. Requires database inspection to be enabled.' => 'فهرست جدول‌های غیرحساس سایت فعلی وردپرس با فراداده محدود ذخیره‌سازی. مستلزم فعال‌بودن بررسی پایگاه‌داده است.',
+		'Database inspection is disabled in Mindio Magic MCP settings.'                                                                         => 'بررسی پایگاه‌داده در تنظیمات Mindio Magic MCP غیرفعال است.',
 		'Gutenberg blocks'                                                                                                                      => 'بلوک‌های گوتنبرگ',
 		'Structured block discovery, tree editing, duplication, movement, and patterns.'                                                       => 'کشف ساختاریافته بلوک، ویرایش درخت، تکثیر، جابه‌جایی و الگوها.',
 		'Official-directory package lifecycle, generic theme controls, and child themes.'                                                     => 'چرخه عمر بسته‌های مخزن رسمی، کنترل‌های عمومی پوسته و پوسته‌های فرزند.',

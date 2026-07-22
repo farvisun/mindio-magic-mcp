@@ -2,10 +2,10 @@
 /**
  * Generic WordPress and curated Flatsome theme controls.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -216,7 +216,7 @@ final class Theme_Tools {
 			remove_theme_mod( $key );
 			$changed[] = $key;
 		}
-		do_action( 'flatsome_mcp_theme_mods_updated', array_unique( $changed ), get_stylesheet() );
+		do_action( 'mindio_magic_mcp_theme_mods_updated', array_unique( $changed ), get_stylesheet() );
 		return array( 'stylesheet' => get_stylesheet(), 'updated' => array_values( array_unique( $changed ) ) );
 	}
 
@@ -343,7 +343,7 @@ final class Theme_Tools {
 			remove_theme_mod( $key );
 			$changed[] = $key;
 		}
-		do_action( 'flatsome_mcp_flatsome_settings_updated', array_unique( $changed ), get_stylesheet() );
+		do_action( 'mindio_magic_mcp_flatsome_settings_updated', array_unique( $changed ), get_stylesheet() );
 		return array( 'stylesheet' => get_stylesheet(), 'updated' => array_values( array_unique( $changed ) ) );
 	}
 

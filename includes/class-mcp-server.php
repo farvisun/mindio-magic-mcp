@@ -2,10 +2,10 @@
 /**
  * MCP Streamable HTTP transport over the WordPress REST API.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -69,7 +69,7 @@ final class MCP_Server {
 		if ( strlen( $request->get_body() ) > self::MAX_REQUEST_BYTES ) {
 			return $this->transport_error( __( 'The MCP request body exceeds the 25 MB transport limit.', 'mindio-magic-mcp' ), 413, -32013 );
 		}
-		$settings = get_option( 'flatsome_mcp_settings', array() );
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
 		if ( isset( $settings['enabled'] ) && ! $settings['enabled'] ) {
 			return $this->transport_error( __( 'The MCP endpoint is disabled by an administrator.', 'mindio-magic-mcp' ), 503, -32004 );
 		}
@@ -150,9 +150,9 @@ final class MCP_Server {
 			'protocolVersion' => $negotiated,
 			'capabilities'    => array( 'tools' => array( 'listChanged' => false ) ),
 			'serverInfo'      => array(
-				'name'        => 'magicmcp',
+				'name'        => 'mindio-magic-mcp',
 				'title'       => 'Mindio Magic MCP',
-				'version'     => FLATSOME_MCP_VERSION,
+				'version'     => MINDIO_MAGIC_MCP_VERSION,
 				'description' => __( 'Secure WordPress and Flatsome UX Builder automation.', 'mindio-magic-mcp' ),
 				'websiteUrl'  => home_url( '/' ),
 			),
@@ -215,7 +215,7 @@ final class MCP_Server {
 		}
 
 		$allowed  = array( $this->origin_of( home_url( '/' ) ), $this->origin_of( rest_url() ) );
-		$settings = get_option( 'flatsome_mcp_settings', array() );
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
 		foreach ( (array) ( $settings['allowed_origins'] ?? array() ) as $configured ) {
 			$normalized = $this->origin_of( (string) $configured );
 			if ( '' !== $normalized ) {

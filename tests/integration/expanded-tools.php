@@ -5,7 +5,7 @@
  * Run with WP_PATH=/path/to/wordpress php tests/integration/expanded-tools.php.
  * ACF Free, Contact Form 7, and WooCommerce Free are exercised when active.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 declare(strict_types=1);
@@ -15,7 +15,7 @@ $_SERVER['SERVER_NAME'] ??= 'localhost';
 $wp_path = getenv( 'WP_PATH' ) ?: dirname( __DIR__, 3 ) . '/wordpress';
 require rtrim( $wp_path, '/\\' ) . '/wp-load.php';
 
-if ( ! class_exists( '\\FlatsomeMCP\\Auth' ) ) {
+if ( ! class_exists( '\\MindioMagicMCP\\Auth' ) ) {
 	throw new RuntimeException( 'Activate Mindio Magic MCP before running the expanded-tools test.' );
 }
 if ( ! did_action( 'rest_api_init' ) ) {
@@ -63,14 +63,14 @@ $admins = get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' =
 fmp_exp_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
 wp_set_current_user( (int) $admins[0] );
 
-$auth       = new \FlatsomeMCP\Auth();
-$credential = $auth->create_api_key( (int) $admins[0], \FlatsomeMCP\Auth::SCOPE_ADMIN, 'Expanded tools integration test' );
+$auth       = new \MindioMagicMCP\Auth();
+$credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_ADMIN, 'Expanded tools integration test' );
 fmp_exp_assert( ! is_wp_error( $credential ), 'Could not create an expanded-tools credential.' );
 $token = (string) $credential['token'];
 
-$original_settings         = get_option( 'flatsome_mcp_settings', array() );
-$original_disabled_tools   = get_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, null );
-$original_operation_policy = get_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, null );
+$original_settings         = get_option( 'mindio_magic_mcp_settings', array() );
+$original_disabled_tools   = get_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, null );
+$original_operation_policy = get_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, null );
 $post_ids                  = array();
 $acf_group_key             = '';
 $acf_field_key             = '';
@@ -78,8 +78,8 @@ $form_ids                  = array();
 $product_id                = 0;
 $tested_integrations       = array();
 
-update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
-update_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, array(), false );
+update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
+update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, array(), false );
 
 try {
 	$tools_response = fmp_exp_rpc( $token, 'tools/list' );
@@ -138,8 +138,8 @@ try {
 	fmp_exp_assert( ! empty( $filesystem_disabled['isError'] ) && 'filesystem_read_disabled' === ( $filesystem_disabled['structuredContent']['error'] ?? '' ), 'Filesystem reads were not opt-in.' );
 	$settings                          = $original_settings;
 	$settings['allow_filesystem_read'] = true;
-	$settings['allow_safe_query']      = true;
-	update_option( 'flatsome_mcp_settings', $settings, false );
+	$settings['allow_database_inspection']      = true;
+	update_option( 'mindio_magic_mcp_settings', $settings, false );
 	$file = fmp_exp_call( $token, 'read_file', array( 'root' => 'parent_theme', 'path' => 'style.css', 'end_line' => 40 ) );
 	fmp_exp_assert( str_contains( (string) ( $file['structuredContent']['content'] ?? '' ), 'Text Domain:          flatsome' ), 'The allowlisted theme file could not be read.' );
 	$traversal = fmp_exp_call( $token, 'read_file', array( 'root' => 'plugins', 'path' => '../wp-config.php' ), true );
@@ -175,7 +175,7 @@ try {
 		'woocommerce_write:create_product'  => true,
 		'woocommerce_write:delete_product'  => true,
 	);
-	update_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, $enabled_write_operations, false );
+	update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $enabled_write_operations, false );
 	$tools_response = fmp_exp_rpc( $token, 'tools/list' );
 	$tools          = array_column( (array) ( $tools_response['result']['tools'] ?? array() ), null, 'name' );
 	foreach ( array( 'acf_write', 'contact_form_7_write', 'woocommerce_write' ) as $write_tool ) {
@@ -294,18 +294,18 @@ try {
 	foreach ( array_reverse( $post_ids ) as $post_id ) {
 		wp_delete_post( $post_id, true );
 	}
-	update_option( 'flatsome_mcp_settings', $original_settings, false );
+	update_option( 'mindio_magic_mcp_settings', $original_settings, false );
 	if ( null === $original_disabled_tools ) {
-		delete_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION );
+		delete_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION );
 	} else {
-		update_option( \FlatsomeMCP\Tool_Registry::EXPOSURE_OPTION, $original_disabled_tools, false );
+		update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, $original_disabled_tools, false );
 	}
 	if ( null === $original_operation_policy ) {
-		delete_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION );
+		delete_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION );
 	} else {
-		update_option( \FlatsomeMCP\Tool_Registry::OPERATION_POLICY_OPTION, $original_operation_policy, false );
+		update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $original_operation_policy, false );
 	}
 	$auth->revoke_token( (string) $credential['id'] );
 	global $wpdb;
-	$wpdb->delete( \FlatsomeMCP\Installer::audit_table(), array( 'token_id' => (string) $credential['id'] ) );
+	$wpdb->delete( \MindioMagicMCP\Installer::audit_table(), array( 'token_id' => (string) $credential['id'] ) );
 }

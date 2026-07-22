@@ -8,6 +8,7 @@
 /composer.json
 /composer.lock
 /CONTRIBUTING.md
+/docs
 /dist
 /phpcs.xml.dist
 /phpunit.xml.dist

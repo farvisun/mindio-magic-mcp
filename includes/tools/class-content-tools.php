@@ -2,10 +2,10 @@
 /**
  * WordPress post, page, and custom-post-type tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -193,7 +193,7 @@ final class Content_Tools {
 			return $post_id;
 		}
 		$this->apply_featured_media( (int) $post_id, $args );
-		do_action( 'flatsome_mcp_post_created', (int) $post_id, $args );
+		do_action( 'mindio_magic_mcp_post_created', (int) $post_id, $args );
 		return $this->post_result( (int) $post_id );
 	}
 
@@ -247,7 +247,7 @@ final class Content_Tools {
 			return $result;
 		}
 		$this->apply_featured_media( $post_id, $args );
-		do_action( 'flatsome_mcp_post_updated', $post_id, $args );
+		do_action( 'mindio_magic_mcp_post_updated', $post_id, $args );
 		return $this->post_result( $post_id );
 	}
 

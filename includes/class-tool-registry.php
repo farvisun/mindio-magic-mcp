@@ -2,18 +2,18 @@
 /**
  * MCP tool registry and authorization dispatcher.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 final class Tool_Registry {
-	public const EXPOSURE_OPTION = 'flatsome_mcp_disabled_tools';
-	public const OPERATION_POLICY_OPTION = 'flatsome_mcp_operation_policy';
+	public const EXPOSURE_OPTION = 'mindio_magic_mcp_disabled_tools';
+	public const OPERATION_POLICY_OPTION = 'mindio_magic_mcp_operation_policy';
 
 	/** @var array<string,array<string,mixed>> */
 	private array $tools = array();
@@ -186,7 +186,7 @@ final class Tool_Registry {
 
 			$result = call_user_func( $tool['callback'], $arguments );
 		} catch ( \Throwable $throwable ) {
-			do_action( 'flatsome_mcp_tool_exception', $throwable, $name, $arguments );
+			do_action( 'mindio_magic_mcp_tool_exception', $throwable, $name, $arguments );
 			return new \WP_Error( 'tool_exception', __( 'The tool failed unexpectedly.', 'mindio-magic-mcp' ) );
 		} finally {
 			if ( $locale_switched ) {

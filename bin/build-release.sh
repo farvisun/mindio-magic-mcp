@@ -3,10 +3,10 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 plugin_dir="$(cd "${script_dir}/.." && pwd)"
-version="$(sed -n "s/^define( 'FLATSOME_MCP_VERSION', '\\([^']*\\)' );$/\\1/p" "${plugin_dir}/flatsome-mcp.php")"
+version="$(sed -n "s/^define( 'MINDIO_MAGIC_MCP_VERSION', '\\([^']*\\)' );$/\\1/p" "${plugin_dir}/flatsome-mcp.php")"
 
 if [[ -z "${version}" ]]; then
-  echo "Could not determine FLATSOME_MCP_VERSION." >&2
+  echo "Could not determine MINDIO_MAGIC_MCP_VERSION." >&2
   exit 1
 fi
 

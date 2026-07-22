@@ -6,7 +6,7 @@
 		return;
 	}
 
-	const config = window.FlatsomeMCPAdmin || {};
+	const config = window.MindioMagicMCPAdmin || {};
 	const liveRegion = document.getElementById( 'fmp-copy-status' );
 
 	const announce = ( message ) => {

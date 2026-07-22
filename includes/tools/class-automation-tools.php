@@ -2,10 +2,10 @@
 /**
  * Agent-oriented automation tools and provider extension points.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,7 +21,7 @@ final class Automation_Tools {
 	public function register(): void {
 		$this->registry->register(
 			'generate_post_from_prompt',
-			__( 'Generate and create a WordPress post through a configured automation provider. The provider must implement the flatsome_mcp_automation_generate_post filter.', 'mindio-magic-mcp' ),
+			__( 'Generate and create a WordPress post through a configured automation provider. The provider must implement the mindio_magic_mcp_automation_generate_post filter.', 'mindio-magic-mcp' ),
 			array(
 				'type'       => 'object',
 				'properties' => array(
@@ -62,7 +62,7 @@ final class Automation_Tools {
 
 		$this->registry->register(
 			'translate_content',
-			__( 'Translate supplied content or a readable WordPress post through a configured provider. The provider must implement the flatsome_mcp_automation_translate_content filter.', 'mindio-magic-mcp' ),
+			__( 'Translate supplied content or a readable WordPress post through a configured provider. The provider must implement the mindio_magic_mcp_automation_translate_content filter.', 'mindio-magic-mcp' ),
 			$this->content_input_schema(
 				array(
 					'target_locale' => array( 'type' => 'string', 'minLength' => 2, 'maxLength' => 20 ),
@@ -132,9 +132,9 @@ final class Automation_Tools {
 			'max_words'        => max( 50, min( 10000, absint( $args['max_words'] ?? 1200 ) ) ),
 			'provider_options' => (array) ( $args['provider_options'] ?? array() ),
 		);
-		$generated = apply_filters( 'flatsome_mcp_automation_generate_post', null, $request, get_current_user_id() );
+		$generated = apply_filters( 'mindio_magic_mcp_automation_generate_post', null, $request, get_current_user_id() );
 		if ( null === $generated ) {
-			return $this->provider_unavailable( 'flatsome_mcp_automation_generate_post' );
+			return $this->provider_unavailable( 'mindio_magic_mcp_automation_generate_post' );
 		}
 		if ( is_wp_error( $generated ) ) {
 			return $generated;
@@ -166,8 +166,8 @@ final class Automation_Tools {
 		if ( is_wp_error( $post_id ) ) {
 			return $post_id;
 		}
-		update_post_meta( (int) $post_id, '_flatsome_mcp_automation', wp_json_encode( array( 'provider' => sanitize_text_field( (string) ( $generated['provider'] ?? 'custom' ) ), 'prompt_hash' => hash( 'sha256', $request['prompt'] ) ) ) );
-		do_action( 'flatsome_mcp_post_created', (int) $post_id, $args );
+		update_post_meta( (int) $post_id, '_mindio_magic_mcp_automation', wp_json_encode( array( 'provider' => sanitize_text_field( (string) ( $generated['provider'] ?? 'custom' ) ), 'prompt_hash' => hash( 'sha256', $request['prompt'] ) ) ) );
+		do_action( 'mindio_magic_mcp_post_created', (int) $post_id, $args );
 
 		return array(
 			'post_id'  => (int) $post_id,
@@ -191,7 +191,7 @@ final class Automation_Tools {
 			'target_words' => max( 20, min( 2000, absint( $args['target_words'] ?? 120 ) ) ),
 			'language'     => sanitize_locale_name( (string) ( $args['language'] ?? get_locale() ) ),
 		);
-		$result = apply_filters( 'flatsome_mcp_automation_summarize_content', null, $request, get_current_user_id() );
+		$result = apply_filters( 'mindio_magic_mcp_automation_summarize_content', null, $request, get_current_user_id() );
 		if ( is_wp_error( $result ) ) {
 			return $result;
 		}
@@ -230,9 +230,9 @@ final class Automation_Tools {
 			'source_locale'  => sanitize_locale_name( (string) ( $args['source_locale'] ?? '' ) ),
 			'preserve_html'  => ! array_key_exists( 'preserve_html', $args ) || (bool) $args['preserve_html'],
 		);
-		$result = apply_filters( 'flatsome_mcp_automation_translate_content', null, $request, get_current_user_id() );
+		$result = apply_filters( 'mindio_magic_mcp_automation_translate_content', null, $request, get_current_user_id() );
 		if ( null === $result ) {
-			return $this->provider_unavailable( 'flatsome_mcp_automation_translate_content' );
+			return $this->provider_unavailable( 'mindio_magic_mcp_automation_translate_content' );
 		}
 		if ( is_wp_error( $result ) ) {
 			return $result;

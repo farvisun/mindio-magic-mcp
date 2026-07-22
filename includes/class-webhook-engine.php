@@ -2,10 +2,10 @@
 /**
  * Signed, retrying webhook delivery engine.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -18,7 +18,7 @@ final class Webhook_Engine {
 		add_action( 'wp_after_insert_post', array( $this, 'post_event' ), 10, 4 );
 		add_action( 'comment_post', array( $this, 'comment_event' ), 10, 3 );
 		add_action( 'woocommerce_new_order', array( $this, 'order_event' ), 10, 2 );
-		add_action( 'flatsome_mcp_deliver_webhook', array( $this, 'deliver' ) );
+		add_action( 'mindio_magic_mcp_deliver_webhook', array( $this, 'deliver' ) );
 	}
 
 	/** @return array<string,mixed>|\WP_Error */
@@ -54,7 +54,7 @@ final class Webhook_Engine {
 			'user_id'    => get_current_user_id(),
 		);
 		$webhooks[ $id ] = $record;
-		update_option( 'flatsome_mcp_webhooks', $webhooks, false );
+		update_option( 'mindio_magic_mcp_webhooks', $webhooks, false );
 
 		$public           = $this->public_record( $record );
 		$public['secret'] = $secret;
@@ -68,7 +68,7 @@ final class Webhook_Engine {
 			return false;
 		}
 		unset( $webhooks[ $id ] );
-		update_option( 'flatsome_mcp_webhooks', $webhooks, false );
+		update_option( 'mindio_magic_mcp_webhooks', $webhooks, false );
 		return true;
 	}
 
@@ -201,7 +201,7 @@ final class Webhook_Engine {
 				'redirection' => 0,
 				'headers'     => array(
 					'Content-Type'                 => 'application/json',
-					'User-Agent'                   => 'MagicMCP/' . FLATSOME_MCP_VERSION,
+					'User-Agent'                   => 'MagicMCP/' . MINDIO_MAGIC_MCP_VERSION,
 					'X-MagicMCP-Event'             => $row['event'],
 					'X-MagicMCP-Delivery'          => (string) $delivery_id,
 					'X-MagicMCP-Timestamp'         => $timestamp,
@@ -229,7 +229,7 @@ final class Webhook_Engine {
 		}
 		$next = time() + $delays[ $attempt - 1 ];
 		$this->update_delivery( $delivery_id, array( 'status' => 'retrying', 'attempts' => $attempt, 'response_code' => $code, 'response_body' => $body, 'next_attempt' => gmdate( 'Y-m-d H:i:s', $next ) ) );
-		wp_schedule_single_event( $next, 'flatsome_mcp_deliver_webhook', array( $delivery_id ) );
+		wp_schedule_single_event( $next, 'mindio_magic_mcp_deliver_webhook', array( $delivery_id ) );
 	}
 
 	private function queue( string $event, array $data ): void {
@@ -263,7 +263,7 @@ final class Webhook_Engine {
 				array( '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s' )
 			);
 			if ( $wpdb->insert_id ) {
-				wp_schedule_single_event( time(), 'flatsome_mcp_deliver_webhook', array( (int) $wpdb->insert_id ) );
+				wp_schedule_single_event( time(), 'mindio_magic_mcp_deliver_webhook', array( (int) $wpdb->insert_id ) );
 			}
 		}
 	}
@@ -276,7 +276,7 @@ final class Webhook_Engine {
 
 	/** @return array<string,array<string,mixed>> */
 	private function records(): array {
-		$records = get_option( 'flatsome_mcp_webhooks', array() );
+		$records = get_option( 'mindio_magic_mcp_webhooks', array() );
 		return is_array( $records ) ? $records : array();
 	}
 

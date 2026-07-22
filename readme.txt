@@ -4,7 +4,7 @@ Tags: mcp, ai, flatsome, automation, oauth
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 0.5.4
+Stable tag: 0.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,7 +81,7 @@ Yes. It includes OAuth 2.1 authorization code flow with PKCE S256, dynamic clien
 
 = Are developer tools enabled by default? =
 
-No. Read-only filesystem inspection, read-only SQL, and in-process WP-CLI commands must be enabled separately by an administrator and remain tightly allowlisted.
+No. Read-only filesystem inspection, fixed-shape database schema inspection, and in-process WP-CLI commands must be enabled separately by an administrator and remain tightly allowlisted.
 
 = Can administrators disable individual MCP tools? =
 
@@ -112,6 +112,12 @@ No. The plugin contains no license check, paywall, feature gate, time limit, usa
 Its primary distinction is native-first Flatsome UX Builder generation and editing across 29 typed components, combined with revision-safe Gutenberg operations, granular per-tool and per-operation policy, OAuth 2.1, Persian localization, and RTL-safe generated layouts.
 
 == Changelog ==
+
+= 0.5.5 =
+
+* Adopted unique Mindio-prefixed WordPress globals and storage identifiers.
+* Removed request-supplied SQL execution; database inspection now uses prepared, fixed-shape queries only.
+* Switched Rank Math settings access to the provider's helper API.
 
 = 0.5.4 =
 

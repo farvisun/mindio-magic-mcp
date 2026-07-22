@@ -2,10 +2,10 @@
 /**
  * Scoped API-key and OAuth token authentication.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -157,7 +157,7 @@ final class Auth {
 		}
 		$this->save_tokens( $access_tokens );
 
-		$refresh_tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+		$refresh_tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 		$refresh_tokens = is_array( $refresh_tokens ) ? $refresh_tokens : array();
 		$refresh_count  = 0;
 		foreach ( $refresh_tokens as $id => $record ) {
@@ -166,7 +166,7 @@ final class Auth {
 				++$refresh_count;
 			}
 		}
-		update_option( 'flatsome_mcp_refresh_tokens', $refresh_tokens, false );
+		update_option( 'mindio_magic_mcp_refresh_tokens', $refresh_tokens, false );
 		return array( 'access_tokens' => $access_count, 'refresh_tokens' => $refresh_count );
 	}
 
@@ -312,7 +312,7 @@ final class Auth {
 		$id     = bin2hex( random_bytes( 8 ) );
 		$secret = Secret_Box::base64url_encode( random_bytes( 32 ) );
 		$raw    = 'fmr_' . $id . '_' . $secret;
-		$tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+		$tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 		$tokens = is_array( $tokens ) ? $tokens : array();
 		$tokens[ $id ] = array(
 			'id'         => $id,
@@ -324,7 +324,7 @@ final class Auth {
 			'created_at' => time(),
 			'expires_at' => time() + ( 30 * DAY_IN_SECONDS ),
 		);
-		update_option( 'flatsome_mcp_refresh_tokens', $tokens, false );
+		update_option( 'mindio_magic_mcp_refresh_tokens', $tokens, false );
 		return $raw;
 	}
 
@@ -333,7 +333,7 @@ final class Auth {
 		if ( ! preg_match( '/^fmr_([a-f0-9]{16})_([A-Za-z0-9_-]{43})$/', $raw, $matches ) ) {
 			return new \WP_Error( 'invalid_grant', __( 'The refresh token is malformed.', 'mindio-magic-mcp' ) );
 		}
-		$tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+		$tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 		$tokens = is_array( $tokens ) ? $tokens : array();
 		$record = $tokens[ $matches[1] ] ?? null;
 		if ( ! is_array( $record ) || ! hash_equals( (string) $record['hash'], $this->token_hash( $matches[2] ) ) || time() >= (int) $record['expires_at'] ) {
@@ -343,21 +343,21 @@ final class Auth {
 	}
 
 	private function revoke_refresh_token( string $id ): void {
-		$tokens = get_option( 'flatsome_mcp_refresh_tokens', array() );
+		$tokens = get_option( 'mindio_magic_mcp_refresh_tokens', array() );
 		$tokens = is_array( $tokens ) ? $tokens : array();
 		unset( $tokens[ $id ] );
-		update_option( 'flatsome_mcp_refresh_tokens', $tokens, false );
+		update_option( 'mindio_magic_mcp_refresh_tokens', $tokens, false );
 	}
 
 	/** @return array<string,array<string,mixed>> */
 	private function tokens(): array {
-		$tokens = get_option( 'flatsome_mcp_tokens', array() );
+		$tokens = get_option( 'mindio_magic_mcp_tokens', array() );
 		return is_array( $tokens ) ? $tokens : array();
 	}
 
 	/** @param array<string,array<string,mixed>> $tokens */
 	private function save_tokens( array $tokens ): void {
-		update_option( 'flatsome_mcp_tokens', $tokens, false );
+		update_option( 'mindio_magic_mcp_tokens', $tokens, false );
 	}
 
 	private function token_hash( string $secret ): string {

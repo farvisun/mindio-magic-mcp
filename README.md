@@ -142,7 +142,7 @@ A scope never grants permissions that the associated WordPress user does not hav
 
 ## Tool catalog
 
-Version 0.5.4 registers 82 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all five adds ten names and 138 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
+Version 0.5.5 registers 80 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all five adds ten names and 138 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
 
 Administrators can disable any registered tool under **Settings → Mindio Magic MCP → Tools**. Disabled tools are omitted from `tools/list` and direct calls fail with `tool_disabled`; credentials and their scopes remain unchanged. ACF, Contact Form 7, Yoast, Rank Math, and WooCommerce controls are shown only when the corresponding plugin is installed. Installed-but-inactive integrations remain configurable, while their calls fail closed until activation. Expand a dispatcher to enable individual operations. A disabled operation is removed from the dispatcher's `operation` enum and direct calls fail with `operation_disabled`. Tool and operation policies are stored per site and retained while a dependency is absent.
 
@@ -164,7 +164,7 @@ Administrators can disable any registered tool under **Settings → Mindio Magic
 | Webhooks | `register_webhook`, `unregister_webhook`, `list_webhooks` |
 | Flatsome | `list_flatsome_components`, `create_flatsome_page`, `get_flatsome_page`, `add_section`, `add_row`, `add_element` |
 | Diagnostics | `get_server_status`, `get_activity_logs`, `get_webhook_logs`, `get_error_logs` |
-| Filesystem and database | `read_file`, `list_directory`, `search_files`, `list_database_tables`, `describe_database_table`, `run_safe_query` |
+| Filesystem and database | `read_file`, `list_directory`, `search_files`, `list_database_tables`, `describe_database_table` |
 | Developer | `run_wp_cli`, `clear_cache` |
 | Performance | `purge_cdn`, `control_cache`, `trigger_image_optimization` |
 | WooCommerce | `woocommerce_read`, `woocommerce_write`; legacy `create_product`, `update_product`, `list_orders`, `manage_customers`, `manage_inventory`, `apply_coupons` when active |
@@ -266,7 +266,7 @@ The plugin does not transmit prompts or content to a third-party AI service by d
 
 ```php
 add_filter(
-    'flatsome_mcp_automation_generate_post',
+    'mindio_magic_mcp_automation_generate_post',
     function ( $result, array $request, int $user_id ) {
         // Return WP_Error on failure, or an array with title and content.
         return array(
@@ -281,7 +281,7 @@ add_filter(
 );
 
 add_filter(
-    'flatsome_mcp_automation_translate_content',
+    'mindio_magic_mcp_automation_translate_content',
     function ( $result, array $request, int $user_id ) {
         return array(
             'title'    => 'Translated title',
@@ -294,7 +294,7 @@ add_filter(
 );
 ```
 
-Providers may also override local summarization with `flatsome_mcp_automation_summarize_content`.
+Providers may also override local summarization with `mindio_magic_mcp_automation_summarize_content`.
 
 ## Webhooks
 
@@ -327,9 +327,9 @@ Only public HTTPS destinations are accepted. DNS is checked at registration and 
 - Redacted audit inputs and bounded log retention
 - Remote media and webhook SSRF defenses
 - WordPress.org-only plugin and theme installation with verified official HTTPS package URLs
-- `read_file`, `list_directory`, `search_files`, `run_safe_query`, and `run_wp_cli` disabled until explicitly enabled
+- `read_file`, `list_directory`, `search_files`, database schema inspection, and `run_wp_cli` disabled until explicitly enabled
 - In-process WP-CLI allowlist; no shell execution
-- Bounded read-only SQL validator with current-site table allowlisting and credential tables denied
+- Prepared, fixed-shape database inventory and schema queries with current-site table allowlisting and credential tables denied
 - Read-only filesystem roots, traversal and symlink containment, text-file allowlisting, size/time limits, sensitive filename denial, and secret redaction
 
 ### WordPress.org directory boundaries
@@ -361,24 +361,24 @@ composer lint
 composer build
 ```
 
-The build script creates `dist/mindio-magic-mcp-0.5.4.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. Existing REST routes, database options, hooks, credentials, and webhook headers remain compatible with earlier releases.
+The build script creates `dist/mindio-magic-mcp-0.5.5.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. REST routes, credentials, and webhook headers remain compatible; pre-directory plugin-owned WordPress globals now use the canonical `mindio_magic_mcp_` prefix.
 
 ## Extension hooks
 
-The `flatsome_mcp_*` hook names are retained as a stable compatibility API.
+The `mindio_magic_mcp_*` hook names are retained as a stable compatibility API.
 
-- `flatsome_mcp_automation_generate_post`
-- `flatsome_mcp_automation_summarize_content`
-- `flatsome_mcp_automation_translate_content`
-- `flatsome_mcp_media_uploaded`
-- `flatsome_mcp_post_created`
-- `flatsome_mcp_post_updated`
-- `flatsome_mcp_layout_updated`
-- `flatsome_mcp_seo_updated`
-- `flatsome_mcp_purge_cdn`
-- `flatsome_mcp_cache_cleared`
-- `flatsome_mcp_optimize_attachment`
-- `flatsome_mcp_tool_exception`
+- `mindio_magic_mcp_automation_generate_post`
+- `mindio_magic_mcp_automation_summarize_content`
+- `mindio_magic_mcp_automation_translate_content`
+- `mindio_magic_mcp_media_uploaded`
+- `mindio_magic_mcp_post_created`
+- `mindio_magic_mcp_post_updated`
+- `mindio_magic_mcp_layout_updated`
+- `mindio_magic_mcp_seo_updated`
+- `mindio_magic_mcp_purge_cdn`
+- `mindio_magic_mcp_cache_cleared`
+- `mindio_magic_mcp_optimize_attachment`
+- `mindio_magic_mcp_tool_exception`
 
 ## License
 

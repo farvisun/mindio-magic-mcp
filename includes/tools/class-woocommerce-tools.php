@@ -2,10 +2,10 @@
 /**
  * Conditional WooCommerce product, order, customer, inventory, and coupon tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

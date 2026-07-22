@@ -2,6 +2,12 @@
 
 All notable changes to Mindio Magic MCP are documented here.
 
+## 0.5.5 - 2026-07-22
+
+- Adopted the unique `MindioMagicMCP`, `MINDIO_MAGIC_MCP_`, and `mindio_magic_mcp_` prefixes for plugin-owned globals and persistent identifiers.
+- Removed request-supplied SQL execution while retaining opt-in table inventory and schema inspection through prepared, fixed-shape queries.
+- Replaced direct Rank Math option access with the provider's settings helper and updated the canonical admin page slug.
+
 ## 0.5.4 - 2026-07-21
 
 - Updated plugin, readme, security, and development-catalog links to the canonical public repository at `farvisun/mindio-magic-mcp`.

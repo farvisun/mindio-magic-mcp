@@ -8,6 +8,7 @@
   },
   "scripts": {
     "lint": "find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+	"test:review-regressions": "@php tests/review-regressions.php",
     "test:integration": "@php tests/integration/smoke.php",
     "test:flatsome": "@php tests/integration/flatsome-components.php",
     "test:admin": "@php tests/integration/admin-ui.php",
@@ -17,6 +18,7 @@
     "test:localization": "@php tests/integration/localization.php",
     "test": [
       "@lint",
+	  "@test:review-regressions",
       "@test:integration",
       "@test:flatsome",
       "@test:admin",

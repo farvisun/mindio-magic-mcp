@@ -3,7 +3,7 @@
  * Plugin Name:       Mindio Magic MCP
  * Plugin URI:        https://github.com/farvisun/mindio-magic-mcp
  * Description:       A secure MCP server for WordPress that supports Flatsome UX Builder, content automation, and site management.
- * Version:           0.5.4
+ * Version:           0.5.5
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Mohammad Askari <farvisun@gmail.com>
@@ -13,25 +13,25 @@
  * Text Domain:       mindio-magic-mcp
  * Domain Path:       /languages
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// Avoid a fatal collision during a manual transition from the legacy package slug.
-if ( defined( 'FLATSOME_MCP_FILE' ) ) {
+// Avoid loading the plugin twice from duplicate package directories.
+if ( defined( 'MINDIO_MAGIC_MCP_FILE' ) ) {
 	return;
 }
 
-define( 'FLATSOME_MCP_VERSION', '0.5.4' );
-define( 'FLATSOME_MCP_DB_VERSION', '1' );
-define( 'FLATSOME_MCP_FILE', __FILE__ );
-define( 'FLATSOME_MCP_DIR', plugin_dir_path( __FILE__ ) );
-define( 'FLATSOME_MCP_URL', plugin_dir_url( __FILE__ ) );
+define( 'MINDIO_MAGIC_MCP_VERSION', '0.5.5' );
+define( 'MINDIO_MAGIC_MCP_DB_VERSION', '1' );
+define( 'MINDIO_MAGIC_MCP_FILE', __FILE__ );
+define( 'MINDIO_MAGIC_MCP_DIR', plugin_dir_path( __FILE__ ) );
+define( 'MINDIO_MAGIC_MCP_URL', plugin_dir_url( __FILE__ ) );
 
-$flatsome_mcp_files = array(
+$mindio_magic_mcp_files = array(
 	'includes/class-installer.php',
 	'includes/class-schema-validator.php',
 	'includes/class-auth.php',
@@ -74,15 +74,15 @@ $flatsome_mcp_files = array(
 	'includes/class-plugin.php',
 );
 
-foreach ( $flatsome_mcp_files as $flatsome_mcp_file ) {
-	require_once FLATSOME_MCP_DIR . $flatsome_mcp_file;
+foreach ( $mindio_magic_mcp_files as $mindio_magic_mcp_file ) {
+	require_once MINDIO_MAGIC_MCP_DIR . $mindio_magic_mcp_file;
 }
 
-register_activation_hook( __FILE__, array( '\FlatsomeMCP\Installer', 'activate' ) );
-register_deactivation_hook( __FILE__, array( '\FlatsomeMCP\Installer', 'deactivate' ) );
+register_activation_hook( __FILE__, array( '\MindioMagicMCP\Installer', 'activate' ) );
+register_deactivation_hook( __FILE__, array( '\MindioMagicMCP\Installer', 'deactivate' ) );
 
-if ( did_action( 'plugins_loaded' ) ) {
-	\FlatsomeMCP\Plugin::instance()->boot();
+if ( did_action( 'init' ) ) {
+	\MindioMagicMCP\Plugin::instance()->boot();
 } else {
-	add_action( 'plugins_loaded', array( \FlatsomeMCP\Plugin::instance(), 'boot' ), 20 );
+	add_action( 'init', array( \MindioMagicMCP\Plugin::instance(), 'boot' ), 5 );
 }

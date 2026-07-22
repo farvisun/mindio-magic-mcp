@@ -2,10 +2,10 @@
 /**
  * Plugin composition root.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -72,7 +72,7 @@ final class Plugin {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
-		add_action( 'flatsome_mcp_cleanup_logs', array( Installer::class, 'cleanup_logs' ) );
+		add_action( 'mindio_magic_mcp_cleanup_logs', array( Installer::class, 'cleanup_logs' ) );
 		if ( is_multisite() ) {
 			add_action( 'wp_initialize_site', array( Installer::class, 'initialize_site' ), 100 );
 		}
@@ -84,7 +84,7 @@ final class Plugin {
 		}
 		$post = get_post();
 		if ( $post && str_contains( $post->post_content, 'fmp-rtl' ) ) {
-			wp_enqueue_style( 'flatsome-mcp-frontend', FLATSOME_MCP_URL . 'assets/css/frontend.css', array(), FLATSOME_MCP_VERSION );
+			wp_enqueue_style( 'flatsome-mcp-frontend', MINDIO_MAGIC_MCP_URL . 'assets/css/frontend.css', array(), MINDIO_MAGIC_MCP_VERSION );
 		}
 	}
 

@@ -2,10 +2,10 @@
 /**
  * Safe native-first renderer for Flatsome UX Builder shortcodes.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

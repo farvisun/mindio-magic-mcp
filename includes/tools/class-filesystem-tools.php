@@ -2,10 +2,10 @@
 /**
  * Opt-in, bounded, read-only filesystem inspection.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -221,7 +221,7 @@ final class Filesystem_Tools {
 
 	/** @return bool|\WP_Error */
 	private function ensure_enabled(): bool|\WP_Error {
-		$settings = get_option( 'flatsome_mcp_settings', array() );
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
 		return ! empty( $settings['allow_filesystem_read'] )
 			? true
 			: new \WP_Error( 'filesystem_read_disabled', __( 'Read-only filesystem tools are disabled in Mindio Magic MCP settings.', 'mindio-magic-mcp' ) );

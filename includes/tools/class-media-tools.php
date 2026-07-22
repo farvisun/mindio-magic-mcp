@@ -2,10 +2,10 @@
 /**
  * WordPress Media Library tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -118,7 +118,7 @@ final class Media_Tools {
 			return new \WP_Error( 'invalid_media_source', __( 'Provide exactly one of source_url or data_base64.', 'mindio-magic-mcp' ) );
 		}
 
-		$settings = get_option( 'flatsome_mcp_settings', array() );
+		$settings = get_option( 'mindio_magic_mcp_settings', array() );
 		$max      = max( 1, min( 100, absint( $settings['max_upload_mb'] ?? 10 ) ) ) * MB_IN_BYTES;
 		$tmp      = '';
 		$filename = sanitize_file_name( (string) ( $args['filename'] ?? '' ) );
@@ -225,7 +225,7 @@ final class Media_Tools {
 			update_post_meta( $attachment_id, '_wp_attachment_image_alt', sanitize_text_field( (string) $args['alt_text'] ) );
 		}
 
-		do_action( 'flatsome_mcp_media_uploaded', (int) $attachment_id, $args );
+		do_action( 'mindio_magic_mcp_media_uploaded', (int) $attachment_id, $args );
 		return $this->serialize_attachment( get_post( $attachment_id ) );
 	}
 

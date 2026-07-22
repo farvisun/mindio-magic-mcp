@@ -2,10 +2,10 @@
 /**
  * Flatsome UX Builder page-generation tools.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -181,9 +181,9 @@ final class Flatsome_Tools {
 			return $post_id;
 		}
 		update_post_meta( $post_id, '_wp_page_template', sanitize_file_name( (string) ( $args['template'] ?? 'page-blank.php' ) ) );
-		update_post_meta( $post_id, '_flatsome_mcp_managed', FLATSOME_MCP_VERSION );
-		update_post_meta( $post_id, '_flatsome_mcp_direction', $direction );
-		update_post_meta( $post_id, '_flatsome_mcp_content_locale', sanitize_locale_name( (string) ( $args['content_locale'] ?? determine_locale() ) ) );
+		update_post_meta( $post_id, '_mindio_magic_mcp_managed', MINDIO_MAGIC_MCP_VERSION );
+		update_post_meta( $post_id, '_mindio_magic_mcp_direction', $direction );
+		update_post_meta( $post_id, '_mindio_magic_mcp_content_locale', sanitize_locale_name( (string) ( $args['content_locale'] ?? determine_locale() ) ) );
 
 		return $this->page_result( (int) $post_id, $rendered['node_ids'], $rendered['render_report'] );
 	}
@@ -199,7 +199,7 @@ final class Flatsome_Tools {
 			array(
 				'title'     => get_the_title( $post ),
 				'status'    => $post->post_status,
-				'direction' => get_post_meta( $post->ID, '_flatsome_mcp_direction', true ) ?: 'ltr',
+				'direction' => get_post_meta( $post->ID, '_mindio_magic_mcp_direction', true ) ?: 'ltr',
 				'content'   => $post->post_content,
 			)
 		);
@@ -709,7 +709,7 @@ final class Flatsome_Tools {
 		if ( is_wp_error( $result ) ) {
 			return $result;
 		}
-		do_action( 'flatsome_mcp_layout_updated', $post->ID, $new_nodes );
+		do_action( 'mindio_magic_mcp_layout_updated', $post->ID, $new_nodes );
 		return $this->page_result( $post->ID, $new_nodes, $render_report );
 	}
 
@@ -740,7 +740,7 @@ final class Flatsome_Tools {
 	}
 
 	private function post_direction( int $post_id ): string {
-		$direction = get_post_meta( $post_id, '_flatsome_mcp_direction', true );
+		$direction = get_post_meta( $post_id, '_mindio_magic_mcp_direction', true );
 		return in_array( $direction, array( 'ltr', 'rtl' ), true ) ? $direction : ( is_rtl() ? 'rtl' : 'ltr' );
 	}
 

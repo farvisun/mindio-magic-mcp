@@ -2,10 +2,10 @@
 /**
  * Pure Gutenberg block-tree parsing and mutation helpers.
  *
- * @package FlatsomeMCP
+ * @package MindioMagicMCP
  */
 
-namespace FlatsomeMCP;
+namespace MindioMagicMCP;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
