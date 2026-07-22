@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          plugin_version="$(sed -n "s/^define( 'FLATSOME_MCP_VERSION', '\\([^']*\\)' );$/\\1/p" flatsome-mcp.php)"
+          plugin_version="$(sed -n "s/^define( 'MINDIO_MAGIC_MCP_VERSION', '\\([^']*\\)' );$/\\1/p" flatsome-mcp.php)"
           stable_tag="$(sed -n 's/^Stable tag: //p' readme.txt)"
           test -n "${plugin_version}"
           test "${plugin_version}" = "${stable_tag}"
