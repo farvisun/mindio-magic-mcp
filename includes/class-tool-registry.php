@@ -47,8 +47,18 @@ final class Tool_Registry {
 			throw new \LogicException( esc_html( 'Duplicate MCP tool name: ' . $name ) );
 		}
 
+		$supports_dry_run = array_key_exists( 'dry_run', $metadata )
+			? (bool) $metadata['dry_run']
+			: ( empty( $annotations['readOnlyHint'] ) && ! in_array( $name, self::unpreviewable_tools(), true ) );
+
 		if ( 'object' === ( $input_schema['type'] ?? null ) ) {
 			$input_schema['properties'] = (array) ( $input_schema['properties'] ?? array() );
+			if ( $supports_dry_run ) {
+				$input_schema['properties']['dry_run'] = array(
+					'type'        => 'boolean',
+					'description' => __( 'Preview this call without committing it. Returns the exact post, meta, term, option, comment, and user changes it would make.', 'mindio-magic-mcp' ),
+				);
+			}
 			$input_schema['properties']['response_locale'] = array(
 				'type'        => 'string',
 				'maxLength'   => 20,
@@ -80,6 +90,7 @@ final class Tool_Registry {
 				)
 			),
 			'operations'   => $operations,
+			'dry_run'      => $supports_dry_run,
 		);
 	}
 
@@ -184,7 +195,19 @@ final class Tool_Registry {
 				return new \WP_Error( 'forbidden', __( 'Your WordPress user cannot perform this action.', 'mindio-magic-mcp' ) );
 			}
 
-			$result = call_user_func( $tool['callback'], $arguments );
+			if ( ! empty( $arguments['dry_run'] ) ) {
+				if ( empty( $tool['dry_run'] ) ) {
+					return new \WP_Error(
+						'dry_run_unsupported',
+						__( 'This tool changes files or external state that cannot be rolled back, so it cannot be previewed.', 'mindio-magic-mcp' )
+					);
+				}
+				$result = ( new Dry_Run() )->run(
+					static fn() => call_user_func( $tool['callback'], $arguments )
+				);
+			} else {
+				$result = call_user_func( $tool['callback'], $arguments );
+			}
 		} catch ( \Throwable $throwable ) {
 			do_action( 'mindio_magic_mcp_tool_exception', $throwable, $name, $arguments );
 			return new \WP_Error( 'tool_exception', __( 'The tool failed unexpectedly.', 'mindio-magic-mcp' ) );
@@ -242,6 +265,7 @@ final class Tool_Registry {
 				'exposed'     => ! isset( $disabled[ $tool['name'] ] ),
 				'read_only'   => ! empty( $tool['annotations']['readOnlyHint'] ),
 				'destructive' => ! empty( $tool['annotations']['destructiveHint'] ),
+				'dry_run'     => ! empty( $tool['dry_run'] ),
 				'operations'  => $operations,
 			);
 		}
@@ -354,6 +378,33 @@ final class Tool_Registry {
 			'registered' => count( $registered ),
 			'exposed'    => count( $enabled ),
 			'disabled'   => count( $registered ) - count( $enabled ),
+		);
+	}
+
+	/**
+	 * Tools whose effects reach the filesystem, a package installer, or a remote
+	 * service, and therefore survive a rolled-back database transaction.
+	 *
+	 * @return array<int,string>
+	 */
+	public static function unpreviewable_tools(): array {
+		return (array) apply_filters(
+			'mindio_magic_mcp_unpreviewable_tools',
+			array(
+				'upload_media',
+				'delete_media',
+				'install_plugin',
+				'update_plugin',
+				'delete_plugin',
+				'install_theme',
+				'update_theme',
+				'delete_theme',
+				'run_wp_cli',
+				'clear_cache',
+				'purge_cdn',
+				'control_cache',
+				'trigger_image_optimization',
+			)
 		);
 	}
 

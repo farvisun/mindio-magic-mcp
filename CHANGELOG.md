@@ -4,6 +4,9 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added `dry_run` to every write tool: the call executes inside a database transaction, reports the exact post, meta, term, option, comment, and user changes it would make, and is then rolled back. Outbound HTTP, mail, cron scheduling, and webhook queuing are suppressed for the duration and reported back.
+- Excluded tools whose effects escape a transaction — media writes, plugin and theme installation, WP-CLI, cache purges, and CDN calls — from previewing, and made the argument fail closed on non-transactional storage engines.
+
 - Added MCP resources: `resources/list`, `resources/templates/list`, and `resources/read` expose the site profile, post types, taxonomies, page templates, navigation menus, and the Flatsome component catalog, plus templated `mindio://post/{id}`, `mindio://media/{id}`, and `mindio://posts/{post_type}` URIs, each scope-checked and capability-checked per item.
 - Added MCP prompts: `prompts/list` and `prompts/get` serve five site-aware templates that embed the live site name, locale, text direction, active theme, detected page builder, and installed SEO provider.
 - Added a brand voice setting that flows into every prompt and the site profile resource, and advertised the resources and prompts capabilities during `initialize`.

@@ -218,6 +218,36 @@ Every object input schema also accepts:
 - `response_locale`: switch response messages to an installed WordPress locale for that call.
 - `site_id`: on multisite, execute that one call in a permitted site context. Context is intentionally stateless, so include it on every relevant call.
 
+## Previewing writes
+
+Every write tool accepts `dry_run: true`. The call runs for real inside a database transaction, records what it touches, rolls back, and returns the diff instead of committing it:
+
+```json
+{
+  "dry_run": true,
+  "applied": false,
+  "changes": {
+    "posts": [
+      {
+        "id": 41,
+        "operation": "update",
+        "fields": { "post_title": { "before": "Old", "after": "New" } }
+      }
+    ],
+    "meta": [], "terms": [], "options": [], "comments": [], "users": [],
+    "total": 1
+  },
+  "suppressed": [],
+  "result": { "…": "what the tool would have returned" }
+}
+```
+
+The interception is generic rather than per-tool, so it covers posts, post meta, term assignments and term edits, options, comments, and users for any registered write. Effects that a rollback cannot undo are blocked for the duration of the call and reported in `suppressed`: outbound HTTP, mail, and cron scheduling. Webhook deliveries are not queued.
+
+Tools whose real work happens outside the database do not accept the argument at all — it is absent from their schema and passing it fails with `dry_run_unsupported`. That covers media upload and deletion, plugin and theme install/update/delete, WP-CLI, cache purges, and CDN calls. Extend the list with the `mindio_magic_mcp_unpreviewable_tools` filter.
+
+Dry runs require a transactional storage engine. On non-InnoDB installations the argument fails closed rather than silently committing. Long field values and change sets above 500 entries are clipped, flagged by `truncated`.
+
 ## Gutenberg editing safety
 
 Gutenberg tools work with structured block trees and numeric index paths. Writes validate every block type against WordPress's live block registry, enforce depth/node limits, save a revision, and accept `expected_modified_gmt` for optimistic concurrency. Posts containing Flatsome or mixed builder content are protected from accidental block serialization; an override requires both `force_non_gutenberg=true` and `confirm=true`. Use the Flatsome tools for those pages whenever possible.

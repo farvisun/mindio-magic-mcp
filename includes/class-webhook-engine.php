@@ -236,6 +236,12 @@ final class Webhook_Engine {
 	private function queue( string $event, array $data ): void {
 		global $wpdb;
 
+		// A dry run rolls its transaction back, so queuing a delivery would only
+		// produce a row that never existed and a cron job with nothing to send.
+		if ( Dry_Run::is_active() ) {
+			return;
+		}
+
 		foreach ( $this->records() as $webhook ) {
 			if ( empty( $webhook['active'] ) || ! in_array( $event, (array) $webhook['events'], true ) ) {
 				continue;

@@ -17,6 +17,7 @@
     "test:seo-providers": "@php tests/integration/seo-providers.php",
     "test:localization": "@php tests/integration/localization.php",
     "test:resources": "@php tests/integration/resources-prompts.php",
+    "test:dry-run": "@php tests/integration/dry-run.php",
     "test": [
       "@lint",
 	  "@test:review-regressions",
@@ -27,7 +28,8 @@
       "@test:expanded",
       "@test:seo-providers",
       "@test:localization",
-      "@test:resources"
+      "@test:resources",
+      "@test:dry-run"
     ],
     "build": "bash bin/build-release.sh"
   }
