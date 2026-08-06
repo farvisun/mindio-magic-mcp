@@ -19,6 +19,7 @@
     "test:resources": "@php tests/integration/resources-prompts.php",
     "test:dry-run": "@php tests/integration/dry-run.php",
     "test:changesets": "@php tests/integration/changesets.php",
+    "test:policy": "@php tests/integration/credential-policy.php",
     "test": [
       "@lint",
       "@test:review-regressions",
@@ -31,7 +32,8 @@
       "@test:localization",
       "@test:resources",
       "@test:dry-run",
-      "@test:changesets"
+      "@test:changesets",
+      "@test:policy"
     ],
     "build": "bash bin/build-release.sh"
   }

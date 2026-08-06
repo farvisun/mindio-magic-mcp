@@ -66,7 +66,7 @@ final class Plugin {
 		$flatsome_catalog = new Flatsome_Component_Catalog();
 		( new Flatsome_Tools( $registry, new Flatsome_Renderer( $flatsome_catalog ), $flatsome_catalog ) )->register();
 		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
-		( new System_Tools( $registry, $audit, $webhooks ) )->register();
+		( new System_Tools( $registry, $audit, $webhooks, $auth ) )->register();
 
 		( new MCP_Resources( $resources, $flatsome_catalog ) )->register();
 		( new MCP_Prompts( $prompts, $flatsome_catalog ) )->register();

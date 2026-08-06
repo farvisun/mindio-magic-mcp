@@ -39,6 +39,7 @@ define( 'MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE', 'flatsome-mcp/v1' );
 $mindio_magic_mcp_files = array(
 	'includes/class-installer.php',
 	'includes/class-schema-validator.php',
+	'includes/class-credential-policy.php',
 	'includes/class-auth.php',
 	'includes/class-rate-limiter.php',
 	'includes/class-audit-log.php',

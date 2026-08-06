@@ -92,8 +92,62 @@ final class Admin {
 		$user_id = absint( $_POST['user_id'] ?? get_current_user_id() );
 		$scope   = sanitize_key( (string) wp_unslash( $_POST['scope'] ?? Auth::SCOPE_READ ) );
 		$label   = sanitize_text_field( (string) wp_unslash( $_POST['label'] ?? '' ) );
-		$result  = $this->auth->create_api_key( $user_id, $scope, $label );
+		$policy  = array(
+			'allow'        => $this->policy_lines( (string) wp_unslash( $_POST['policy_allow'] ?? '' ) ),
+			'deny'         => $this->policy_lines( (string) wp_unslash( $_POST['policy_deny'] ?? '' ) ),
+			'daily_budget' => absint( $_POST['policy_daily_budget'] ?? 0 ),
+		);
+		$result  = $this->auth->create_api_key( $user_id, $scope, $label, $policy );
 		$this->flash_result( $result, 'api_key' );
+	}
+
+	/**
+	 * Render the tool allowances and budget attached to one credential.
+	 *
+	 * @param array<string,mixed> $token
+	 */
+	private function render_credential_policy( array $token ): void {
+		$policy = Credential_Policy::from_record( $token );
+		if ( $policy->is_unrestricted() ) {
+			echo '<span class="mindio-subvalue">' . esc_html__( 'Unrestricted', 'mindio-magic-mcp' ) . '</span>';
+			return;
+		}
+
+		$stored = $policy->to_array();
+		$usage  = $policy->usage( (string) $token['id'] );
+		$parts  = array();
+
+		if ( $stored['allow'] ) {
+			/* translators: %s: comma-separated tool patterns. */
+			$parts[] = sprintf( __( 'Allow: %s', 'mindio-magic-mcp' ), implode( ', ', $stored['allow'] ) );
+		}
+		if ( $stored['deny'] ) {
+			/* translators: %s: comma-separated tool patterns. */
+			$parts[] = sprintf( __( 'Deny: %s', 'mindio-magic-mcp' ), implode( ', ', $stored['deny'] ) );
+		}
+		if ( $stored['daily_budget'] ) {
+			$parts[] = sprintf(
+				/* translators: 1: calls used today, 2: daily budget. */
+				__( 'Budget: %1$d / %2$d today', 'mindio-magic-mcp' ),
+				$usage['used'],
+				$stored['daily_budget']
+			);
+		}
+
+		foreach ( $parts as $part ) {
+			echo '<span class="mindio-subvalue">' . esc_html( $part ) . '</span>';
+		}
+	}
+
+	/**
+	 * Split a textarea of tool names or prefix patterns into a list.
+	 *
+	 * @return array<int,string>
+	 */
+	private function policy_lines( string $input ): array {
+		$lines = preg_split( '/\R+/', sanitize_textarea_field( $input ) ) ?: array();
+
+		return array_values( array_filter( array_map( 'trim', $lines ) ) );
 	}
 
 	public function revoke_key(): void {
@@ -523,6 +577,23 @@ final class Admin {
 							</select>
 						</div>
 					</div>
+					<div class="mindio-form-grid">
+						<div class="mindio-field">
+							<label for="mindio-key-allow"><?php esc_html_e( 'Allowed tools', 'mindio-magic-mcp' ); ?></label>
+							<textarea id="mindio-key-allow" class="mindio-control mindio-control--code" rows="3" name="policy_allow" dir="ltr" placeholder="get_*&#10;list_products"></textarea>
+							<small><?php esc_html_e( 'One tool name or prefix pattern per line, for example woocommerce_*. Empty allows every exposed tool.', 'mindio-magic-mcp' ); ?></small>
+						</div>
+						<div class="mindio-field">
+							<label for="mindio-key-deny"><?php esc_html_e( 'Denied tools', 'mindio-magic-mcp' ); ?></label>
+							<textarea id="mindio-key-deny" class="mindio-control mindio-control--code" rows="3" name="policy_deny" dir="ltr" placeholder="delete_*"></textarea>
+							<small><?php esc_html_e( 'Evaluated after the allow list, so a denied pattern always wins.', 'mindio-magic-mcp' ); ?></small>
+						</div>
+					</div>
+					<div class="mindio-field">
+						<label for="mindio-key-budget"><?php esc_html_e( 'Daily call budget', 'mindio-magic-mcp' ); ?></label>
+						<div class="mindio-unit-field"><input id="mindio-key-budget" class="mindio-control" type="number" min="0" max="1000000" name="policy_daily_budget" value="0"><span><?php esc_html_e( 'calls / day', 'mindio-magic-mcp' ); ?></span></div>
+						<small><?php esc_html_e( 'Zero means unlimited. The counter resets at midnight UTC.', 'mindio-magic-mcp' ); ?></small>
+					</div>
 					<button class="mindio-button mindio-button--primary" type="submit" data-submit-label>
 						<span class="dashicons dashicons-admin-network" aria-hidden="true"></span>
 						<?php esc_html_e( 'Generate secure key', 'mindio-magic-mcp' ); ?>
@@ -564,6 +635,7 @@ final class Admin {
 							<th scope="col"><?php esc_html_e( 'Credential', 'mindio-magic-mcp' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Principal', 'mindio-magic-mcp' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Scope', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Policy', 'mindio-magic-mcp' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Created', 'mindio-magic-mcp' ); ?></th>
 							<th scope="col"><?php esc_html_e( 'Last used', 'mindio-magic-mcp' ); ?></th>
 							<th scope="col"><span class="screen-reader-text"><?php esc_html_e( 'Actions', 'mindio-magic-mcp' ); ?></span></th>
@@ -578,6 +650,7 @@ final class Admin {
 									</td>
 									<td><?php echo esc_html( $this->user_name( (int) $token['user_id'] ) ); ?></td>
 									<td><?php $this->render_scope_badge( (string) $token['scope'] ); ?></td>
+									<td><?php $this->render_credential_policy( $token ); ?></td>
 									<td><?php echo esc_html( $this->format_datetime( (string) $token['created_at'] ) ); ?></td>
 									<td><?php echo esc_html( $this->format_datetime( (string) ( $token['last_used'] ?? '' ) ) ); ?></td>
 									<td class="mindio-table__action">

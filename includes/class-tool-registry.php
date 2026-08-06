@@ -103,8 +103,12 @@ final class Tool_Registry {
 	public function list_tools(): array {
 		$visible = array();
 		$disabled = array_fill_keys( $this->disabled_tools(), true );
+		$policy   = $this->auth->current_policy();
 		foreach ( $this->tools as $tool ) {
 			if ( isset( $disabled[ $tool['name'] ] ) ) {
+				continue;
+			}
+			if ( ! $policy->allows_tool( (string) $tool['name'] ) ) {
 				continue;
 			}
 			if ( ! $this->auth->scope_allows( $this->auth->current_scope(), $tool['scope'] ) ) {
@@ -182,6 +186,24 @@ final class Tool_Registry {
 
 			if ( ! $this->is_exposed( $name ) ) {
 				return new \WP_Error( 'tool_disabled', __( 'This tool is disabled by the site administrator.', 'mindio-magic-mcp' ) );
+			}
+
+			$policy = $this->auth->current_policy();
+			if ( ! $policy->allows_tool( $name ) ) {
+				return new \WP_Error( 'tool_not_in_policy', __( 'This credential is not permitted to call this tool.', 'mindio-magic-mcp' ) );
+			}
+
+			$budget = $policy->consume( $this->auth->current_token_id() );
+			if ( ! $budget['allowed'] ) {
+				return new \WP_Error(
+					'budget_exhausted',
+					sprintf(
+						/* translators: 1: daily call budget, 2: ISO 8601 reset timestamp. */
+						__( 'This credential has used its daily budget of %1$d calls. It resets at %2$s.', 'mindio-magic-mcp' ),
+						$budget['limit'],
+						$budget['resets_at']
+					)
+				);
 			}
 			if ( $tool['operations'] && isset( $arguments['operation'] ) && is_string( $arguments['operation'] ) ) {
 				$operation = sanitize_key( $arguments['operation'] );

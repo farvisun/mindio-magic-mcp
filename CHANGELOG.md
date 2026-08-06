@@ -4,6 +4,9 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added per-credential tool policy and daily call budgets: each API key and OAuth client carries allow patterns, deny patterns, and a UTC-daily budget, enforced in both `tools/list` and `tools/call`.
+- Added `get_credential_policy` so an agent can read its own allowances and remaining budget, and surfaced the policy on each credential row in the admin console.
+
 - Added changesets: `begin_changeset`, `list_changesets`, `get_changeset`, `close_changeset`, and `revert_changeset` group write calls under a named ID and undo them as a unit, covering post meta, term assignments, options, comments, and users that post revisions do not reach.
 - Added a `changeset` argument to every previewable write tool, and extracted the shared Change_Recorder that now backs both dry runs and the changeset journal.
 - Re-checked WordPress capabilities per entry during a revert, reporting entries the credential may not touch instead of failing the whole operation.

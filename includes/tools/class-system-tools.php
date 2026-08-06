@@ -15,14 +15,26 @@ final class System_Tools {
 	private Tool_Registry $registry;
 	private Audit_Log $audit;
 	private Webhook_Engine $webhooks;
+	private Auth $auth;
 
-	public function __construct( Tool_Registry $registry, Audit_Log $audit, Webhook_Engine $webhooks ) {
+	public function __construct( Tool_Registry $registry, Audit_Log $audit, Webhook_Engine $webhooks, Auth $auth ) {
 		$this->registry = $registry;
 		$this->audit    = $audit;
 		$this->webhooks = $webhooks;
+		$this->auth     = $auth;
 	}
 
 	public function register(): void {
+		$this->registry->register(
+			'get_credential_policy',
+			__( 'Read the tool allowances and daily call budget attached to the credential making this request, so an agent can check its own reach before planning work.', 'mindio-magic-mcp' ),
+			array( 'type' => 'object', 'properties' => array(), 'additionalProperties' => false ),
+			array( 'type' => 'object' ),
+			array( $this, 'credential_policy' ),
+			Auth::SCOPE_READ,
+			'read',
+			array( 'readOnlyHint' => true, 'idempotentHint' => true )
+		);
 		$this->registry->register(
 			'get_server_status',
 			__( 'Get the MCP endpoint, WordPress/Flatsome versions, locale, and capabilities available to the current credential.', 'mindio-magic-mcp' ),
@@ -96,5 +108,17 @@ final class System_Tools {
 			'available_tools' => count( $this->registry->list_tools() ),
 		);
 	}
-}
 
+	/** @return array<string,mixed> */
+	public function credential_policy(): array {
+		$policy = $this->auth->current_policy();
+
+		return array(
+			'token_id'     => $this->auth->current_token_id(),
+			'scope'        => $this->auth->current_scope(),
+			'unrestricted' => $policy->is_unrestricted(),
+			'policy'       => $policy->to_array(),
+			'budget'       => $policy->usage( $this->auth->current_token_id() ),
+		);
+	}
+}

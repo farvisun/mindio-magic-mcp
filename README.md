@@ -161,6 +161,26 @@ Prompts are rendered against live site state rather than shipped as static text.
 
 Set the shared voice under **Settings → Mindio Magic MCP → Settings → Brand voice**. Left empty, agents are told to match existing published content.
 
+## Per-credential policy and budget
+
+Tool exposure under **Tools** is site-wide. A credential policy narrows that further for one API key or OAuth client, so a single installation can host several agents with different reach.
+
+Each credential carries an allow list, a deny list, and a daily call budget, set when the key is generated under **Credentials**:
+
+| Field | Behavior |
+| --- | --- |
+| Allow | Tool names or `prefix_*` patterns. Empty allows every tool the site exposes |
+| Deny | Evaluated after allow, so a denied pattern always wins |
+| Daily budget | Calls per UTC day, resetting at midnight. Zero means unlimited |
+
+Filtering happens in `tools/list` as well as `tools/call`, so a restricted credential never sees tools it cannot use. Calls outside the policy fail with `tool_not_in_policy`; calls over budget fail with `budget_exhausted` and report the reset time. Policy never widens a credential — scope and WordPress capabilities still apply on top.
+
+Agents can read their own limits with `get_credential_policy`, which reports the allow and deny patterns plus budget consumed today, so a plan can be scoped before work begins rather than after a failure.
+
+```text
+Allow: woocommerce_*, get_*     Deny: delete_*     Budget: 200 calls/day
+```
+
 ## Tool catalog
 
 Version 0.5.6 registers 81 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all six adds 12 names and 147 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.

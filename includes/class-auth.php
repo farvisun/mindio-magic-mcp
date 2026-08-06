@@ -19,12 +19,14 @@ final class Auth {
 	private string $current_scope = '';
 	private string $current_token_id = '';
 	private string $current_token_type = '';
+	private ?Credential_Policy $current_policy = null;
 
 	/** @return true|\WP_Error */
 	public function authenticate_request( \WP_REST_Request $request ): bool|\WP_Error {
 		$this->current_scope      = '';
 		$this->current_token_id   = '';
 		$this->current_token_type = '';
+		$this->current_policy     = null;
 
 		$header     = trim( (string) $request->get_header( 'authorization' ) );
 		$api_header = '';
@@ -50,6 +52,7 @@ final class Auth {
 			}
 			wp_set_current_user( (int) $verified['user_id'] );
 			$this->current_scope      = (string) $verified['scope'];
+			$this->current_policy     = Credential_Policy::from_record( $verified );
 			$this->current_token_id   = (string) $verified['id'];
 			$this->current_token_type = (string) $verified['type'];
 			return true;
@@ -76,7 +79,7 @@ final class Auth {
 	 *
 	 * @return array<string,mixed>|\WP_Error
 	 */
-	public function create_api_key( int $user_id, string $scope, string $label ): array|\WP_Error {
+	public function create_api_key( int $user_id, string $scope, string $label, array $policy = array() ): array|\WP_Error {
 		$scope = $this->normalize_scope( $scope );
 		if ( ! $scope || ! get_user_by( 'id', $user_id ) ) {
 			return new \WP_Error( 'invalid_key_parameters', __( 'The API-key user or scope is invalid.', 'mindio-magic-mcp' ) );
@@ -85,7 +88,7 @@ final class Auth {
 			return new \WP_Error( 'scope_exceeds_user', __( 'The selected user cannot be granted that scope.', 'mindio-magic-mcp' ) );
 		}
 
-		return $this->issue_access_token( $user_id, $scope, 'api_key', sanitize_text_field( $label ), 0, '' );
+		return $this->issue_access_token( $user_id, $scope, 'api_key', sanitize_text_field( $label ), 0, '', '', Credential_Policy::sanitize( $policy ) );
 	}
 
 	/**
@@ -99,7 +102,7 @@ final class Auth {
 			return new \WP_Error( 'invalid_scope', __( 'The requested OAuth scope is not available to this user.', 'mindio-magic-mcp' ) );
 		}
 
-		$access = $this->issue_access_token( $user_id, $scope, 'oauth', 'OAuth: ' . $client_id, HOUR_IN_SECONDS, $client_id, $resource );
+		$access = $this->issue_access_token( $user_id, $scope, 'oauth', 'OAuth: ' . $client_id, HOUR_IN_SECONDS, $client_id, $resource, self::client_policy( $client_id ) );
 		if ( is_wp_error( $access ) ) {
 			return $access;
 		}
@@ -212,6 +215,41 @@ final class Auth {
 		return $this->current_token_type;
 	}
 
+	/**
+	 * Policy attached to the credential authenticating the current request.
+	 */
+	public function current_policy(): Credential_Policy {
+		return $this->current_policy ?? new Credential_Policy();
+	}
+
+	/**
+	 * Replace the policy on one stored credential.
+	 *
+	 * @param array<string,mixed> $policy
+	 */
+	public function set_token_policy( string $token_id, array $policy ): bool {
+		$tokens = $this->tokens();
+		if ( ! isset( $tokens[ $token_id ] ) ) {
+			return false;
+		}
+		$tokens[ $token_id ]['policy'] = Credential_Policy::sanitize( $policy );
+		$this->save_tokens( $tokens );
+
+		return true;
+	}
+
+	/**
+	 * Policies configured for a dynamically registered OAuth client.
+	 *
+	 * @return array<string,mixed>
+	 */
+	public static function client_policy( string $client_id ): array {
+		$clients = get_option( 'mindio_magic_mcp_oauth_clients', array() );
+		$policy  = is_array( $clients ) ? (array) ( $clients[ $client_id ]['policy'] ?? array() ) : array();
+
+		return Credential_Policy::sanitize( $policy );
+	}
+
 	public function current_identity(): string {
 		if ( '' !== $this->current_token_id ) {
 			return $this->current_token_id;
@@ -262,7 +300,7 @@ final class Auth {
 	}
 
 	/** @return array<string,mixed>|\WP_Error */
-	private function issue_access_token( int $user_id, string $scope, string $type, string $label, int $ttl, string $client_id, string $resource = '' ): array|\WP_Error {
+	private function issue_access_token( int $user_id, string $scope, string $type, string $label, int $ttl, string $client_id, string $resource = '', array $policy = array() ): array|\WP_Error {
 		$id     = bin2hex( random_bytes( 8 ) );
 		$secret = Secret_Box::base64url_encode( random_bytes( 32 ) );
 		$prefix = 'oauth' === $type ? 'fmo' : 'fmp';
@@ -280,6 +318,7 @@ final class Auth {
 			'expires_at' => $ttl > 0 ? $now + $ttl : 0,
 			'client_id'  => $client_id,
 			'resource'   => $resource,
+			'policy'     => $policy ?: Credential_Policy::sanitize( array() ),
 		);
 
 		$tokens        = $this->tokens();
