@@ -147,6 +147,7 @@ $tabs = array(
 	'overview'    => 'System overview',
 	'tools'       => 'Search tool name or description',
 	'credentials' => 'Generate an API key',
+	'approvals'   => 'Approval queue',
 	'webhooks'    => 'Add a webhook destination',
 	'activity'    => 'Tool execution',
 	'settings'    => 'Allowed browser origins',
@@ -175,6 +176,10 @@ mindio_admin_assert( 4 === substr_count( $tools_html, 'name="enabled_tools[]"' )
 mindio_admin_assert( 2 === substr_count( $tools_html, 'name="enabled_operations[]"' ), 'The tool manager did not render every registered integration operation.' );
 mindio_admin_assert( str_contains( $tools_html, 'data-operation-disclosure' ) && str_contains( $tools_html, 'data-operation-enable-reads' ) && str_contains( $tools_html, 'data-operation-disable-writes' ), 'Granular operation controls are missing.' );
 mindio_admin_assert( str_contains( $tools_html, 'Content and publishing' ) && str_contains( $tools_html, 'Media and SEO' ) && str_contains( $tools_html, 'Operations and diagnostics' ), 'Registered tools were not grouped by domain.' );
+mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Brand voice' ), 'The brand voice setting is missing.' );
+mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Human approval' ), 'The approval settings group is missing.' );
+mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Audit export' ), 'The audit export settings group is missing.' );
+mindio_admin_assert( str_contains( $rendered_tabs['credentials'], 'Allowed tools' ), 'The credential policy fields are missing.' );
 mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Read-only filesystem inspection' ), 'The filesystem read opt-in setting is missing.' );
 mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Database schema inspection' ) && ! str_contains( $rendered_tabs['settings'], 'validated SELECT queries' ), 'The fixed-shape database inspection setting is missing.' );
 
