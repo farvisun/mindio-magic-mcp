@@ -321,6 +321,12 @@ final class Admin {
 			'approvals_enabled'      => ! empty( $_POST['approvals_enabled'] ),
 			'approval_tools'         => $this->policy_lines( (string) wp_unslash( $_POST['approval_tools'] ?? '' ) ),
 			'approval_ttl_hours'     => max( 1, min( 720, absint( $_POST['approval_ttl_hours'] ?? 72 ) ) ),
+			'audit_export_enabled'   => ! empty( $_POST['audit_export_enabled'] ),
+			'audit_export_target'    => in_array( (string) wp_unslash( $_POST['audit_export_target'] ?? 'webhook' ), array( 'webhook', 'syslog', 'both' ), true )
+				? sanitize_key( (string) wp_unslash( $_POST['audit_export_target'] ) )
+				: 'webhook',
+			'audit_export_url'       => esc_url_raw( (string) wp_unslash( $_POST['audit_export_url'] ?? '' ), array( 'https', 'http' ) ),
+			'audit_export_secret'    => sanitize_text_field( (string) wp_unslash( $_POST['audit_export_secret'] ?? '' ) ),
 			'delete_on_uninstall'    => ! empty( $_POST['delete_on_uninstall'] ),
 			'allow_database_inspection'       => ! empty( $_POST['allow_database_inspection'] ),
 			'allow_filesystem_read'  => ! empty( $_POST['allow_filesystem_read'] ),
@@ -1507,6 +1513,38 @@ final class Admin {
 
 			<section class="mindio-card mindio-settings-group">
 				<div class="mindio-settings-group__intro">
+					<span class="mindio-settings-icon"><span class="dashicons dashicons-database-export" aria-hidden="true"></span></span>
+					<div>
+						<h3><?php esc_html_e( 'Audit export', 'mindio-magic-mcp' ); ?></h3>
+						<p><?php esc_html_e( 'Ship audit records and anomaly alerts to a log collector every five minutes.', 'mindio-magic-mcp' ); ?></p>
+					</div>
+				</div>
+				<div class="mindio-settings-group__body">
+					<?php $this->render_switch( 'mindio-audit-export', 'audit_export_enabled', ! empty( $settings['audit_export_enabled'] ), __( 'Export the audit trail', 'mindio-magic-mcp' ), __( 'Batches are sent by WP-Cron as newline-delimited JSON, so tool calls stay fast.', 'mindio-magic-mcp' ) ); ?>
+					<div class="mindio-settings-grid">
+						<div class="mindio-field">
+							<label for="mindio-audit-target"><?php esc_html_e( 'Destination', 'mindio-magic-mcp' ); ?></label>
+							<select id="mindio-audit-target" class="mindio-control" name="audit_export_target">
+								<option value="webhook" <?php selected( 'webhook', (string) $settings['audit_export_target'] ); ?>><?php esc_html_e( 'Webhook', 'mindio-magic-mcp' ); ?></option>
+								<option value="syslog" <?php selected( 'syslog', (string) $settings['audit_export_target'] ); ?>><?php esc_html_e( 'Syslog', 'mindio-magic-mcp' ); ?></option>
+								<option value="both" <?php selected( 'both', (string) $settings['audit_export_target'] ); ?>><?php esc_html_e( 'Both', 'mindio-magic-mcp' ); ?></option>
+							</select>
+						</div>
+						<div class="mindio-field">
+							<label for="mindio-audit-url"><?php esc_html_e( 'Collector URL', 'mindio-magic-mcp' ); ?></label>
+							<input id="mindio-audit-url" class="mindio-control mindio-control--code" type="url" name="audit_export_url" dir="ltr" placeholder="https://logs.example.com/ingest" value="<?php echo esc_attr( (string) $settings['audit_export_url'] ); ?>">
+						</div>
+					</div>
+					<div class="mindio-field">
+						<label for="mindio-audit-secret"><?php esc_html_e( 'Signing secret', 'mindio-magic-mcp' ); ?></label>
+						<input id="mindio-audit-secret" class="mindio-control mindio-control--code" type="text" name="audit_export_secret" dir="ltr" value="<?php echo esc_attr( (string) $settings['audit_export_secret'] ); ?>">
+						<small><?php esc_html_e( 'Batches are signed with HMAC-SHA256 over timestamp.body in X-Mindio-Magic-MCP-Signature-256.', 'mindio-magic-mcp' ); ?></small>
+					</div>
+				</div>
+			</section>
+
+			<section class="mindio-card mindio-settings-group">
+				<div class="mindio-settings-group__intro">
 					<span class="mindio-settings-icon"><span class="dashicons dashicons-shield-alt" aria-hidden="true"></span></span>
 					<div>
 						<h3><?php esc_html_e( 'Browser security', 'mindio-magic-mcp' ); ?></h3>
@@ -1850,6 +1888,10 @@ final class Admin {
 				'approvals_enabled'      => false,
 				'approval_tools'         => array(),
 				'approval_ttl_hours'     => 72,
+				'audit_export_enabled'   => false,
+				'audit_export_target'    => 'webhook',
+				'audit_export_url'       => '',
+				'audit_export_secret'    => '',
 				'delete_on_uninstall'    => false,
 				'allow_database_inspection'       => false,
 				'allow_filesystem_read'  => false,

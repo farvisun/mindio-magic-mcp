@@ -52,6 +52,7 @@ final class Installer {
 
 	private static function deactivate_site(): void {
 		wp_clear_scheduled_hook( 'mindio_magic_mcp_cleanup_logs' );
+		wp_clear_scheduled_hook( Audit_Shipper::CRON_HOOK );
 		flush_rewrite_rules( false );
 	}
 
@@ -243,6 +244,10 @@ final class Installer {
 			'approvals_enabled'      => false,
 			'approval_tools'         => array(),
 			'approval_ttl_hours'     => 72,
+			'audit_export_enabled'   => false,
+			'audit_export_target'    => 'webhook',
+			'audit_export_url'       => '',
+			'audit_export_secret'    => '',
 			'delete_on_uninstall'    => false,
 			'allow_database_inspection'       => false,
 			'allow_filesystem_read'  => false,

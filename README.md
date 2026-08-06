@@ -478,6 +478,28 @@ Verify the signature by calculating HMAC-SHA256 over `<timestamp>.<raw request b
 
 Only public HTTPS destinations are accepted. DNS is checked at registration and again before every delivery, redirects are disabled, and WordPress safe HTTP transport is used.
 
+## Audit export and anomaly alerts
+
+The audit trail can be shipped off the site under **Settings → Audit export**. Batches are sent by WP-Cron every five minutes as newline-delimited JSON, so exporting never adds latency to a tool call, and a stored cursor means a batch is neither lost nor sent twice.
+
+Destinations are `webhook`, `syslog`, or both. Webhook batches carry `Content-Type: application/x-ndjson` and, when a signing secret is set, an `X-Mindio-Magic-MCP-Signature-256` header holding HMAC-SHA256 over `<timestamp>.<body>` — the same contract as event webhooks. Collector URLs go through the same SSRF guard as every other outbound call.
+
+Each batch is also scanned for patterns worth waking someone for:
+
+| Rule | Fires when |
+| --- | --- |
+| `failure_spike` | At least 5 failures, and more than half the batch failed |
+| `authorization_probing` | At least 5 calls denied for scope, capability, or policy |
+| `destructive_burst` | At least 10 destructive calls succeeded in one window |
+| `budget_exhausted` | A credential ran out of its daily budget |
+| `new_credential_address` | A credential was used from an address not seen before |
+
+Anomalies ride along in the same NDJSON stream tagged `"kind":"anomaly"`, are logged to syslog at `LOG_CRIT` or `LOG_WARNING` by severity, and fire the `mindio_magic_mcp_audit_anomaly` action so a site can route them onward. The last 100 are retained and readable with `get_audit_anomalies`.
+
+A credential's first observed address is treated as its baseline rather than an anomaly, so enabling export does not immediately alert on every existing key.
+
+`export_audit_log` performs the same export on demand, with an `after_id` cursor for incremental pulls. Both tools require the `admin` scope and `manage_options`.
+
 ## Security defaults
 
 - Exact-origin validation for browser requests; native clients may omit `Origin`

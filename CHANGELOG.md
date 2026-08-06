@@ -4,6 +4,10 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added audit log export: batches ship to a webhook, syslog, or both every five minutes as newline-delimited JSON, signed with HMAC-SHA256 and tracked by a cursor so records are neither lost nor duplicated.
+- Added anomaly detection over each batch for failure spikes, permission probing, destructive bursts, exhausted budgets, and credentials used from a new address, retained for reading with `get_audit_anomalies` and exposed through the `mindio_magic_mcp_audit_anomaly` action.
+- Added `export_audit_log` for on-demand incremental pulls, and `after_id`/`since` filters on audit queries.
+
 - Added server-sent event streaming: a POST carrying `Accept: text/event-stream` returns the response as SSE frames, emitting `notifications/progress` while the tool works and the JSON-RPC result as the final event.
 - Added a progress reporter that blueprint rendering and changeset reverts feed, honoring the client's `_meta.progressToken` as the specification requires, and advertised the logging capability during `initialize`.
 - Replaced the blanket 405 on `GET` with a stream when `Accept: text/event-stream` is sent, and started returning `WP_Error` data on JSON-RPC errors so `approval_required` can carry its approval ID.

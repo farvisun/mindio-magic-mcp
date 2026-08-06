@@ -55,6 +55,14 @@ final class Audit_Log {
 			$where[]  = 'user_id = %d';
 			$params[] = absint( $args['user_id'] );
 		}
+		if ( ! empty( $args['after_id'] ) ) {
+			$where[]  = 'id > %d';
+			$params[] = absint( $args['after_id'] );
+		}
+		if ( ! empty( $args['since'] ) ) {
+			$where[]  = 'created_at >= %s';
+			$params[] = gmdate( 'Y-m-d H:i:s', (int) $args['since'] );
+		}
 
 		$sql      = 'SELECT * FROM %i WHERE ' . implode( ' AND ', $where ) . ' ORDER BY id DESC LIMIT %d OFFSET %d'; // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Conditions are fixed fragments selected above.
 		array_unshift( $params, Installer::audit_table() );

@@ -39,6 +39,8 @@ final class Plugin {
 		$prompts     = new Prompt_Registry( $auth );
 		$changesets  = new Changeset();
 		$approvals   = new Approval_Queue();
+		$anomalies   = new Audit_Anomaly_Detector();
+		$shipper     = new Audit_Shipper( $audit, $anomalies );
 		$webhooks    = new Webhook_Engine();
 
 		( new Content_Tools( $registry ) )->register();
@@ -76,6 +78,7 @@ final class Plugin {
 		( new Page_Analysis_Tools( $registry, $builders ) )->register();
 		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
 		( new Approval_Tools( $registry, $approvals ) )->register();
+		( new Audit_Export_Tools( $registry, $audit, $shipper, $anomalies ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks, $auth ) )->register();
 
 		( new MCP_Resources( $resources, $flatsome_catalog ) )->register();
@@ -84,6 +87,7 @@ final class Plugin {
 		( new MCP_Server( $registry, $auth, $rate_limiter, $audit, $resources, $prompts ) )->register_hooks();
 		( new OAuth_Server( $auth, $rate_limiter ) )->register_hooks();
 		$webhooks->register_hooks();
+		$shipper->register_hooks();
 
 		if ( is_admin() ) {
 			( new Admin( $auth, $audit, $webhooks, $registry ) )->register_hooks();
