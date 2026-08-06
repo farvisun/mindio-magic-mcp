@@ -23,6 +23,7 @@
     "test:builders": "@php tests/integration/builders.php",
     "test:explain": "@php tests/integration/explain-page.php",
     "test:approvals": "@php tests/integration/approvals.php",
+    "test:streaming": "@php tests/integration/streaming.php",
     "test": [
       "@lint",
       "@test:review-regressions",
@@ -39,7 +40,8 @@
       "@test:policy",
       "@test:builders",
       "@test:explain",
-      "@test:approvals"
+      "@test:approvals",
+      "@test:streaming"
     ],
     "build": "bash bin/build-release.sh"
   }

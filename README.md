@@ -87,7 +87,8 @@ The server supports MCP protocol versions `2025-11-25`, `2025-06-18`, and `2025-
 - `POST` accepts one JSON-RPC request or notification.
 - Successful requests return `application/json`.
 - Notifications return HTTP `202`.
-- `GET` and `DELETE` return `405`; this server does not maintain sessions or an SSE stream.
+- `GET` with `Accept: text/event-stream` opens a stream; without it, `GET` and `DELETE` return `405`.
+- This server is stateless and maintains no sessions.
 
 Minimal initialization request:
 
@@ -108,6 +109,22 @@ curl --request POST 'https://example.com/wp-json/mindio-magic-mcp/v1/mcp' \
     }
   }'
 ```
+
+### Streaming responses
+
+Send `Accept: text/event-stream` on a POST and the response arrives as server-sent events instead of one JSON body. Long-running calls report progress as they work:
+
+```text
+event: message
+data: {"jsonrpc":"2.0","method":"notifications/progress","params":{"progressToken":"t1","progress":0,"total":2,"message":"Rendering blueprint"}}
+
+event: message
+data: {"jsonrpc":"2.0","id":7,"result":{"structuredContent":{...},"isError":false}}
+```
+
+Progress notifications are only emitted when the client supplies `params._meta.progressToken`, per the MCP specification; without one the stream carries just the final response. Blueprint rendering and changeset reverts report progress today, and any tool can join by calling `Progress_Reporter::report()`.
+
+A `GET` with `Accept: text/event-stream` opens a stream and closes it immediately: this server is stateless and never initiates messages. A `GET` without that header still returns `405` with `Allow: POST, GET`.
 
 Use `tools/list` after initialization. Tool availability is filtered by the administrator exposure policy, credential scope, WordPress user capabilities, active plugins, and multisite state.
 

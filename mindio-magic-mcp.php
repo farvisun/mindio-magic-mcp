@@ -43,6 +43,8 @@ $mindio_magic_mcp_files = array(
 	'includes/class-auth.php',
 	'includes/class-rate-limiter.php',
 	'includes/class-audit-log.php',
+	'includes/class-progress-reporter.php',
+	'includes/class-sse-stream.php',
 	'includes/class-change-recorder.php',
 	'includes/class-changeset.php',
 	'includes/class-approval-queue.php',

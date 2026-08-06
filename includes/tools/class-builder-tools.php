@@ -201,6 +201,13 @@ final class Builder_Tools {
 			(string) ( $args['content_locale'] ?? '' )
 		);
 
-		return $builder->render( Blueprint::normalize( (array) $args['blueprint'] ), $direction );
+		$blueprint = Blueprint::normalize( (array) $args['blueprint'] );
+		$total     = (float) count( (array) $blueprint['sections'] );
+		Progress_Reporter::report( 0, $total, __( 'Rendering blueprint', 'mindio-magic-mcp' ) );
+
+		$rendered = $builder->render( $blueprint, $direction );
+		Progress_Reporter::report( $total, $total, __( 'Blueprint rendered', 'mindio-magic-mcp' ) );
+
+		return $rendered;
 	}
 }

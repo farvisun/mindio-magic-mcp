@@ -62,6 +62,10 @@ final class MCP_Server {
 		register_rest_route( MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE, '/mcp', $routes );
 	}
 
+	public static function protocol_version(): string {
+		return self::PROTOCOLS[0];
+	}
+
 	public function handle_unsupported_transport_method( \WP_REST_Request $request ): \WP_REST_Response {
 		$origin = $this->validate_origin( $request );
 		if ( is_wp_error( $origin ) ) {
@@ -72,8 +76,13 @@ final class MCP_Server {
 			return $this->unauthorized( $auth );
 		}
 
-		$response = $this->transport_error( __( 'This stateless server does not expose an SSE stream or server-managed sessions.', 'mindio-magic-mcp' ), 405, -32005 );
-		$response->header( 'Allow', 'POST' );
+		if ( 'GET' === $request->get_method() && $this->wants_stream( $request ) ) {
+			$this->stream_keepalive();
+			return new \WP_REST_Response( null, 200 );
+		}
+
+		$response = $this->transport_error( __( 'This stateless server has no server-initiated messages. Open a stream by sending Accept: text/event-stream on a POST instead.', 'mindio-magic-mcp' ), 405, -32005 );
+		$response->header( 'Allow', 'POST, GET' );
 		return $response;
 	}
 
@@ -128,6 +137,12 @@ final class MCP_Server {
 
 		$id     = $message['id'];
 		$params = isset( $message['params'] ) && is_array( $message['params'] ) ? $message['params'] : array();
+
+		if ( 'tools/call' === $message['method'] && $this->wants_stream( $request ) ) {
+			$this->stream_tool_call( $id, $params, new SSE_Stream(), true );
+			return new \WP_REST_Response( null, 200 );
+		}
+
 		$result = match ( $message['method'] ) {
 			'initialize'              => $this->initialize( $params ),
 			'ping'                    => array(),
@@ -142,14 +157,12 @@ final class MCP_Server {
 		};
 
 		if ( is_wp_error( $result ) ) {
-			$code = match ( $result->get_error_code() ) {
-				'method_not_found' => -32601,
-				'unknown_tool', 'invalid_arguments', 'invalid_resource_uri' => -32602,
-				'unknown_resource', 'unknown_prompt' => -32002,
-				'forbidden', 'insufficient_scope' => -32003,
-				default => -32603,
-			};
-			return $this->json_response( array( 'jsonrpc' => '2.0', 'id' => $id, 'error' => array( 'code' => $code, 'message' => $result->get_error_message() ) ) );
+			$error = array( 'code' => $this->error_code( $result ), 'message' => $result->get_error_message() );
+			$data  = $result->get_error_data();
+			if ( is_array( $data ) && $data ) {
+				$error['data'] = $data;
+			}
+			return $this->json_response( array( 'jsonrpc' => '2.0', 'id' => $id, 'error' => $error ) );
 		}
 
 		return $this->json_response( array( 'jsonrpc' => '2.0', 'id' => $id, 'result' => $result ) );
@@ -170,6 +183,7 @@ final class MCP_Server {
 				'tools'     => array( 'listChanged' => false ),
 				'resources' => array( 'listChanged' => false, 'subscribe' => false ),
 				'prompts'   => array( 'listChanged' => false ),
+				'logging'   => new \stdClass(),
 			),
 			'serverInfo'      => array(
 				'name'        => 'mindio-magic-mcp',
@@ -185,6 +199,100 @@ final class MCP_Server {
 				$locale
 			),
 		);
+	}
+
+	/**
+	 * Whether the client asked for a server-sent event stream.
+	 */
+	private function wants_stream( \WP_REST_Request $request ): bool {
+		return str_contains( strtolower( (string) $request->get_header( 'accept' ) ), 'text/event-stream' );
+	}
+
+	/**
+	 * Run one tool call, emitting progress notifications as they are reported and
+	 * the JSON-RPC response as the final event.
+	 *
+	 * Exposed for tests through an injectable stream; `$terminate` is false there
+	 * so the process is not taken over.
+	 *
+	 * @param array<string,mixed> $params
+	 */
+	public function stream_tool_call( mixed $id, array $params, SSE_Stream $stream, bool $terminate = false ): void {
+		if ( $terminate ) {
+			SSE_Stream::disable_buffering();
+			SSE_Stream::send_headers();
+		}
+
+		$token = (string) ( $params['_meta']['progressToken'] ?? '' );
+		if ( '' !== $token ) {
+			Progress_Reporter::listen(
+				$token,
+				static function ( float $progress, ?float $total, string $message ) use ( $stream, $token ): void {
+					$payload = array( 'progressToken' => $token, 'progress' => $progress );
+					if ( null !== $total ) {
+						$payload['total'] = $total;
+					}
+					if ( '' !== $message ) {
+						$payload['message'] = $message;
+					}
+					$stream->send(
+						array(
+							'jsonrpc' => '2.0',
+							'method'  => 'notifications/progress',
+							'params'  => $payload,
+						)
+					);
+				}
+			);
+		}
+
+		try {
+			$result = $this->call_tool( $params );
+		} finally {
+			Progress_Reporter::stop();
+		}
+
+		if ( is_wp_error( $result ) ) {
+			$stream->send(
+				array(
+					'jsonrpc' => '2.0',
+					'id'      => $id,
+					'error'   => array( 'code' => $this->error_code( $result ), 'message' => $result->get_error_message() ),
+				)
+			);
+		} else {
+			$stream->send( array( 'jsonrpc' => '2.0', 'id' => $id, 'result' => $result ) );
+		}
+
+		if ( $terminate ) {
+			exit;
+		}
+	}
+
+	/**
+	 * Hold a GET stream open briefly so clients that expect one can connect.
+	 *
+	 * This server is stateless and never initiates messages, so the stream only
+	 * carries keep-alive comments and then closes.
+	 */
+	private function stream_keepalive(): void {
+		SSE_Stream::disable_buffering();
+		SSE_Stream::send_headers();
+
+		$stream = new SSE_Stream();
+		$stream->comment( 'mindio-magic-mcp: no server-initiated messages' );
+
+		exit;
+	}
+
+	private function error_code( \WP_Error $error ): int {
+		return match ( $error->get_error_code() ) {
+			'method_not_found' => -32601,
+			'unknown_tool', 'invalid_arguments', 'invalid_resource_uri' => -32602,
+			'unknown_resource', 'unknown_prompt' => -32002,
+			'forbidden', 'insufficient_scope' => -32003,
+			default => -32603,
+		};
 	}
 
 	/** @return array<string,mixed>|\WP_Error */

@@ -190,8 +190,13 @@ final class Changeset {
 
 		$reverted = 0;
 		$skipped  = array();
+		$entries  = $this->entries( $changeset_id, true );
+		$total    = (float) count( $entries );
+		$seen     = 0;
 
-		foreach ( $this->entries( $changeset_id, true ) as $entry ) {
+		foreach ( $entries as $entry ) {
+			Progress_Reporter::report( (float) $seen, $total, (string) $entry['kind'] );
+			++$seen;
 			$outcome = $this->revert_entry( $entry );
 			if ( is_wp_error( $outcome ) ) {
 				$skipped[] = array(
