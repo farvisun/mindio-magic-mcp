@@ -58,7 +58,7 @@ final class Admin {
 				'saving'      => __( 'Saving…', 'mindio-magic-mcp' ),
 					'creating'    => __( 'Creating…', 'mindio-magic-mcp' ),
 					'filterEmpty' => __( 'No records match your filters.', 'mindio-magic-mcp' ),
-					/* translators: %d: number of visible records. */
+					/* translators: %d: number of records shown. */
 					'recordCount' => __( '%d records', 'mindio-magic-mcp' ),
 					/* translators: 1: visible tool count, 2: total tool count. */
 					'toolsVisible' => __( '%1$d of %2$d tools visible', 'mindio-magic-mcp' ),
@@ -1056,7 +1056,7 @@ final class Admin {
 						</label>
 						<output data-table-count>
 							<?php
-							/* translators: %d: number of activity records. */
+							/* translators: %d: number of records shown. */
 							echo esc_html( sprintf( __( '%d records', 'mindio-magic-mcp' ), count( $activity ) ) );
 							?>
 						</output>

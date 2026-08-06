@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Mindio Magic MCP 0.6.0\n"
+"Project-Id-Version: Mindio Magic MCP 0.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mindio-magic-mcp\n"
-"POT-Creation-Date: 2026-07-27T19:35:02+00:00\n"
+"POT-Creation-Date: 2026-08-06T20:46:31+00:00\n"
 "PO-Revision-Date: 2026-07-27 23:10+0330\n"
 "Last-Translator: Mohammad Askari <farvisun@gmail.com>\n"
 "Language-Team: Persian\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Generator: Mindio Magic MCP\n"
 
 #. Plugin Name of the plugin
-#: mindio-magic-mcp.php includes/class-admin.php:76 includes/class-admin.php:77
-#: includes/class-admin.php:240
+#: mindio-magic-mcp.php includes/class-admin.php:77 includes/class-admin.php:78
+#: includes/class-admin.php:426
 msgid "Mindio Magic MCP"
 msgstr "Mindio Magic MCP"
 
@@ -43,88 +43,222 @@ msgstr "Mohammad Askari <farvisun@gmail.com>"
 msgid "https://profiles.wordpress.org/farvisun/"
 msgstr "https://profiles.wordpress.org/farvisun/"
 
-#: includes/class-admin.php:54 includes/class-admin.php:1388
+#: includes/builders/class-elementor-builder.php:24
+msgid "Elementor"
+msgstr "المنتور"
+
+#: includes/builders/class-flatsome-builder.php:32
+msgid "Flatsome UX Builder"
+msgstr "صفحه‌ساز فلتسام"
+
+#: includes/builders/class-gutenberg-builder.php:23
+msgid "Core blocks"
+msgstr "بلوک‌های اصلی وردپرس"
+
+#: includes/builders/class-page-builder-registry.php:79
+msgid "Unknown page builder."
+msgstr "صفحه‌ساز ناشناخته است."
+
+#. translators: %s: page builder name.
+#: includes/builders/class-page-builder-registry.php:86
+#, php-format
+msgid "%s is not active on this site."
+msgstr "%s در این سایت فعال نیست."
+
+#: includes/class-admin.php:55 includes/class-admin.php:1679
 msgid "Copy"
 msgstr "کپی"
 
-#: includes/class-admin.php:55
+#: includes/class-admin.php:56
 msgid "Copied"
 msgstr "کپی شد"
 
-#: includes/class-admin.php:56
+#: includes/class-admin.php:57
 msgid "Copy failed. Select and copy the value manually."
 msgstr "کپی ناموفق بود. مقدار را به‌صورت دستی انتخاب و کپی کنید."
 
-#: includes/class-admin.php:57
+#: includes/class-admin.php:58
 msgid "Saving…"
 msgstr "در حال ذخیره…"
 
-#: includes/class-admin.php:58
+#: includes/class-admin.php:59
 msgid "Creating…"
 msgstr "در حال ایجاد…"
 
-#: includes/class-admin.php:59 includes/class-admin.php:894
+#: includes/class-admin.php:60 includes/class-admin.php:1103
 msgid "No records match your filters."
 msgstr "هیچ رکوردی با فیلترهای شما مطابقت ندارد."
 
-#. translators: %d: number of visible records.
-#. translators: %d: number of activity records.
-#: includes/class-admin.php:61 includes/class-admin.php:851
+#. translators: %d: number of records shown.
+#: includes/class-admin.php:62 includes/class-admin.php:1060
 #, php-format
 msgid "%d records"
 msgstr "%d رکورد"
 
 #. translators: 1: visible tool count, 2: total tool count.
-#: includes/class-admin.php:63 includes/class-admin.php:1032
+#: includes/class-admin.php:64 includes/class-admin.php:1241
 #, php-format
 msgid "%1$d of %2$d tools visible"
 msgstr "%1$d از %2$d ابزار نمایش داده می‌شود"
 
-#: includes/class-admin.php:64 includes/class-admin.php:1091
+#: includes/class-admin.php:65 includes/class-admin.php:1300
 msgid "Exposed"
 msgstr "در دسترس"
 
-#: includes/class-admin.php:65 includes/class-admin.php:67
-#: includes/class-admin.php:1091 includes/class-admin.php:1165
+#: includes/class-admin.php:66 includes/class-admin.php:68
+#: includes/class-admin.php:1300 includes/class-admin.php:1374
 msgid "Disabled"
 msgstr "غیرفعال"
 
-#: includes/class-admin.php:66 includes/class-admin.php:1165
+#: includes/class-admin.php:67 includes/class-admin.php:1374
 msgid "Enabled"
 msgstr "فعال"
 
 #. translators: 1: enabled operation count, 2: total operation count.
-#: includes/class-admin.php:69 includes/class-admin.php:1151
+#: includes/class-admin.php:70 includes/class-admin.php:1360
 #, php-format
 msgid "%1$d of %2$d operations enabled"
 msgstr "%1$d از %2$d عملیات فعال است"
 
-#: includes/class-admin.php:85
+#: includes/class-admin.php:86
 msgid "Open console"
 msgstr "باز کردن کنسول"
 
-#: includes/class-admin.php:104
+#: includes/class-admin.php:121
+msgid "Request approved. The agent can now replay the call."
+msgstr "درخواست تأیید شد. عامل اکنون می‌تواند فراخوانی را دوباره بفرستد."
+
+#: includes/class-admin.php:122
+msgid "Request rejected."
+msgstr "درخواست رد شد."
+
+#: includes/class-admin.php:125
+msgid "That request is no longer pending."
+msgstr "آن درخواست دیگر در انتظار بررسی نیست."
+
+#: includes/class-admin.php:142
+msgid "Human in the loop"
+msgstr "بررسی انسانی"
+
+#: includes/class-admin.php:143
+msgid "Approval queue"
+msgstr "صف تأیید"
+
+#: includes/class-admin.php:144
+msgid ""
+"High-risk calls park here instead of running. Approve one and the agent "
+"replays it with the issued ID."
+msgstr "فراخوانی‌های پرخطر به جای اجرا در اینجا متوقف می‌شوند. پس از تأیید، عامل آن را با شناسه صادرشده دوباره می‌فرستد."
+
+#: includes/class-admin.php:151
+msgid ""
+"Approvals are switched off, so every permitted call runs immediately. Enable "
+"them under Settings."
+msgstr "تأیید انسانی خاموش است، بنابراین هر فراخوانی مجاز بی‌درنگ اجرا می‌شود. آن را در بخش تنظیمات فعال کنید."
+
+#. translators: %s: comma-separated tool patterns.
+#: includes/class-admin.php:160
+#, php-format
+msgid "Gated tools: %s"
+msgstr "ابزارهای نیازمند تأیید: %s"
+
+#: includes/class-admin.php:171
+msgid "Review"
+msgstr "بررسی"
+
+#: includes/class-admin.php:172
+msgid "Requests"
+msgstr "درخواست‌ها"
+
+#: includes/class-admin.php:179 includes/class-admin.php:1071
+msgid "Tool"
+msgstr "ابزار"
+
+#: includes/class-admin.php:180
+msgid "Arguments"
+msgstr "آرگومان‌ها"
+
+#: includes/class-admin.php:181
+msgid "Requested by"
+msgstr "درخواست‌کننده"
+
+#: includes/class-admin.php:182 includes/class-admin.php:970
+#: includes/class-admin.php:1127
+msgid "Status"
+msgstr "وضعیت"
+
+#: includes/class-admin.php:183
+msgid "Requested"
+msgstr "زمان درخواست"
+
+#: includes/class-admin.php:184
+msgid "Decision"
+msgstr "تصمیم"
+
+#: includes/class-admin.php:198
+msgid "expired"
+msgstr "منقضی‌شده"
+
+#: includes/class-admin.php:209
+msgid "Approve"
+msgstr "تأیید"
+
+#: includes/class-admin.php:210
+msgid "Reject"
+msgstr "رد"
+
+#: includes/class-admin.php:220
+msgid "Nothing awaiting review"
+msgstr "موردی در انتظار بررسی نیست"
+
+#: includes/class-admin.php:220
+msgid "Gated calls will appear here as agents attempt them."
+msgstr "فراخوانی‌های نیازمند تأیید با تلاش عامل‌ها در اینجا نمایش داده می‌شوند."
+
+#: includes/class-admin.php:234
+msgid "Unrestricted"
+msgstr "بدون محدودیت"
+
+#. translators: %s: comma-separated tool patterns.
+#: includes/class-admin.php:244
+#, php-format
+msgid "Allow: %s"
+msgstr "مجاز: %s"
+
+#. translators: %s: comma-separated tool patterns.
+#: includes/class-admin.php:248
+#, php-format
+msgid "Deny: %s"
+msgstr "ممنوع: %s"
+
+#. translators: 1: calls used today, 2: daily budget.
+#: includes/class-admin.php:253
+#, php-format
+msgid "Budget: %1$d / %2$d today"
+msgstr "سهمیه: %1$d از %2$d امروز"
+
+#: includes/class-admin.php:280
 msgid "Credential revoked."
 msgstr "اعتبارنامه لغو شد."
 
-#: includes/class-admin.php:104
+#: includes/class-admin.php:280
 msgid "Credential not found."
 msgstr "اعتبارنامه پیدا نشد."
 
-#: includes/class-admin.php:114
+#: includes/class-admin.php:290
 msgid "OAuth client not found."
 msgstr "کارخواه OAuth پیدا نشد."
 
-#: includes/class-admin.php:120
+#: includes/class-admin.php:296
 msgid "OAuth client and its tokens revoked."
 msgstr "کارخواه OAuth و توکن‌های آن لغو شدند."
 
-#: includes/class-admin.php:150
+#: includes/class-admin.php:336
 msgid "Settings saved."
 msgstr "تنظیمات ذخیره شد."
 
 #. translators: 1: exposed tools, 2: disabled tools, 3: enabled operations, 4: disabled operations.
-#: includes/class-admin.php:186
+#: includes/class-admin.php:372
 #, php-format
 msgid ""
 "Tool policy updated: %1$s tools exposed, %2$s tools disabled; %3$s "
@@ -133,19 +267,19 @@ msgstr ""
 "سیاست ابزار به‌روزرسانی شد: %1$s ابزار در دسترس، %2$s ابزار غیرفعال؛ %3$s "
 "عملیات فعال و %4$s عملیات غیرفعال است."
 
-#: includes/class-admin.php:214
+#: includes/class-admin.php:400
 msgid "Webhook removed."
 msgstr "وب‌هوک حذف شد."
 
-#: includes/class-admin.php:214 includes/tools/class-webhook-tools.php:55
+#: includes/class-admin.php:400 includes/tools/class-webhook-tools.php:55
 msgid "Webhook not found."
 msgstr "وب‌هوک پیدا نشد."
 
-#: includes/class-admin.php:239
+#: includes/class-admin.php:425
 msgid "WordPress agent operations"
 msgstr "عملیات عامل‌های وردپرس"
 
-#: includes/class-admin.php:241
+#: includes/class-admin.php:427
 msgid ""
 "Securely connect AI agents, govern access, automate events, and monitor "
 "every tool call from one control plane."
@@ -153,114 +287,114 @@ msgstr ""
 "عامل‌های هوش مصنوعی را ایمن متصل کنید، دسترسی را مدیریت کنید، رویدادها را "
 "خودکار کنید و همهٔ فراخوانی‌های ابزار را از یک مرکز کنترل پایش کنید."
 
-#: includes/class-admin.php:244
+#: includes/class-admin.php:430
 msgid "Service status"
 msgstr "وضعیت سرویس"
 
-#: includes/class-admin.php:248
+#: includes/class-admin.php:434
 msgid "Endpoint online"
 msgstr "نقطهٔ پایانی فعال است"
 
-#: includes/class-admin.php:248
+#: includes/class-admin.php:434
 msgid "Endpoint paused"
 msgstr "نقطهٔ پایانی متوقف است"
 
-#: includes/class-admin.php:253
+#: includes/class-admin.php:439
 msgid "Mindio Magic MCP sections"
 msgstr "بخش‌های Mindio Magic MCP"
 
 #. translators: %s: plugin version number.
-#: includes/class-admin.php:301
+#: includes/class-admin.php:490
 #, php-format
 msgid "Mindio Magic MCP %s"
 msgstr "Mindio Magic MCP نسخهٔ %s"
 
-#: includes/class-admin.php:304
+#: includes/class-admin.php:493
 msgid "Streamable HTTP · JSON-RPC 2.0 · OAuth 2.1"
 msgstr "HTTP جریانی · JSON-RPC 2.0 · OAuth 2.1"
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:507
 msgid "Action required"
 msgstr "نیازمند اقدام"
 
-#: includes/class-admin.php:318
+#: includes/class-admin.php:507
 msgid "Operation completed"
 msgstr "عملیات با موفقیت انجام شد"
 
-#: includes/class-admin.php:322
+#: includes/class-admin.php:511
 msgid "One-time secret"
 msgstr "راز یک‌بارمصرف"
 
-#: includes/class-admin.php:325
+#: includes/class-admin.php:514
 msgid "one-time secret"
 msgstr "راز یک‌بارمصرف"
 
-#: includes/class-admin.php:327
+#: includes/class-admin.php:516
 msgid ""
 "Store this value in a password manager now. It will not be displayed again."
 msgstr ""
 "این مقدار را همین حالا در یک مدیر رمز عبور ذخیره کنید. دوباره نمایش داده "
 "نخواهد شد."
 
-#: includes/class-admin.php:346
+#: includes/class-admin.php:535
 msgid "Control plane"
 msgstr "مرکز کنترل"
 
-#: includes/class-admin.php:347
+#: includes/class-admin.php:536
 msgid "System overview"
 msgstr "نمای کلی سامانه"
 
-#: includes/class-admin.php:348
+#: includes/class-admin.php:537
 msgid ""
 "A live view of connectivity, access, automation, and recent execution health."
 msgstr "نمایی زنده از اتصال، دسترسی، خودکارسازی و سلامت اجرای اخیر."
 
-#: includes/class-admin.php:352
+#: includes/class-admin.php:541
 msgid "Create credential"
 msgstr "ایجاد اعتبارنامه"
 
-#: includes/class-admin.php:358
+#: includes/class-admin.php:547
 msgid "API keys"
 msgstr "کلیدهای API"
 
-#: includes/class-admin.php:358
+#: includes/class-admin.php:547
 msgid "Long-lived credentials"
 msgstr "اعتبارنامه‌های بلندمدت"
 
-#: includes/class-admin.php:359
+#: includes/class-admin.php:548
 msgid "OAuth clients"
 msgstr "کلاینت‌های OAuth"
 
-#: includes/class-admin.php:359
+#: includes/class-admin.php:548
 msgid "Dynamically registered"
 msgstr "ثبت‌شده به‌صورت پویا"
 
-#: includes/class-admin.php:360 includes/class-admin.php:671
-#: includes/class-admin.php:1556
+#: includes/class-admin.php:549 includes/class-admin.php:880
+#: includes/class-admin.php:1852
 msgid "Webhooks"
 msgstr "وب‌هوک‌ها"
 
-#: includes/class-admin.php:360
+#: includes/class-admin.php:549
 msgid "Active destinations"
 msgstr "مقصدهای فعال"
 
-#: includes/class-admin.php:361
+#: includes/class-admin.php:550
 msgid "Request success"
 msgstr "موفقیت درخواست‌ها"
 
-#: includes/class-admin.php:361
+#: includes/class-admin.php:550
 msgid "Latest 50 tool calls"
 msgstr "۵۰ فراخوانی اخیر ابزار"
 
-#: includes/class-admin.php:369
+#: includes/class-admin.php:558
 msgid "Client configuration"
 msgstr "پیکربندی کلاینت"
 
-#: includes/class-admin.php:370
+#: includes/class-admin.php:559
 msgid "Connection endpoints"
 msgstr "نقاط پایانی اتصال"
 
-#: includes/class-admin.php:371
+#: includes/class-admin.php:560
 msgid ""
 "Use the MCP endpoint in your client. OAuth discovery URLs are consumed "
 "automatically."
@@ -268,106 +402,106 @@ msgstr ""
 "از نقطهٔ پایانی MCP در کارخواه خود استفاده کنید. نشانی‌های کشف OAuth به‌صورت "
 "خودکار استفاده می‌شوند."
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:562
 msgid "Available"
 msgstr "در دسترس"
 
-#: includes/class-admin.php:373
+#: includes/class-admin.php:562
 msgid "Paused"
 msgstr "متوقف"
 
-#: includes/class-admin.php:377
+#: includes/class-admin.php:566
 msgid "MCP endpoint"
 msgstr "نقطهٔ پایانی MCP"
 
-#: includes/class-admin.php:377
+#: includes/class-admin.php:566
 msgid "Paste this URL into your MCP client"
 msgstr "این نشانی را در کارخواه MCP خود وارد کنید"
 
-#: includes/class-admin.php:378
+#: includes/class-admin.php:567
 msgid "OAuth authorization server"
 msgstr "سرور مجوزدهی OAuth"
 
-#: includes/class-admin.php:378
+#: includes/class-admin.php:567
 msgid "Automatic discovery only — not an MCP server URL"
 msgstr "فقط برای کشف خودکار — این نشانی سرور MCP نیست"
 
-#: includes/class-admin.php:379
+#: includes/class-admin.php:568
 msgid "Protected resource metadata"
 msgstr "فرادادهٔ منبع محافظت‌شده"
 
-#: includes/class-admin.php:379
+#: includes/class-admin.php:568
 msgid "Automatic resource discovery for OAuth clients"
 msgstr "کشف خودکار منبع برای کارخواه‌های OAuth"
 
-#: includes/class-admin.php:387
+#: includes/class-admin.php:576
 msgid "Environment"
 msgstr "محیط"
 
-#: includes/class-admin.php:388
+#: includes/class-admin.php:577
 msgid "System readiness"
 msgstr "آمادگی سامانه"
 
-#: includes/class-admin.php:393
+#: includes/class-admin.php:582
 msgid "WordPress"
 msgstr "وردپرس"
 
-#: includes/class-admin.php:394
+#: includes/class-admin.php:583
 msgid "PHP runtime"
 msgstr "محیط اجرای PHP"
 
-#: includes/class-admin.php:395
+#: includes/class-admin.php:584
 msgid "Flatsome theme"
 msgstr "پوستهٔ فلت‌سام"
 
-#: includes/class-admin.php:395
+#: includes/class-admin.php:584
 msgid "Detected"
 msgstr "شناسایی شد"
 
-#: includes/class-admin.php:395
+#: includes/class-admin.php:584
 msgid "Not active"
 msgstr "فعال نیست"
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:585
 msgid "HTTPS transport"
 msgstr "انتقال HTTPS"
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:585
 msgid "Secure"
 msgstr "ایمن"
 
-#: includes/class-admin.php:396
+#: includes/class-admin.php:585
 msgid "Recommended"
 msgstr "توصیه می‌شود"
 
-#: includes/class-admin.php:406
+#: includes/class-admin.php:595
 msgid "Deployment path"
 msgstr "مسیر راه‌اندازی"
 
-#: includes/class-admin.php:407
+#: includes/class-admin.php:596
 msgid "Connect an agent in three steps"
 msgstr "اتصال یک عامل در سه گام"
 
-#: includes/class-admin.php:414
+#: includes/class-admin.php:603
 msgid "Issue the least-privileged credential"
 msgstr "صدور اعتبارنامه با کمترین دسترسی"
 
-#: includes/class-admin.php:415
+#: includes/class-admin.php:604
 msgid ""
 "Choose read-only, editor, or administrator scope for a specific WordPress "
 "user."
 msgstr ""
 "برای یک کاربر مشخص وردپرس، سطح فقط‌خواندنی، ویرایشگر یا مدیر را انتخاب کنید."
 
-#: includes/class-admin.php:416
+#: includes/class-admin.php:605
 msgid "Manage credentials"
 msgstr "مدیریت اعتبارنامه‌ها"
 
-#: includes/class-admin.php:422
+#: includes/class-admin.php:611
 msgid "Configure the MCP client"
 msgstr "پیکربندی کلاینت MCP"
 
-#: includes/class-admin.php:423
+#: includes/class-admin.php:612
 msgid ""
 "Add the endpoint above and authenticate with an API key or the OAuth "
 "discovery flow."
@@ -375,11 +509,11 @@ msgstr ""
 "نقطهٔ پایانی بالا را اضافه کنید و با کلید API یا جریان کشف OAuth احراز هویت "
 "شوید."
 
-#: includes/class-admin.php:429
+#: includes/class-admin.php:618
 msgid "Verify and automate"
 msgstr "اعتبارسنجی و خودکارسازی"
 
-#: includes/class-admin.php:430
+#: includes/class-admin.php:619
 msgid ""
 "Run a tool call, review the audit trail, then subscribe downstream systems "
 "to signed events."
@@ -387,27 +521,27 @@ msgstr ""
 "یک ابزار را فراخوانی کنید، ردپای ممیزی را بررسی کنید و سپس سامانه‌های مقصد را "
 "مشترک رویدادهای امضاشده کنید."
 
-#: includes/class-admin.php:431
+#: includes/class-admin.php:620
 msgid "Configure webhooks"
 msgstr "پیکربندی وب‌هوک‌ها"
 
-#: includes/class-admin.php:440
+#: includes/class-admin.php:629
 msgid "Observability"
 msgstr "مشاهده‌پذیری"
 
-#: includes/class-admin.php:441
+#: includes/class-admin.php:630
 msgid "Latest tool activity"
 msgstr "آخرین فعالیت ابزارها"
 
-#: includes/class-admin.php:443
+#: includes/class-admin.php:632
 msgid "View all"
 msgstr "مشاهدهٔ همه"
 
-#: includes/class-admin.php:459
+#: includes/class-admin.php:648
 msgid "No tool activity yet"
 msgstr "هنوز فعالیتی ثبت نشده است"
 
-#: includes/class-admin.php:459
+#: includes/class-admin.php:648
 msgid ""
 "Successful and failed MCP calls will appear here as agents begin using the "
 "endpoint."
@@ -415,212 +549,246 @@ msgstr ""
 "با شروع استفادهٔ عامل‌ها از نقطهٔ پایانی، فراخوانی‌های موفق و ناموفق MCP اینجا "
 "نمایش داده می‌شوند."
 
-#: includes/class-admin.php:472
+#: includes/class-admin.php:661
 msgid "Identity and access"
 msgstr "هویت و دسترسی"
 
-#: includes/class-admin.php:473 includes/class-admin.php:1551
+#: includes/class-admin.php:662 includes/class-admin.php:1842
 msgid "Credentials"
 msgstr "اعتبارنامه‌ها"
 
-#: includes/class-admin.php:474
+#: includes/class-admin.php:663
 msgid ""
 "Provision scoped API keys and govern dynamically registered OAuth clients."
 msgstr ""
 "کلیدهای API سطح‌بندی‌شده صادر و کلاینت‌های OAuth ثبت‌شدهٔ پویا را مدیریت کنید."
 
 #. translators: %s: number of active API keys.
-#: includes/class-admin.php:478
+#: includes/class-admin.php:667
 #, php-format
 msgid "%s active API key"
 msgid_plural "%s active API keys"
 msgstr[0] "%s کلید API فعال"
 msgstr[1] "%s کلید API فعال"
 
-#: includes/class-admin.php:486
+#: includes/class-admin.php:675
 msgid "New credential"
 msgstr "اعتبارنامهٔ جدید"
 
-#: includes/class-admin.php:487
+#: includes/class-admin.php:676
 msgid "Generate an API key"
 msgstr "ساخت کلید API"
 
-#: includes/class-admin.php:488
+#: includes/class-admin.php:677
 msgid "The raw key is revealed once after creation."
 msgstr "کلید خام پس از ایجاد فقط یک‌بار نمایش داده می‌شود."
 
-#: includes/class-admin.php:496
+#: includes/class-admin.php:685
 msgid "Credential label"
 msgstr "برچسب اعتبارنامه"
 
-#: includes/class-admin.php:497
+#: includes/class-admin.php:686
 msgid "Production content agent"
 msgstr "عامل محتوای محیط تولید"
 
-#: includes/class-admin.php:498
+#: includes/class-admin.php:687
 msgid "Use a name that identifies the client and environment."
 msgstr "نامی انتخاب کنید که کلاینت و محیط را مشخص کند."
 
-#: includes/class-admin.php:502
+#: includes/class-admin.php:691
 msgid "WordPress user"
 msgstr "کاربر وردپرس"
 
-#: includes/class-admin.php:517
+#: includes/class-admin.php:706
 msgid "Permission scope"
 msgstr "سطح مجوز"
 
-#: includes/class-admin.php:519 includes/class-admin.php:1418
+#: includes/class-admin.php:708 includes/class-admin.php:1709
 msgid "Read only"
 msgstr "فقط خواندنی"
 
-#: includes/class-admin.php:520 includes/class-admin.php:1419
+#: includes/class-admin.php:709 includes/class-admin.php:1710
 msgid "Editor"
 msgstr "ویرایشگر"
 
-#: includes/class-admin.php:521 includes/class-admin.php:1420
+#: includes/class-admin.php:710 includes/class-admin.php:1711
 msgid "Administrator"
 msgstr "مدیر"
 
-#: includes/class-admin.php:527
+#: includes/class-admin.php:716
+msgid "Allowed tools"
+msgstr "ابزارهای مجاز"
+
+#: includes/class-admin.php:718
+msgid ""
+"One tool name or prefix pattern per line, for example woocommerce_*. Empty "
+"allows every exposed tool."
+msgstr "در هر خط یک نام ابزار یا الگوی پیشوندی، برای نمونه woocommerce_*. خالی بودن یعنی همه ابزارهای در دسترس مجازند."
+
+#: includes/class-admin.php:721
+msgid "Denied tools"
+msgstr "ابزارهای ممنوع"
+
+#: includes/class-admin.php:723
+msgid "Evaluated after the allow list, so a denied pattern always wins."
+msgstr "پس از فهرست مجاز ارزیابی می‌شود، بنابراین الگوی ممنوع همیشه اولویت دارد."
+
+#: includes/class-admin.php:727
+msgid "Daily call budget"
+msgstr "سهمیه روزانه فراخوانی"
+
+#: includes/class-admin.php:728
+msgid "calls / day"
+msgstr "فراخوانی در روز"
+
+#: includes/class-admin.php:729
+msgid "Zero means unlimited. The counter resets at midnight UTC."
+msgstr "صفر یعنی نامحدود. شمارنده در نیمه‌شب UTC بازنشانی می‌شود."
+
+#: includes/class-admin.php:733
 msgid "Generate secure key"
 msgstr "ساخت کلید امن"
 
-#: includes/class-admin.php:535
+#: includes/class-admin.php:741
 msgid "Least privilege"
 msgstr "کمترین دسترسی"
 
-#: includes/class-admin.php:536
+#: includes/class-admin.php:742
 msgid "Scope policy"
 msgstr "سیاست سطح دسترسی"
 
-#: includes/class-admin.php:540
+#: includes/class-admin.php:746
 msgid "Inspect content, settings, orders, and logs without modifying the site."
 msgstr "محتوا، تنظیمات، سفارش‌ها و گزارش‌ها را بدون تغییر سایت بررسی می‌کند."
 
-#: includes/class-admin.php:541
+#: includes/class-admin.php:747
 msgid "Create and update content, media, SEO metadata, comments, and products."
 msgstr ""
 "محتوا، رسانه، فرادادهٔ سئو، دیدگاه‌ها و محصولات را ایجاد و به‌روزرسانی می‌کند."
 
-#: includes/class-admin.php:542
+#: includes/class-admin.php:748
 msgid "Manage users, extensions, settings, automation, and privileged tools."
 msgstr ""
 "کاربران، افزونه‌ها، تنظیمات، خودکارسازی و ابزارهای ویژه را مدیریت می‌کند."
 
-#: includes/class-admin.php:546
+#: includes/class-admin.php:752
 msgid ""
 "A scope never exceeds the selected WordPress user’s native capabilities."
 msgstr ""
 "سطح دسترسی هرگز از توانایی‌های بومی کاربر انتخاب‌شدهٔ وردپرس فراتر نمی‌رود."
 
-#: includes/class-admin.php:554
+#: includes/class-admin.php:760
 msgid "API access"
 msgstr "دسترسی API"
 
-#: includes/class-admin.php:555
+#: includes/class-admin.php:761
 msgid "Active API keys"
 msgstr "کلیدهای API فعال"
 
-#: includes/class-admin.php:556
+#: includes/class-admin.php:762
 msgid ""
 "Only hashed credential material is stored. Raw secrets cannot be recovered."
 msgstr "فقط دادهٔ هش‌شدهٔ اعتبارنامه ذخیره می‌شود. رازهای خام قابل بازیابی نیستند."
 
-#: includes/class-admin.php:563
+#: includes/class-admin.php:769
 msgid "Credential"
 msgstr "اعتبارنامه"
 
-#: includes/class-admin.php:564 includes/class-admin.php:863
+#: includes/class-admin.php:770 includes/class-admin.php:1072
 msgid "Principal"
 msgstr "هویت اصلی"
 
-#: includes/class-admin.php:565 includes/class-admin.php:864
+#: includes/class-admin.php:771 includes/class-admin.php:1073
 msgid "Scope"
 msgstr "سطح دسترسی"
 
-#: includes/class-admin.php:566 includes/class-admin.php:760
+#: includes/class-admin.php:772
+msgid "Policy"
+msgstr "سیاست"
+
+#: includes/class-admin.php:773 includes/class-admin.php:969
 msgid "Created"
 msgstr "زمان ساخت"
 
-#: includes/class-admin.php:567
+#: includes/class-admin.php:774
 msgid "Last used"
 msgstr "آخرین استفاده"
 
-#: includes/class-admin.php:568 includes/class-admin.php:620
-#: includes/class-admin.php:762
+#: includes/class-admin.php:775 includes/class-admin.php:829
+#: includes/class-admin.php:971
 msgid "Actions"
 msgstr "عملیات"
 
-#: includes/class-admin.php:582
+#: includes/class-admin.php:791
 msgid "Revoke this API key? The connected client will immediately lose access."
 msgstr "این کلید API لغو شود؟ کلاینت متصل بلافاصله دسترسی خود را از دست می‌دهد."
 
-#: includes/class-admin.php:587 includes/class-admin.php:650
+#: includes/class-admin.php:796 includes/class-admin.php:859
 msgid "Revoke"
 msgstr "لغو"
 
-#: includes/class-admin.php:596
+#: includes/class-admin.php:805
 msgid "No API keys configured"
 msgstr "هیچ کلید API پیکربندی نشده است"
 
-#: includes/class-admin.php:596
+#: includes/class-admin.php:805
 msgid "Generate a scoped credential above to connect your first agent."
 msgstr "برای اتصال نخستین عامل، یک اعتبارنامهٔ سطح‌بندی‌شده در بالا بسازید."
 
-#: includes/class-admin.php:603
+#: includes/class-admin.php:812
 msgid "OAuth 2.1"
 msgstr "OAuth 2.1"
 
-#: includes/class-admin.php:604
+#: includes/class-admin.php:813
 msgid "Registered OAuth clients"
 msgstr "کلاینت‌های OAuth ثبت‌شده"
 
-#: includes/class-admin.php:605
+#: includes/class-admin.php:814
 msgid "Clients appear here after completing dynamic client registration."
 msgstr "کلاینت‌ها پس از تکمیل ثبت پویای کلاینت در اینجا نمایش داده می‌شوند."
 
 #. translators: %s: number of registered OAuth clients.
-#: includes/class-admin.php:609
+#: includes/class-admin.php:818
 #, php-format
 msgid "%s client"
 msgid_plural "%s clients"
 msgstr[0] "%s کلاینت"
 msgstr[1] "%s کلاینت"
 
-#: includes/class-admin.php:616 includes/class-oauth-server.php:339
-#: includes/class-oauth-server.php:428
+#: includes/class-admin.php:825 includes/class-oauth-server.php:332
+#: includes/class-oauth-server.php:421
 msgid "Client"
 msgstr "کلاینت"
 
-#: includes/class-admin.php:617
+#: includes/class-admin.php:826
 msgid "Client ID"
 msgstr "شناسهٔ کلاینت"
 
-#: includes/class-admin.php:618
+#: includes/class-admin.php:827
 msgid "Redirect URIs"
 msgstr "نشانی‌های بازگشت"
 
-#: includes/class-admin.php:619
+#: includes/class-admin.php:828
 msgid "Registered"
 msgstr "ثبت‌شده"
 
-#: includes/class-admin.php:629
+#: includes/class-admin.php:838
 msgid "Unnamed client"
 msgstr "کلاینت بدون نام"
 
-#: includes/class-admin.php:633
+#: includes/class-admin.php:842
 msgid "client ID"
 msgstr "شناسهٔ کلاینت"
 
-#: includes/class-admin.php:645
+#: includes/class-admin.php:854
 msgid "Revoke this OAuth client and all of its access and refresh tokens?"
 msgstr "این کلاینت OAuth و همهٔ توکن‌های دسترسی و نوسازی آن لغو شوند؟"
 
-#: includes/class-admin.php:659
+#: includes/class-admin.php:868
 msgid "No OAuth clients registered"
 msgstr "هیچ کلاینت OAuth ثبت نشده است"
 
-#: includes/class-admin.php:659
+#: includes/class-admin.php:868
 msgid ""
 "Compatible clients can register automatically through the OAuth discovery "
 "endpoints."
@@ -628,11 +796,11 @@ msgstr ""
 "کلاینت‌های سازگار می‌توانند از طریق نقاط پایانی کشف OAuth به‌طور خودکار ثبت "
 "شوند."
 
-#: includes/class-admin.php:670
+#: includes/class-admin.php:879
 msgid "Event automation"
 msgstr "خودکارسازی رویداد"
 
-#: includes/class-admin.php:672
+#: includes/class-admin.php:881
 msgid ""
 "Deliver signed WordPress and WooCommerce events to trusted HTTPS "
 "destinations."
@@ -640,263 +808,256 @@ msgstr ""
 "رویدادهای امضاشدهٔ وردپرس و ووکامرس را به مقصدهای HTTPS مورداعتماد ارسال کنید."
 
 #. translators: %s: number of webhook destinations.
-#: includes/class-admin.php:676
+#: includes/class-admin.php:885
 #, php-format
 msgid "%s destination"
 msgid_plural "%s destinations"
 msgstr[0] "%s مقصد"
 msgstr[1] "%s مقصد"
 
-#: includes/class-admin.php:684
+#: includes/class-admin.php:893
 msgid "New subscription"
 msgstr "اشتراک جدید"
 
-#: includes/class-admin.php:685
+#: includes/class-admin.php:894
 msgid "Add a webhook destination"
 msgstr "افزودن مقصد وب‌هوک"
 
-#: includes/class-admin.php:686
+#: includes/class-admin.php:895
 msgid "A signing secret is revealed once after the destination is created."
 msgstr "راز امضا پس از ایجاد مقصد فقط یک‌بار نمایش داده می‌شود."
 
-#: includes/class-admin.php:695
+#: includes/class-admin.php:904
 msgid "Destination name"
 msgstr "نام مقصد"
 
-#: includes/class-admin.php:696
+#: includes/class-admin.php:905
 msgid "Automation platform"
 msgstr "سکوی خودکارسازی"
 
-#: includes/class-admin.php:699
+#: includes/class-admin.php:908
 msgid "HTTPS endpoint URL"
 msgstr "نشانی نقطهٔ پایانی HTTPS"
 
-#: includes/class-admin.php:704
+#: includes/class-admin.php:913
 msgid "Events to deliver"
 msgstr "رویدادهای قابل ارسال"
 
-#: includes/class-admin.php:705
+#: includes/class-admin.php:914
 msgid "Select one or more events for this destination."
 msgstr "یک یا چند رویداد برای این مقصد انتخاب کنید."
 
-#: includes/class-admin.php:718
+#: includes/class-admin.php:927
 msgid "Select at least one event before creating the webhook."
 msgstr "پیش از ایجاد وب‌هوک دست‌کم یک رویداد انتخاب کنید."
 
-#: includes/class-admin.php:722
+#: includes/class-admin.php:931
 msgid "Create webhook"
 msgstr "ایجاد وب‌هوک"
 
-#: includes/class-admin.php:730
+#: includes/class-admin.php:939
 msgid "Delivery security"
 msgstr "امنیت ارسال"
 
-#: includes/class-admin.php:731
+#: includes/class-admin.php:940
 msgid "Signed by default"
 msgstr "امضاشده به‌صورت پیش‌فرض"
 
-#: includes/class-admin.php:732
+#: includes/class-admin.php:941
 msgid ""
 "Every delivery includes verification headers and follows a bounded retry "
 "schedule."
 msgstr ""
 "هر ارسال شامل هدرهای اعتبارسنجی است و از برنامهٔ تلاش مجدد محدود پیروی می‌کند."
 
-#: includes/class-admin.php:737
+#: includes/class-admin.php:946
 msgid "Signature"
 msgstr "امضا"
 
-#: includes/class-admin.php:738
+#: includes/class-admin.php:947
 msgid "Algorithm"
 msgstr "الگوریتم"
 
-#: includes/class-admin.php:739
+#: includes/class-admin.php:948
 msgid "Retries"
 msgstr "تلاش‌های مجدد"
 
-#: includes/class-admin.php:739
+#: includes/class-admin.php:948
 msgid "Up to 5 attempts"
 msgstr "حداکثر ۵ تلاش"
 
-#: includes/class-admin.php:740
+#: includes/class-admin.php:949
 msgid "Network policy"
 msgstr "سیاست شبکه"
 
-#: includes/class-admin.php:740
+#: includes/class-admin.php:949
 msgid "HTTPS with private targets blocked"
 msgstr "HTTPS با مسدودسازی مقصدهای خصوصی"
 
-#: includes/class-admin.php:748
+#: includes/class-admin.php:957
 msgid "Subscriptions"
 msgstr "اشتراک‌ها"
 
-#: includes/class-admin.php:749
+#: includes/class-admin.php:958
 msgid "Webhook destinations"
 msgstr "مقصدهای وب‌هوک"
 
-#: includes/class-admin.php:750
+#: includes/class-admin.php:959
 msgid "Configured destinations receive only the events selected for them."
 msgstr "هر مقصد پیکربندی‌شده فقط رویدادهای انتخاب‌شده برای خود را دریافت می‌کند."
 
-#: includes/class-admin.php:757 includes/class-admin.php:916
+#: includes/class-admin.php:966 includes/class-admin.php:1125
+#: includes/class-admin.php:1526
 msgid "Destination"
 msgstr "مقصد"
 
-#: includes/class-admin.php:758
+#: includes/class-admin.php:967
 msgid "Endpoint"
 msgstr "نقطهٔ پایانی"
 
-#: includes/class-admin.php:759
+#: includes/class-admin.php:968
 msgid "Events"
 msgstr "رویدادها"
 
-#: includes/class-admin.php:761 includes/class-admin.php:918
-msgid "Status"
-msgstr "وضعیت"
-
-#: includes/class-admin.php:774
+#: includes/class-admin.php:983
 msgid "Active"
 msgstr "فعال"
 
-#: includes/class-admin.php:774
+#: includes/class-admin.php:983
 msgid "Inactive"
 msgstr "غیرفعال"
 
-#: includes/class-admin.php:776
+#: includes/class-admin.php:985
 msgid ""
 "Remove this webhook destination? Future matching events will no longer be "
 "delivered."
 msgstr "این مقصد وب‌هوک حذف شود؟ رویدادهای منطبق آینده دیگر ارسال نخواهند شد."
 
-#: includes/class-admin.php:781
+#: includes/class-admin.php:990
 msgid "Remove"
 msgstr "حذف"
 
-#: includes/class-admin.php:790
+#: includes/class-admin.php:999
 msgid "No webhook destinations"
 msgstr "هیچ مقصد وب‌هوکی وجود ندارد"
 
-#: includes/class-admin.php:790
+#: includes/class-admin.php:999
 msgid "Create a signed subscription above to automate downstream workflows."
 msgstr "برای خودکارسازی گردش‌کارهای مقصد، یک اشتراک امضاشده در بالا ایجاد کنید."
 
-#: includes/class-admin.php:810
+#: includes/class-admin.php:1019
 msgid "Governance and diagnostics"
 msgstr "حاکمیت و عیب‌یابی"
 
-#: includes/class-admin.php:811
+#: includes/class-admin.php:1020
 msgid "Activity & logs"
 msgstr "فعالیت و گزارش‌ها"
 
-#: includes/class-admin.php:812
+#: includes/class-admin.php:1021
 msgid ""
 "Inspect tool execution outcomes and webhook delivery health without exposing "
 "sensitive payloads."
 msgstr ""
 "نتایج اجرای ابزار و سلامت ارسال وب‌هوک را بدون افشای داده‌های حساس بررسی کنید."
 
-#: includes/class-admin.php:814
+#: includes/class-admin.php:1023
 msgid "Arguments redacted"
 msgstr "آرگومان‌ها پوشانده شده‌اند"
 
-#: includes/class-admin.php:819
+#: includes/class-admin.php:1028
 msgid "Successful calls"
 msgstr "فراخوانی‌های موفق"
 
-#: includes/class-admin.php:819
+#: includes/class-admin.php:1028
 msgid "Latest 100 records"
 msgstr "۱۰۰ رکورد اخیر"
 
-#: includes/class-admin.php:820
+#: includes/class-admin.php:1029
 msgid "Failed calls"
 msgstr "فراخوانی‌های ناموفق"
 
-#: includes/class-admin.php:820
+#: includes/class-admin.php:1029
 msgid "Review error codes below"
 msgstr "کدهای خطا را در پایین بررسی کنید"
 
-#: includes/class-admin.php:821
+#: includes/class-admin.php:1030
 msgid "Average duration"
 msgstr "میانگین مدت"
 
-#: includes/class-admin.php:821
+#: includes/class-admin.php:1030
 msgid "Across visible tool calls"
 msgstr "در فراخوانی‌های قابل مشاهده"
 
-#: includes/class-admin.php:822
+#: includes/class-admin.php:1031
 msgid "Delivery attention"
 msgstr "ارسال‌های نیازمند توجه"
 
-#: includes/class-admin.php:822
+#: includes/class-admin.php:1031
 msgid "Failed or retrying webhooks"
 msgstr "وب‌هوک‌های ناموفق یا در حال تلاش مجدد"
 
-#: includes/class-admin.php:829
+#: includes/class-admin.php:1038
 msgid "Audit trail"
 msgstr "ردپای ممیزی"
 
-#: includes/class-admin.php:830
+#: includes/class-admin.php:1039
 msgid "Tool execution"
 msgstr "اجرای ابزار"
 
-#: includes/class-admin.php:831
+#: includes/class-admin.php:1040
 msgid ""
 "The latest calls are retained according to your data lifecycle settings."
 msgstr "فراخوانی‌های اخیر مطابق تنظیمات چرخهٔ عمر داده نگه‌داری می‌شوند."
 
-#: includes/class-admin.php:837
+#: includes/class-admin.php:1046
 msgid "Search activity"
 msgstr "جست‌وجوی فعالیت"
 
-#: includes/class-admin.php:838
+#: includes/class-admin.php:1047
 msgid "Search tool or user…"
 msgstr "جست‌وجوی ابزار یا کاربر…"
 
-#: includes/class-admin.php:841
+#: includes/class-admin.php:1050
 msgid "Filter by result"
 msgstr "فیلتر بر اساس نتیجه"
 
-#: includes/class-admin.php:843
+#: includes/class-admin.php:1052
 msgid "All results"
 msgstr "همهٔ نتایج"
 
-#: includes/class-admin.php:844
+#: includes/class-admin.php:1053
 msgid "Successful"
 msgstr "موفق"
 
-#: includes/class-admin.php:845 includes/class-admin.php:1656
+#: includes/class-admin.php:1054 includes/class-admin.php:1960
 msgid "Failed"
 msgstr "ناموفق"
 
-#: includes/class-admin.php:861 includes/class-admin.php:915
+#: includes/class-admin.php:1070 includes/class-admin.php:1124
 msgid "Time"
 msgstr "زمان"
 
-#: includes/class-admin.php:862
-msgid "Tool"
-msgstr "ابزار"
-
-#: includes/class-admin.php:865
+#: includes/class-admin.php:1074
 msgid "Result"
 msgstr "نتیجه"
 
-#: includes/class-admin.php:866
+#: includes/class-admin.php:1075
 msgid "Duration"
 msgstr "مدت"
 
-#: includes/class-admin.php:886
+#: includes/class-admin.php:1095
 msgid "Success"
 msgstr "موفق"
 
-#: includes/class-admin.php:886
+#: includes/class-admin.php:1095
 msgid "Error"
 msgstr "خطا"
 
-#: includes/class-admin.php:899
+#: includes/class-admin.php:1108
 msgid "No audit records yet"
 msgstr "هنوز رکورد ممیزی وجود ندارد"
 
-#: includes/class-admin.php:899
+#: includes/class-admin.php:1108
 msgid ""
 "Tool calls will be recorded here with duration, scope, and sanitized "
 "outcomes."
@@ -904,15 +1065,15 @@ msgstr ""
 "فراخوانی‌های ابزار همراه با مدت، سطح دسترسی و نتیجهٔ پاک‌سازی‌شده در اینجا ثبت "
 "می‌شوند."
 
-#: includes/class-admin.php:906
+#: includes/class-admin.php:1115
 msgid "Outbound automation"
 msgstr "خودکارسازی خروجی"
 
-#: includes/class-admin.php:907
+#: includes/class-admin.php:1116
 msgid "Webhook deliveries"
 msgstr "ارسال‌های وب‌هوک"
 
-#: includes/class-admin.php:908
+#: includes/class-admin.php:1117
 msgid ""
 "Delivery status and HTTP outcomes are visible here; event payloads remain "
 "protected."
@@ -920,52 +1081,52 @@ msgstr ""
 "وضعیت ارسال و نتایج HTTP اینجا دیده می‌شوند؛ دادهٔ رویداد محافظت‌شده باقی "
 "می‌ماند."
 
-#: includes/class-admin.php:917
+#: includes/class-admin.php:1126
 msgid "Event"
 msgstr "رویداد"
 
-#: includes/class-admin.php:919
+#: includes/class-admin.php:1128
 msgid "Attempts"
 msgstr "تعداد تلاش"
 
-#: includes/class-admin.php:920
+#: includes/class-admin.php:1129
 msgid "HTTP"
 msgstr "HTTP"
 
-#: includes/class-admin.php:921
+#: includes/class-admin.php:1130
 msgid "Next attempt"
 msgstr "تلاش بعدی"
 
-#: includes/class-admin.php:929
+#: includes/class-admin.php:1138
 msgid "Removed destination"
 msgstr "مقصد حذف‌شده"
 
-#: includes/class-admin.php:943
+#: includes/class-admin.php:1152
 msgid "No webhook deliveries yet"
 msgstr "هنوز ارسالی برای وب‌هوک ثبت نشده است"
 
-#: includes/class-admin.php:943
+#: includes/class-admin.php:1152
 msgid ""
 "Delivery attempts will appear after a subscribed WordPress event occurs."
 msgstr "تلاش‌های ارسال پس از وقوع یک رویداد مشترک‌شدهٔ وردپرس نمایش داده می‌شوند."
 
-#: includes/class-admin.php:967
+#: includes/class-admin.php:1176
 msgid "Other tools"
 msgstr "سایر ابزارها"
 
-#: includes/class-admin.php:968
+#: includes/class-admin.php:1177
 msgid "Additional tools registered by this server."
 msgstr "ابزارهای دیگری که این سرور ثبت کرده است."
 
-#: includes/class-admin.php:990
+#: includes/class-admin.php:1199
 msgid "Capability governance"
 msgstr "مدیریت قابلیت‌ها"
 
-#: includes/class-admin.php:991
+#: includes/class-admin.php:1200
 msgid "MCP tool exposure"
 msgstr "نمایش ابزارهای MCP"
 
-#: includes/class-admin.php:992
+#: includes/class-admin.php:1201
 msgid ""
 "Choose which registered capabilities agents can discover and execute on this "
 "site."
@@ -973,67 +1134,67 @@ msgstr ""
 "قابلیت‌های ثبت‌شده‌ای را که عامل‌ها می‌توانند در این سایت کشف و اجرا کنند انتخاب "
 "کنید."
 
-#: includes/class-admin.php:996 includes/class-admin.php:1203
+#: includes/class-admin.php:1205 includes/class-admin.php:1412
 msgid "Save tool policy"
 msgstr "ذخیرهٔ سیاست ابزارها"
 
-#: includes/class-admin.php:1002
+#: includes/class-admin.php:1211
 msgid "Registered tools"
 msgstr "ابزارهای ثبت‌شده"
 
-#: includes/class-admin.php:1002
+#: includes/class-admin.php:1211
 msgid "Current integrations"
 msgstr "یکپارچه‌سازی‌های فعلی"
 
-#: includes/class-admin.php:1003
+#: includes/class-admin.php:1212
 msgid "Exposed tools"
 msgstr "ابزارهای در دسترس"
 
-#: includes/class-admin.php:1003
+#: includes/class-admin.php:1212
 msgid "Advertised in discovery"
 msgstr "اعلام‌شده در فرایند کشف"
 
-#: includes/class-admin.php:1004
+#: includes/class-admin.php:1213
 msgid "Enabled operations"
 msgstr "عملیات فعال"
 
-#: includes/class-admin.php:1004
+#: includes/class-admin.php:1213
 msgid "Granular integration access"
 msgstr "دسترسی جزئی به یکپارچه‌سازی‌ها"
 
-#: includes/class-admin.php:1005
+#: includes/class-admin.php:1214
 msgid "Disabled operations"
 msgstr "عملیات غیرفعال"
 
-#: includes/class-admin.php:1005
+#: includes/class-admin.php:1214
 msgid "Write operations start disabled"
 msgstr "عملیات نوشتن در ابتدا غیرفعال است"
 
-#: includes/class-admin.php:1014
+#: includes/class-admin.php:1223
 msgid "Tool filters and bulk actions"
 msgstr "فیلتر ابزارها و عملیات گروهی"
 
-#: includes/class-admin.php:1018
+#: includes/class-admin.php:1227
 msgid "Search tool name or description…"
 msgstr "جست‌وجوی نام یا توضیح ابزار…"
 
-#: includes/class-admin.php:1021
+#: includes/class-admin.php:1230
 msgid "Filter by tool group"
 msgstr "فیلتر بر اساس گروه ابزار"
 
-#: includes/class-admin.php:1023
+#: includes/class-admin.php:1232
 msgid "All tool groups"
 msgstr "همهٔ گروه‌های ابزار"
 
-#: includes/class-admin.php:1037
+#: includes/class-admin.php:1246
 msgid "Enable all tools"
 msgstr "فعال‌سازی همهٔ ابزارها"
 
-#: includes/class-admin.php:1038
+#: includes/class-admin.php:1247
 msgid "Disable all tools"
 msgstr "غیرفعال‌سازی همهٔ ابزارها"
 
-#: includes/class-admin.php:1044
+#: includes/class-admin.php:1253
 msgid ""
 "Disabled tools are removed from discovery and rejected when called directly. "
 "Expand integration tools to govern each read or write operation "
@@ -1044,7 +1205,7 @@ msgstr ""
 "مدیریت کنید. اطلاعات ورود و دامنه‌های دسترسی تغییر نمی‌کنند."
 
 #. translators: %s: number of tools.
-#: includes/class-admin.php:1070
+#: includes/class-admin.php:1279
 #, php-format
 msgid "%s tool"
 msgid_plural "%s tools"
@@ -1052,70 +1213,70 @@ msgstr[0] "%s ابزار"
 msgstr[1] "%s ابزار"
 
 #. translators: %s: number of integration operations.
-#: includes/class-admin.php:1073 includes/class-admin.php:1120
+#: includes/class-admin.php:1282 includes/class-admin.php:1329
 #, php-format
 msgid "%s operation"
 msgid_plural "%s operations"
 msgstr[0] "عملیات %s"
 msgstr[1] "عملیات %s"
 
-#: includes/class-admin.php:1080
+#: includes/class-admin.php:1289
 msgid "Enable group"
 msgstr "فعال‌سازی گروه"
 
 #. translators: %s: MCP tool name.
-#: includes/class-admin.php:1108
+#: includes/class-admin.php:1317
 #, php-format
 msgid "Expose %s tool"
 msgstr "در دسترس قرار دادن ابزار %s"
 
-#: includes/class-admin.php:1124 includes/class-admin.php:1176
+#: includes/class-admin.php:1333 includes/class-admin.php:1385
 msgid "Destructive"
 msgstr "مخرب"
 
-#: includes/class-admin.php:1126
+#: includes/class-admin.php:1335
 msgid "Read operation"
 msgstr "عملیات خواندن"
 
-#: includes/class-admin.php:1136
+#: includes/class-admin.php:1345
 msgid "Manage"
 msgstr "مدیریت"
 
-#: includes/class-admin.php:1147
+#: includes/class-admin.php:1356
 msgid "Operation policy"
 msgstr "سیاست عملیات"
 
-#: includes/class-admin.php:1156
+#: includes/class-admin.php:1365
 msgid "Enable reads"
 msgstr "فعال‌کردن خواندن‌ها"
 
-#: includes/class-admin.php:1157
+#: includes/class-admin.php:1366
 msgid "Disable writes"
 msgstr "غیرفعال‌کردن نوشتن‌ها"
 
-#: includes/class-admin.php:1175
+#: includes/class-admin.php:1384
 msgid "Read"
 msgstr "خواندن"
 
-#: includes/class-admin.php:1175
+#: includes/class-admin.php:1384
 msgid "Write"
 msgstr "نوشتن"
 
-#: includes/class-admin.php:1193
+#: includes/class-admin.php:1402
 msgid "No tools match these filters"
 msgstr "هیچ ابزاری با این فیلترها مطابقت ندارد"
 
-#: includes/class-admin.php:1193
+#: includes/class-admin.php:1402
 msgid "Try another search term or select a different tool group."
 msgstr "عبارت دیگری را جست‌وجو کنید یا گروه ابزار متفاوتی را انتخاب کنید."
 
-#: includes/class-admin.php:1198
+#: includes/class-admin.php:1407
 msgid ""
 "Tool and operation policy changes apply to new MCP requests immediately."
 msgstr ""
 "تغییرات سیاست ابزار و عملیات بلافاصله روی درخواست‌های جدید MCP اعمال می‌شود."
 
-#: includes/class-admin.php:1199
+#: includes/class-admin.php:1408
 msgid ""
 "A disabled operation remains unavailable even when its parent integration "
 "tool is exposed."
@@ -1123,15 +1284,15 @@ msgstr ""
 "عملیات غیرفعال حتی در صورت در دسترس بودن ابزار یکپارچه‌سازی والد، همچنان در "
 "دسترس نخواهد بود."
 
-#: includes/class-admin.php:1215
+#: includes/class-admin.php:1424
 msgid "Policy and runtime"
 msgstr "سیاست و محیط اجرا"
 
-#: includes/class-admin.php:1216 includes/class-admin.php:1566
+#: includes/class-admin.php:1425 includes/class-admin.php:1862
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: includes/class-admin.php:1217
+#: includes/class-admin.php:1426
 msgid ""
 "Configure transport limits, browser policy, retention, and privileged "
 "developer capabilities."
@@ -1139,62 +1300,170 @@ msgstr ""
 "محدودیت‌های انتقال، سیاست مرورگر، نگه‌داری و قابلیت‌های ویژهٔ توسعه‌دهنده را "
 "پیکربندی کنید."
 
-#: includes/class-admin.php:1221 includes/class-admin.php:1341
+#: includes/class-admin.php:1430 includes/class-admin.php:1632
 msgid "Save changes"
 msgstr "ذخیرهٔ تغییرات"
 
-#: includes/class-admin.php:1234
+#: includes/class-admin.php:1443
 msgid "MCP service"
 msgstr "سرویس MCP"
 
-#: includes/class-admin.php:1235
+#: includes/class-admin.php:1444
 msgid "Control endpoint availability and bounded request resources."
 msgstr "دردسترس‌بودن نقطهٔ پایانی و منابع محدود هر درخواست را کنترل کنید."
 
-#: includes/class-admin.php:1239
+#: includes/class-admin.php:1448
 msgid "Enable MCP requests"
 msgstr "فعال‌سازی درخواست‌های MCP"
 
-#: includes/class-admin.php:1239
+#: includes/class-admin.php:1448
 msgid ""
 "Authenticated clients can discover and call tools through the MCP endpoint."
 msgstr ""
 "کلاینت‌های احرازشده می‌توانند ابزارها را از طریق نقطهٔ پایانی MCP کشف و "
 "فراخوانی کنند."
 
-#: includes/class-admin.php:1242
+#: includes/class-admin.php:1451
 msgid "Rate limit"
 msgstr "محدودیت نرخ"
 
-#: includes/class-admin.php:1243
+#: includes/class-admin.php:1452
 msgid "req / minute"
 msgstr "درخواست / دقیقه"
 
-#: includes/class-admin.php:1244
+#: includes/class-admin.php:1453
 msgid "Applied independently to each credential."
 msgstr "برای هر اعتبارنامه به‌طور مستقل اعمال می‌شود."
 
-#: includes/class-admin.php:1247
+#: includes/class-admin.php:1456
 msgid "Media upload limit"
 msgstr "محدودیت بارگذاری رسانه"
 
-#: includes/class-admin.php:1249
+#: includes/class-admin.php:1458
 msgid "Maximum decoded file size accepted by media tools."
 msgstr "حداکثر اندازهٔ فایل رمزگشایی‌شده که ابزارهای رسانه می‌پذیرند."
 
-#: includes/class-admin.php:1259
+#: includes/class-admin.php:1468
+msgid "Brand voice"
+msgstr "لحن برند"
+
+#: includes/class-admin.php:1469
+msgid ""
+"Shared writing guidance handed to agents through MCP prompts and the site "
+"profile resource."
+msgstr "راهنمای نگارشی مشترکی که از راه پرامپت‌های MCP و منبع نمایه سایت به عامل‌ها داده می‌شود."
+
+#: includes/class-admin.php:1474
+msgid "Voice and tone guidance"
+msgstr "راهنمای لحن و بیان"
+
+#: includes/class-admin.php:1475
+msgid "Warm and direct. Short sentences. No hype, no exclamation marks."
+msgstr "صمیمی و مستقیم. جمله‌های کوتاه. بدون اغراق و بدون علامت تعجب."
+
+#: includes/class-admin.php:1476
+msgid ""
+"Left empty, agents are told to match the tone of existing published content."
+msgstr "اگر خالی بماند، به عامل‌ها گفته می‌شود لحن محتوای منتشرشده موجود را دنبال کنند."
+
+#: includes/class-admin.php:1485
+msgid "Human approval"
+msgstr "تأیید انسانی"
+
+#: includes/class-admin.php:1486
+msgid "Park high-risk calls for review instead of running them immediately."
+msgstr "فراخوانی‌های پرخطر به جای اجرای بی‌درنگ برای بررسی متوقف شوند."
+
+#: includes/class-admin.php:1490
+msgid "Require approval for gated tools"
+msgstr "نیاز به تأیید برای ابزارهای مشمول"
+
+#: includes/class-admin.php:1490
+msgid ""
+"Matching calls return approval_required and wait in the Approvals tab. Dry "
+"runs are never gated."
+msgstr "فراخوانی‌های منطبق پاسخ approval_required می‌گیرند و در برگه تأییدها منتظر می‌مانند. اجرای آزمایشی هرگز مشمول تأیید نیست."
+
+#: includes/class-admin.php:1493
+msgid "Gated tools"
+msgstr "ابزارهای مشمول تأیید"
+
+#. translators: %s: comma-separated default tool patterns.
+#: includes/class-admin.php:1499
+#, php-format
+msgid "One tool name or prefix pattern per line. Empty uses the defaults: %s"
+msgstr "در هر خط یک نام ابزار یا الگوی پیشوندی. خالی بودن یعنی استفاده از پیش‌فرض‌ها: %s"
+
+#: includes/class-admin.php:1506
+msgid "Approval validity"
+msgstr "اعتبار تأیید"
+
+#: includes/class-admin.php:1507
+msgid "hours"
+msgstr "ساعت"
+
+#: includes/class-admin.php:1508
+msgid "An approval that is not used within this window expires unused."
+msgstr "تأییدی که در این بازه استفاده نشود، بدون استفاده منقضی می‌شود."
+
+#: includes/class-admin.php:1518
+msgid "Audit export"
+msgstr "برون‌سپاری گزارش ممیزی"
+
+#: includes/class-admin.php:1519
+msgid ""
+"Ship audit records and anomaly alerts to a log collector every five minutes."
+msgstr "ارسال رکوردهای ممیزی و هشدارهای ناهنجاری به گردآورنده گزارش، هر پنج دقیقه."
+
+#: includes/class-admin.php:1523
+msgid "Export the audit trail"
+msgstr "برون‌سپاری مسیر ممیزی"
+
+#: includes/class-admin.php:1523
+msgid ""
+"Batches are sent by WP-Cron as newline-delimited JSON, so tool calls stay "
+"fast."
+msgstr "دسته‌ها با WP-Cron و در قالب JSON خط‌به‌خط فرستاده می‌شوند تا سرعت فراخوانی ابزارها حفظ شود."
+
+#: includes/class-admin.php:1528 includes/class-webhook-engine.php:48
+msgid "Webhook"
+msgstr "وب‌هوک"
+
+#: includes/class-admin.php:1529
+msgid "Syslog"
+msgstr "سیس‌لاگ"
+
+#: includes/class-admin.php:1530
+msgid "Both"
+msgstr "هر دو"
+
+#: includes/class-admin.php:1534
+msgid "Collector URL"
+msgstr "نشانی گردآورنده"
+
+#: includes/class-admin.php:1539
+msgid "Signing secret"
+msgstr "کلید امضا"
+
+#: includes/class-admin.php:1541
+msgid ""
+"Batches are signed with HMAC-SHA256 over timestamp.body in X-Mindio-Magic-"
+"MCP-Signature-256."
+msgstr "دسته‌ها با HMAC-SHA256 روی timestamp.body در سرایند X-Mindio-Magic-MCP-Signature-256 امضا می‌شوند."
+
+#: includes/class-admin.php:1550
 msgid "Browser security"
 msgstr "امنیت مرورگر"
 
-#: includes/class-admin.php:1260
+#: includes/class-admin.php:1551
 msgid "Restrict cross-origin browser clients to explicit trusted origins."
 msgstr "کلاینت‌های مرورگر بین‌مبدأیی را به مبدأهای مورداعتماد مشخص محدود کنید."
 
-#: includes/class-admin.php:1265
+#: includes/class-admin.php:1556
 msgid "Allowed browser origins"
 msgstr "مبدأهای مجاز مرورگر"
 
-#: includes/class-admin.php:1267
+#: includes/class-admin.php:1558
 msgid ""
 "Enter one exact HTTP or HTTPS origin per line. Native MCP clients normally "
 "send no Origin header."
@@ -1202,7 +1471,7 @@ msgstr ""
 "در هر خط یک مبدأ دقیق HTTP یا HTTPS وارد کنید. کلاینت‌های بومی MCP معمولاً هدر "
 "Origin ارسال نمی‌کنند."
 
-#: includes/class-admin.php:1271
+#: includes/class-admin.php:1562
 msgid ""
 "An empty list blocks browser-origin requests while preserving native desktop "
 "and server-side MCP clients."
@@ -1210,41 +1479,41 @@ msgstr ""
 "فهرست خالی درخواست‌های مبدأ مرورگر را مسدود می‌کند و کلاینت‌های بومی دسکتاپ و "
 "سمت سرور MCP را فعال نگه می‌دارد."
 
-#: includes/class-admin.php:1280
+#: includes/class-admin.php:1571
 msgid "Data lifecycle"
 msgstr "چرخهٔ عمر داده"
 
-#: includes/class-admin.php:1281
+#: includes/class-admin.php:1572
 msgid "Choose how long operational records remain available for review."
 msgstr "مدت دردسترس‌بودن رکوردهای عملیاتی برای بررسی را تعیین کنید."
 
-#: includes/class-admin.php:1287
+#: includes/class-admin.php:1578
 msgid "Audit retention"
 msgstr "نگه‌داری ممیزی"
 
-#: includes/class-admin.php:1288 includes/class-admin.php:1292
+#: includes/class-admin.php:1579 includes/class-admin.php:1583
 msgid "days"
 msgstr "روز"
 
-#: includes/class-admin.php:1291
+#: includes/class-admin.php:1582
 msgid "Webhook retention"
 msgstr "نگه‌داری وب‌هوک"
 
-#: includes/class-admin.php:1302
+#: includes/class-admin.php:1593
 msgid "Developer capabilities"
 msgstr "قابلیت‌های توسعه‌دهنده"
 
-#: includes/class-admin.php:1303
+#: includes/class-admin.php:1594
 msgid ""
 "Privileged tools are disabled by default and always require administrator "
 "scope."
 msgstr "ابزارهای ویژه به‌طور پیش‌فرض غیرفعال‌اند و همیشه به سطح مدیر نیاز دارند."
 
-#: includes/class-admin.php:1309
+#: includes/class-admin.php:1600
 msgid "Read-only filesystem inspection"
 msgstr "بررسی فقط‌خواندنی فایل‌سیستم"
 
-#: includes/class-admin.php:1309
+#: includes/class-admin.php:1600
 msgid ""
 "Allow bounded text-file reads, directory listings, and searches inside "
 "approved WordPress content roots."
@@ -1252,11 +1521,11 @@ msgstr ""
 "خواندن محدود فایل متنی، فهرست‌کردن پوشه و جست‌وجو در ریشه‌های محتوای تأییدشده "
 "وردپرس مجاز شود."
 
-#: includes/class-admin.php:1310
+#: includes/class-admin.php:1601
 msgid "Database schema inspection"
 msgstr "بررسی ساختار پایگاه‌داده"
 
-#: includes/class-admin.php:1310
+#: includes/class-admin.php:1601
 msgid ""
 "Allow prepared, fixed-shape queries that list non-sensitive tables and "
 "describe their schemas. Table rows are never returned."
@@ -1264,18 +1533,18 @@ msgstr ""
 "پرس‌وجوهای آماده و با ساختار ثابت برای فهرست‌کردن جدول‌های غیرحساس و توصیف "
 "ساختار آن‌ها مجاز شود. هیچ‌گاه ردیف‌های جدول بازگردانده نمی‌شوند."
 
-#: includes/class-admin.php:1311
+#: includes/class-admin.php:1602
 msgid "Allowlisted WP-CLI commands"
 msgstr "فرمان‌های مجاز WP-CLI"
 
-#: includes/class-admin.php:1311
+#: includes/class-admin.php:1602
 msgid ""
 "Permit safe in-process WP-CLI commands only when WP_CLI is already loaded."
 msgstr ""
 "فرمان‌های امن درون‌پردازهٔ WP-CLI را فقط زمانی مجاز کنید که WP_CLI از قبل "
 "بارگذاری شده باشد."
 
-#: includes/class-admin.php:1316
+#: includes/class-admin.php:1607
 msgid ""
 "Enable these capabilities only for controlled administrator agents. Every "
 "invocation is written to the audit trail."
@@ -1283,19 +1552,19 @@ msgstr ""
 "این قابلیت‌ها را فقط برای عامل‌های مدیر کنترل‌شده فعال کنید. هر فراخوانی در "
 "ردپای ممیزی ثبت می‌شود."
 
-#: includes/class-admin.php:1325
+#: includes/class-admin.php:1616
 msgid "Uninstall behavior"
 msgstr "رفتار حذف افزونه"
 
-#: includes/class-admin.php:1326
+#: includes/class-admin.php:1617
 msgid "Decide whether operational data survives plugin removal."
 msgstr "تعیین کنید داده‌های عملیاتی پس از حذف افزونه باقی بمانند یا نه."
 
-#: includes/class-admin.php:1330
+#: includes/class-admin.php:1621
 msgid "Delete all plugin data on uninstall"
 msgstr "حذف همهٔ داده‌های افزونه هنگام حذف نصب"
 
-#: includes/class-admin.php:1330
+#: includes/class-admin.php:1621
 msgid ""
 "Permanently remove credentials, OAuth registrations, webhooks, "
 "configuration, and logs when the plugin is deleted."
@@ -1303,111 +1572,111 @@ msgstr ""
 "با حذف افزونه، اعتبارنامه‌ها، ثبت‌های OAuth، وب‌هوک‌ها، پیکربندی و گزارش‌ها را "
 "برای همیشه حذف کنید."
 
-#: includes/class-admin.php:1336
+#: includes/class-admin.php:1627
 msgid "Configuration changes are audited through WordPress administration."
 msgstr "تغییرات پیکربندی از طریق مدیریت وردپرس ممیزی می‌شوند."
 
-#: includes/class-admin.php:1337
+#: includes/class-admin.php:1628
 msgid "Review security-sensitive options before saving."
 msgstr "پیش از ذخیره، گزینه‌های حساس امنیتی را بررسی کنید."
 
 #. translators: %s: label of the value being copied.
-#: includes/class-admin.php:1384
+#: includes/class-admin.php:1675
 #, php-format
 msgid "Copy %s"
 msgstr "کپی %s"
 
-#: includes/class-admin.php:1457
+#: includes/class-admin.php:1748
 msgid "Content and publishing"
 msgstr "محتوا و انتشار"
 
-#: includes/class-admin.php:1458
+#: includes/class-admin.php:1749
 msgid "Posts, pages, custom post types, publishing, and scheduling."
 msgstr "نوشته‌ها، برگه‌ها، انواع نوشتهٔ سفارشی، انتشار و زمان‌بندی."
 
-#: includes/class-admin.php:1463
+#: includes/class-admin.php:1754
 msgid "Gutenberg blocks"
 msgstr "بلوک‌های گوتنبرگ"
 
-#: includes/class-admin.php:1464
+#: includes/class-admin.php:1755
 msgid ""
 "Structured block discovery, tree editing, duplication, movement, and "
 "patterns."
 msgstr "کشف ساختاریافته بلوک، ویرایش درخت، تکثیر، جابه‌جایی و الگوها."
 
-#: includes/class-admin.php:1469
+#: includes/class-admin.php:1760
 msgid "Media and SEO"
 msgstr "رسانه و سئو"
 
-#: includes/class-admin.php:1470
+#: includes/class-admin.php:1761
 msgid "Media Library operations and normalized search metadata."
 msgstr "عملیات کتابخانهٔ رسانه و فرادادهٔ استانداردشدهٔ جست‌وجو."
 
-#: includes/class-admin.php:1475
+#: includes/class-admin.php:1766
 msgid "Flatsome Builder"
 msgstr "سازندهٔ فلت‌سام"
 
-#: includes/class-admin.php:1476
+#: includes/class-admin.php:1767
 msgid "Native-first UX Builder discovery, page creation, and layout editing."
 msgstr "کشف بومی‌محور UX Builder، ساخت برگه و ویرایش چیدمان."
 
-#: includes/class-admin.php:1481
+#: includes/class-admin.php:1772
 msgid "People and comments"
 msgstr "کاربران و دیدگاه‌ها"
 
-#: includes/class-admin.php:1482
+#: includes/class-admin.php:1773
 msgid "User lifecycle, password recovery, discussion, and moderation."
 msgstr "چرخهٔ عمر کاربر، بازیابی رمز عبور، گفت‌وگو و مدیریت دیدگاه‌ها."
 
-#: includes/class-admin.php:1487
+#: includes/class-admin.php:1778
 msgid "Site and discovery"
 msgstr "سایت و جست‌وجو"
 
-#: includes/class-admin.php:1488
+#: includes/class-admin.php:1779
 msgid "Curated WordPress settings and cross-content search."
 msgstr "تنظیمات گزینش‌شدهٔ وردپرس و جست‌وجوی یکپارچه در محتوا."
 
-#: includes/class-admin.php:1493
+#: includes/class-admin.php:1784
 msgid "Content automation"
 msgstr "خودکارسازی محتوا"
 
-#: includes/class-admin.php:1494
+#: includes/class-admin.php:1785
 msgid ""
 "Generation-provider workflows, summaries, translations, and bounded bulk "
 "actions."
 msgstr "گردش‌کارهای ارائه‌دهندهٔ تولید، خلاصه‌سازی، ترجمه و عملیات گروهی محدودشده."
 
-#: includes/class-admin.php:1499
+#: includes/class-admin.php:1790
 msgid "Webhook automation"
 msgstr "خودکارسازی وب‌هوک"
 
-#: includes/class-admin.php:1500
+#: includes/class-admin.php:1791
 msgid "Signed event destinations and subscription management."
 msgstr "مقصدهای امضاشدهٔ رویداد و مدیریت اشتراک‌ها."
 
-#: includes/class-admin.php:1505
+#: includes/class-admin.php:1796
 msgid "Plugins and themes"
 msgstr "افزونه‌ها و پوسته‌ها"
 
-#: includes/class-admin.php:1506
+#: includes/class-admin.php:1797
 msgid ""
 "Official-directory package lifecycle, generic theme controls, and child "
 "themes."
 msgstr "چرخه عمر بسته‌های مخزن رسمی، کنترل‌های عمومی پوسته و پوسته‌های فرزند."
 
-#: includes/class-admin.php:1511
+#: includes/class-admin.php:1802
 msgid "Plugin integrations"
 msgstr "یکپارچه‌سازی افزونه‌ها"
 
-#: includes/class-admin.php:1512
+#: includes/class-admin.php:1803
 msgid "Operation-level controls for ACF Free, BetterDocs, and Contact Form 7."
 msgstr "کنترل در سطح عملیات برای ACF Free، BetterDocs و Contact Form 7."
 
-#: includes/class-admin.php:1517
+#: includes/class-admin.php:1808
 msgid "Operations and diagnostics"
 msgstr "عملیات و عیب‌یابی"
 
-#: includes/class-admin.php:1518
+#: includes/class-admin.php:1809
 msgid ""
 "Read-only filesystem and database inspection, logs, maintenance, caches, "
 "CDN, and image optimization."
@@ -1415,165 +1684,236 @@ msgstr ""
 "بررسی فقط‌خواندنی فایل‌سیستم و پایگاه‌داده، گزارش‌ها، نگه‌داری، کش‌ها، CDN و "
 "بهینه‌سازی تصویر."
 
-#: includes/class-admin.php:1523
+#: includes/class-admin.php:1814
 msgid "WooCommerce"
 msgstr "ووکامرس"
 
-#: includes/class-admin.php:1524
+#: includes/class-admin.php:1815
 msgid ""
 "Products, orders, customers, inventory, and coupon operations when "
 "WooCommerce is active."
 msgstr ""
 "عملیات محصولات، سفارش‌ها، مشتریان، موجودی و کوپن‌ها هنگام فعال‌بودن ووکامرس."
 
-#: includes/class-admin.php:1529
+#: includes/class-admin.php:1820
 msgid "Multisite"
 msgstr "چندسایتی"
 
-#: includes/class-admin.php:1530
+#: includes/class-admin.php:1821
 msgid "Network site discovery and stateless site-context validation."
 msgstr "کشف سایت‌های شبکه و اعتبارسنجی بدون‌حالتِ زمینهٔ سایت."
 
-#: includes/class-admin.php:1541
+#: includes/class-admin.php:1832
 msgid "Overview"
 msgstr "نمای کلی"
 
-#: includes/class-admin.php:1542
+#: includes/class-admin.php:1833
 msgid "Health & connection"
 msgstr "سلامت و اتصال"
 
-#: includes/class-admin.php:1546
+#: includes/class-admin.php:1837
 msgid "Tools"
 msgstr "ابزارها"
 
-#: includes/class-admin.php:1547
+#: includes/class-admin.php:1838
 msgid "Exposure & policy"
 msgstr "نمایش و سیاست"
 
-#: includes/class-admin.php:1552
+#: includes/class-admin.php:1843
 msgid "Keys & OAuth"
 msgstr "کلیدها و OAuth"
 
-#: includes/class-admin.php:1557
+#: includes/class-admin.php:1847
+msgid "Approvals"
+msgstr "تأییدها"
+
+#: includes/class-admin.php:1848
+msgid "Human review queue"
+msgstr "صف بررسی انسانی"
+
+#: includes/class-admin.php:1853
 msgid "Events & delivery"
 msgstr "رویدادها و ارسال"
 
-#: includes/class-admin.php:1561
+#: includes/class-admin.php:1857
 msgid "Activity"
 msgstr "فعالیت"
 
-#: includes/class-admin.php:1562
+#: includes/class-admin.php:1858
 msgid "Audit & diagnostics"
 msgstr "ممیزی و عیب‌یابی"
 
-#: includes/class-admin.php:1567
+#: includes/class-admin.php:1863
 msgid "Policy & runtime"
 msgstr "سیاست و محیط اجرا"
 
-#: includes/class-admin.php:1611
+#: includes/class-admin.php:1915
 msgid "System"
 msgstr "سامانه"
 
 #. translators: %d: WordPress user ID.
-#: includes/class-admin.php:1615
+#: includes/class-admin.php:1919
 #, php-format
 msgid "User #%d"
 msgstr "کاربر شمارهٔ %d"
 
-#: includes/class-admin.php:1636
+#: includes/class-admin.php:1940
 msgid "A post, page, or custom post is created."
 msgstr "یک نوشته، برگه یا نوع نوشتهٔ سفارشی ایجاد می‌شود."
 
-#: includes/class-admin.php:1637
+#: includes/class-admin.php:1941
 msgid "Existing content is updated."
 msgstr "محتوای موجود به‌روزرسانی می‌شود."
 
-#: includes/class-admin.php:1638
+#: includes/class-admin.php:1942
 msgid "A new comment is submitted."
 msgstr "یک دیدگاه جدید ثبت می‌شود."
 
-#: includes/class-admin.php:1639
+#: includes/class-admin.php:1943
 msgid "WooCommerce creates a new order."
 msgstr "یک سفارش جدید در ووکامرس ایجاد می‌شود."
 
-#: includes/class-admin.php:1655
+#: includes/class-admin.php:1959
 msgid "Delivered"
 msgstr "ارسال‌شده"
 
-#: includes/class-admin.php:1657
+#: includes/class-admin.php:1961
 msgid "Retrying"
 msgstr "در حال تلاش مجدد"
 
-#: includes/class-admin.php:1658
+#: includes/class-admin.php:1962
 msgid "Queued"
 msgstr "در صف"
 
-#: includes/class-admin.php:1676
+#: includes/class-admin.php:1980
 msgid "You cannot manage Mindio Magic MCP."
 msgstr "شما اجازهٔ مدیریت Mindio Magic MCP را ندارید."
 
-#: includes/class-admin.php:1686
+#: includes/class-admin.php:1990
 msgid "API key created. Copy it now; it cannot be recovered."
 msgstr "کلید API ساخته شد. همین حالا آن را کپی کنید؛ بعداً قابل بازیابی نیست."
 
-#: includes/class-admin.php:1686
+#: includes/class-admin.php:1990
 msgid "Webhook created. Copy its signing secret now."
 msgstr "وب‌هوک ساخته شد. راز امضای آن را همین حالا کپی کنید."
 
-#: includes/class-auth.php:63
+#: includes/class-approval-queue.php:111
+#: includes/tools/class-approval-tools.php:84
+msgid "Unknown approval request."
+msgstr "درخواست تأیید ناشناخته است."
+
+#: includes/class-approval-queue.php:114
+msgid "This approval was issued for a different tool."
+msgstr "این تأیید برای ابزار دیگری صادر شده است."
+
+#: includes/class-approval-queue.php:117
+msgid "This approval has already been used."
+msgstr "این تأیید پیش‌تر استفاده شده است."
+
+#: includes/class-approval-queue.php:120
+msgid "This request was rejected by an administrator."
+msgstr "این درخواست را یک مدیر رد کرده است."
+
+#: includes/class-approval-queue.php:123
+msgid "This request is still awaiting a human decision."
+msgstr "این درخواست هنوز در انتظار تصمیم انسانی است."
+
+#: includes/class-approval-queue.php:126
+msgid "This approval expired before it was used."
+msgstr "این تأیید پیش از استفاده منقضی شد."
+
+#: includes/class-approval-queue.php:129
+msgid "The call arguments differ from the ones that were approved."
+msgstr "آرگومان‌های فراخوانی با آنچه تأیید شده است تفاوت دارد."
+
+#. translators: 1: failed call count, 2: total call count.
+#: includes/class-audit-anomaly-detector.php:96
+#, php-format
+msgid "%1$d of %2$d recent tool calls failed."
+msgstr "%1$d از %2$d فراخوانی اخیر ابزار ناموفق بود."
+
+#. translators: %d: number of denied calls.
+#: includes/class-audit-anomaly-detector.php:134
+#, php-format
+msgid "%d calls were denied for missing scope, capability, or policy."
+msgstr "%d فراخوانی به دلیل نبود دامنه، دسترسی یا سیاست رد شد."
+
+#. translators: %d: number of destructive calls.
+#: includes/class-audit-anomaly-detector.php:172
+#, php-format
+msgid "%d destructive calls succeeded in a short window."
+msgstr "%d فراخوانی مخرب در بازه‌ای کوتاه با موفقیت اجرا شد."
+
+#. translators: %d: number of rejected calls.
+#: includes/class-audit-anomaly-detector.php:199
+#, php-format
+msgid "%d calls were rejected after a credential used its daily budget."
+msgstr "%d فراخوانی پس از پایان سهمیه روزانه یک اعتبارنامه رد شد."
+
+#. translators: 1: credential id, 2: IP address.
+#: includes/class-audit-anomaly-detector.php:237
+#, php-format
+msgid "Credential %1$s was used from a new address (%2$s)."
+msgstr "اعتبارنامه %1$s از نشانی تازه‌ای استفاده شد (%2$s)."
+
+#: includes/class-audit-shipper.php:46
+msgid "Every five minutes (Mindio Magic MCP audit export)"
+msgstr "هر پنج دقیقه (برون‌سپاری ممیزی Mindio Magic MCP)"
+
+#: includes/class-auth.php:72
 msgid ""
 "A valid API key, OAuth token, or WordPress Application Password is required."
 msgstr "یک کلید API، توکن OAuth یا رمز برنامهٔ وردپرس معتبر لازم است."
 
-#: includes/class-auth.php:76
+#: includes/class-auth.php:85
 msgid "The API-key user or scope is invalid."
 msgstr "کاربر یا سطح دسترسی کلید API نامعتبر است."
 
-#: includes/class-auth.php:79
+#: includes/class-auth.php:88
 msgid "The selected user cannot be granted that scope."
 msgstr "کاربر انتخاب‌شده نمی‌تواند این سطح دسترسی را دریافت کند."
 
-#: includes/class-auth.php:93
+#: includes/class-auth.php:102
 msgid "The requested OAuth scope is not available to this user."
 msgstr "سطح دسترسی OAuth درخواستی برای این کاربر در دسترس نیست."
 
-#: includes/class-auth.php:118
+#: includes/class-auth.php:127
 msgid "The refresh token does not belong to this client."
 msgstr "توکن تازه‌سازی به این کارخواه تعلق ندارد."
 
-#: includes/class-auth.php:122
+#: includes/class-auth.php:137
 msgid "The refresh token resource does not match this MCP endpoint."
 msgstr "منبع توکن تازه‌سازی با این نقطهٔ پایانی MCP مطابقت ندارد."
 
-#: includes/class-auth.php:129
+#: includes/class-auth.php:148
 msgid "A refresh request cannot increase its original scope."
 msgstr "درخواست نوسازی نمی‌تواند سطح دسترسی اصلی خود را افزایش دهد."
 
-#: includes/class-auth.php:258
+#: includes/class-auth.php:312
 msgid "Unnamed key"
 msgstr "کلید بدون نام"
 
-#: includes/class-auth.php:282
+#: includes/class-auth.php:337
 msgid "The access token is malformed."
 msgstr "ساختار توکن دسترسی نامعتبر است."
 
-#: includes/class-auth.php:288
+#: includes/class-auth.php:343
 msgid "The access token is invalid or revoked."
 msgstr "توکن دسترسی نامعتبر یا لغوشده است."
 
-#: includes/class-auth.php:295
+#: includes/class-auth.php:350
 msgid "The access token has expired."
 msgstr "توکن دسترسی منقضی شده است."
 
-#: includes/class-auth.php:298
+#: includes/class-auth.php:353
 msgid "The token user no longer has the required access."
 msgstr "کاربر توکن دیگر دسترسی لازم را ندارد."
 
-#: includes/class-auth.php:334
+#: includes/class-auth.php:389
 msgid "The refresh token is malformed."
 msgstr "ساختار توکن تازه‌سازی نامعتبر است."
 
-#: includes/class-auth.php:340
+#: includes/class-auth.php:395
 msgid "The refresh token is invalid, expired, or already used."
 msgstr "توکن تازه‌سازی نامعتبر، منقضی یا قبلاً استفاده شده است."
 
@@ -1624,6 +1964,49 @@ msgstr "HTML خام باید در یک بلوک صریح گوتنبرگ قرار
 #, php-format
 msgid "The Gutenberg block type %s is not registered on this site."
 msgstr "نوع بلوک گوتنبرگ %s در این سایت ثبت نشده است."
+
+#: includes/class-change-recorder.php:314
+msgid "Outbound HTTP is blocked while previewing a call."
+msgstr "در حین پیش‌نمایش یک فراخوانی، درخواست‌های HTTP خروجی مسدود است."
+
+#: includes/class-changeset.php:185
+#: includes/tools/class-changeset-tools.php:147
+#: includes/tools/class-changeset-tools.php:157
+msgid "Unknown changeset."
+msgstr "مجموعه تغییرات ناشناخته است."
+
+#: includes/class-changeset.php:188
+msgid "This changeset has already been reverted."
+msgstr "این مجموعه تغییرات پیش‌تر بازگردانی شده است."
+
+#: includes/class-changeset.php:241
+msgid "Unsupported journal entry."
+msgstr "ورودی دفترچه ثبت پشتیبانی نمی‌شود."
+
+#: includes/class-changeset.php:249
+msgid "Your user cannot delete the post this changeset created."
+msgstr "کاربر شما اجازه حذف نوشته‌ای را که این مجموعه تغییرات ساخته است ندارد."
+
+#: includes/class-changeset.php:261
+msgid "Your user cannot edit the post this changeset changed."
+msgstr "کاربر شما اجازه ویرایش نوشته‌ای را که این مجموعه تغییرات تغییر داده است ندارد."
+
+#: includes/class-changeset.php:280
+msgid "Your user cannot restore a deleted post."
+msgstr "کاربر شما اجازه بازگردانی نوشته حذف‌شده را ندارد."
+
+#: includes/class-changeset.php:369
+msgid "Your user cannot restore site options."
+msgstr "کاربر شما اجازه بازگردانی تنظیمات سایت را ندارد."
+
+#: includes/class-dry-run.php:67
+msgid "A dry run cannot be started inside another dry run."
+msgstr "اجرای آزمایشی را نمی‌توان درون اجرای آزمایشی دیگری آغاز کرد."
+
+#: includes/class-dry-run.php:70
+msgid ""
+"Dry runs require a transactional database storage engine such as InnoDB."
+msgstr "اجرای آزمایشی به موتور ذخیره‌سازی تراکنشی پایگاه داده مانند InnoDB نیاز دارد."
 
 #: includes/class-flatsome-renderer.php:65
 msgid "The target node is invalid."
@@ -1783,7 +2166,7 @@ msgid "%s is not installed and active."
 msgstr "%s نصب و فعال نیست."
 
 #: includes/class-integration-dispatcher.php:130
-#: includes/class-tool-registry.php:173
+#: includes/class-tool-registry.php:218
 msgid "Unknown integration operation."
 msgstr "عملیات یکپارچه‌سازی ناشناخته است."
 
@@ -1799,51 +2182,396 @@ msgstr "کاربر وردپرس شما اجازه انجام این عملیات
 msgid "The integration operation is not callable."
 msgstr "این عملیات یکپارچه‌سازی قابل فراخوانی نیست."
 
-#: includes/class-mcp-server.php:63
-msgid ""
-"This stateless server does not expose an SSE stream or server-managed "
-"sessions."
-msgstr ""
-"این سرور بدون حالت، جریان SSE یا نشست مدیریت‌شده توسط سرور ارائه نمی‌کند."
+#: includes/class-mcp-prompts.php:26
+msgid "Write a product description"
+msgstr "نوشتن توضیح محصول"
 
-#: includes/class-mcp-server.php:70
+#: includes/class-mcp-prompts.php:27
+msgid ""
+"Draft a product description in this site's brand voice, locale, and writing "
+"direction."
+msgstr "پیش‌نویس توضیح محصول با لحن برند، زبان و جهت نگارش این سایت."
+
+#: includes/class-mcp-prompts.php:29
+msgid "Product name, or the numeric product ID to read from the store."
+msgstr "نام محصول، یا شناسه عددی محصول برای خواندن از فروشگاه."
+
+#: includes/class-mcp-prompts.php:30
+msgid "Optional target audience or buying context."
+msgstr "مخاطب هدف یا زمینه خرید، به‌صورت اختیاری."
+
+#: includes/class-mcp-prompts.php:31
+msgid "Optional target length, for example \"short\" or \"150 words\"."
+msgstr "طول هدف به‌صورت اختیاری، برای نمونه «کوتاه» یا «۱۵۰ واژه»."
+
+#: includes/class-mcp-prompts.php:38
+msgid "Draft a blog post"
+msgstr "پیش‌نویس یک نوشته وبلاگ"
+
+#: includes/class-mcp-prompts.php:39
+msgid ""
+"Outline and draft a blog post that matches this site's existing categories "
+"and voice."
+msgstr "طرح‌ریزی و پیش‌نویس نوشته‌ای وبلاگی متناسب با دسته‌ها و لحن موجود این سایت."
+
+#: includes/class-mcp-prompts.php:41
+msgid "What the post should cover."
+msgstr "موضوعی که نوشته باید پوشش دهد."
+
+#: includes/class-mcp-prompts.php:42
+msgid "Optional editorial angle or key takeaway."
+msgstr "زاویه تحریریه یا پیام کلیدی، به‌صورت اختیاری."
+
+#: includes/class-mcp-prompts.php:49
+msgid "Build a landing page"
+msgstr "ساخت صفحه فرود"
+
+#: includes/class-mcp-prompts.php:50
+msgid ""
+"Plan and build a landing page with the page builder this site actually runs."
+msgstr "طراحی و ساخت صفحه فرود با همان صفحه‌سازی که این سایت واقعاً از آن استفاده می‌کند."
+
+#: includes/class-mcp-prompts.php:52
+msgid "The conversion goal of the page."
+msgstr "هدف تبدیل این صفحه."
+
+#: includes/class-mcp-prompts.php:53
+msgid "Optional comma-separated list of sections to include."
+msgstr "فهرست بخش‌های موردنظر با جداکننده ویرگول، به‌صورت اختیاری."
+
+#: includes/class-mcp-prompts.php:61
+msgid "Audit a post for SEO"
+msgstr "ممیزی سئوی یک نوشته"
+
+#: includes/class-mcp-prompts.php:62
+msgid ""
+"Review one published entry against the SEO provider installed on this site."
+msgstr "بررسی یک نوشته منتشرشده بر پایه افزونه سئوی نصب‌شده روی این سایت."
+
+#: includes/class-mcp-prompts.php:64
+msgid "Numeric ID of the post to audit."
+msgstr "شناسه عددی نوشته‌ای که باید ممیزی شود."
+
+#: includes/class-mcp-prompts.php:71
+msgid "Triage pending comments"
+msgstr "رسیدگی به دیدگاه‌های در انتظار"
+
+#: includes/class-mcp-prompts.php:72
+msgid ""
+"Review the moderation queue and recommend approve, spam, or trash for each "
+"comment."
+msgstr "بررسی صف مدیریت دیدگاه‌ها و پیشنهاد تأیید، جفنگ یا زباله‌دان برای هر دیدگاه."
+
+#: includes/class-mcp-prompts.php:74
+msgid "Optional number of comments to review."
+msgstr "شمار دیدگاه‌های موردبررسی، به‌صورت اختیاری."
+
+#. translators: %s: product name or identifier.
+#: includes/class-mcp-prompts.php:104
+#, php-format
+msgid "Write a product description for: %s."
+msgstr "یک توضیح محصول برای %s بنویس."
+
+#. translators: %s: target audience.
+#: includes/class-mcp-prompts.php:111
+#, php-format
+msgid "Target audience: %s."
+msgstr "مخاطب هدف: %s."
+
+#. translators: %s: requested length.
+#: includes/class-mcp-prompts.php:118
+#, php-format
+msgid "Target length: %s."
+msgstr "طول هدف: %s."
+
+#: includes/class-mcp-prompts.php:121
+msgid "Target length: roughly 120 words."
+msgstr "طول هدف: حدود ۱۲۰ واژه."
+
+#: includes/class-mcp-prompts.php:122
+msgid ""
+"Lead with the concrete benefit, keep claims verifiable, and end with one "
+"clear call to action. Return the description only, with no preamble."
+msgstr "با یک سود مشخص شروع کن، ادعاها را راستی‌آزمایی‌پذیر نگه دار و با یک فراخوان روشن به اقدام پایان بده. تنها متن توضیح را بدون مقدمه بازگردان."
+
+#: includes/class-mcp-prompts.php:137
+msgid "Existing categories: "
+msgstr "دسته‌های موجود: "
+
+#. translators: %s: blog post topic.
+#: includes/class-mcp-prompts.php:143
+#, php-format
+msgid "Draft a blog post about: %s."
+msgstr "یک نوشته وبلاگ درباره %s پیش‌نویس کن."
+
+#. translators: %s: editorial angle.
+#: includes/class-mcp-prompts.php:150
+#, php-format
+msgid "Editorial angle: %s."
+msgstr "زاویه تحریریه: %s."
+
+#: includes/class-mcp-prompts.php:154
+msgid ""
+"Propose a title, an outline, and the full body. Pick the closest existing "
+"category rather than inventing one. Create the entry as a draft with "
+"create_post, then report the resulting ID and edit link."
+msgstr "یک عنوان، یک طرح کلی و متن کامل پیشنهاد بده. به جای ساختن دسته تازه، نزدیک‌ترین دسته موجود را برگزین. نوشته را با create_post به‌صورت پیش‌نویس بساز و سپس شناسه و پیوند ویرایش آن را گزارش کن."
+
+#: includes/class-mcp-prompts.php:166
+msgid ""
+"This site runs Flatsome, so build the page with the Flatsome tools and typed "
+"UX Builder components. Read mindio://flatsome/components first and use only "
+"components reported as available."
+msgstr "این سایت از فلتسام استفاده می‌کند، بنابراین صفحه را با ابزارهای فلتسام و مؤلفه‌های نوع‌دار UX Builder بساز. نخست mindio://flatsome/components را بخوان و تنها از مؤلفه‌هایی استفاده کن که در دسترس گزارش شده‌اند."
+
+#: includes/class-mcp-prompts.php:167
+msgid ""
+"This site does not run Flatsome, so build the page with the Gutenberg block "
+"tools and core blocks."
+msgstr "این سایت از فلتسام استفاده نمی‌کند، بنابراین صفحه را با ابزارهای بلوک گوتنبرگ و بلوک‌های اصلی بساز."
+
+#. translators: %s: conversion goal.
+#: includes/class-mcp-prompts.php:172
+#, php-format
+msgid "Build a landing page whose goal is: %s."
+msgstr "یک صفحه فرود بساز که هدف آن %s است."
+
+#. translators: %s: comma-separated section list.
+#: includes/class-mcp-prompts.php:180
+#, php-format
+msgid "Include these sections in order: %s."
+msgstr "این بخش‌ها را به همین ترتیب بگنجان: %s."
+
+#: includes/class-mcp-prompts.php:184
+msgid ""
+"Create the page as a draft, never publish it directly, and report the render "
+"fallbacks so a human can review them."
+msgstr "صفحه را به‌صورت پیش‌نویس بساز، هرگز آن را مستقیم منتشر نکن و جایگزین‌های رندر را گزارش کن تا یک انسان آن‌ها را بررسی کند."
+
+#. translators: %s: SEO plugin name.
+#: includes/class-mcp-prompts.php:198
+#, php-format
+msgid ""
+"This site uses %s, so read and write metadata through its provider tools."
+msgstr "این سایت از %s استفاده می‌کند، بنابراین فراداده را از راه ابزارهای همان افزونه بخوان و بنویس."
+
+#: includes/class-mcp-prompts.php:201
+msgid "No dedicated SEO plugin is active, so use the built-in SEO tools."
+msgstr "هیچ افزونه سئوی اختصاصی فعال نیست، بنابراین از ابزارهای سئوی درون‌ساخته استفاده کن."
+
+#. translators: %d: post ID.
+#: includes/class-mcp-prompts.php:212
+#, php-format
+msgid "Audit post %d for search visibility."
+msgstr "نوشته %d را از نظر دیده‌شدن در جستجو ممیزی کن."
+
+#: includes/class-mcp-prompts.php:216
+msgid ""
+"Check the title length, meta description, heading structure, internal links, "
+"and image alternative text. Report findings first and apply fixes only after "
+"listing them."
+msgstr "طول عنوان، توضیح متا، ساختار سرنویس‌ها، پیوندهای داخلی و متن جایگزین تصویرها را بررسی کن. نخست یافته‌ها را گزارش کن و اصلاح‌ها را تنها پس از فهرست کردن آن‌ها اعمال کن."
+
+#. translators: %d: number of comments.
+#: includes/class-mcp-prompts.php:236
+#, php-format
+msgid "Review the %d oldest pending comments."
+msgstr "%d دیدگاه قدیمی‌تر در انتظار را بررسی کن."
+
+#: includes/class-mcp-prompts.php:239
+msgid ""
+"For each one, recommend approve, spam, or trash with a one-line reason. "
+"Apply nothing until the full list has been presented and approved."
+msgstr "برای هر کدام با یک دلیل تک‌خطی، تأیید، جفنگ یا زباله‌دان را پیشنهاد بده. تا زمانی که فهرست کامل ارائه و تأیید نشده است، چیزی را اعمال نکن."
+
+#. translators: 1: site name, 2: site URL.
+#: includes/class-mcp-prompts.php:254
+#, php-format
+msgid "You are working on the WordPress site \"%1$s\" at %2$s."
+msgstr "شما روی سایت وردپرسی «%1$s» به نشانی %2$s کار می‌کنید."
+
+#. translators: 1: locale, 2: text direction.
+#: includes/class-mcp-prompts.php:260
+#, php-format
+msgid "Write in the site locale %1$s using %2$s text direction."
+msgstr "به زبان سایت %1$s و با جهت متن %2$s بنویس."
+
+#. translators: %s: active theme name.
+#: includes/class-mcp-prompts.php:266
+#, php-format
+msgid "Active theme: %s."
+msgstr "پوسته فعال: %s."
+
+#. translators: %s: site tagline.
+#: includes/class-mcp-prompts.php:275
+#, php-format
+msgid "Site tagline: %s"
+msgstr "شعار سایت: %s"
+
+#. translators: %s: configured brand voice.
+#: includes/class-mcp-prompts.php:283
+#, php-format
+msgid "Brand voice: %s"
+msgstr "لحن برند: %s"
+
+#: includes/class-mcp-prompts.php:286
+msgid ""
+"No brand voice is configured, so match the tone of the site's existing "
+"published content."
+msgstr "لحن برند تنظیم نشده است، بنابراین لحن محتوای منتشرشده موجود سایت را دنبال کن."
+
+#: includes/class-mcp-resources.php:30
+msgid "Site profile"
+msgstr "نمایه سایت"
+
+#: includes/class-mcp-resources.php:31
+msgid ""
+"Identity, locale, active theme, editing surface, and brand voice for this "
+"WordPress site."
+msgstr "هویت، زبان، پوسته فعال، محیط ویرایش و لحن برند این سایت وردپرسی."
+
+#: includes/class-mcp-resources.php:39
+msgid "Post types"
+msgstr "انواع نوشته"
+
+#: includes/class-mcp-resources.php:40
+msgid ""
+"Every public post type with its labels, supported features, and taxonomies."
+msgstr "همه انواع نوشته عمومی همراه با برچسب‌ها، امکانات پشتیبانی‌شده و طبقه‌بندی‌ها."
+
+#: includes/class-mcp-resources.php:48
+msgid "Taxonomies"
+msgstr "طبقه‌بندی‌ها"
+
+#: includes/class-mcp-resources.php:49
+msgid ""
+"Every public taxonomy with its labels, hierarchy, and attached post types."
+msgstr "همه طبقه‌بندی‌های عمومی همراه با برچسب‌ها، سلسله‌مراتب و انواع نوشته پیوست‌شده."
+
+#: includes/class-mcp-resources.php:57
+msgid "Page templates"
+msgstr "قالب‌های برگه"
+
+#: includes/class-mcp-resources.php:58
+msgid ""
+"Page templates published by the active theme, usable as the template "
+"argument on page writes."
+msgstr "قالب‌های برگه‌ای که پوسته فعال ارائه می‌کند و می‌توان آن‌ها را به‌عنوان آرگومان template هنگام نوشتن برگه به کار برد."
+
+#: includes/class-mcp-resources.php:66
+msgid "Navigation menus"
+msgstr "فهرست‌های ناوبری"
+
+#: includes/class-mcp-resources.php:67
+msgid "Registered menu locations and the menus assigned to them."
+msgstr "جایگاه‌های فهرست ثبت‌شده و فهرست‌های اختصاص‌یافته به آن‌ها."
+
+#: includes/class-mcp-resources.php:75
+msgid "Flatsome component catalog"
+msgstr "کاتالوگ مؤلفه‌های فلتسام"
+
+#: includes/class-mcp-resources.php:76
+msgid ""
+"Typed UX Builder component catalog with availability and dependency "
+"reporting."
+msgstr "کاتالوگ مؤلفه‌های نوع‌دار UX Builder همراه با گزارش در دسترس بودن و وابستگی‌ها."
+
+#: includes/class-mcp-resources.php:84
+msgid "Post or page"
+msgstr "نوشته یا برگه"
+
+#: includes/class-mcp-resources.php:85
+msgid ""
+"One post, page, or custom post type entry with its content, taxonomies, and "
+"plugin-visible meta."
+msgstr "یک نوشته، برگه یا ورودی نوع نوشته سفارشی همراه با محتوا، طبقه‌بندی‌ها و فرادادهٔ در دسترس افزونه‌ها."
+
+#: includes/class-mcp-resources.php:93
+msgid "Media item"
+msgstr "مورد رسانه"
+
+#: includes/class-mcp-resources.php:94
+msgid ""
+"One attachment with its MIME type, dimensions, alternative text, and "
+"generated sizes."
+msgstr "یک پیوست همراه با نوع MIME، ابعاد، متن جایگزین و اندازه‌های تولیدشده."
+
+#: includes/class-mcp-resources.php:102
+msgid "Recent entries by post type"
+msgstr "ورودی‌های اخیر بر پایه نوع نوشته"
+
+#: includes/class-mcp-resources.php:103
+msgid "The most recently modified entries for one post type, newest first."
+msgstr "تازه‌ترین ورودی‌های ویرایش‌شده برای یک نوع نوشته، از جدید به قدیم."
+
+#: includes/class-mcp-resources.php:235
+msgid "The requested post does not exist."
+msgstr "نوشته درخواست‌شده وجود ندارد."
+
+#: includes/class-mcp-resources.php:238
+msgid "Your WordPress user cannot read this post."
+msgstr "کاربر وردپرسی شما اجازه خواندن این نوشته را ندارد."
+
+#: includes/class-mcp-resources.php:276
+msgid "The requested media item does not exist."
+msgstr "مورد رسانه درخواست‌شده وجود ندارد."
+
+#: includes/class-mcp-resources.php:279
+msgid "Your WordPress user cannot read this media item."
+msgstr "کاربر وردپرسی شما اجازه خواندن این مورد رسانه را ندارد."
+
+#: includes/class-mcp-resources.php:305
+msgid "The requested post type does not exist."
+msgstr "نوع نوشته درخواست‌شده وجود ندارد."
+
+#: includes/class-mcp-resources.php:309
+msgid "The requested post type is not public."
+msgstr "نوع نوشته درخواست‌شده عمومی نیست."
+
+#: includes/class-mcp-server.php:84
+msgid ""
+"This stateless server has no server-initiated messages. Open a stream by "
+"sending Accept: text/event-stream on a POST instead."
+msgstr "این سرور بدون‌حالت پیام آغازشده از سوی سرور ندارد. به جای آن با فرستادن سرایند Accept: text/event-stream روی یک درخواست POST یک جریان باز کنید."
+
+#: includes/class-mcp-server.php:91
 msgid "The MCP request body exceeds the 25 MB transport limit."
 msgstr "حجم بدنهٔ درخواست MCP از محدودیت انتقال ۲۵ مگابایت بیشتر است."
 
-#: includes/class-mcp-server.php:74
+#: includes/class-mcp-server.php:95
 msgid "The MCP endpoint is disabled by an administrator."
 msgstr "نقطهٔ پایانی MCP به‌دست مدیر غیرفعال شده است."
 
-#: includes/class-mcp-server.php:89
+#: includes/class-mcp-server.php:110
 msgid "Rate limit exceeded."
 msgstr "محدودیت نرخ درخواست رد شد."
 
-#: includes/class-mcp-server.php:98
+#: includes/class-mcp-server.php:119
 msgid "Unsupported MCP-Protocol-Version header."
 msgstr "نسخهٔ هدر MCP-Protocol-Version پشتیبانی نمی‌شود."
 
-#: includes/class-mcp-server.php:103
+#: includes/class-mcp-server.php:124
 msgid "The request body must be one JSON-RPC object."
 msgstr "بدنهٔ درخواست باید یک شیء JSON-RPC باشد."
 
-#: includes/class-mcp-server.php:106
+#: includes/class-mcp-server.php:127
 msgid "Invalid JSON-RPC 2.0 request."
 msgstr "درخواست JSON-RPC 2.0 نامعتبر است."
 
-#: includes/class-mcp-server.php:124
+#: includes/class-mcp-server.php:156
 msgid "JSON-RPC method not found."
 msgstr "روش JSON-RPC پیدا نشد."
 
-#: includes/class-mcp-server.php:144
+#: includes/class-mcp-server.php:175
 msgid "initialize requires protocolVersion."
 msgstr "initialize به protocolVersion نیاز دارد."
 
-#: includes/class-mcp-server.php:156
+#: includes/class-mcp-server.php:192
 msgid "Secure WordPress and Flatsome UX Builder automation."
 msgstr "خودکارسازی امن وردپرس و UX Builder فلت‌سام."
 
 #. translators: 1: site URL, 2: locale.
-#: includes/class-mcp-server.php:161
+#: includes/class-mcp-server.php:197
 #, php-format
 msgid ""
 "Operate %1$s carefully. Prefer drafts, use list/read tools before writes, "
@@ -1854,40 +2582,48 @@ msgstr ""
 "ابزارهای فهرست/خواندن استفاده کنید و زبان سایت (%2$s) را رعایت کنید. "
 "فراخوانی‌های مخرب به تأیید صریح نیاز دارند."
 
-#: includes/class-mcp-server.php:173
+#: includes/class-mcp-server.php:302
+msgid "resources/read requires a uri."
+msgstr "resources/read به یک uri نیاز دارد."
+
+#: includes/class-mcp-server.php:325
+msgid "prompts/get requires a prompt name and object arguments."
+msgstr "prompts/get به نام پرامپت و آرگومان‌های شیءگونه نیاز دارد."
+
+#: includes/class-mcp-server.php:348
 msgid "tools/call requires a tool name and object arguments."
 msgstr "tools/call به نام ابزار و آرگومان‌های شیء نیاز دارد."
 
 #. translators: %s: MCP tool name.
-#: includes/class-mcp-server.php:180
+#: includes/class-mcp-server.php:355
 #, php-format
 msgid "Unknown tool: %s."
 msgstr "ابزار ناشناخته است: %s."
 
-#: includes/class-mcp-server.php:226
+#: includes/class-mcp-server.php:401
 msgid "The Origin header is not allowed for this MCP server."
 msgstr "هدر Origin برای این سرور MCP مجاز نیست."
 
-#: includes/class-oauth-server.php:99 includes/class-oauth-server.php:100
-#: includes/class-oauth-server.php:310
+#: includes/class-oauth-server.php:92 includes/class-oauth-server.php:93
+#: includes/class-oauth-server.php:303
 msgid "Authorize MCP Client"
 msgstr "اجازه‌دادن به کارخواه MCP"
 
-#: includes/class-oauth-server.php:143
+#: includes/class-oauth-server.php:136
 msgid "Too many client registrations."
 msgstr "تعداد ثبت کلاینت‌ها بیش از حد مجاز است."
 
-#: includes/class-oauth-server.php:150
+#: includes/class-oauth-server.php:143
 msgid "One to ten redirect URIs are required."
 msgstr "واردکردن یک تا ده نشانی بازگشت الزامی است."
 
-#: includes/class-oauth-server.php:154
+#: includes/class-oauth-server.php:147
 msgid "A redirect URI is invalid. Use HTTPS or a loopback HTTP URI."
 msgstr ""
 "یکی از نشانی‌های بازگشت نامعتبر است. از HTTPS یا نشانی HTTP حلقهٔ محلی استفاده "
 "کنید."
 
-#: includes/class-oauth-server.php:160
+#: includes/class-oauth-server.php:153
 msgid ""
 "The OAuth client registry is full. Revoke an unused client before "
 "registering another."
@@ -1895,84 +2631,84 @@ msgstr ""
 "فهرست کارخواه‌های OAuth پر است. پیش از ثبت کارخواه جدید، یک کارخواه بدون "
 "استفاده را لغو کنید."
 
-#: includes/class-oauth-server.php:166 includes/class-oauth-server.php:308
-#: includes/class-oauth-server.php:397
+#: includes/class-oauth-server.php:159 includes/class-oauth-server.php:301
+#: includes/class-oauth-server.php:390
 msgid "MCP Client"
 msgstr "کارخواه MCP"
 
-#: includes/class-oauth-server.php:184
+#: includes/class-oauth-server.php:177
 msgid "Too many token requests."
 msgstr "تعداد درخواست‌های توکن بیش از حد مجاز است."
 
-#: includes/class-oauth-server.php:191 includes/class-oauth-server.php:566
+#: includes/class-oauth-server.php:184 includes/class-oauth-server.php:559
 msgid "The OAuth client is unknown."
 msgstr "کارخواه OAuth ناشناخته است."
 
-#: includes/class-oauth-server.php:208
+#: includes/class-oauth-server.php:201
 msgid "Only authorization_code and refresh_token are supported."
 msgstr "فقط authorization_code و refresh_token پشتیبانی می‌شوند."
 
-#: includes/class-oauth-server.php:216
+#: includes/class-oauth-server.php:209
 msgid "The authorization code context does not match."
 msgstr "زمینهٔ کد مجوز مطابقت ندارد."
 
-#: includes/class-oauth-server.php:220
+#: includes/class-oauth-server.php:213
 msgid "The authorization code resource does not match."
 msgstr "منبع کد مجوز مطابقت ندارد."
 
-#: includes/class-oauth-server.php:225
+#: includes/class-oauth-server.php:218
 msgid "A valid PKCE code_verifier is required."
 msgstr "یک code_verifier معتبر برای PKCE الزامی است."
 
-#: includes/class-oauth-server.php:229
+#: includes/class-oauth-server.php:222
 msgid "PKCE verification failed."
 msgstr "اعتبارسنجی PKCE ناموفق بود."
 
-#: includes/class-oauth-server.php:258
+#: includes/class-oauth-server.php:251
 msgid ""
 "This authorization request expired. Start the connection again from your MCP "
 "client."
 msgstr ""
 "این درخواست مجوز منقضی شده است. اتصال را دوباره از کارخواه MCP آغاز کنید."
 
-#: includes/class-oauth-server.php:314
+#: includes/class-oauth-server.php:307
 msgid "Authorization request"
 msgstr "درخواست مجوز"
 
 #. translators: %s: OAuth client name.
-#: includes/class-oauth-server.php:319
+#: includes/class-oauth-server.php:312
 #, php-format
 msgid "Allow %s to connect?"
 msgstr "اجازه می‌دهید %s متصل شود؟"
 
-#: includes/class-oauth-server.php:324
+#: includes/class-oauth-server.php:317
 msgid ""
 "Review the requested access before connecting this client to your WordPress "
 "site."
 msgstr ""
 "پیش از اتصال این کارخواه به سایت وردپرس، دسترسی درخواستی را بررسی کنید."
 
-#: includes/class-oauth-server.php:327
+#: includes/class-oauth-server.php:320
 msgid "Signed-in account"
 msgstr "حساب واردشده"
 
-#: includes/class-oauth-server.php:332
+#: includes/class-oauth-server.php:325
 msgid "Signed in as"
 msgstr "واردشده با حساب"
 
-#: includes/class-oauth-server.php:343
+#: includes/class-oauth-server.php:336
 msgid "WordPress site"
 msgstr "سایت وردپرس"
 
-#: includes/class-oauth-server.php:347
+#: includes/class-oauth-server.php:340
 msgid "Returns to"
 msgstr "بازگشت به"
 
-#: includes/class-oauth-server.php:355
+#: includes/class-oauth-server.php:348
 msgid "Requested access"
 msgstr "دسترسی درخواستی"
 
-#: includes/class-oauth-server.php:372
+#: includes/class-oauth-server.php:365
 msgid ""
 "Only approve clients you trust. This client will act with the granted "
 "permissions as your current WordPress user."
@@ -1980,55 +2716,55 @@ msgstr ""
 "فقط کارخواه‌های مورد اعتماد را تأیید کنید. این کارخواه با مجوزهای اعطاشده و "
 "به‌عنوان کاربر فعلی وردپرس شما عمل می‌کند."
 
-#: includes/class-oauth-server.php:382
+#: includes/class-oauth-server.php:375
 msgid "Approve and connect"
 msgstr "تأیید و اتصال"
 
-#: includes/class-oauth-server.php:384
+#: includes/class-oauth-server.php:377
 msgid "Reject request"
 msgstr "رد درخواست"
 
-#: includes/class-oauth-server.php:398
+#: includes/class-oauth-server.php:391
 msgid "Authorization approved"
 msgstr "مجوز تأیید شد"
 
-#: includes/class-oauth-server.php:398
+#: includes/class-oauth-server.php:391
 msgid "Access request rejected"
 msgstr "درخواست دسترسی رد شد"
 
-#: includes/class-oauth-server.php:415
+#: includes/class-oauth-server.php:408
 msgid "Authorization complete"
 msgstr "فرایند مجوزدهی کامل شد"
 
-#: includes/class-oauth-server.php:415
+#: includes/class-oauth-server.php:408
 msgid "Request closed"
 msgstr "درخواست بسته شد"
 
-#: includes/class-oauth-server.php:421
+#: includes/class-oauth-server.php:414
 msgid "The client can now finish authentication with the access you granted."
 msgstr "کارخواه اکنون می‌تواند احراز هویت را با دسترسی اعطاشده تکمیل کند."
 
-#: includes/class-oauth-server.php:422
+#: includes/class-oauth-server.php:415
 msgid "No access was granted. The client will receive your decision."
 msgstr "هیچ دسترسی‌ای اعطا نشد. تصمیم شما به کارخواه ارسال می‌شود."
 
-#: includes/class-oauth-server.php:429
+#: includes/class-oauth-server.php:422
 msgid "Access"
 msgstr "دسترسی"
 
-#: includes/class-oauth-server.php:429
+#: includes/class-oauth-server.php:422
 msgid "Not granted"
 msgstr "اعطا نشد"
 
-#: includes/class-oauth-server.php:434
+#: includes/class-oauth-server.php:427
 msgid "Returning securely to the MCP client…"
 msgstr "در حال بازگشت امن به کارخواه MCP…"
 
-#: includes/class-oauth-server.php:437
+#: includes/class-oauth-server.php:430
 msgid "Continue to client"
 msgstr "ادامه به کارخواه"
 
-#: includes/class-oauth-server.php:439
+#: includes/class-oauth-server.php:432
 msgid ""
 "Automatic return requires JavaScript. Select Continue to finish the "
 "authorization flow."
@@ -2036,23 +2772,23 @@ msgstr ""
 "بازگشت خودکار به جاوااسکریپت نیاز دارد. برای تکمیل فرایند مجوزدهی، ادامه را "
 "انتخاب کنید."
 
-#: includes/class-oauth-server.php:448
+#: includes/class-oauth-server.php:441
 msgid "Invalid OAuth request"
 msgstr "درخواست OAuth نامعتبر است"
 
-#: includes/class-oauth-server.php:454
+#: includes/class-oauth-server.php:447
 msgid "Unable to continue"
 msgstr "ادامه ممکن نیست"
 
-#: includes/class-oauth-server.php:455
+#: includes/class-oauth-server.php:448
 msgid "Invalid authorization request"
 msgstr "درخواست مجوز نامعتبر است"
 
-#: includes/class-oauth-server.php:458
+#: includes/class-oauth-server.php:451
 msgid "Error code"
 msgstr "کد خطا"
 
-#: includes/class-oauth-server.php:461
+#: includes/class-oauth-server.php:454
 msgid ""
 "Start the connection again from your MCP client. If the problem continues, "
 "verify the client URL and OAuth configuration."
@@ -2060,78 +2796,124 @@ msgstr ""
 "اتصال را دوباره از کارخواه MCP آغاز کنید. اگر مشکل ادامه داشت، نشانی کارخواه "
 "و پیکربندی OAuth را بررسی کنید."
 
-#: includes/class-oauth-server.php:462
+#: includes/class-oauth-server.php:455
 msgid "Return to WordPress"
 msgstr "بازگشت به وردپرس"
 
-#: includes/class-oauth-server.php:497
+#: includes/class-oauth-server.php:490
 msgid "Secure WordPress authorization"
 msgstr "مجوزدهی امن وردپرس"
 
-#: includes/class-oauth-server.php:508
+#: includes/class-oauth-server.php:501
 msgid "Protected by WordPress permissions"
 msgstr "محافظت‌شده با مجوزهای وردپرس"
 
-#: includes/class-oauth-server.php:509
+#: includes/class-oauth-server.php:502
 msgid "Tokens are bound to this MCP endpoint"
 msgstr "توکن‌ها به این نقطهٔ پایانی MCP مقید هستند"
 
-#: includes/class-oauth-server.php:525
+#: includes/class-oauth-server.php:518
 msgid "Administrator access"
 msgstr "دسترسی مدیر"
 
-#: includes/class-oauth-server.php:526
+#: includes/class-oauth-server.php:519
 msgid "Editor access"
 msgstr "دسترسی ویرایشگر"
 
-#: includes/class-oauth-server.php:527
+#: includes/class-oauth-server.php:520
 msgid "Read-only access"
 msgstr "دسترسی فقط‌خواندنی"
 
-#: includes/class-oauth-server.php:534
+#: includes/class-oauth-server.php:527
 msgid "View posts, pages, media, settings, and operational activity."
 msgstr "مشاهدهٔ نوشته‌ها، برگه‌ها، رسانه‌ها، تنظیمات و فعالیت‌های عملیاتی."
 
-#: includes/class-oauth-server.php:538
+#: includes/class-oauth-server.php:531
 msgid ""
 "Create and update content, media, comments, SEO metadata, and store data."
 msgstr ""
 "ایجاد و به‌روزرسانی محتوا، رسانه، دیدگاه‌ها، فرادادهٔ سئو و داده‌های فروشگاه."
 
-#: includes/class-oauth-server.php:541
+#: includes/class-oauth-server.php:534
 msgid ""
 "Manage users, plugins, themes, site settings, webhooks, and privileged "
 "operations."
 msgstr ""
 "مدیریت کاربران، افزونه‌ها، پوسته‌ها، تنظیمات سایت، وب‌هوک‌ها و عملیات ویژه."
 
-#: includes/class-oauth-server.php:562
+#: includes/class-oauth-server.php:555
 msgid "Only the code response type is supported."
 msgstr "فقط نوع پاسخ code پشتیبانی می‌شود."
 
-#: includes/class-oauth-server.php:570
+#: includes/class-oauth-server.php:563
 msgid "The redirect URI is not registered for this client."
 msgstr "نشانی بازگشت برای این کلاینت ثبت نشده است."
 
-#: includes/class-oauth-server.php:573
+#: includes/class-oauth-server.php:566
 msgid "OAuth authorization requires PKCE with S256."
 msgstr "مجوز OAuth به PKCE با S256 نیاز دارد."
 
-#: includes/class-oauth-server.php:582
+#: includes/class-oauth-server.php:575
 msgid "Your user cannot grant the requested scope."
 msgstr "کاربر شما نمی‌تواند سطح دسترسی درخواستی را اعطا کند."
 
-#: includes/class-oauth-server.php:607 includes/class-oauth-server.php:626
+#: includes/class-oauth-server.php:600 includes/class-oauth-server.php:622
 msgid "The OAuth resource must exactly identify this MCP endpoint."
 msgstr "منبع OAuth باید دقیقاً همین نقطهٔ پایانی MCP را مشخص کند."
 
-#: includes/class-oauth-server.php:685
+#: includes/class-oauth-server.php:681
 msgid "The authorization code is malformed."
 msgstr "ساختار کد مجوز نامعتبر است."
 
-#: includes/class-oauth-server.php:692
+#: includes/class-oauth-server.php:688
 msgid "The authorization code is invalid, expired, or already used."
 msgstr "کد مجوز نامعتبر، منقضی یا قبلاً استفاده شده است."
+
+#: includes/class-prompt-registry.php:96
+msgid "Unknown prompt."
+msgstr "پرامپت ناشناخته است."
+
+#: includes/class-prompt-registry.php:101
+msgid "The access token does not grant this prompt scope."
+msgstr "توکن دسترسی، دامنه لازم برای این پرامپت را نمی‌دهد."
+
+#: includes/class-prompt-registry.php:104
+msgid "Your WordPress user cannot use this prompt."
+msgstr "کاربر وردپرسی شما اجازه استفاده از این پرامپت را ندارد."
+
+#: includes/class-prompt-registry.php:112
+msgid "Prompt arguments must be scalar values."
+msgstr "آرگومان‌های پرامپت باید مقادیر ساده باشند."
+
+#. translators: %s: prompt argument name.
+#: includes/class-prompt-registry.php:120
+#, php-format
+msgid "The prompt argument \"%s\" is required."
+msgstr "آرگومان پرامپت «%s» الزامی است."
+
+#: includes/class-prompt-registry.php:132
+msgid "The prompt failed unexpectedly."
+msgstr "پرامپت به‌طور غیرمنتظره‌ای شکست خورد."
+
+#: includes/class-resource-registry.php:142
+msgid "The resource URI is missing or too long."
+msgstr "نشانی منبع وجود ندارد یا بیش از حد طولانی است."
+
+#: includes/class-resource-registry.php:152
+msgid "The access token does not grant this resource scope."
+msgstr "توکن دسترسی، دامنه لازم برای این منبع را نمی‌دهد."
+
+#: includes/class-resource-registry.php:155
+msgid "Your WordPress user cannot read this resource."
+msgstr "کاربر وردپرسی شما اجازه خواندن این منبع را ندارد."
+
+#: includes/class-resource-registry.php:162
+msgid "The resource failed unexpectedly."
+msgstr "منبع به‌طور غیرمنتظره‌ای شکست خورد."
+
+#: includes/class-resource-registry.php:210
+msgid "Unknown resource URI."
+msgstr "نشانی منبع ناشناخته است."
 
 #: includes/class-schema-validator.php:31
 msgid "does not match an allowed schema"
@@ -2201,7 +2983,25 @@ msgstr "ویژگی مجاز نیست"
 msgid "%1$s %2$s."
 msgstr "%1$s %2$s."
 
-#: includes/class-tool-registry.php:55
+#: includes/class-tool-registry.php:60
+msgid ""
+"Approval ID issued when this call was parked for review. Only needed for "
+"tools the administrator has gated behind human approval."
+msgstr "شناسه تأییدی که هنگام متوقف شدن این فراخوانی برای بررسی صادر شده است. تنها برای ابزارهایی لازم است که مدیر آن‌ها را مشمول تأیید انسانی کرده است."
+
+#: includes/class-tool-registry.php:66
+msgid ""
+"Preview this call without committing it. Returns the exact post, meta, term, "
+"option, comment, and user changes it would make."
+msgstr "این فراخوانی را بدون ثبت نهایی پیش‌نمایش کن. دقیقاً همان تغییرهایی را که روی نوشته‌ها، فراداده، ترم‌ها، تنظیمات، دیدگاه‌ها و کاربران اعمال می‌کرد بازمی‌گرداند."
+
+#: includes/class-tool-registry.php:71
+msgid ""
+"Journal this call into an open changeset created by begin_changeset, so it "
+"can be undone with revert_changeset."
+msgstr "این فراخوانی را در یک مجموعه تغییرات باز که با begin_changeset ساخته شده است ثبت کن تا بتوان آن را با revert_changeset بازگرداند."
+
+#: includes/class-tool-registry.php:77
 msgid ""
 "Optional installed WordPress locale for localized response messages, for "
 "example fa_IR or en_US."
@@ -2209,46 +3009,79 @@ msgstr ""
 "زبان نصب‌شدهٔ اختیاری وردپرس برای پیام‌های بومی‌سازی‌شدهٔ پاسخ؛ برای نمونه fa_IR "
 "یا en_US."
 
-#: includes/class-tool-registry.php:60
+#: includes/class-tool-registry.php:82
 msgid ""
 "On multisite, optionally execute this one call in the selected site context."
 msgstr ""
 "در وردپرس چندسایته، این فراخوانی را در صورت نیاز در زمینهٔ سایت انتخاب‌شده "
 "اجرا کنید."
 
-#: includes/class-tool-registry.php:130
+#: includes/class-tool-registry.php:157
 msgid "Unknown tool."
 msgstr "ابزار ناشناخته است."
 
-#: includes/class-tool-registry.php:140
+#: includes/class-tool-registry.php:167
 msgid "The requested response locale is not installed."
 msgstr "زبان درخواستی پاسخ نصب نشده است."
 
-#: includes/class-tool-registry.php:147
+#: includes/class-tool-registry.php:174
 msgid "The access token does not grant this tool scope."
 msgstr "توکن دسترسی، سطح لازم برای این ابزار را ندارد."
 
-#: includes/class-tool-registry.php:158
+#: includes/class-tool-registry.php:185
 msgid "The requested multisite site does not exist."
 msgstr "سایت چندسایتی درخواستی وجود ندارد."
 
-#: includes/class-tool-registry.php:162
+#: includes/class-tool-registry.php:189
 msgid "Your user cannot access the requested site."
 msgstr "کاربر شما به سایت درخواستی دسترسی ندارد."
 
-#: includes/class-tool-registry.php:168
+#: includes/class-tool-registry.php:195
 msgid "This tool is disabled by the site administrator."
 msgstr "این ابزار به‌دست مدیر سایت غیرفعال شده است."
 
-#: includes/class-tool-registry.php:176
+#: includes/class-tool-registry.php:200
+msgid "This credential is not permitted to call this tool."
+msgstr "این اعتبارنامه اجازه فراخوانی این ابزار را ندارد."
+
+#. translators: 1: daily call budget, 2: ISO 8601 reset timestamp.
+#: includes/class-tool-registry.php:209
+#, php-format
+msgid ""
+"This credential has used its daily budget of %1$d calls. It resets at %2$s."
+msgstr "این اعتبارنامه سهمیه روزانه %1$d فراخوانی خود را مصرف کرده است. بازنشانی در %2$s."
+
+#: includes/class-tool-registry.php:221
 msgid "This integration operation is disabled by the site administrator."
 msgstr "این عملیات یکپارچه‌سازی توسط مدیر سایت غیرفعال شده است."
 
-#: includes/class-tool-registry.php:184
+#: includes/class-tool-registry.php:229
 msgid "Your WordPress user cannot perform this action."
 msgstr "کاربر وردپرس شما اجازهٔ انجام این کار را ندارد."
 
-#: includes/class-tool-registry.php:190
+#: includes/class-tool-registry.php:249
+msgid ""
+"This call needs administrator approval before it can run. Re-send it with "
+"the approval ID once a human has approved it."
+msgstr "این فراخوانی پیش از اجرا به تأیید مدیر نیاز دارد. پس از تأیید انسانی، آن را همراه با شناسه تأیید دوباره بفرستید."
+
+#: includes/class-tool-registry.php:268
+msgid ""
+"This tool changes files or external state that cannot be rolled back, so it "
+"cannot be previewed."
+msgstr "این ابزار فایل‌ها یا وضعیت بیرونی‌ای را تغییر می‌دهد که بازگردانی‌پذیر نیست، بنابراین پیش‌نمایش نمی‌شود."
+
+#: includes/class-tool-registry.php:278
+msgid ""
+"This tool changes files or external state that cannot be journalled into a "
+"changeset."
+msgstr "این ابزار فایل‌ها یا وضعیت بیرونی‌ای را تغییر می‌دهد که در مجموعه تغییرات ثبت‌شدنی نیست."
+
+#: includes/class-tool-registry.php:284
+msgid "The changeset does not exist or is no longer open."
+msgstr "مجموعه تغییرات وجود ندارد یا دیگر باز نیست."
+
+#: includes/class-tool-registry.php:300
 msgid "The tool failed unexpectedly."
 msgstr "ابزار به‌طور غیرمنتظره با خطا روبه‌رو شد."
 
@@ -2283,10 +3116,6 @@ msgstr "این سایت هم‌اکنون به سقف ۱۰۰ وب‌هوک MCP �
 #: includes/class-webhook-engine.php:44
 msgid "The webhook secret could not be encrypted on this server."
 msgstr "راز وب‌هوک در این سرور رمزگذاری نشد."
-
-#: includes/class-webhook-engine.php:48
-msgid "Webhook"
-msgstr "وب‌هوک"
 
 #: includes/class-webhook-engine.php:61
 msgid "Store this signing secret now; it will not be shown again."
@@ -2500,6 +3329,34 @@ msgstr "این عملیات ساختاری ACF به confirm=true نیاز دار
 msgid "This operation requires ACF Free 6.1 or newer."
 msgstr "این عملیات به ACF Free نسخه 6.1 یا جدیدتر نیاز دارد."
 
+#: includes/tools/class-approval-tools.php:28
+msgid ""
+"List tool calls parked for human approval, with their status. Poll this "
+"after a call returns approval_required."
+msgstr "فهرست فراخوانی‌های متوقف‌شده برای تأیید انسانی همراه با وضعیتشان. پس از دریافت پاسخ approval_required این را پی‌گیری کنید."
+
+#: includes/tools/class-approval-tools.php:49
+msgid ""
+"Read one approval request, including the exact arguments awaiting a decision."
+msgstr "خواندن یک درخواست تأیید، شامل دقیقاً همان آرگومان‌هایی که در انتظار تصمیم هستند."
+
+#: includes/tools/class-audit-export-tools.php:30
+msgid ""
+"Export audit records as newline-delimited JSON for a log collector, "
+"optionally only those newer than a known record ID."
+msgstr "برون‌سپاری رکوردهای ممیزی به‌صورت JSON خط‌به‌خط برای گردآورنده گزارش، به‌دلخواه تنها رکوردهای تازه‌تر از یک شناسه مشخص."
+
+#: includes/tools/class-audit-export-tools.php:34
+msgid "Return only records newer than this ID."
+msgstr "تنها رکوردهای تازه‌تر از این شناسه بازگردانده شوند."
+
+#: includes/tools/class-audit-export-tools.php:49
+msgid ""
+"Read anomalies detected in the audit trail: failure spikes, permission "
+"probing, destructive bursts, exhausted budgets, and credentials used from a "
+"new address."
+msgstr "خواندن ناهنجاری‌های شناسایی‌شده در مسیر ممیزی: جهش خطاها، کاوش دسترسی، انفجار عملیات مخرب، پایان سهمیه و اعتبارنامه‌های استفاده‌شده از نشانی تازه."
+
 #: includes/tools/class-automation-tools.php:24
 msgid ""
 "Generate and create a WordPress post through a configured automation "
@@ -2609,7 +3466,9 @@ msgstr "فهرست اسناد BetterDocs"
 msgid ""
 "List BetterDocs documents with bounded search, status, taxonomy, ordering, "
 "and pagination filters."
-msgstr "فهرست اسناد BetterDocs با فیلترهای محدود جست‌وجو، وضعیت، رده‌بندی، ترتیب و صفحه‌بندی."
+msgstr ""
+"فهرست اسناد BetterDocs با فیلترهای محدود جست‌وجو، وضعیت، رده‌بندی، ترتیب و "
+"صفحه‌بندی."
 
 #: includes/tools/class-betterdocs-tools.php:68
 msgid "Get BetterDocs document"
@@ -2619,7 +3478,8 @@ msgstr "دریافت سند BetterDocs"
 msgid ""
 "Get one BetterDocs document, including its safely stored content and "
 "taxonomy assignments."
-msgstr "دریافت یک سند BetterDocs همراه با محتوای ذخیره‌شدهٔ امن و تخصیص‌های رده‌بندی آن."
+msgstr ""
+"دریافت یک سند BetterDocs همراه با محتوای ذخیره‌شدهٔ امن و تخصیص‌های رده‌بندی آن."
 
 #: includes/tools/class-betterdocs-tools.php:76
 msgid "List BetterDocs terms"
@@ -2629,7 +3489,9 @@ msgstr "فهرست عبارت‌های BetterDocs"
 msgid ""
 "List BetterDocs document categories or tags with bounded hierarchy and "
 "pagination filters."
-msgstr "فهرست دسته‌ها یا برچسب‌های اسناد BetterDocs با فیلترهای محدود سلسله‌مراتب و صفحه‌بندی."
+msgstr ""
+"فهرست دسته‌ها یا برچسب‌های اسناد BetterDocs با فیلترهای محدود سلسله‌مراتب و "
+"صفحه‌بندی."
 
 #: includes/tools/class-betterdocs-tools.php:96
 msgid "Create BetterDocs document"
@@ -2639,7 +3501,8 @@ msgstr "ایجاد سند BetterDocs"
 msgid ""
 "Create a sanitized BetterDocs document through its registered WordPress REST "
 "post type."
-msgstr "ایجاد سند پاک‌سازی‌شدهٔ BetterDocs از طریق نوع‌نوشتهٔ REST ثبت‌شدهٔ وردپرس آن."
+msgstr ""
+"ایجاد سند پاک‌سازی‌شدهٔ BetterDocs از طریق نوع‌نوشتهٔ REST ثبت‌شدهٔ وردپرس آن."
 
 #: includes/tools/class-betterdocs-tools.php:104
 msgid "Update BetterDocs document"
@@ -2648,7 +3511,8 @@ msgstr "به‌روزرسانی سند BetterDocs"
 #: includes/tools/class-betterdocs-tools.php:105
 msgid ""
 "Update a sanitized BetterDocs document with optional optimistic concurrency."
-msgstr "به‌روزرسانی سند پاک‌سازی‌شدهٔ BetterDocs با کنترل هم‌زمانی خوش‌بینانهٔ اختیاری."
+msgstr ""
+"به‌روزرسانی سند پاک‌سازی‌شدهٔ BetterDocs با کنترل هم‌زمانی خوش‌بینانهٔ اختیاری."
 
 #: includes/tools/class-betterdocs-tools.php:121
 msgid "Delete BetterDocs document"
@@ -2658,7 +3522,9 @@ msgstr "حذف سند BetterDocs"
 msgid ""
 "Move a BetterDocs document to Trash, or permanently delete it when force and "
 "confirmation are both supplied."
-msgstr "انتقال سند BetterDocs به زباله‌دان، یا حذف دائمی آن وقتی force و تأیید هر دو ارائه شده‌اند."
+msgstr ""
+"انتقال سند BetterDocs به زباله‌دان، یا حذف دائمی آن وقتی force و تأیید هر دو "
+"ارائه شده‌اند."
 
 #: includes/tools/class-betterdocs-tools.php:137
 msgid "Create BetterDocs term"
@@ -2668,7 +3534,8 @@ msgstr "ایجاد عبارت BetterDocs"
 msgid ""
 "Create a BetterDocs document category or tag through its registered "
 "WordPress REST taxonomy."
-msgstr "ایجاد دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس آن."
+msgstr ""
+"ایجاد دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس آن."
 
 #: includes/tools/class-betterdocs-tools.php:154
 msgid "Update BetterDocs term"
@@ -2678,7 +3545,9 @@ msgstr "به‌روزرسانی عبارت BetterDocs"
 msgid ""
 "Update a BetterDocs document category or tag through its registered "
 "WordPress REST taxonomy."
-msgstr "به‌روزرسانی دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس آن."
+msgstr ""
+"به‌روزرسانی دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس "
+"آن."
 
 #: includes/tools/class-betterdocs-tools.php:172
 msgid "Delete BetterDocs term"
@@ -2759,6 +3628,94 @@ msgstr "سند BetterDocs پس از زمان تغییر ارائه‌شده عو
 #: includes/tools/class-betterdocs-tools.php:787
 msgid "Deleting BetterDocs content requires confirm=true."
 msgstr "حذف محتوای BetterDocs به confirm=true نیاز دارد."
+
+#: includes/tools/class-builder-tools.php:28
+msgid ""
+"List the page builders this site can author with, which one is preferred, "
+"and the neutral element types each supports."
+msgstr "فهرست صفحه‌سازهایی که این سایت می‌تواند با آن‌ها محتوا بسازد، اینکه کدام ترجیح داده می‌شود و انواع عنصر خنثایی که هر کدام پشتیبانی می‌کنند."
+
+#: includes/tools/class-builder-tools.php:39
+msgid ""
+"Create a page from one builder-neutral blueprint. The site's active builder "
+"decides whether it becomes Flatsome shortcodes, core blocks, or Elementor "
+"widgets."
+msgstr "ساخت یک برگه از روی یک طرح خنثی نسبت به صفحه‌ساز. صفحه‌ساز فعال سایت تعیین می‌کند که خروجی، کدهای کوتاه فلتسام، بلوک‌های اصلی یا ابزارک‌های المنتور باشد."
+
+#: includes/tools/class-builder-tools.php:61
+msgid ""
+"Replace the body of an existing page with a builder-neutral blueprint, "
+"keeping the builder the page already uses unless another is named."
+msgstr "جایگزینی بدنه یک برگه موجود با یک طرح خنثی نسبت به صفحه‌ساز، با حفظ همان صفحه‌سازی که برگه از آن استفاده می‌کند مگر آنکه صفحه‌ساز دیگری نام برده شود."
+
+#: includes/tools/class-builder-tools.php:87
+msgid ""
+"Which builder to render with. Defaults to auto, which picks the site's "
+"active builder."
+msgstr "اینکه رندر با کدام صفحه‌ساز انجام شود. پیش‌فرض auto است که صفحه‌ساز فعال سایت را برمی‌گزیند."
+
+#: includes/tools/class-builder-tools.php:152
+#: includes/tools/class-page-analysis-tools.php:55
+msgid "The requested page does not exist."
+msgstr "برگه درخواست‌شده وجود ندارد."
+
+#: includes/tools/class-builder-tools.php:157
+msgid "The page changed since it was read. Re-read it before writing."
+msgstr "برگه پس از خوانده شدن تغییر کرده است. پیش از نوشتن دوباره آن را بخوانید."
+
+#: includes/tools/class-builder-tools.php:206
+msgid "Rendering blueprint"
+msgstr "در حال رندر طرح"
+
+#: includes/tools/class-builder-tools.php:209
+msgid "Blueprint rendered"
+msgstr "طرح رندر شد"
+
+#: includes/tools/class-changeset-tools.php:28
+msgid ""
+"Open a named changeset and return its ID. Pass that ID as the changeset "
+"argument on later write calls to journal them, then undo the whole group "
+"with revert_changeset."
+msgstr "یک مجموعه تغییرات نام‌دار باز کن و شناسه آن را بازگردان. آن شناسه را به‌عنوان آرگومان changeset در فراخوانی‌های نوشتن بعدی بفرست تا ثبت شوند، سپس کل گروه را با revert_changeset بازگردان."
+
+#: includes/tools/class-changeset-tools.php:35
+msgid "Human-readable description of what this group of changes is for."
+msgstr "توضیح خوانا برای اینکه این گروه از تغییرات برای چیست."
+
+#: includes/tools/class-changeset-tools.php:50
+msgid "List recent changesets with their status and recorded entry counts."
+msgstr "فهرست مجموعه تغییرات اخیر همراه با وضعیت و شمار ورودی‌های ثبت‌شده."
+
+#: includes/tools/class-changeset-tools.php:57
+msgid "Optionally return only changesets in this state."
+msgstr "به‌دلخواه تنها مجموعه تغییرات با این وضعیت بازگردانده شوند."
+
+#: includes/tools/class-changeset-tools.php:71
+msgid ""
+"Read one changeset with every recorded before and after state, so the effect "
+"of a revert can be reviewed first."
+msgstr "خواندن یک مجموعه تغییرات با همه وضعیت‌های پیش و پس از تغییر، تا اثر بازگردانی پیش از انجام آن بررسی شود."
+
+#: includes/tools/class-changeset-tools.php:88
+msgid ""
+"Close a changeset so no further calls can be journalled into it. A closed "
+"changeset can still be reverted."
+msgstr "بستن یک مجموعه تغییرات تا فراخوانی تازه‌ای در آن ثبت نشود. مجموعه بسته‌شده همچنان بازگردانی‌پذیر است."
+
+#: includes/tools/class-changeset-tools.php:106
+msgid ""
+"Undo every change recorded in a changeset, newest first. Restores posts, "
+"post meta, term assignments, terms, options, comments, and users. Requires "
+"confirm=true."
+msgstr "بازگردانی همه تغییرهای ثبت‌شده در یک مجموعه، از جدید به قدیم. نوشته‌ها، فرادادهٔ نوشته، انتساب ترم‌ها، ترم‌ها، تنظیمات، دیدگاه‌ها و کاربران را بازمی‌گرداند. نیازمند confirm=true است."
+
+#: includes/tools/class-changeset-tools.php:113
+msgid "Must be true. Reverting rewrites live content."
+msgstr "باید true باشد. بازگردانی، محتوای زنده را بازنویسی می‌کند."
+
+#: includes/tools/class-changeset-tools.php:167
+msgid "Reverting a changeset requires confirm=true."
+msgstr "بازگردانی یک مجموعه تغییرات نیازمند confirm=true است."
 
 #: includes/tools/class-comment-tools.php:24
 msgid ""
@@ -3658,6 +4615,34 @@ msgid "Include this site_id in every tool call that should run on this site."
 msgstr ""
 "این site_id را در هر فراخوانی ابزاری که باید روی این سایت اجرا شود وارد کنید."
 
+#: includes/tools/class-page-analysis-tools.php:30
+msgid ""
+"Read a built page as a structured outline: which builder made it, its "
+"sections, rows, columns, and elements with their stable node IDs, plus "
+"heading structure, word counts, link and image inventory, and accessibility "
+"gaps. Use this before editing so changes can target one node instead of "
+"replacing the page."
+msgstr "خواندن یک برگه ساخته‌شده به‌صورت یک طرح ساختاریافته: اینکه کدام صفحه‌ساز آن را ساخته است، بخش‌ها، ردیف‌ها، ستون‌ها و عنصرهای آن همراه با شناسه‌های پایدار گره، به‌علاوه ساختار سرنویس‌ها، شمار واژه‌ها، فهرست پیوندها و تصویرها و کاستی‌های دسترس‌پذیری. پیش از ویرایش از این استفاده کنید تا تغییرها به جای جایگزینی کل برگه، یک گره را هدف بگیرند."
+
+#: includes/tools/class-page-analysis-tools.php:37
+msgid "Include a short text excerpt for every element. On by default."
+msgstr "برای هر عنصر یک گزیده متنی کوتاه بگنجان. به‌صورت پیش‌فرض روشن است."
+
+#: includes/tools/class-page-analysis-tools.php:299
+msgid ""
+"Section, row, and column IDs above address existing nodes for incremental "
+"edits."
+msgstr "شناسه‌های بخش، ردیف و ستون بالا به گره‌های موجود اشاره دارند و برای ویرایش‌های تدریجی به کار می‌روند."
+
+#: includes/tools/class-page-analysis-tools.php:304
+msgid "Use the Gutenberg block tools, which operate on the parsed block tree."
+msgstr "از ابزارهای بلوک گوتنبرگ استفاده کنید که روی درخت تجزیه‌شده بلوک‌ها کار می‌کنند."
+
+#: includes/tools/class-page-analysis-tools.php:308
+msgid ""
+"Elementor documents are replaced as a whole; re-send the full blueprint."
+msgstr "سندهای المنتور به‌صورت یکجا جایگزین می‌شوند؛ کل طرح را دوباره بفرستید."
+
 #: includes/tools/class-performance-tools.php:24
 msgid ""
 "Request a CDN purge through detected WordPress cache integrations and a "
@@ -3911,7 +4896,14 @@ msgstr ""
 "ساختار پیوند یکتا باید با / آغاز و پایان یابد و فقط شامل توکن‌های بازنویسی "
 "وردپرس باشد."
 
-#: includes/tools/class-system-tools.php:28
+#: includes/tools/class-system-tools.php:30
+msgid ""
+"Read the tool allowances and daily call budget attached to the credential "
+"making this request, so an agent can check its own reach before planning "
+"work."
+msgstr "خواندن مجوزهای ابزار و سهمیه روزانه فراخوانی متصل به اعتبارنامه‌ای که این درخواست را فرستاده است، تا عامل پیش از برنامه‌ریزی کار، دامنه دسترسی خودش را بسنجد."
+
+#: includes/tools/class-system-tools.php:40
 msgid ""
 "Get the MCP endpoint, WordPress/Flatsome versions, locale, and capabilities "
 "available to the current credential."
@@ -3919,11 +4911,11 @@ msgstr ""
 "نقطهٔ پایانی MCP، نسخه‌های وردپرس و فلت‌سام، زبان و قابلیت‌های در دسترس "
 "اعتبارنامهٔ جاری را دریافت می‌کند."
 
-#: includes/tools/class-system-tools.php:38
+#: includes/tools/class-system-tools.php:50
 msgid "Read the durable MCP audit trail with redacted sensitive inputs."
 msgstr "ردپای پایدار ممیزی MCP را با ورودی‌های حساس پوشانده‌شده می‌خواند."
 
-#: includes/tools/class-system-tools.php:58
+#: includes/tools/class-system-tools.php:70
 msgid ""
 "Read webhook delivery attempts, response codes, retry state, and optionally "
 "their event payloads."
@@ -4879,194 +5871,3 @@ msgstr "تغییر کوپن سفارش به confirm=true نیاز دارد."
 #: includes/tools/class-woocommerce-tools.php:307
 msgid "Order not found."
 msgstr "سفارش پیدا نشد."
-
-#~ msgid "Operation-level controls for ACF Free and Contact Form 7."
-#~ msgstr "کنترل در سطح عملیات برای ACF Free و Contact Form 7."
-
-#~ msgid ""
-#~ "Allow validated SELECT queries against a restricted set of non-sensitive "
-#~ "tables."
-#~ msgstr ""
-#~ "پرس‌وجوهای SELECT اعتبارسنجی‌شده را روی مجموعه‌ای محدود از جدول‌های غیرحساس "
-#~ "مجاز کنید."
-
-#~ msgid "Bounded read-only SQL"
-#~ msgstr "SQL فقط‌خواندنی محدود"
-
-#~ msgid ""
-#~ "Run one bounded read-only SELECT, SHOW, DESCRIBE, or EXPLAIN query. "
-#~ "Sensitive credential tables, comments, stacked statements, file access, "
-#~ "locks, and timing functions are denied."
-#~ msgstr ""
-#~ "یک پرس‌وجوی محدود و فقط‌خواندنی SELECT، SHOW، DESCRIBE یا EXPLAIN اجرا "
-#~ "می‌کند. جدول‌های حساس اعتبارنامه، دیدگاه‌ها، دستورهای زنجیره‌ای، دسترسی فایل، "
-#~ "قفل‌ها و توابع زمان‌سنجی ممنوع‌اند."
-
-#~ msgid "Only SELECT, SHOW, DESCRIBE, and EXPLAIN are allowed."
-#~ msgstr "فقط SELECT، SHOW، DESCRIBE و EXPLAIN مجاز هستند."
-
-#~ msgid "Comments and statement separators are not allowed."
-#~ msgstr "توضیحات و جداکننده‌های عبارت مجاز نیستند."
-
-#~ msgid "The query contains a forbidden operation or function."
-#~ msgstr "پرس‌وجو شامل عملیات یا تابع ممنوع است."
-
-#~ msgid ""
-#~ "The query requests forbidden server, grant, process, or locking "
-#~ "information."
-#~ msgstr "پرس‌وجو اطلاعات ممنوع سرور، مجوز، فرایند یا قفل را درخواست می‌کند."
-
-#~ msgid ""
-#~ "Server schemas, identities, variables, and version metadata cannot be "
-#~ "queried."
-#~ msgstr "شِماها، هویت‌ها، متغیرها و فراداده نسخه سرور قابل پرس‌وجو نیستند."
-
-#~ msgid ""
-#~ "Use the table-list tool; raw SHOW is limited to columns and indexes of "
-#~ "safe tables."
-#~ msgstr ""
-#~ "از ابزار فهرست جدول استفاده کنید؛ SHOW خام فقط برای ستون‌ها و نمایه‌های "
-#~ "جدول‌های امن مجاز است."
-
-#~ msgid ""
-#~ "Credential-bearing users, usermeta, and options tables cannot be queried."
-#~ msgstr ""
-#~ "امکان پرس‌وجو از جدول‌های کاربران، usermeta و options که حاوی اعتبارنامه‌اند "
-#~ "وجود ندارد."
-
-#~ msgid ""
-#~ "Derived-table subqueries are not supported by the safe SQL validator."
-#~ msgstr "زیرپرس‌وجوهای جدول مشتق‌شده توسط اعتبارسنج امن SQL پشتیبانی نمی‌شوند."
-
-#~ msgid ""
-#~ "Safe SELECT and EXPLAIN queries must reference an allowed current-site "
-#~ "table."
-#~ msgstr ""
-#~ "پرس‌وجوهای امن SELECT و EXPLAIN باید به یک جدول مجاز در سایت فعلی ارجاع "
-#~ "دهند."
-
-#~ msgid "The query references a missing, cross-site, or sensitive table."
-#~ msgstr "پرس‌وجو به جدولی ناموجود، متعلق به سایت دیگر یا حساس ارجاع می‌دهد."
-
-#~ msgid "Raw postmeta values may contain credentials and cannot be selected."
-#~ msgstr ""
-#~ "مقادیر خام postmeta ممکن است حاوی اطلاعات ورود باشند و قابل انتخاب نیستند."
-
-#~ msgid "A banner element requires a Media Library media_id."
-#~ msgstr "المان بنر به media_id از کتابخانهٔ رسانه نیاز دارد."
-
-#~ msgid "A button element requires text."
-#~ msgstr "المان دکمه به متن نیاز دارد."
-
-#~ msgid "A text element requires html."
-#~ msgstr "المان متن به html نیاز دارد."
-
-#~ msgid "An image element requires a Media Library media_id."
-#~ msgstr "المان تصویر به media_id از کتابخانهٔ رسانه نیاز دارد."
-
-#~ msgid "Approve"
-#~ msgstr "تأیید"
-
-#~ msgid ""
-#~ "Create a production-ready Flatsome UX Builder page from declarative "
-#~ "sections, responsive rows, columns, text, images, buttons, and banners."
-#~ msgstr ""
-#~ "یک برگهٔ آمادهٔ تولید فلت‌سام UX Builder را از بخش‌ها، ردیف‌های واکنش‌گرا، "
-#~ "ستون‌ها، متن، تصاویر، دکمه‌ها و بنرهای تعریف‌شده ایجاد می‌کند."
-
-#~ msgid "Deny"
-#~ msgstr "رد"
-
-#~ msgid "Disabled tools"
-#~ msgstr "ابزارهای غیرفعال"
-
-#~ msgid ""
-#~ "Disabled tools are removed from discovery and rejected when called "
-#~ "directly. Credentials and permission scopes are not changed."
-#~ msgstr ""
-#~ "ابزارهای غیرفعال از فهرست کشف حذف می‌شوند و فراخوانی مستقیم آن‌ها رد می‌شود. "
-#~ "اعتبارنامه‌ها و دامنه‌های مجوز تغییری نمی‌کنند."
-
-#~ msgid ""
-#~ "Disabling every tool leaves the MCP connection online but with no "
-#~ "executable capabilities."
-#~ msgstr ""
-#~ "با غیرفعال‌کردن همهٔ ابزارها، اتصال MCP آنلاین می‌ماند اما هیچ قابلیت اجرایی "
-#~ "نخواهد داشت."
-
-#~ msgid "Discovery metadata for OAuth clients"
-#~ msgstr "فرادادهٔ کشف برای کلاینت‌های OAuth"
-
-#~ msgid "Exposure changes apply to new MCP requests immediately."
-#~ msgstr "تغییرات نمایش ابزارها بلافاصله بر درخواست‌های جدید MCP اعمال می‌شوند."
-
-#~ msgid ""
-#~ "Insert a text, image, button, or banner element into a UX Builder column "
-#~ "selected by stable column_id."
-#~ msgstr ""
-#~ "یک عنصر متن، تصویر، دکمه یا بنر را در ستون UX Builder انتخاب‌شده با "
-#~ "column_id پایدار درج می‌کند."
-
-#~ msgid "Label"
-#~ msgstr "برچسب"
-
-#~ msgid "MCP resource and authorization relationship"
-#~ msgstr "رابطهٔ منبع MCP و مجوزدهی"
-
-#~ msgid "Name"
-#~ msgstr "نام"
-
-#~ msgid "No"
-#~ msgstr "خیر"
-
-#~ msgid "OAuth metadata"
-#~ msgstr "فرادادهٔ OAuth"
-
-#~ msgid "Operational domains"
-#~ msgstr "حوزه‌های عملیاتی"
-
-#~ msgid "Primary Streamable HTTP transport"
-#~ msgstr "انتقال اصلی HTTP جریانی"
-
-#~ msgid "Rejected by server policy"
-#~ msgstr "ردشده توسط سیاست سرور"
-
-#~ msgid ""
-#~ "Runtime status, logs, developer maintenance, caches, CDN, and image "
-#~ "optimization."
-#~ msgstr ""
-#~ "وضعیت اجرا، گزارش‌ها، نگه‌داری توسعه‌دهنده، کش‌ها، CDN و بهینه‌سازی تصویر."
-
-#~ msgid "Site"
-#~ msgstr "سایت"
-
-#~ msgid "Supported Flatsome elements are text, image, button, and banner."
-#~ msgstr "المان‌های پشتیبانی‌شدهٔ فلت‌سام متن، تصویر، دکمه و بنر هستند."
-
-#~ msgid "Time (UTC)"
-#~ msgstr "زمان (UTC)"
-
-#, php-format
-#~ msgid "Tool exposure updated: %1$s exposed, %2$s disabled."
-#~ msgstr "سیاست نمایش ابزارها به‌روزرسانی شد: %1$s در دسترس، %2$s غیرفعال."
-
-#~ msgid "Tool groups"
-#~ msgstr "گروه‌های ابزار"
-
-#~ msgid ""
-#~ "Use these URLs when connecting Claude, GPT, or another MCP-compatible "
-#~ "client."
-#~ msgstr ""
-#~ "هنگام اتصال Claude، GPT یا هر کلاینت سازگار با MCP از این نشانی‌ها استفاده "
-#~ "کنید."
-
-#~ msgid ""
-#~ "WordPress extension inventory, installation, activation, and theme "
-#~ "switching."
-#~ msgstr "فهرست افزونه‌ها و پوسته‌های وردپرس، نصب، فعال‌سازی و تغییر پوسته."
-
-#~ msgid "Yes"
-#~ msgstr "بله"
-
-#~ msgid "requests per credential per minute"
-#~ msgstr "درخواست برای هر اعتبارنامه در دقیقه"
