@@ -19,12 +19,23 @@ final class MCP_Server {
 	private Auth $auth;
 	private Rate_Limiter $rate_limiter;
 	private Audit_Log $audit;
+	private Resource_Registry $resources;
+	private Prompt_Registry $prompts;
 
-	public function __construct( Tool_Registry $registry, Auth $auth, Rate_Limiter $rate_limiter, Audit_Log $audit ) {
+	public function __construct(
+		Tool_Registry $registry,
+		Auth $auth,
+		Rate_Limiter $rate_limiter,
+		Audit_Log $audit,
+		Resource_Registry $resources,
+		Prompt_Registry $prompts
+	) {
 		$this->registry     = $registry;
 		$this->auth         = $auth;
 		$this->rate_limiter = $rate_limiter;
 		$this->audit        = $audit;
+		$this->resources    = $resources;
+		$this->prompts      = $prompts;
 	}
 
 	public function register_hooks(): void {
@@ -118,17 +129,23 @@ final class MCP_Server {
 		$id     = $message['id'];
 		$params = isset( $message['params'] ) && is_array( $message['params'] ) ? $message['params'] : array();
 		$result = match ( $message['method'] ) {
-			'initialize' => $this->initialize( $params ),
-			'ping'       => array(),
-			'tools/list' => array( 'tools' => $this->registry->list_tools() ),
-			'tools/call' => $this->call_tool( $params ),
-			default      => new \WP_Error( 'method_not_found', __( 'JSON-RPC method not found.', 'mindio-magic-mcp' ) ),
+			'initialize'              => $this->initialize( $params ),
+			'ping'                    => array(),
+			'tools/list'              => array( 'tools' => $this->registry->list_tools() ),
+			'tools/call'              => $this->call_tool( $params ),
+			'resources/list'          => array( 'resources' => $this->resources->list_resources() ),
+			'resources/templates/list' => array( 'resourceTemplates' => $this->resources->list_templates() ),
+			'resources/read'          => $this->read_resource( $params ),
+			'prompts/list'            => array( 'prompts' => $this->prompts->list_prompts() ),
+			'prompts/get'             => $this->get_prompt( $params ),
+			default                   => new \WP_Error( 'method_not_found', __( 'JSON-RPC method not found.', 'mindio-magic-mcp' ) ),
 		};
 
 		if ( is_wp_error( $result ) ) {
 			$code = match ( $result->get_error_code() ) {
 				'method_not_found' => -32601,
-				'unknown_tool', 'invalid_arguments' => -32602,
+				'unknown_tool', 'invalid_arguments', 'invalid_resource_uri' => -32602,
+				'unknown_resource', 'unknown_prompt' => -32002,
 				'forbidden', 'insufficient_scope' => -32003,
 				default => -32603,
 			};
@@ -149,7 +166,11 @@ final class MCP_Server {
 
 		return array(
 			'protocolVersion' => $negotiated,
-			'capabilities'    => array( 'tools' => array( 'listChanged' => false ) ),
+			'capabilities'    => array(
+				'tools'     => array( 'listChanged' => false ),
+				'resources' => array( 'listChanged' => false, 'subscribe' => false ),
+				'prompts'   => array( 'listChanged' => false ),
+			),
 			'serverInfo'      => array(
 				'name'        => 'mindio-magic-mcp',
 				'title'       => 'Mindio Magic MCP',
@@ -164,6 +185,51 @@ final class MCP_Server {
 				$locale
 			),
 		);
+	}
+
+	/** @return array<string,mixed>|\WP_Error */
+	private function read_resource( array $params ): array|\WP_Error {
+		$uri = isset( $params['uri'] ) && is_string( $params['uri'] ) ? $params['uri'] : '';
+		if ( '' === $uri ) {
+			return new \WP_Error( 'invalid_arguments', __( 'resources/read requires a uri.', 'mindio-magic-mcp' ) );
+		}
+
+		$start  = hrtime( true );
+		$result = $this->resources->read( $uri );
+		$ms     = (int) round( ( hrtime( true ) - $start ) / 1000000 );
+		$this->audit->write(
+			'resources_read',
+			array( 'uri' => $uri ),
+			! is_wp_error( $result ),
+			is_wp_error( $result ) ? $result->get_error_code() : '',
+			$ms,
+			$this->auth
+		);
+
+		return $result;
+	}
+
+	/** @return array<string,mixed>|\WP_Error */
+	private function get_prompt( array $params ): array|\WP_Error {
+		$name      = isset( $params['name'] ) ? sanitize_key( (string) $params['name'] ) : '';
+		$arguments = $params['arguments'] ?? array();
+		if ( '' === $name || ! is_array( $arguments ) ) {
+			return new \WP_Error( 'invalid_arguments', __( 'prompts/get requires a prompt name and object arguments.', 'mindio-magic-mcp' ) );
+		}
+
+		$start  = hrtime( true );
+		$result = $this->prompts->get( $name, $arguments );
+		$ms     = (int) round( ( hrtime( true ) - $start ) / 1000000 );
+		$this->audit->write(
+			'prompts_get',
+			array( 'name' => $name ),
+			! is_wp_error( $result ),
+			is_wp_error( $result ) ? $result->get_error_code() : '',
+			$ms,
+			$this->auth
+		);
+
+		return $result;
 	}
 
 	/** @return array<string,mixed>|\WP_Error */

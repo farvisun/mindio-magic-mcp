@@ -141,6 +141,7 @@ final class Admin {
 			'audit_retention_days'   => max( 1, min( 365, absint( $_POST['audit_retention_days'] ?? 30 ) ) ),
 			'webhook_retention_days' => max( 1, min( 365, absint( $_POST['webhook_retention_days'] ?? 14 ) ) ),
 			'allowed_origins'        => array_unique( $origins ),
+			'brand_voice'            => mb_substr( sanitize_textarea_field( (string) wp_unslash( $_POST['brand_voice'] ?? '' ) ), 0, 1000 ),
 			'delete_on_uninstall'    => ! empty( $_POST['delete_on_uninstall'] ),
 			'allow_database_inspection'       => ! empty( $_POST['allow_database_inspection'] ),
 			'allow_filesystem_read'  => ! empty( $_POST['allow_filesystem_read'] ),
@@ -1255,6 +1256,23 @@ final class Admin {
 
 			<section class="mindio-card mindio-settings-group">
 				<div class="mindio-settings-group__intro">
+					<span class="mindio-settings-icon"><span class="dashicons dashicons-format-quote" aria-hidden="true"></span></span>
+					<div>
+						<h3><?php esc_html_e( 'Brand voice', 'mindio-magic-mcp' ); ?></h3>
+						<p><?php esc_html_e( 'Shared writing guidance handed to agents through MCP prompts and the site profile resource.', 'mindio-magic-mcp' ); ?></p>
+					</div>
+				</div>
+				<div class="mindio-settings-group__body">
+					<div class="mindio-field">
+						<label for="mindio-brand-voice"><?php esc_html_e( 'Voice and tone guidance', 'mindio-magic-mcp' ); ?></label>
+						<textarea id="mindio-brand-voice" class="mindio-control" rows="4" name="brand_voice" maxlength="1000" placeholder="<?php esc_attr_e( 'Warm and direct. Short sentences. No hype, no exclamation marks.', 'mindio-magic-mcp' ); ?>"><?php echo esc_textarea( (string) ( $settings['brand_voice'] ?? '' ) ); ?></textarea>
+						<small><?php esc_html_e( 'Left empty, agents are told to match the tone of existing published content.', 'mindio-magic-mcp' ); ?></small>
+					</div>
+				</div>
+			</section>
+
+			<section class="mindio-card mindio-settings-group">
+				<div class="mindio-settings-group__intro">
 					<span class="mindio-settings-icon"><span class="dashicons dashicons-shield-alt" aria-hidden="true"></span></span>
 					<div>
 						<h3><?php esc_html_e( 'Browser security', 'mindio-magic-mcp' ); ?></h3>
@@ -1589,6 +1607,7 @@ final class Admin {
 				'audit_retention_days'   => 30,
 				'webhook_retention_days' => 14,
 				'allowed_origins'        => array(),
+				'brand_voice'            => '',
 				'delete_on_uninstall'    => false,
 				'allow_database_inspection'       => false,
 				'allow_filesystem_read'  => false,

@@ -35,6 +35,8 @@ final class Plugin {
 		$rate_limiter = new Rate_Limiter();
 		$audit       = new Audit_Log();
 		$registry    = new Tool_Registry( $auth );
+		$resources   = new Resource_Registry( $auth );
+		$prompts     = new Prompt_Registry( $auth );
 		$webhooks    = new Webhook_Engine();
 
 		( new Content_Tools( $registry ) )->register();
@@ -64,7 +66,10 @@ final class Plugin {
 		( new Flatsome_Tools( $registry, new Flatsome_Renderer( $flatsome_catalog ), $flatsome_catalog ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks ) )->register();
 
-		( new MCP_Server( $registry, $auth, $rate_limiter, $audit ) )->register_hooks();
+		( new MCP_Resources( $resources, $flatsome_catalog ) )->register();
+		( new MCP_Prompts( $prompts, $flatsome_catalog ) )->register();
+
+		( new MCP_Server( $registry, $auth, $rate_limiter, $audit, $resources, $prompts ) )->register_hooks();
 		( new OAuth_Server( $auth, $rate_limiter ) )->register_hooks();
 		$webhooks->register_hooks();
 

@@ -16,6 +16,7 @@
     "test:expanded": "@php tests/integration/expanded-tools.php",
     "test:seo-providers": "@php tests/integration/seo-providers.php",
     "test:localization": "@php tests/integration/localization.php",
+    "test:resources": "@php tests/integration/resources-prompts.php",
     "test": [
       "@lint",
 	  "@test:review-regressions",
@@ -25,7 +26,8 @@
       "@test:oauth",
       "@test:expanded",
       "@test:seo-providers",
-      "@test:localization"
+      "@test:localization",
+      "@test:resources"
     ],
     "build": "bash bin/build-release.sh"
   }

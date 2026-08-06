@@ -2,6 +2,12 @@
 
 All notable changes to Mindio Magic MCP are documented here.
 
+## Unreleased
+
+- Added MCP resources: `resources/list`, `resources/templates/list`, and `resources/read` expose the site profile, post types, taxonomies, page templates, navigation menus, and the Flatsome component catalog, plus templated `mindio://post/{id}`, `mindio://media/{id}`, and `mindio://posts/{post_type}` URIs, each scope-checked and capability-checked per item.
+- Added MCP prompts: `prompts/list` and `prompts/get` serve five site-aware templates that embed the live site name, locale, text direction, active theme, detected page builder, and installed SEO provider.
+- Added a brand voice setting that flows into every prompt and the site profile resource, and advertised the resources and prompts capabilities during `initialize`.
+
 ## 0.6.0 - 2026-08-06
 
 - Renamed the main plugin file to `mindio-magic-mcp.php` so the source tree, the release archive, and the WordPress.org package all use the same name, and removed the rename step from the release build.

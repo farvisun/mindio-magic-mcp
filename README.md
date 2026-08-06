@@ -140,6 +140,27 @@ Scopes are hierarchical:
 
 A scope never grants permissions that the associated WordPress user does not have.
 
+## Resources and prompts
+
+Beyond tools, the server implements `resources/list`, `resources/templates/list`, `resources/read`, `prompts/list`, and `prompts/get`, and advertises both capabilities during `initialize`. Clients surface these natively, so an agent can read site context without spending a tool call.
+
+Fixed resources:
+
+| URI | Contents |
+| --- | --- |
+| `mindio://site/profile` | Identity, locale, direction, timezone, active theme, detected builder, and the configured brand voice |
+| `mindio://site/post-types` | Public post types with supports, taxonomies, and published counts |
+| `mindio://site/taxonomies` | Public taxonomies with hierarchy and attached post types |
+| `mindio://site/templates` | Page and post templates published by the active theme |
+| `mindio://site/menus` | Registered menu locations and their assigned menus |
+| `mindio://flatsome/components` | Typed UX Builder catalog with per-component availability |
+
+Templated resources: `mindio://post/{id}`, `mindio://media/{id}`, and `mindio://posts/{post_type}`. Reads are scope-checked and capability-checked per item, so a `read_only` credential sees exactly what its WordPress user may read. Post bodies are truncated at 60,000 characters with a `truncated` flag, and collections return the 50 most recently modified entries.
+
+Prompts are rendered against live site state rather than shipped as static text. Each one embeds the site name, URL, locale, text direction, active theme, and brand voice: `write_product_description`, `draft_blog_post`, `build_landing_page`, `audit_post_seo`, and `triage_comments`. `build_landing_page` inspects the site and instructs the agent to use Flatsome components or core blocks accordingly; `audit_post_seo` names the SEO plugin actually installed.
+
+Set the shared voice under **Settings → Mindio Magic MCP → Settings → Brand voice**. Left empty, agents are told to match existing published content.
+
 ## Tool catalog
 
 Version 0.5.6 registers 81 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all six adds 12 names and 147 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.

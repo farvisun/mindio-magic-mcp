@@ -170,6 +170,7 @@ final class Installer {
 			'audit_retention_days'   => 30,
 			'webhook_retention_days' => 14,
 			'allowed_origins'        => array(),
+			'brand_voice'            => '',
 			'delete_on_uninstall'    => false,
 			'allow_database_inspection'       => false,
 			'allow_filesystem_read'  => false,
