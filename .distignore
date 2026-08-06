@@ -9,6 +9,7 @@
 /composer.json
 /composer.lock
 /CONTRIBUTING.md
+/RELEASING.md
 /docs
 /dist
 /phpcs.xml.dist

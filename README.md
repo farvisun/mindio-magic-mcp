@@ -69,11 +69,12 @@ The canonical REST namespace is `mindio-magic-mcp/v1`. The pre-rename `flatsome-
 
 ## Administration console
 
-The responsive console under **Settings → Mindio Magic MCP** separates operational work into six focused tabs:
+The responsive console under **Settings → Mindio Magic MCP** separates operational work into seven focused tabs:
 
 - **Overview** shows endpoint status, connection URLs, environment readiness, onboarding steps, and recent tool health.
 - **Tools** governs the per-site MCP surface with searchable domain groups, per-tool switches, group toggles, enable/disable-all actions, and expandable per-operation policy for large plugin integrations. Integration reads start enabled; integration writes start disabled and must be explicitly selected by an administrator.
-- **Credentials** creates scoped API keys and governs dynamically registered OAuth clients.
+- **Credentials** creates scoped API keys and governs dynamically registered OAuth clients, including their allowed tool patterns and daily call budget.
+- **Approvals** lists tool calls parked for human review, with the exact arguments awaiting a decision.
 - **Webhooks** creates signed event destinations and documents the delivery security contract.
 - **Activity** provides searchable tool audit records and webhook delivery diagnostics.
 - **Settings** groups endpoint limits, browser policy, retention, privileged developer capabilities, and uninstall behavior.
@@ -200,7 +201,7 @@ Allow: woocommerce_*, get_*     Deny: delete_*     Budget: 200 calls/day
 
 ## Tool catalog
 
-Version 0.5.6 registers 81 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all six adds 12 names and 147 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
+Version 0.7.0 registers 95 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all six adds 12 names and 147 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
 
 Administrators can disable any registered tool under **Settings → Mindio Magic MCP → Tools**. Disabled tools are omitted from `tools/list` and direct calls fail with `tool_disabled`; credentials and their scopes remain unchanged. ACF, BetterDocs, Contact Form 7, Yoast, Rank Math, and WooCommerce controls are shown only when the corresponding plugin is installed. Installed-but-inactive integrations remain configurable, while their calls fail closed until activation. Expand a dispatcher to enable individual operations. A disabled operation is removed from the dispatcher's `operation` enum and direct calls fail with `operation_disabled`. Tool and operation policies are stored per site and retained while a dependency is absent.
 
@@ -538,15 +539,14 @@ Generated Flatsome pages derive direction from `content_locale` when `direction`
 The integration smoke test expects a WordPress fixture with this plugin activated. Flatsome is required for the rendering assertion.
 
 ```bash
-WP_PATH=/path/to/wordpress composer test:integration
-WP_PATH=/path/to/wordpress composer test:expanded
-# Run separately while Yoast Free or Rank Math Free is active:
-WP_PATH=/path/to/wordpress composer test:seo-providers
 composer lint
+WP_PATH=/path/to/wordpress composer test
 composer build
 ```
 
-The build script creates `dist/mindio-magic-mcp-0.5.6.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. REST routes, credentials, and webhook headers remain compatible; pre-directory plugin-owned WordPress globals now use the canonical `mindio_magic_mcp_` prefix.
+`composer test` runs the linter and every integration suite in turn. Run individual suites with their own script names, for example `composer test:changesets` or `composer test:approvals`; `composer test:seo-providers` needs Yoast Free or Rank Math Free active.
+
+The build script creates `dist/mindio-magic-mcp-0.7.0.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. REST routes, credentials, and webhook headers remain compatible; pre-directory plugin-owned WordPress globals now use the canonical `mindio_magic_mcp_` prefix.
 
 WordPress.org directory artwork lives in `.wordpress-org/`. These files are excluded from the installable ZIP and must be deployed to the SVN repository's top-level `assets/` directory. To prepare both plugin code and directory artwork in a clean SVN checkout:
 
@@ -560,10 +560,12 @@ bin/prepare-wordpress-org.sh ../wordpress-org-mindio-magic-mcp
 cd ../wordpress-org-mindio-magic-mcp
 svn status
 svn diff --summarize
-svn commit -m "Release 0.5.6" --username farvisun
+svn commit -m "Release 0.7.0" --username farvisun
 ```
 
 The preparation script builds the current release, synchronizes its extracted contents directly into `trunk/`, synchronizes `.wordpress-org/` into `assets/`, and creates the matching numeric tag. It refuses to modify an SVN working copy that already has uncommitted changes.
+
+The full step-by-step runbook, including the version surfaces that must agree and the WordPress.org review checklist, is in [RELEASING.md](RELEASING.md).
 
 ## Extension hooks
 
