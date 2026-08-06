@@ -63,8 +63,15 @@ final class Plugin {
 		( new Filesystem_Tools( $registry ) )->register();
 		( new Performance_Tools( $registry ) )->register();
 		( new Webhook_Tools( $registry, $webhooks ) )->register();
-		$flatsome_catalog = new Flatsome_Component_Catalog();
-		( new Flatsome_Tools( $registry, new Flatsome_Renderer( $flatsome_catalog ), $flatsome_catalog ) )->register();
+		$flatsome_catalog  = new Flatsome_Component_Catalog();
+		$flatsome_renderer = new Flatsome_Renderer( $flatsome_catalog );
+		( new Flatsome_Tools( $registry, $flatsome_renderer, $flatsome_catalog ) )->register();
+
+		$builders = new Page_Builder_Registry();
+		$builders->add( new Flatsome_Builder( $flatsome_renderer, $flatsome_catalog ) );
+		$builders->add( new Elementor_Builder() );
+		$builders->add( new Gutenberg_Builder() );
+		( new Builder_Tools( $registry, $builders ) )->register();
 		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks, $auth ) )->register();
 

@@ -289,6 +289,26 @@ Reverts replay entries newest first and re-check capabilities per entry, so a cr
 
 Gutenberg tools work with structured block trees and numeric index paths. Writes validate every block type against WordPress's live block registry, enforce depth/node limits, save a revision, and accept `expected_modified_gmt` for optimistic concurrency. Posts containing Flatsome or mixed builder content are protected from accidental block serialization; an override requires both `force_non_gutenberg=true` and `confirm=true`. Use the Flatsome tools for those pages whenever possible.
 
+## Builder-neutral pages
+
+The Flatsome tools remain the deepest surface, with 29 typed UX Builder components. Alongside them, one neutral contract authors pages on sites that do not run Flatsome:
+
+- `list_page_builders` — which builders are usable here, which is preferred, and the element types each supports
+- `create_builder_page` — build from a neutral blueprint
+- `update_builder_page` — replace a page body, keeping the builder it already uses
+
+A blueprint is sections → rows → columns → elements, using a vocabulary every builder understands: `heading`, `text`, `image`, `button`, `list`, `quote`, `video`, `gallery`, `separator`, `spacer`, and `html`.
+
+| Builder | Availability | Storage |
+| --- | --- | --- |
+| `flatsome` | Flatsome or a child theme is active | UX Builder shortcodes, via the existing typed renderer |
+| `elementor` | Elementor is active | `_elementor_data` JSON, with a plain-text mirror in post content |
+| `gutenberg` | Always | Core blocks |
+
+`builder: "auto"` — the default — picks a site-specific builder over core blocks, so the same blueprint yields Flatsome shortcodes on a Flatsome site and core blocks elsewhere. On update, the builder already used by the page wins unless another is named. Every render returns the same `render_report` shape with `native_count`, `fallback_count`, and a `fallbacks` list, so unsupported elements are reported rather than silently dropped: Elementor has no free gallery widget, so galleries fall back there.
+
+Elements that are body copy rather than layout — lists and quotes — ride inside a text component on Flatsome and Elementor, and become real `core/list` and `core/quote` blocks on Gutenberg.
+
 ## Flatsome page generation
 
 `create_flatsome_page` accepts a declarative hierarchy of sections, rows, columns, and strict typed components. Version 0.2 is native-first: it emits the corresponding UX Builder shortcode for titles, rich text, images, buttons, banners, feature and image boxes, message boxes, sliders, banner grids, accordions, tabs, galleries, videos, countdowns, testimonials, team members, pricing tables, logos, dividers, gaps, blog posts, products, product categories, social follow/share links, maps, and search.

@@ -4,6 +4,10 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added a builder abstraction: one neutral blueprint of sections, rows, columns, and eleven element types renders through Flatsome UX Builder, Elementor, or core blocks behind a single `Page_Builder` contract.
+- Added `list_page_builders`, `create_builder_page`, and `update_builder_page`, with `auto` selection that prefers a site-specific builder over core blocks and keeps the builder an existing page already uses.
+- Reported unsupported elements per builder through the same `render_report` shape the Flatsome tools already emit, instead of dropping them silently.
+
 - Added per-credential tool policy and daily call budgets: each API key and OAuth client carries allow patterns, deny patterns, and a UTC-daily budget, enforced in both `tools/list` and `tools/call`.
 - Added `get_credential_policy` so an agent can read its own allowances and remaining budget, and surfaced the policy on each credential row in the admin console.
 

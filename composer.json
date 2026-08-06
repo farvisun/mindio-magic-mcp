@@ -20,6 +20,7 @@
     "test:dry-run": "@php tests/integration/dry-run.php",
     "test:changesets": "@php tests/integration/changesets.php",
     "test:policy": "@php tests/integration/credential-policy.php",
+    "test:builders": "@php tests/integration/builders.php",
     "test": [
       "@lint",
       "@test:review-regressions",
@@ -33,7 +34,8 @@
       "@test:resources",
       "@test:dry-run",
       "@test:changesets",
-      "@test:policy"
+      "@test:policy",
+      "@test:builders"
     ],
     "build": "bash bin/build-release.sh"
   }
