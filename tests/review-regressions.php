@@ -8,7 +8,7 @@
 declare(strict_types=1);
 
 $root  = dirname( __DIR__ );
-$files = array( $root . '/flatsome-mcp.php', $root . '/uninstall.php' );
+$files = array( $root . '/mindio-magic-mcp.php', $root . '/uninstall.php' );
 $iterator = new RecursiveIteratorIterator(
 	new RecursiveDirectoryIterator( $root . '/includes', FilesystemIterator::SKIP_DOTS )
 );

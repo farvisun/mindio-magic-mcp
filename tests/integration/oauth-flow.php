@@ -39,12 +39,12 @@ switch_to_locale( 'en_US' );
 
 $_SERVER['REMOTE_ADDR']    = '127.0.0.1';
 $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
-$_SERVER['REQUEST_URI']     = '/wp-admin/admin.php?page=flatsome-mcp-oauth-authorize';
+$_SERVER['REQUEST_URI']     = '/wp-admin/admin.php?page=mindio-magic-mcp-oauth-authorize';
 
 $auth         = new \MindioMagicMCP\Auth();
 $oauth        = new \MindioMagicMCP\OAuth_Server( $auth, new \MindioMagicMCP\Rate_Limiter() );
 $client_id    = 'fmc_test_' . wp_generate_password( 24, false, false );
-$redirect_uri = 'http://127.0.0.1:48765/callback/flatsome-mcp';
+$redirect_uri = 'http://127.0.0.1:48765/callback/mindio-magic-mcp';
 $clients      = get_option( 'mindio_magic_mcp_oauth_clients', array() );
 $clients      = is_array( $clients ) ? $clients : array();
 $original_clients = $clients;
@@ -61,11 +61,11 @@ update_option( 'mindio_magic_mcp_oauth_clients', $clients, false );
 try {
 	$oauth->register_authorization_page();
 	fmp_oauth_assert(
-		false !== has_action( 'load-admin_page_flatsome-mcp-oauth-authorize', array( $oauth, 'render_authorization_page' ) ),
+		false !== has_action( 'load-admin_page_mindio-magic-mcp-oauth-authorize', array( $oauth, 'render_authorization_page' ) ),
 		'The standalone authorization document is not attached before WordPress renders its admin chrome.'
 	);
 
-	$canonical_resource = untrailingslashit( rest_url( 'flatsome-mcp/v1/mcp' ) );
+	$canonical_resource = untrailingslashit( rest_url( 'mindio-magic-mcp/v1/mcp' ) );
 	$discovery_resource = untrailingslashit( home_url( '/.well-known/oauth-authorization-server' ) );
 
 	$normalized = fmp_oauth_invoke( $oauth, 'validated_resource', $discovery_resource );
@@ -116,7 +116,7 @@ try {
 		$canonical_resource
 	);
 
-	$token_request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/oauth/token' );
+	$token_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/oauth/token' );
 	$token_request->set_body_params(
 		array(
 			'grant_type'    => 'authorization_code',

@@ -45,10 +45,10 @@ final class Admin {
 		}
 
 		wp_enqueue_style( 'dashicons' );
-		wp_enqueue_style( 'flatsome-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/css/admin.css', array(), MINDIO_MAGIC_MCP_VERSION );
-		wp_enqueue_script( 'flatsome-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/js/admin.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
+		wp_enqueue_style( 'mindio-magic-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/css/admin.css', array(), MINDIO_MAGIC_MCP_VERSION );
+		wp_enqueue_script( 'mindio-magic-mcp-admin', MINDIO_MAGIC_MCP_URL . 'assets/js/admin.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
 		wp_localize_script(
-			'flatsome-mcp-admin',
+			'mindio-magic-mcp-admin',
 			'MindioMagicMCPAdmin',
 			array(
 				'copy'        => __( 'Copy', 'mindio-magic-mcp' ),
@@ -374,9 +374,9 @@ final class Admin {
 				</div>
 				<div class="fmp-endpoints">
 					<?php
-					$this->render_endpoint( 'fmp-mcp-endpoint', __( 'MCP endpoint', 'mindio-magic-mcp' ), rest_url( 'flatsome-mcp/v1/mcp' ), __( 'Paste this URL into your MCP client', 'mindio-magic-mcp' ) );
+					$this->render_endpoint( 'fmp-mcp-endpoint', __( 'MCP endpoint', 'mindio-magic-mcp' ), rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/mcp' ), __( 'Paste this URL into your MCP client', 'mindio-magic-mcp' ) );
 					$this->render_endpoint( 'fmp-oauth-metadata', __( 'OAuth authorization server', 'mindio-magic-mcp' ), home_url( '/.well-known/oauth-authorization-server' ), __( 'Automatic discovery only — not an MCP server URL', 'mindio-magic-mcp' ) );
-					$this->render_endpoint( 'fmp-protected-resource', __( 'Protected resource metadata', 'mindio-magic-mcp' ), rest_url( 'flatsome-mcp/v1/oauth/protected-resource' ), __( 'Automatic resource discovery for OAuth clients', 'mindio-magic-mcp' ) );
+					$this->render_endpoint( 'fmp-protected-resource', __( 'Protected resource metadata', 'mindio-magic-mcp' ), rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/oauth/protected-resource' ), __( 'Automatic resource discovery for OAuth clients', 'mindio-magic-mcp' ) );
 					?>
 				</div>
 			</section>
@@ -734,7 +734,7 @@ final class Admin {
 					<span class="dashicons dashicons-shield-alt" aria-hidden="true"></span>
 				</div>
 				<dl class="fmp-security-spec">
-					<div><dt><?php esc_html_e( 'Signature', 'mindio-magic-mcp' ); ?></dt><dd><code>X-MagicMCP-Signature-256</code></dd></div>
+					<div><dt><?php esc_html_e( 'Signature', 'mindio-magic-mcp' ); ?></dt><dd><code>X-Mindio-Magic-MCP-Signature-256</code></dd></div>
 					<div><dt><?php esc_html_e( 'Algorithm', 'mindio-magic-mcp' ); ?></dt><dd>HMAC-SHA256</dd></div>
 					<div><dt><?php esc_html_e( 'Retries', 'mindio-magic-mcp' ); ?></dt><dd><?php esc_html_e( 'Up to 5 attempts', 'mindio-magic-mcp' ); ?></dd></div>
 					<div><dt><?php esc_html_e( 'Network policy', 'mindio-magic-mcp' ); ?></dt><dd><?php esc_html_e( 'HTTPS with private targets blocked', 'mindio-magic-mcp' ); ?></dd></div>
@@ -1509,9 +1509,9 @@ final class Admin {
 			),
 			'integrations' => array(
 				'label'       => __( 'Plugin integrations', 'mindio-magic-mcp' ),
-				'description' => __( 'Operation-level controls for ACF Free and Contact Form 7.', 'mindio-magic-mcp' ),
+				'description' => __( 'Operation-level controls for ACF Free, BetterDocs, and Contact Form 7.', 'mindio-magic-mcp' ),
 				'icon'        => 'dashicons-admin-generic',
-				'tools'       => array( 'acf_read', 'acf_write', 'contact_form_7_read', 'contact_form_7_write' ),
+				'tools'       => array( 'acf_read', 'acf_write', 'betterdocs_read', 'betterdocs_write', 'contact_form_7_read', 'contact_form_7_write' ),
 			),
 			'operations'   => array(
 				'label'       => __( 'Operations and diagnostics', 'mindio-magic-mcp' ),

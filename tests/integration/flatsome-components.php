@@ -26,7 +26,7 @@ fmp_component_assert( ! empty( $admins ), 'The WordPress fixture needs an admini
 wp_set_current_user( (int) $admins[0] );
 
 $upload = wp_upload_bits(
-	'flatsome-mcp-components.png',
+	'mindio-magic-mcp-components.png',
 	null,
 	base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=', true )
 );

@@ -2,20 +2,20 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mindio Magic MCP 0.5.5\n"
-"Report-Msgid-Bugs-To: https://github.com/farvisun/mindio-magic-mcp/issues\n"
+"Project-Id-Version: Mindio Magic MCP 0.6.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mindio-magic-mcp\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-22T09:13:22+00:00\n"
+"POT-Creation-Date: 2026-07-27T19:35:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mindio-magic-mcp\n"
 
 #. Plugin Name of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 #: includes/class-admin.php:76
 #: includes/class-admin.php:77
 #: includes/class-admin.php:240
@@ -23,22 +23,22 @@ msgid "Mindio Magic MCP"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "https://github.com/farvisun/mindio-magic-mcp"
 msgstr ""
 
 #. Description of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "A secure MCP server for WordPress that supports Flatsome UX Builder, content automation, and site management."
 msgstr ""
 
 #. Author of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "Mohammad Askari <farvisun@gmail.com>"
 msgstr ""
 
 #. Author URI of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "https://profiles.wordpress.org/farvisun/"
 msgstr ""
 
@@ -1309,7 +1309,7 @@ msgid "Plugin integrations"
 msgstr ""
 
 #: includes/class-admin.php:1512
-msgid "Operation-level controls for ACF Free and Contact Form 7."
+msgid "Operation-level controls for ACF Free, BetterDocs, and Contact Form 7."
 msgstr ""
 
 #: includes/class-admin.php:1517
@@ -2405,6 +2405,148 @@ msgstr ""
 #: includes/tools/class-automation-tools.php:353
 #, php-format
 msgid "No automation provider is configured. Integrate one with the %s filter."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:49
+msgid "List BetterDocs documents"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:50
+msgid "List BetterDocs documents with bounded search, status, taxonomy, ordering, and pagination filters."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:68
+msgid "Get BetterDocs document"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:69
+msgid "Get one BetterDocs document, including its safely stored content and taxonomy assignments."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:76
+msgid "List BetterDocs terms"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:77
+msgid "List BetterDocs document categories or tags with bounded hierarchy and pagination filters."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:96
+msgid "Create BetterDocs document"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:97
+msgid "Create a sanitized BetterDocs document through its registered WordPress REST post type."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:104
+msgid "Update BetterDocs document"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:105
+msgid "Update a sanitized BetterDocs document with optional optimistic concurrency."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:121
+msgid "Delete BetterDocs document"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:122
+msgid "Move a BetterDocs document to Trash, or permanently delete it when force and confirmation are both supplied."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:137
+msgid "Create BetterDocs term"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:138
+msgid "Create a BetterDocs document category or tag through its registered WordPress REST taxonomy."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:154
+msgid "Update BetterDocs term"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:155
+msgid "Update a BetterDocs document category or tag through its registered WordPress REST taxonomy."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:172
+msgid "Delete BetterDocs term"
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:173
+msgid "Permanently delete a BetterDocs document category or tag after explicit confirmation."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:326
+msgid "BetterDocs created no readable document."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:352
+msgid "BetterDocs returned no readable updated document."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:401
+msgid "BetterDocs created no readable term."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:427
+msgid "BetterDocs returned no readable updated term."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:536
+msgid "BetterDocs document not found."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:586
+msgid "A non-empty BetterDocs document title is required."
+msgstr ""
+
+#. translators: 1: term ID, 2: taxonomy name.
+#: includes/tools/class-betterdocs-tools.php:620
+#, php-format
+msgid "BetterDocs term %1$d does not exist in %2$s."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:634
+msgid "Provide at least one BetterDocs document field to update."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:646
+msgid "A non-empty BetterDocs term name is required."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:658
+msgid "The requested BetterDocs parent term does not exist."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:661
+msgid "A BetterDocs term cannot be its own parent."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:666
+msgid "Provide at least one BetterDocs term field to update."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:683
+msgid "BetterDocs returned an invalid WordPress REST response."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:705
+msgid "The requested BetterDocs taxonomy is unavailable."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:713
+msgid "BetterDocs term not found."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:769
+msgid "The BetterDocs document changed after the supplied modification time."
+msgstr ""
+
+#: includes/tools/class-betterdocs-tools.php:787
+msgid "Deleting BetterDocs content requires confirm=true."
 msgstr ""
 
 #: includes/tools/class-comment-tools.php:24

@@ -4,7 +4,7 @@ Tags: mcp, ai, flatsome, automation, oauth
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 0.5.5
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Highlights:
 * Structured Gutenberg block discovery and revision-safe block-tree editing
 * Post, media, comments, users, SEO, settings, plugin, theme, webhook, search, and diagnostics tools
 * Official-directory plugin/theme search, installation, updates, deletion, generic theme settings, and Flatsome settings
-* Free integrations for ACF, Contact Form 7, WooCommerce, Yoast SEO, and Rank Math with fixed operation catalogs
+* Free integrations for ACF, BetterDocs, Contact Form 7, WooCommerce, Yoast SEO, and Rank Math with fixed operation catalogs
 * Opt-in, bounded, read-only filesystem and database inspection
 * Native-first Flatsome sections, rows, columns, and 29 typed UX Builder components with reported HTML fallback
 * Persian content support and RTL-safe generated layouts
@@ -35,7 +35,7 @@ Highlights:
 * Expandable per-operation integration policy; reads start enabled and writes start disabled
 * Searchable diagnostics, copy-ready endpoints, accessible controls, and WordPress.org language-pack support
 
-The core single-site plugin registers 82 MCP tool names. Each installed supported integration adds read and write dispatchers; all five integrations add 10 names and 138 fixed operations. Active WooCommerce adds 6 compatible legacy tools and WordPress multisite adds 2 tools.
+The core single-site plugin registers 81 MCP tool names. Each installed supported integration adds read and write dispatchers; all six integrations add 12 names and 147 fixed operations. Active WooCommerce adds 6 compatible legacy tools and WordPress multisite adds 2 tools.
 
 No prompt or content is sent to an external AI provider by default. Generation and translation integrations are opt-in through documented WordPress filters.
 
@@ -85,7 +85,7 @@ No. Read-only filesystem inspection, fixed-shape database schema inspection, and
 
 = Can administrators disable individual MCP tools? =
 
-Yes. Open the Tools tab to control the MCP surface per site. Disabled tools disappear from discovery and direct calls are rejected without changing existing credentials or scopes. ACF, Contact Form 7, Yoast, Rank Math, and WooCommerce dispatchers also expose individual operation switches. Their write operations are disabled by default.
+Yes. Open the Tools tab to control the MCP surface per site. Disabled tools disappear from discovery and direct calls are rejected without changing existing credentials or scopes. ACF, BetterDocs, Contact Form 7, Yoast, Rank Math, and WooCommerce dispatchers also expose individual operation switches. Their write operations are disabled by default.
 
 = When are plugin integration controls shown? =
 
@@ -111,33 +111,24 @@ No. The plugin contains no license check, paywall, feature gate, time limit, usa
 
 Its primary distinction is native-first Flatsome UX Builder generation and editing across 29 typed components, combined with revision-safe Gutenberg operations, granular per-tool and per-operation policy, OAuth 2.1, Persian localization, and RTL-safe generated layouts.
 
+== Screenshots ==
+
+1. System overview with MCP connection endpoints, environment readiness, onboarding guidance, and recent tool activity.
+2. Granular tool governance with searchable groups, per-tool exposure controls, operation policy, and scope indicators.
+3. Security and runtime settings for request limits, browser origins, retention, developer capabilities, and uninstall behavior.
+
 == Changelog ==
 
-= 0.5.5 =
+= 0.6.0 =
 
-* Adopted unique Mindio-prefixed WordPress globals and storage identifiers.
-* Removed request-supplied SQL execution; database inspection now uses prepared, fixed-shape queries only.
-* Switched Rank Math settings access to the provider's helper API.
+* Renamed the REST namespace to `mindio-magic-mcp/v1` and kept `flatsome-mcp/v1` registered as a deprecated alias.
+* Renamed the API key header to `X-Mindio-Magic-MCP-Key` and the webhook headers to `X-Mindio-Magic-MCP-*`, keeping the previous names readable or emitted for compatibility.
+* Renamed the main plugin file, admin and OAuth asset handles, and the OAuth consent page slug to the plugin's own identity.
 
-= 0.5.4 =
+= 0.5.6 =
 
-* Updated public repository metadata and release documentation for the canonical Mindio Magic MCP repository.
-* Switched to WordPress.org language-pack delivery and removed hardcoded assumptions about the uploads directory.
-
-= 0.5.3 =
-
-* Standardized the WordPress.org slug, text domain, plugin directory, main release file, and development translation catalogs as mindio-magic-mcp.
-* Preserved existing REST routes, database options, hooks, credentials, and webhook headers for upgrade compatibility.
-
-= 0.5.2 =
-
-* Always filter agent-supplied post, automation, WooCommerce, Gutenberg, and ACF markup through WordPress sanitization before storage.
-* Added field-aware ACF value validation and regression tests for executable markup removal.
-* Clarified WordPress.org directory compliance boundaries, external package sources, free availability, and product differentiation.
-
-= 0.5.1 =
-
-* Rebranded the public plugin, admin console, OAuth experience, and MCP display identity as Mindio Magic MCP.
-* Preserved legacy REST routes, database options, hooks, credentials, and webhook headers for upgrades.
+* Added 9 BetterDocs Free operations for documents, categories, and tags.
+* Preserved BetterDocs REST hooks and role capabilities while filtering writes and confirming deletion.
+* Added BetterDocs integration coverage and refreshed WordPress.org release assets.
 
 For the complete release history, see https://github.com/farvisun/mindio-magic-mcp/blob/main/CHANGELOG.md.

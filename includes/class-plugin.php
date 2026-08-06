@@ -52,6 +52,7 @@ final class Plugin {
 		( new Theme_Tools( $registry ) )->register();
 		( new ACF_Tools( $registry ) )->register();
 		( new Contact_Form_7_Tools( $registry ) )->register();
+		( new BetterDocs_Tools( $registry ) )->register();
 		( new WooCommerce_Tools( $registry ) )->register();
 		( new WooCommerce_Operation_Tools( $registry ) )->register();
 		( new Multisite_Tools( $registry ) )->register();
@@ -84,7 +85,7 @@ final class Plugin {
 		}
 		$post = get_post();
 		if ( $post && str_contains( $post->post_content, 'fmp-rtl' ) ) {
-			wp_enqueue_style( 'flatsome-mcp-frontend', MINDIO_MAGIC_MCP_URL . 'assets/css/frontend.css', array(), MINDIO_MAGIC_MCP_VERSION );
+			wp_enqueue_style( 'mindio-magic-mcp-frontend', MINDIO_MAGIC_MCP_URL . 'assets/css/frontend.css', array(), MINDIO_MAGIC_MCP_VERSION );
 		}
 	}
 

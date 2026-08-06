@@ -26,10 +26,16 @@ final class Auth {
 		$this->current_token_id   = '';
 		$this->current_token_type = '';
 
-		$header       = trim( (string) $request->get_header( 'authorization' ) );
-		$api_header   = trim( (string) $request->get_header( 'x-magicmcp-key' ) );
-		if ( '' === $api_header ) {
-			$api_header = trim( (string) $request->get_header( 'x-flatsome-mcp-key' ) );
+		$header     = trim( (string) $request->get_header( 'authorization' ) );
+		$api_header = '';
+
+		// First match wins: canonical header, then the deprecated header names
+		// still emitted by clients configured before the plugin was renamed.
+		foreach ( array( 'x-mindio-magic-mcp-key', 'x-magicmcp-key', 'x-flatsome-mcp-key' ) as $api_key_header ) {
+			$api_header = trim( (string) $request->get_header( $api_key_header ) );
+			if ( '' !== $api_header ) {
+				break;
+			}
 		}
 		$bearer_token = '';
 		if ( preg_match( '/^Bearer\s+(.+)$/i', $header, $matches ) ) {
@@ -118,9 +124,19 @@ final class Auth {
 			return new \WP_Error( 'invalid_grant', __( 'The refresh token does not belong to this client.', 'mindio-magic-mcp' ) );
 		}
 		$bound_resource = (string) ( $record['resource'] ?? '' );
-		if ( '' === $bound_resource || '' === $resource || ! hash_equals( $bound_resource, $resource ) ) {
+		if (
+			'' === $bound_resource || '' === $resource ||
+			(
+				! hash_equals( $bound_resource, $resource ) &&
+				! hash_equals( self::canonicalize_resource_namespace( $bound_resource ), $resource )
+			)
+		) {
 			return new \WP_Error( 'invalid_target', __( 'The refresh token resource does not match this MCP endpoint.', 'mindio-magic-mcp' ) );
 		}
+
+		// Rotation is also the migration point: tokens bound to the pre-rename
+		// namespace are reissued against the canonical one.
+		$bound_resource = $resource;
 
 		$scope = $record['scope'];
 		if ( '' !== $requested_scope ) {
@@ -360,6 +376,21 @@ final class Auth {
 		update_option( 'mindio_magic_mcp_tokens', $tokens, false );
 	}
 
+	/**
+	 * Rewrites the deprecated REST namespace in a stored resource URI to the canonical one.
+	 */
+	private static function canonicalize_resource_namespace( string $resource ): string {
+		return str_replace(
+			'/' . MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/',
+			'/' . MINDIO_MAGIC_MCP_REST_NAMESPACE . '/',
+			$resource
+		);
+	}
+
+	/**
+	 * The HMAC context string is frozen at its pre-rename value on purpose:
+	 * changing it would invalidate every access token already issued.
+	 */
 	private function token_hash( string $secret ): string {
 		return hash_hmac( 'sha256', $secret, wp_salt( 'auth' ) . '|flatsome-mcp-token' );
 	}

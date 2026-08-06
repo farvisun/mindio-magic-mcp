@@ -3,7 +3,7 @@
  * Plugin Name:       Mindio Magic MCP
  * Plugin URI:        https://github.com/farvisun/mindio-magic-mcp
  * Description:       A secure MCP server for WordPress that supports Flatsome UX Builder, content automation, and site management.
- * Version:           0.5.5
+ * Version:           0.6.0
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Mohammad Askari <farvisun@gmail.com>
@@ -25,11 +25,16 @@ if ( defined( 'MINDIO_MAGIC_MCP_FILE' ) ) {
 	return;
 }
 
-define( 'MINDIO_MAGIC_MCP_VERSION', '0.5.5' );
+define( 'MINDIO_MAGIC_MCP_VERSION', '0.6.0' );
 define( 'MINDIO_MAGIC_MCP_DB_VERSION', '1' );
 define( 'MINDIO_MAGIC_MCP_FILE', __FILE__ );
 define( 'MINDIO_MAGIC_MCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MINDIO_MAGIC_MCP_URL', plugin_dir_url( __FILE__ ) );
+
+// Canonical REST namespace, plus the deprecated pre-rename one that stays
+// registered so MCP clients and OAuth grants configured before 0.6.0 keep working.
+define( 'MINDIO_MAGIC_MCP_REST_NAMESPACE', 'mindio-magic-mcp/v1' );
+define( 'MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE', 'flatsome-mcp/v1' );
 
 $mindio_magic_mcp_files = array(
 	'includes/class-installer.php',
@@ -61,6 +66,7 @@ $mindio_magic_mcp_files = array(
 	'includes/tools/class-theme-tools.php',
 	'includes/tools/class-acf-tools.php',
 	'includes/tools/class-contact-form-7-tools.php',
+	'includes/tools/class-betterdocs-tools.php',
 	'includes/tools/class-woocommerce-tools.php',
 	'includes/tools/class-woocommerce-operation-tools.php',
 	'includes/tools/class-multisite-tools.php',

@@ -32,22 +32,23 @@ final class MCP_Server {
 	}
 
 	public function register_route(): void {
-		register_rest_route(
-			'flatsome-mcp/v1',
-			'/mcp',
+		$routes = array(
 			array(
-				array(
-					'methods'             => 'POST',
-					'callback'            => array( $this, 'handle_post' ),
-					'permission_callback' => '__return_true',
-				),
-				array(
-					'methods'             => array( 'GET', 'DELETE' ),
-					'callback'            => array( $this, 'handle_unsupported_transport_method' ),
-					'permission_callback' => '__return_true',
-				),
-			)
+				'methods'             => 'POST',
+				'callback'            => array( $this, 'handle_post' ),
+				'permission_callback' => '__return_true',
+			),
+			array(
+				'methods'             => array( 'GET', 'DELETE' ),
+				'callback'            => array( $this, 'handle_unsupported_transport_method' ),
+				'permission_callback' => '__return_true',
+			),
 		);
+
+		register_rest_route( MINDIO_MAGIC_MCP_REST_NAMESPACE, '/mcp', $routes );
+
+		// Deprecated pre-rename namespace, kept so already-configured MCP clients keep working.
+		register_rest_route( MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE, '/mcp', $routes );
 	}
 
 	public function handle_unsupported_transport_method( \WP_REST_Request $request ): \WP_REST_Response {

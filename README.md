@@ -29,7 +29,7 @@ The plugin implements MCP Streamable HTTP over the WordPress REST API, supports 
 - Flatsome or a Flatsome child theme for page generation and editing; component discovery remains available when the theme is inactive
 - Pretty permalinks for root-level OAuth discovery; REST metadata endpoints remain available otherwise
 
-Optional free integrations are detected from installed WordPress plugins: Advanced Custom Fields Free 6.1+, Contact Form 7, WooCommerce, Yoast SEO Free, and Rank Math SEO Free. Their read/write dispatchers are registered only while the dependency is installed. An installed-but-inactive integration remains governable in the admin panel, but execution requires activation. The six legacy WooCommerce tools and two multisite tools are registered only when those features are active. Gravity Forms is a separate commercial plugin and is not bundled or feature-gated behind a Mindio Magic MCP paid tier.
+Optional free integrations are detected from installed WordPress plugins: Advanced Custom Fields Free 6.1+, BetterDocs Free, Contact Form 7, WooCommerce, Yoast SEO Free, and Rank Math SEO Free. Their read/write dispatchers are registered only while the dependency is installed. An installed-but-inactive integration remains governable in the admin panel, but execution requires activation. The six legacy WooCommerce tools and two multisite tools are registered only when those features are active. Gravity Forms is a separate commercial plugin and is not bundled or feature-gated behind a Mindio Magic MCP paid tier.
 
 ## Installation
 
@@ -42,7 +42,7 @@ Optional free integrations are detected from installed WordPress plugins: Advanc
 The MCP endpoint is:
 
 ```text
-https://example.com/wp-json/flatsome-mcp/v1/mcp
+https://example.com/wp-json/mindio-magic-mcp/v1/mcp
 ```
 
 ### Connect an MCP client
@@ -54,7 +54,7 @@ Use the endpoint above as the server URL and the generated API key as a bearer t
   "mcpServers": {
     "mindio-magic-mcp": {
       "type": "http",
-      "url": "https://example.com/wp-json/flatsome-mcp/v1/mcp",
+      "url": "https://example.com/wp-json/mindio-magic-mcp/v1/mcp",
       "headers": {
         "Authorization": "Bearer fmp_REPLACE_WITH_YOUR_KEY"
       }
@@ -65,7 +65,7 @@ Use the endpoint above as the server URL and the generated API key as a bearer t
 
 Do not commit API keys to source control. OAuth-capable clients can instead discover the plugin's OAuth 2.1 endpoints automatically from the MCP URL.
 
-The REST namespace intentionally remains `flatsome-mcp/v1` so existing MCP clients, OAuth grants, and integrations continue to work after upgrading to Mindio Magic MCP.
+The canonical REST namespace is `mindio-magic-mcp/v1`. The pre-rename `flatsome-mcp/v1` namespace stays registered as a deprecated alias so MCP clients, OAuth grants, and integrations configured before 0.6.0 keep working; point new clients at the canonical namespace.
 
 ## Administration console
 
@@ -92,7 +92,7 @@ The server supports MCP protocol versions `2025-11-25`, `2025-06-18`, and `2025-
 Minimal initialization request:
 
 ```bash
-curl --request POST 'https://example.com/wp-json/flatsome-mcp/v1/mcp' \
+curl --request POST 'https://example.com/wp-json/mindio-magic-mcp/v1/mcp' \
   --header 'Authorization: Bearer fmp_REDACTED' \
   --header 'Content-Type: application/json' \
   --header 'Accept: application/json, text/event-stream' \
@@ -126,9 +126,9 @@ https://example.com/.well-known/oauth-protected-resource
 https://example.com/.well-known/oauth-authorization-server
 ```
 
-Equivalent REST discovery endpoints are available below `wp-json/flatsome-mcp/v1/oauth/`.
+Equivalent REST discovery endpoints are available below `wp-json/mindio-magic-mcp/v1/oauth/`.
 
-Configure clients with the MCP endpoint (`wp-json/flatsome-mcp/v1/mcp`), not a discovery URL. Discovery is automatic. The authorization endpoint uses a standalone, RTL-safe consent screen with explicit approve/reject actions and a short result handoff before returning to the registered client callback. For client interoperability, this server recognizes only its own exact discovery endpoints as resource aliases and canonicalizes them to the MCP endpoint; issued codes, access tokens, and refresh tokens remain audience-bound to that canonical endpoint.
+Configure clients with the MCP endpoint (`wp-json/mindio-magic-mcp/v1/mcp`), not a discovery URL. Discovery is automatic. The authorization endpoint uses a standalone, RTL-safe consent screen with explicit approve/reject actions and a short result handoff before returning to the registered client callback. For client interoperability, this server recognizes only its own exact discovery endpoints as resource aliases and canonicalizes them to the MCP endpoint; issued codes, access tokens, and refresh tokens remain audience-bound to that canonical endpoint.
 
 Scopes are hierarchical:
 
@@ -142,9 +142,9 @@ A scope never grants permissions that the associated WordPress user does not hav
 
 ## Tool catalog
 
-Version 0.5.5 registers 80 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all five adds ten names and 138 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
+Version 0.5.6 registers 81 core tool names on a single-site installation. Each installed supported integration adds one read and one write dispatcher; installing all six adds 12 names and 147 fixed operations. Active WooCommerce adds six compatible legacy names, and multisite adds two. Missing integrations are absent from MCP discovery and the admin policy screen.
 
-Administrators can disable any registered tool under **Settings → Mindio Magic MCP → Tools**. Disabled tools are omitted from `tools/list` and direct calls fail with `tool_disabled`; credentials and their scopes remain unchanged. ACF, Contact Form 7, Yoast, Rank Math, and WooCommerce controls are shown only when the corresponding plugin is installed. Installed-but-inactive integrations remain configurable, while their calls fail closed until activation. Expand a dispatcher to enable individual operations. A disabled operation is removed from the dispatcher's `operation` enum and direct calls fail with `operation_disabled`. Tool and operation policies are stored per site and retained while a dependency is absent.
+Administrators can disable any registered tool under **Settings → Mindio Magic MCP → Tools**. Disabled tools are omitted from `tools/list` and direct calls fail with `tool_disabled`; credentials and their scopes remain unchanged. ACF, BetterDocs, Contact Form 7, Yoast, Rank Math, and WooCommerce controls are shown only when the corresponding plugin is installed. Installed-but-inactive integrations remain configurable, while their calls fail closed until activation. Expand a dispatcher to enable individual operations. A disabled operation is removed from the dispatcher's `operation` enum and direct calls fail with `operation_disabled`. Tool and operation policies are stored per site and retained while a dependency is absent.
 
 | Area | Tools |
 | --- | --- |
@@ -160,7 +160,7 @@ Administrators can disable any registered tool under **Settings → Mindio Magic
 | Plugin packages | `list_plugins`, `search_plugins`, `install_plugin`, `update_plugin`, `activate_plugin`, `deactivate_plugin`, `delete_plugin` |
 | Theme packages | `list_themes`, `search_themes`, `install_theme`, `update_theme`, `delete_theme`, `switch_theme` |
 | Generic and Flatsome themes | `get_theme_context`, `get_theme_mods`, `update_theme_mods`, `create_child_theme`, `get_flatsome_theme_settings`, `update_flatsome_theme_settings` |
-| Free plugin integrations | `acf_read`, `acf_write`, `contact_form_7_read`, `contact_form_7_write` |
+| Free plugin integrations | `acf_read`, `acf_write`, `betterdocs_read`, `betterdocs_write`, `contact_form_7_read`, `contact_form_7_write` |
 | Webhooks | `register_webhook`, `unregister_webhook`, `list_webhooks` |
 | Flatsome | `list_flatsome_components`, `create_flatsome_page`, `get_flatsome_page`, `add_section`, `add_row`, `add_element` |
 | Diagnostics | `get_server_status`, `get_activity_logs`, `get_webhook_logs`, `get_error_logs` |
@@ -175,6 +175,7 @@ Administrators can disable any registered tool under **Settings → Mindio Magic
 | Integration | Operations | Coverage |
 | --- | ---: | --- |
 | ACF Free | 14 | Field groups, native free fields, field values, ACF-managed post types, and taxonomies |
+| BetterDocs Free | 9 | Documents, categories, tags, status and taxonomy filtering, safe content writes, optimistic concurrency, Trash, and confirmed permanent deletion |
 | Contact Form 7 | 7 | Form listing, definitions, create/update/duplicate/delete, and confirmed non-file submission |
 | Yoast SEO Free | 6 | Post and taxonomy SEO, robots, canonical/social metadata, schema types, and curated global settings |
 | Rank Math SEO Free | 6 | Post and taxonomy SEO, robots, canonical/social metadata, confirmed schema replacement, and curated settings |
@@ -303,13 +304,13 @@ Supported events are `post_created`, `post_updated`, `comment_added`, and `order
 Webhook requests contain these primary headers:
 
 ```text
-X-MagicMCP-Event
-X-MagicMCP-Delivery
-X-MagicMCP-Timestamp
-X-MagicMCP-Signature-256: sha256=<hex digest>
+X-Mindio-Magic-MCP-Event
+X-Mindio-Magic-MCP-Delivery
+X-Mindio-Magic-MCP-Timestamp
+X-Mindio-Magic-MCP-Signature-256: sha256=<hex digest>
 ```
 
-The corresponding `X-Flatsome-MCP-*` headers are also sent as deprecated compatibility aliases for existing webhook consumers.
+The corresponding `X-MagicMCP-*` headers are also sent as deprecated compatibility aliases for existing webhook consumers. The `X-Flatsome-MCP-*` aliases were removed in 0.6.0.
 
 Verify the signature by calculating HMAC-SHA256 over `<timestamp>.<raw request body>` with the signing secret. Reject stale timestamps before processing the payload.
 
@@ -361,7 +362,24 @@ composer lint
 composer build
 ```
 
-The build script creates `dist/mindio-magic-mcp-0.5.5.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. REST routes, credentials, and webhook headers remain compatible; pre-directory plugin-owned WordPress globals now use the canonical `mindio_magic_mcp_` prefix.
+The build script creates `dist/mindio-magic-mcp-0.5.6.zip` with the canonical `mindio-magic-mcp` plugin directory and main file. It excludes tests, local metadata, development PO/MO catalogs, and other development files. REST routes, credentials, and webhook headers remain compatible; pre-directory plugin-owned WordPress globals now use the canonical `mindio_magic_mcp_` prefix.
+
+WordPress.org directory artwork lives in `.wordpress-org/`. These files are excluded from the installable ZIP and must be deployed to the SVN repository's top-level `assets/` directory. To prepare both plugin code and directory artwork in a clean SVN checkout:
+
+```bash
+svn checkout \
+  https://plugins.svn.wordpress.org/mindio-magic-mcp/ \
+  ../wordpress-org-mindio-magic-mcp
+
+bin/prepare-wordpress-org.sh ../wordpress-org-mindio-magic-mcp
+
+cd ../wordpress-org-mindio-magic-mcp
+svn status
+svn diff --summarize
+svn commit -m "Release 0.5.6" --username farvisun
+```
+
+The preparation script builds the current release, synchronizes its extracted contents directly into `trunk/`, synchronizes `.wordpress-org/` into `assets/`, and creates the matching numeric tag. It refuses to modify an SVN working copy that already has uncommitted changes.
 
 ## Extension hooks
 

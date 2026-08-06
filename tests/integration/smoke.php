@@ -28,7 +28,7 @@ function fmp_assert( bool $condition, string $message ): void {
 
 /** @return array<string,mixed> */
 function fmp_rpc( string $token, string $method, array $params = array(), int $id = 1 ): array {
-	$request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$request->set_header( 'Authorization', 'Bearer ' . $token );
 	$request->set_header( 'Content-Type', 'application/json' );
 	$request->set_header( 'Accept', 'application/json, text/event-stream' );
@@ -137,7 +137,7 @@ try {
 		array(
 			'name'      => 'upload_media',
 			'arguments' => array(
-				'filename'    => 'flatsome-mcp-smoke.png',
+				'filename'    => 'mindio-magic-mcp-smoke.png',
 				'data_base64' => 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
 				'alt_text'   => 'تصویر آزمایشی',
 			),
@@ -289,7 +289,7 @@ try {
 				'post_id'          => $page_id,
 				'meta_title'      => 'Smoke SEO',
 				'meta_description' => 'Smoke SEO description',
-				'canonical_url'   => home_url( '/flatsome-mcp-smoke-canonical/' ),
+				'canonical_url'   => home_url( '/mindio-magic-mcp-smoke-canonical/' ),
 				'og_title'        => 'Smoke Open Graph',
 				'robots'           => array( 'index' => false, 'follow' => true ),
 				'schema'           => array( '@context' => 'https://schema.org', '@type' => 'WebPage', 'name' => 'Smoke SEO' ),
@@ -306,7 +306,7 @@ try {
 	$head_output = (string) ob_get_clean();
 	fmp_assert( str_contains( $head_output, 'Smoke SEO description' ) && str_contains( $head_output, 'application/ld+json' ), 'Plugin-neutral frontend SEO output failed.' );
 	fmp_assert( 'Smoke SEO' === apply_filters( 'pre_get_document_title', '' ), 'Plugin-neutral document title filter failed.' );
-	fmp_assert( home_url( '/flatsome-mcp-smoke-canonical/' ) === apply_filters( 'get_canonical_url', get_permalink( $page_id ), get_post( $page_id ) ), 'Plugin-neutral canonical filter failed.' );
+	fmp_assert( home_url( '/mindio-magic-mcp-smoke-canonical/' ) === apply_filters( 'get_canonical_url', get_permalink( $page_id ), get_post( $page_id ) ), 'Plugin-neutral canonical filter failed.' );
 	$wp_query = $previous_query;
 
 	$post = fmp_rpc(
@@ -334,7 +334,7 @@ try {
 	);
 	fmp_assert( ! empty( $read_write['result']['isError'] ) && 'insufficient_scope' === $read_write['result']['structuredContent']['error'], 'Read-only credential performed a write.' );
 
-	$origin_request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$origin_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$origin_request->set_header( 'Authorization', 'Bearer ' . $token );
 	$origin_request->set_header( 'Content-Type', 'application/json' );
 	$origin_request->set_header( 'Origin', 'https://untrusted.example' );
@@ -342,24 +342,43 @@ try {
 	$origin_response = rest_get_server()->dispatch( $origin_request );
 	fmp_assert( 403 === $origin_response->get_status(), 'Untrusted browser Origin was accepted.' );
 
-	$notification = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$legacy_namespace_request = new WP_REST_Request( 'POST', '/' . MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/mcp' );
+	$legacy_namespace_request->set_header( 'Authorization', 'Bearer ' . $token );
+	$legacy_namespace_request->set_header( 'Content-Type', 'application/json' );
+	$legacy_namespace_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 98, 'method' => 'ping' ) ) );
+	$legacy_namespace_response = rest_get_server()->dispatch( $legacy_namespace_request );
+	fmp_assert( 200 === $legacy_namespace_response->get_status(), 'Deprecated REST namespace alias stopped responding.' );
+
+	$legacy_key_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
+	$legacy_key_request->set_header( 'X-Flatsome-MCP-Key', $token );
+	$legacy_key_request->set_header( 'Content-Type', 'application/json' );
+	$legacy_key_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 97, 'method' => 'ping' ) ) );
+	fmp_assert( 200 === rest_get_server()->dispatch( $legacy_key_request )->get_status(), 'Deprecated API key header stopped being accepted.' );
+
+	$canonical_key_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
+	$canonical_key_request->set_header( 'X-Mindio-Magic-MCP-Key', $token );
+	$canonical_key_request->set_header( 'Content-Type', 'application/json' );
+	$canonical_key_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 96, 'method' => 'ping' ) ) );
+	fmp_assert( 200 === rest_get_server()->dispatch( $canonical_key_request )->get_status(), 'Canonical API key header was not accepted.' );
+
+	$notification = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$notification->set_header( 'Authorization', 'Bearer ' . $token );
 	$notification->set_header( 'Content-Type', 'application/json' );
 	$notification->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'method' => 'notifications/initialized' ) ) );
 	fmp_assert( 202 === rest_get_server()->dispatch( $notification )->get_status(), 'MCP notification was not accepted.' );
 
 	wp_set_current_user( 0 );
-	$anonymous = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$anonymous = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$anonymous->set_header( 'Content-Type', 'application/json' );
 	$anonymous->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 100, 'method' => 'ping' ) ) );
 	$anonymous_response = rest_get_server()->dispatch( $anonymous );
 	fmp_assert( 401 === $anonymous_response->get_status() && str_contains( (string) $anonymous_response->get_headers()['WWW-Authenticate'], 'oauth-protected-resource' ), 'Unauthenticated request did not receive OAuth discovery metadata.' );
 
-	$metadata_request = new WP_REST_Request( 'GET', '/flatsome-mcp/v1/oauth/protected-resource' );
+	$metadata_request = new WP_REST_Request( 'GET', '/mindio-magic-mcp/v1/oauth/protected-resource' );
 	$metadata_response = rest_get_server()->dispatch( $metadata_request );
-	fmp_assert( 200 === $metadata_response->get_status() && rest_url( 'flatsome-mcp/v1/mcp' ) === $metadata_response->get_data()['resource'], 'OAuth protected-resource metadata is invalid.' );
+	fmp_assert( 200 === $metadata_response->get_status() && rest_url( 'mindio-magic-mcp/v1/mcp' ) === $metadata_response->get_data()['resource'], 'OAuth protected-resource metadata is invalid.' );
 
-	$register_request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/oauth/register' );
+	$register_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/oauth/register' );
 	$register_request->set_header( 'Content-Type', 'application/json' );
 	$register_request->set_body(
 		wp_json_encode(
@@ -373,7 +392,7 @@ try {
 	$registered_client = $register_response->get_data();
 	fmp_assert( 201 === $register_response->get_status() && str_starts_with( (string) $registered_client['client_id'], 'fmc_' ), 'OAuth dynamic client registration failed.' );
 	$oauth_client_id = (string) $registered_client['client_id'];
-	$resource = untrailingslashit( rest_url( 'flatsome-mcp/v1/mcp' ) );
+	$resource = untrailingslashit( rest_url( 'mindio-magic-mcp/v1/mcp' ) );
 	$issued_oauth = $auth->issue_oauth_tokens( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_READ, $oauth_client_id, $resource );
 	fmp_assert( ! is_wp_error( $issued_oauth ), 'OAuth token issuance failed.' );
 	preg_match( '/^fmo_([a-f0-9]{16})_/', (string) $issued_oauth['access_token'], $oauth_access_match );
@@ -383,7 +402,7 @@ try {
 	$oauth_ping = fmp_rpc( (string) $issued_oauth['access_token'], 'ping' );
 	fmp_assert( isset( $oauth_ping['result'] ) && is_array( $oauth_ping['result'] ), 'OAuth access token was not accepted by MCP.' );
 
-	$refresh_request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/oauth/token' );
+	$refresh_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/oauth/token' );
 	$refresh_request->set_body_params(
 		array(
 			'grant_type'    => 'refresh_token',

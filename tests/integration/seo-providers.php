@@ -31,7 +31,7 @@ function fmp_seo_assert( bool $condition, string $message ): void {
 
 /** @return array<string,mixed> */
 function fmp_seo_rpc( string $token, string $method, array $params = array() ): array {
-	$request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$request->set_header( 'Authorization', 'Bearer ' . $token );
 	$request->set_header( 'Content-Type', 'application/json' );
 	$request->set_header( 'Accept', 'application/json, text/event-stream' );

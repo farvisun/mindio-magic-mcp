@@ -3,7 +3,7 @@
  * Expanded WordPress, Gutenberg, free-plugin, filesystem, and database checks.
  *
  * Run with WP_PATH=/path/to/wordpress php tests/integration/expanded-tools.php.
- * ACF Free, Contact Form 7, and WooCommerce Free are exercised when active.
+ * ACF Free, BetterDocs Free, Contact Form 7, and WooCommerce Free are exercised when active.
  *
  * @package MindioMagicMCP
  */
@@ -31,7 +31,7 @@ function fmp_exp_assert( bool $condition, string $message ): void {
 
 /** @return array<string,mixed> */
 function fmp_exp_rpc( string $token, string $method, array $params = array(), int $id = 1 ): array {
-	$request = new WP_REST_Request( 'POST', '/flatsome-mcp/v1/mcp' );
+	$request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$request->set_header( 'Authorization', 'Bearer ' . $token );
 	$request->set_header( 'Content-Type', 'application/json' );
 	$request->set_header( 'Accept', 'application/json, text/event-stream' );
@@ -75,6 +75,8 @@ $post_ids                  = array();
 $acf_group_key             = '';
 $acf_field_key             = '';
 $form_ids                  = array();
+$betterdocs_doc_ids        = array();
+$betterdocs_term_ids       = array();
 $product_id                = 0;
 $tested_integrations       = array();
 
@@ -87,7 +89,7 @@ try {
 	foreach ( array( 'list_blocks', 'get_block_schema', 'get_post_blocks', 'add_block', 'update_block', 'remove_block', 'move_block', 'duplicate_block', 'insert_pattern', 'search_plugins', 'update_plugin', 'search_themes', 'install_theme', 'update_theme', 'delete_theme', 'get_theme_context', 'get_theme_mods', 'update_theme_mods', 'create_child_theme', 'read_file', 'list_directory', 'search_files', 'list_database_tables', 'describe_database_table' ) as $required ) {
 		fmp_exp_assert( isset( $tools[ $required ] ), 'Expanded tool is missing from discovery: ' . $required );
 	}
-	fmp_exp_assert( ! isset( $tools['acf_write'], $tools['contact_form_7_write'], $tools['woocommerce_write'] ), 'Default-denied integration write tools leaked into discovery.' );
+	fmp_exp_assert( ! isset( $tools['acf_write'], $tools['betterdocs_write'], $tools['contact_form_7_write'], $tools['woocommerce_write'] ), 'Default-denied integration write tools leaked into discovery.' );
 
 	$blocked_write = fmp_exp_call(
 		$token,
@@ -168,6 +170,12 @@ try {
 		'acf_write:save_field'              => true,
 		'acf_write:delete_field'            => true,
 		'acf_write:update_field_value'      => true,
+		'betterdocs_write:create_doc'       => true,
+		'betterdocs_write:update_doc'       => true,
+		'betterdocs_write:delete_doc'       => true,
+		'betterdocs_write:create_term'      => true,
+		'betterdocs_write:update_term'      => true,
+		'betterdocs_write:delete_term'      => true,
 		'contact_form_7_write:create_form'  => true,
 		'contact_form_7_write:update_form'  => true,
 		'contact_form_7_write:duplicate_form'=> true,
@@ -178,7 +186,7 @@ try {
 	update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $enabled_write_operations, false );
 	$tools_response = fmp_exp_rpc( $token, 'tools/list' );
 	$tools          = array_column( (array) ( $tools_response['result']['tools'] ?? array() ), null, 'name' );
-	foreach ( array( 'acf_write', 'contact_form_7_write', 'woocommerce_write' ) as $write_tool ) {
+	foreach ( array( 'acf_write', 'betterdocs_write', 'contact_form_7_write', 'woocommerce_write' ) as $write_tool ) {
 		fmp_exp_assert( isset( $tools[ $write_tool ] ), 'An administrator-enabled write dispatcher is missing: ' . $write_tool );
 	}
 	$woo_write_enum = (array) ( $tools['woocommerce_write']['inputSchema']['properties']['operation']['enum'] ?? array() );
@@ -243,6 +251,148 @@ try {
 		$form_ids[] = $copy_id;
 	}
 
+	if ( function_exists( 'betterdocs' ) && post_type_exists( 'docs' ) && taxonomy_exists( 'doc_category' ) && taxonomy_exists( 'doc_tag' ) ) {
+		$tested_integrations[] = 'betterdocs_free';
+		$created_category = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'create_term',
+				'arguments' => array(
+					'taxonomy'   => 'doc_category',
+					'name'       => 'Mindio Magic MCP docs fixture',
+					'description'=> 'Created through the BetterDocs MCP integration.',
+				),
+			)
+		);
+		$category_id = (int) ( fmp_exp_integration_result( $created_category )['term']['id'] ?? 0 );
+		fmp_exp_assert( $category_id > 0, 'BetterDocs category was not created.' );
+		$betterdocs_term_ids[] = array( 'taxonomy' => 'doc_category', 'term_id' => $category_id );
+
+		$created_tag = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'create_term',
+				'arguments' => array( 'taxonomy' => 'doc_tag', 'name' => 'MCP fixture tag' ),
+			)
+		);
+		$tag_id = (int) ( fmp_exp_integration_result( $created_tag )['term']['id'] ?? 0 );
+		fmp_exp_assert( $tag_id > 0, 'BetterDocs tag was not created.' );
+		$betterdocs_term_ids[] = array( 'taxonomy' => 'doc_tag', 'term_id' => $tag_id );
+
+		$created_doc = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'create_doc',
+				'arguments' => array(
+					'title'        => 'Mindio Magic MCP BetterDocs fixture',
+					'content'      => '<p onclick="alert(1)">Safe <strong>knowledge</strong></p><script>alert(1)</script>',
+					'excerpt'      => '<p>Fixture excerpt</p>',
+					'status'       => 'draft',
+					'category_ids' => array( $category_id ),
+					'tag_ids'      => array( $tag_id ),
+				),
+			)
+		);
+		$doc_result = fmp_exp_integration_result( $created_doc );
+		$doc_id     = (int) ( $doc_result['doc']['id'] ?? 0 );
+		fmp_exp_assert( $doc_id > 0, 'BetterDocs document was not created.' );
+		$betterdocs_doc_ids[] = $doc_id;
+
+		$read_doc = fmp_exp_call( $token, 'betterdocs_read', array( 'operation' => 'get_doc', 'arguments' => array( 'doc_id' => $doc_id ) ) );
+		$doc      = (array) ( fmp_exp_integration_result( $read_doc )['doc'] ?? array() );
+		$content  = (string) ( $doc['content'] ?? '' );
+		fmp_exp_assert( str_contains( $content, '<strong>knowledge</strong>' ) && ! str_contains( $content, '<script' ) && ! str_contains( $content, 'onclick=' ), 'Agent-supplied BetterDocs HTML was not safely filtered.' );
+		fmp_exp_assert( $category_id === (int) ( $doc['categories'][0]['id'] ?? 0 ) && $tag_id === (int) ( $doc['tags'][0]['id'] ?? 0 ), 'BetterDocs taxonomy assignments were not saved.' );
+
+		$updated_doc = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'update_doc',
+				'arguments' => array(
+					'doc_id'                => $doc_id,
+					'title'                 => 'Updated Mindio Magic MCP BetterDocs fixture',
+					'expected_modified_gmt' => (string) ( $doc['modified_gmt'] ?? '' ),
+				),
+			)
+		);
+		fmp_exp_assert( 'Updated Mindio Magic MCP BetterDocs fixture' === ( fmp_exp_integration_result( $updated_doc )['doc']['title'] ?? '' ), 'BetterDocs document update failed.' );
+		$stale_update = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'update_doc',
+				'arguments' => array( 'doc_id' => $doc_id, 'title' => 'Stale update', 'expected_modified_gmt' => '2000-01-01T00:00:00Z' ),
+			),
+			true
+		);
+		fmp_exp_assert( ! empty( $stale_update['isError'] ) && 'stale_betterdocs_document' === ( $stale_update['structuredContent']['error'] ?? '' ), 'BetterDocs optimistic concurrency did not reject a stale update.' );
+
+		$listed_docs = fmp_exp_call(
+			$token,
+			'betterdocs_read',
+			array(
+				'operation' => 'list_docs',
+				'arguments' => array( 'status' => 'draft', 'category_id' => $category_id, 'search' => 'Updated Mindio Magic' ),
+			)
+		);
+		fmp_exp_assert( $doc_id === (int) ( fmp_exp_integration_result( $listed_docs )['docs'][0]['id'] ?? 0 ), 'BetterDocs document listing failed.' );
+
+		$updated_category = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array(
+				'operation' => 'update_term',
+				'arguments' => array( 'taxonomy' => 'doc_category', 'term_id' => $category_id, 'name' => 'Updated MCP docs fixture' ),
+			)
+		);
+		fmp_exp_assert( 'Updated MCP docs fixture' === ( fmp_exp_integration_result( $updated_category )['term']['name'] ?? '' ), 'BetterDocs category update failed.' );
+		$listed_terms = fmp_exp_call(
+			$token,
+			'betterdocs_read',
+			array(
+				'operation' => 'list_terms',
+				'arguments' => array( 'taxonomy' => 'doc_category', 'search' => 'Updated MCP docs fixture' ),
+			)
+		);
+		fmp_exp_assert( $category_id === (int) ( fmp_exp_integration_result( $listed_terms )['terms'][0]['id'] ?? 0 ), 'BetterDocs term listing failed.' );
+
+		$trashed_doc = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array( 'operation' => 'delete_doc', 'arguments' => array( 'doc_id' => $doc_id, 'confirm' => true ) )
+		);
+		fmp_exp_assert( ! empty( fmp_exp_integration_result( $trashed_doc )['trashed'] ), 'BetterDocs document was not moved to Trash.' );
+		$deleted_doc = fmp_exp_call(
+			$token,
+			'betterdocs_write',
+			array( 'operation' => 'delete_doc', 'arguments' => array( 'doc_id' => $doc_id, 'force' => true, 'confirm' => true ) )
+		);
+		fmp_exp_assert( ! empty( fmp_exp_integration_result( $deleted_doc )['deleted'] ) && null === get_post( $doc_id ), 'BetterDocs document was not permanently deleted.' );
+		$betterdocs_doc_ids = array_values( array_diff( $betterdocs_doc_ids, array( $doc_id ) ) );
+
+		foreach ( array( array( 'taxonomy' => 'doc_tag', 'term_id' => $tag_id ), array( 'taxonomy' => 'doc_category', 'term_id' => $category_id ) ) as $term_fixture ) {
+			$deleted_term = fmp_exp_call(
+				$token,
+				'betterdocs_write',
+				array(
+					'operation' => 'delete_term',
+					'arguments' => array_merge( $term_fixture, array( 'confirm' => true ) ),
+				)
+			);
+			fmp_exp_assert( ! empty( fmp_exp_integration_result( $deleted_term )['deleted'] ), 'BetterDocs term was not deleted.' );
+			$betterdocs_term_ids = array_values(
+				array_filter(
+					$betterdocs_term_ids,
+					static fn( array $item ): bool => $item !== $term_fixture
+				)
+			);
+		}
+	}
+
 	if ( class_exists( '\\WooCommerce' ) && function_exists( 'WC' ) ) {
 		$tested_integrations[] = 'woocommerce_free';
 		$product = fmp_exp_call(
@@ -276,6 +426,12 @@ try {
 } finally {
 	if ( $product_id > 0 ) {
 		wp_delete_post( $product_id, true );
+	}
+	foreach ( array_reverse( $betterdocs_doc_ids ) as $betterdocs_doc_id ) {
+		wp_delete_post( $betterdocs_doc_id, true );
+	}
+	foreach ( array_reverse( $betterdocs_term_ids ) as $betterdocs_term ) {
+		wp_delete_term( (int) $betterdocs_term['term_id'], (string) $betterdocs_term['taxonomy'] );
 	}
 	foreach ( array_reverse( $form_ids ) as $form_id ) {
 		if ( class_exists( '\\WPCF7_ContactForm' ) ) {

@@ -72,7 +72,7 @@ switch_to_locale( 'en_US' );
 $auth     = new \MindioMagicMCP\Auth();
 $dependency_registry = new \MindioMagicMCP\Tool_Registry( $auth );
 ( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'missing_fixture', array( 'missing-fixture/missing.php' ), array( 'missing-fixture' ) ) )->register();
-( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'installed_fixture', array( 'flatsome-mcp/flatsome-mcp.php' ), array( 'mindio-magic-mcp' ) ) )->register();
+( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'installed_fixture', array( 'mindio-magic-mcp/mindio-magic-mcp.php' ), array( 'mindio-magic-mcp' ) ) )->register();
 $dependency_catalog = array_column( $dependency_registry->catalog(), null, 'name' );
 fmp_admin_assert( ! isset( $dependency_catalog['missing_fixture_read'] ), 'An integration tool was registered without its plugin dependency.' );
 fmp_admin_assert( isset( $dependency_catalog['installed_fixture_read'] ), 'An installed plugin integration was not registered for policy management.' );
@@ -191,8 +191,8 @@ $array_fallback_html = (string) ob_get_clean();
 fmp_admin_assert( str_contains( $array_fallback_html, 'System overview' ), 'Non-scalar tabs do not fall back to Overview.' );
 
 $admin->enqueue_assets( 'settings_page_mindio-magic-mcp' );
-fmp_admin_assert( wp_style_is( 'flatsome-mcp-admin', 'enqueued' ), 'Admin stylesheet was not enqueued.' );
-fmp_admin_assert( wp_script_is( 'flatsome-mcp-admin', 'enqueued' ), 'Admin script was not enqueued.' );
+fmp_admin_assert( wp_style_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin stylesheet was not enqueued.' );
+fmp_admin_assert( wp_script_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin script was not enqueued.' );
 fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/css/admin.css' ), 'Admin stylesheet is missing.' );
 fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/js/admin.js' ), 'Admin script is missing.' );
 
@@ -220,7 +220,7 @@ echo wp_json_encode(
 		'ok'           => true,
 		'tabs_checked' => count( $tabs ),
 		'persian_ui'   => true,
-		'assets'       => array( 'flatsome-mcp-admin' ),
+		'assets'       => array( 'mindio-magic-mcp-admin' ),
 	),
 	JSON_UNESCAPED_SLASHES
 ) . PHP_EOL;

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Mindio Magic MCP 0.5.5\n"
-"Report-Msgid-Bugs-To: https://github.com/farvisun/mindio-magic-mcp/issues\n"
-"POT-Creation-Date: 2026-07-22T09:13:22+00:00\n"
-"PO-Revision-Date: 2026-07-20 11:53+0330\n"
+"Project-Id-Version: Mindio Magic MCP 0.6.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mindio-magic-mcp\n"
+"POT-Creation-Date: 2026-07-27T19:35:02+00:00\n"
+"PO-Revision-Date: 2026-07-27 23:10+0330\n"
 "Last-Translator: Mohammad Askari <farvisun@gmail.com>\n"
 "Language-Team: Persian\n"
 "Language: fa_IR\n"
@@ -14,18 +14,18 @@ msgstr ""
 "X-Generator: Mindio Magic MCP\n"
 
 #. Plugin Name of the plugin
-#: flatsome-mcp.php includes/class-admin.php:76 includes/class-admin.php:77
+#: mindio-magic-mcp.php includes/class-admin.php:76 includes/class-admin.php:77
 #: includes/class-admin.php:240
 msgid "Mindio Magic MCP"
 msgstr "Mindio Magic MCP"
 
 #. Plugin URI of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "https://github.com/farvisun/mindio-magic-mcp"
 msgstr "https://github.com/farvisun/mindio-magic-mcp"
 
 #. Description of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid ""
 "A secure MCP server for WordPress that supports Flatsome UX Builder, content "
 "automation, and site management."
@@ -34,12 +34,12 @@ msgstr ""
 "محتوا و مدیریت سایت."
 
 #. Author of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "Mohammad Askari <farvisun@gmail.com>"
 msgstr "Mohammad Askari <farvisun@gmail.com>"
 
 #. Author URI of the plugin
-#: flatsome-mcp.php
+#: mindio-magic-mcp.php
 msgid "https://profiles.wordpress.org/farvisun/"
 msgstr "https://profiles.wordpress.org/farvisun/"
 
@@ -1400,8 +1400,8 @@ msgid "Plugin integrations"
 msgstr "یکپارچه‌سازی افزونه‌ها"
 
 #: includes/class-admin.php:1512
-msgid "Operation-level controls for ACF Free and Contact Form 7."
-msgstr "کنترل در سطح عملیات برای ACF Free و Contact Form 7."
+msgid "Operation-level controls for ACF Free, BetterDocs, and Contact Form 7."
+msgstr "کنترل در سطح عملیات برای ACF Free، BetterDocs و Contact Form 7."
 
 #: includes/class-admin.php:1517
 msgid "Operations and diagnostics"
@@ -2600,6 +2600,165 @@ msgstr "محتوای مبدأ از محدودیت ۲٬۰۰۰٬۰۰۰ نویسه�
 msgid "No automation provider is configured. Integrate one with the %s filter."
 msgstr ""
 "هیچ ارائه‌دهندهٔ خودکارسازی تنظیم نشده است. یکی را با فیلتر %s متصل کنید."
+
+#: includes/tools/class-betterdocs-tools.php:49
+msgid "List BetterDocs documents"
+msgstr "فهرست اسناد BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:50
+msgid ""
+"List BetterDocs documents with bounded search, status, taxonomy, ordering, "
+"and pagination filters."
+msgstr "فهرست اسناد BetterDocs با فیلترهای محدود جست‌وجو، وضعیت، رده‌بندی، ترتیب و صفحه‌بندی."
+
+#: includes/tools/class-betterdocs-tools.php:68
+msgid "Get BetterDocs document"
+msgstr "دریافت سند BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:69
+msgid ""
+"Get one BetterDocs document, including its safely stored content and "
+"taxonomy assignments."
+msgstr "دریافت یک سند BetterDocs همراه با محتوای ذخیره‌شدهٔ امن و تخصیص‌های رده‌بندی آن."
+
+#: includes/tools/class-betterdocs-tools.php:76
+msgid "List BetterDocs terms"
+msgstr "فهرست عبارت‌های BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:77
+msgid ""
+"List BetterDocs document categories or tags with bounded hierarchy and "
+"pagination filters."
+msgstr "فهرست دسته‌ها یا برچسب‌های اسناد BetterDocs با فیلترهای محدود سلسله‌مراتب و صفحه‌بندی."
+
+#: includes/tools/class-betterdocs-tools.php:96
+msgid "Create BetterDocs document"
+msgstr "ایجاد سند BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:97
+msgid ""
+"Create a sanitized BetterDocs document through its registered WordPress REST "
+"post type."
+msgstr "ایجاد سند پاک‌سازی‌شدهٔ BetterDocs از طریق نوع‌نوشتهٔ REST ثبت‌شدهٔ وردپرس آن."
+
+#: includes/tools/class-betterdocs-tools.php:104
+msgid "Update BetterDocs document"
+msgstr "به‌روزرسانی سند BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:105
+msgid ""
+"Update a sanitized BetterDocs document with optional optimistic concurrency."
+msgstr "به‌روزرسانی سند پاک‌سازی‌شدهٔ BetterDocs با کنترل هم‌زمانی خوش‌بینانهٔ اختیاری."
+
+#: includes/tools/class-betterdocs-tools.php:121
+msgid "Delete BetterDocs document"
+msgstr "حذف سند BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:122
+msgid ""
+"Move a BetterDocs document to Trash, or permanently delete it when force and "
+"confirmation are both supplied."
+msgstr "انتقال سند BetterDocs به زباله‌دان، یا حذف دائمی آن وقتی force و تأیید هر دو ارائه شده‌اند."
+
+#: includes/tools/class-betterdocs-tools.php:137
+msgid "Create BetterDocs term"
+msgstr "ایجاد عبارت BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:138
+msgid ""
+"Create a BetterDocs document category or tag through its registered "
+"WordPress REST taxonomy."
+msgstr "ایجاد دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس آن."
+
+#: includes/tools/class-betterdocs-tools.php:154
+msgid "Update BetterDocs term"
+msgstr "به‌روزرسانی عبارت BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:155
+msgid ""
+"Update a BetterDocs document category or tag through its registered "
+"WordPress REST taxonomy."
+msgstr "به‌روزرسانی دسته یا برچسب سند BetterDocs از طریق رده‌بندی REST ثبت‌شدهٔ وردپرس آن."
+
+#: includes/tools/class-betterdocs-tools.php:172
+msgid "Delete BetterDocs term"
+msgstr "حذف عبارت BetterDocs"
+
+#: includes/tools/class-betterdocs-tools.php:173
+msgid ""
+"Permanently delete a BetterDocs document category or tag after explicit "
+"confirmation."
+msgstr "حذف دائمی دسته یا برچسب سند BetterDocs پس از تأیید صریح."
+
+#: includes/tools/class-betterdocs-tools.php:326
+msgid "BetterDocs created no readable document."
+msgstr "BetterDocs هیچ سند قابل‌خواندنی ایجاد نکرد."
+
+#: includes/tools/class-betterdocs-tools.php:352
+msgid "BetterDocs returned no readable updated document."
+msgstr "BetterDocs هیچ سند به‌روزشدهٔ قابل‌خواندنی بازنگرداند."
+
+#: includes/tools/class-betterdocs-tools.php:401
+msgid "BetterDocs created no readable term."
+msgstr "BetterDocs هیچ عبارت قابل‌خواندنی ایجاد نکرد."
+
+#: includes/tools/class-betterdocs-tools.php:427
+msgid "BetterDocs returned no readable updated term."
+msgstr "BetterDocs هیچ عبارت به‌روزشدهٔ قابل‌خواندنی بازنگرداند."
+
+#: includes/tools/class-betterdocs-tools.php:536
+msgid "BetterDocs document not found."
+msgstr "سند BetterDocs پیدا نشد."
+
+#: includes/tools/class-betterdocs-tools.php:586
+msgid "A non-empty BetterDocs document title is required."
+msgstr "عنوان غیرخالی برای سند BetterDocs الزامی است."
+
+#. translators: 1: term ID, 2: taxonomy name.
+#: includes/tools/class-betterdocs-tools.php:620
+#, php-format
+msgid "BetterDocs term %1$d does not exist in %2$s."
+msgstr "عبارت BetterDocs با شناسهٔ %1$d در %2$s وجود ندارد."
+
+#: includes/tools/class-betterdocs-tools.php:634
+msgid "Provide at least one BetterDocs document field to update."
+msgstr "حداقل یک فیلد سند BetterDocs برای به‌روزرسانی ارائه کنید."
+
+#: includes/tools/class-betterdocs-tools.php:646
+msgid "A non-empty BetterDocs term name is required."
+msgstr "نام غیرخالی برای عبارت BetterDocs الزامی است."
+
+#: includes/tools/class-betterdocs-tools.php:658
+msgid "The requested BetterDocs parent term does not exist."
+msgstr "عبارت والد درخواستی BetterDocs وجود ندارد."
+
+#: includes/tools/class-betterdocs-tools.php:661
+msgid "A BetterDocs term cannot be its own parent."
+msgstr "یک عبارت BetterDocs نمی‌تواند والد خودش باشد."
+
+#: includes/tools/class-betterdocs-tools.php:666
+msgid "Provide at least one BetterDocs term field to update."
+msgstr "حداقل یک فیلد عبارت BetterDocs برای به‌روزرسانی ارائه کنید."
+
+#: includes/tools/class-betterdocs-tools.php:683
+msgid "BetterDocs returned an invalid WordPress REST response."
+msgstr "BetterDocs پاسخ REST نامعتبر وردپرس بازگرداند."
+
+#: includes/tools/class-betterdocs-tools.php:705
+msgid "The requested BetterDocs taxonomy is unavailable."
+msgstr "رده‌بندی درخواستی BetterDocs در دسترس نیست."
+
+#: includes/tools/class-betterdocs-tools.php:713
+msgid "BetterDocs term not found."
+msgstr "عبارت BetterDocs پیدا نشد."
+
+#: includes/tools/class-betterdocs-tools.php:769
+msgid "The BetterDocs document changed after the supplied modification time."
+msgstr "سند BetterDocs پس از زمان تغییر ارائه‌شده عوض شده است."
+
+#: includes/tools/class-betterdocs-tools.php:787
+msgid "Deleting BetterDocs content requires confirm=true."
+msgstr "حذف محتوای BetterDocs به confirm=true نیاز دارد."
 
 #: includes/tools/class-comment-tools.php:24
 msgid ""
@@ -4720,6 +4879,9 @@ msgstr "تغییر کوپن سفارش به confirm=true نیاز دارد."
 #: includes/tools/class-woocommerce-tools.php:307
 msgid "Order not found."
 msgstr "سفارش پیدا نشد."
+
+#~ msgid "Operation-level controls for ACF Free and Contact Form 7."
+#~ msgstr "کنترل در سطح عملیات برای ACF Free و Contact Form 7."
 
 #~ msgid ""
 #~ "Allow validated SELECT queries against a restricted set of non-sensitive "

@@ -132,7 +132,7 @@ final class Media_Tools {
 			if ( '' === $filename ) {
 				$filename = sanitize_file_name( basename( (string) wp_parse_url( (string) $args['source_url'], PHP_URL_PATH ) ) );
 			}
-			$tmp = wp_tempnam( $filename ?: 'magicmcp-upload' );
+			$tmp = wp_tempnam( $filename ?: 'mindio-magic-mcp-upload' );
 			if ( ! $tmp ) {
 				return new \WP_Error( 'temporary_file_failed', __( 'The temporary upload file could not be created.', 'mindio-magic-mcp' ) );
 			}

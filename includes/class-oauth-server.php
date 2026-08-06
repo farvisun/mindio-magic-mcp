@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class OAuth_Server {
-	private const AUTHORIZATION_PAGE   = 'flatsome-mcp-oauth-authorize';
+	private const AUTHORIZATION_PAGE   = 'mindio-magic-mcp-oauth-authorize';
 	private const AUTHORIZATION_ACTION = 'mindio_magic_mcp_oauth_authorize';
 
 	private Auth $auth;
@@ -55,42 +55,35 @@ final class OAuth_Server {
 	}
 
 	public function register_routes(): void {
-		register_rest_route(
-			'flatsome-mcp/v1',
-			'/oauth/protected-resource',
-			array(
+		$routes = array(
+			'/oauth/protected-resource'   => array(
 				'methods'             => 'GET',
 				'callback'            => fn(): \WP_REST_Response => new \WP_REST_Response( $this->resource_metadata() ),
 				'permission_callback' => '__return_true',
-			)
-		);
-		register_rest_route(
-			'flatsome-mcp/v1',
-			'/oauth/authorization-server',
-			array(
+			),
+			'/oauth/authorization-server' => array(
 				'methods'             => 'GET',
 				'callback'            => fn(): \WP_REST_Response => new \WP_REST_Response( $this->authorization_metadata() ),
 				'permission_callback' => '__return_true',
-			)
-		);
-		register_rest_route(
-			'flatsome-mcp/v1',
-			'/oauth/register',
-			array(
+			),
+			'/oauth/register'             => array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'register_client' ),
 				'permission_callback' => '__return_true',
-			)
-		);
-		register_rest_route(
-			'flatsome-mcp/v1',
-			'/oauth/token',
-			array(
+			),
+			'/oauth/token'                => array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'token' ),
 				'permission_callback' => '__return_true',
-			)
+			),
 		);
+
+		// The legacy namespace is the deprecated pre-rename one, kept so issued grants keep working.
+		foreach ( array( MINDIO_MAGIC_MCP_REST_NAMESPACE, MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE ) as $namespace ) {
+			foreach ( $routes as $route => $args ) {
+				register_rest_route( $namespace, $route, $args );
+			}
+		}
 	}
 
 	public function register_authorization_page(): void {
@@ -125,8 +118,8 @@ final class OAuth_Server {
 		return array(
 			'issuer'                                => untrailingslashit( home_url( '/' ) ),
 			'authorization_endpoint'                => admin_url( 'admin.php?page=' . self::AUTHORIZATION_PAGE ),
-			'token_endpoint'                        => rest_url( 'flatsome-mcp/v1/oauth/token' ),
-			'registration_endpoint'                 => rest_url( 'flatsome-mcp/v1/oauth/register' ),
+			'token_endpoint'                        => rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/oauth/token' ),
+			'registration_endpoint'                 => rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/oauth/register' ),
 			'response_types_supported'              => array( 'code' ),
 			'grant_types_supported'                 => array( 'authorization_code', 'refresh_token' ),
 			'code_challenge_methods_supported'      => array( 'S256' ),
@@ -474,7 +467,7 @@ final class OAuth_Server {
 		header( 'X-Content-Type-Options: nosniff' );
 		header( 'Permissions-Policy: camera=(), microphone=(), geolocation=()' );
 		header( "Content-Security-Policy: default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'self'" );
-		wp_enqueue_style( 'magicmcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/css/oauth.css', array(), MINDIO_MAGIC_MCP_VERSION );
+		wp_enqueue_style( 'mindio-magic-mcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/css/oauth.css', array(), MINDIO_MAGIC_MCP_VERSION );
 		?>
 		<!doctype html>
 		<html <?php language_attributes(); ?>>
@@ -483,7 +476,7 @@ final class OAuth_Server {
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta name="robots" content="noindex,nofollow,noarchive">
 			<title><?php echo esc_html( $title ); ?> · Mindio Magic MCP</title>
-			<?php wp_print_styles( 'magicmcp-oauth' ); ?>
+			<?php wp_print_styles( 'mindio-magic-mcp-oauth' ); ?>
 		</head>
 		<body class="fmp-oauth-page <?php echo esc_attr( $body_class ); ?>">
 			<div class="fmp-oauth-shell">
@@ -511,7 +504,7 @@ final class OAuth_Server {
 			</div>
 			<?php
 			if ( $load_script ) {
-				wp_enqueue_script( 'magicmcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/js/oauth.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
+				wp_enqueue_script( 'mindio-magic-mcp-oauth', MINDIO_MAGIC_MCP_URL . 'assets/js/oauth.js', array(), MINDIO_MAGIC_MCP_VERSION, true );
 				wp_print_footer_scripts();
 			}
 			?>
@@ -611,8 +604,11 @@ final class OAuth_Server {
 			$expected,
 			$this->normalize_resource_uri( home_url( '/.well-known/oauth-protected-resource' ) ),
 			$this->normalize_resource_uri( home_url( '/.well-known/oauth-authorization-server' ) ),
-			$this->normalize_resource_uri( rest_url( 'flatsome-mcp/v1/oauth/protected-resource' ) ),
-			$this->normalize_resource_uri( rest_url( 'flatsome-mcp/v1/oauth/authorization-server' ) ),
+			$this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/oauth/protected-resource' ) ),
+			$this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/oauth/authorization-server' ) ),
+			$this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/mcp' ) ),
+			$this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/oauth/protected-resource' ) ),
+			$this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/oauth/authorization-server' ) ),
 		);
 
 		foreach ( array_unique( array_filter( $accepted_resources ) ) as $accepted_resource ) {
@@ -627,7 +623,7 @@ final class OAuth_Server {
 	}
 
 	private function canonical_resource(): string {
-		return $this->normalize_resource_uri( rest_url( 'flatsome-mcp/v1/mcp' ) );
+		return $this->normalize_resource_uri( rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/mcp' ) );
 	}
 
 	private function normalize_resource_uri( string $resource ): string {
@@ -666,7 +662,7 @@ final class OAuth_Server {
 			'mindio_magic_mcp_oauth_code_' . $id,
 			array(
 				'id'             => $id,
-				'hash'           => hash_hmac( 'sha256', $secret, wp_salt( 'auth' ) . '|flatsome-mcp-code' ),
+				'hash'           => hash_hmac( 'sha256', $secret, wp_salt( 'auth' ) . '|mindio-magic-mcp-code' ),
 				'user_id'        => $user_id,
 				'client_id'      => $client_id,
 				'redirect_uri'   => $redirect_uri,
@@ -687,7 +683,7 @@ final class OAuth_Server {
 		$key    = 'mindio_magic_mcp_oauth_code_' . $matches[1];
 		$record = get_transient( $key );
 		delete_transient( $key );
-		$hash = hash_hmac( 'sha256', $matches[2], wp_salt( 'auth' ) . '|flatsome-mcp-code' );
+		$hash = hash_hmac( 'sha256', $matches[2], wp_salt( 'auth' ) . '|mindio-magic-mcp-code' );
 		if ( ! is_array( $record ) || ! hash_equals( (string) $record['hash'], $hash ) ) {
 			return new \WP_Error( 'invalid_code', __( 'The authorization code is invalid, expired, or already used.', 'mindio-magic-mcp' ) );
 		}

@@ -2,6 +2,22 @@
 
 All notable changes to Mindio Magic MCP are documented here.
 
+## 0.6.0 - 2026-08-06
+
+- Renamed the main plugin file to `mindio-magic-mcp.php` so the source tree, the release archive, and the WordPress.org package all use the same name, and removed the rename step from the release build.
+- Made `mindio-magic-mcp/v1` the canonical REST namespace for the MCP endpoint and every OAuth route, keeping `flatsome-mcp/v1` registered as a deprecated alias so existing clients and grants continue to work.
+- Accepted the pre-rename MCP endpoint and discovery URLs as OAuth resource aliases, and rebound refresh tokens issued against the old namespace to the canonical one on rotation.
+- Renamed the API key header to `X-Mindio-Magic-MCP-Key`, keeping `X-MagicMCP-Key` and `X-Flatsome-MCP-Key` readable as deprecated inputs.
+- Renamed the outgoing webhook headers to `X-Mindio-Magic-MCP-*` and the user agent to `MindioMagicMCP/<version>`, retaining `X-MagicMCP-*` as deprecated aliases and dropping the `X-Flatsome-MCP-*` aliases.
+- Renamed the admin, frontend, and OAuth asset handles, the OAuth consent page slug, and the media upload temp-file prefix to the plugin's own identity.
+- Left the token, secret box, and option identifiers at their stored values so existing credentials, encrypted secrets, and settings survive the upgrade.
+
+## 0.5.6 - 2026-07-27
+
+- Added a conditional BetterDocs Free integration with nine fixed operations for listing, reading, creating, updating, trashing, and deleting documentation plus managing document categories and tags.
+- Routed BetterDocs writes through its registered WordPress REST post type and taxonomies so BetterDocs hooks and mapped role capabilities remain authoritative, while filtering agent HTML, bounding inputs, supporting optimistic concurrency, and requiring confirmation for deletion.
+- Added end-to-end BetterDocs policy, capability, taxonomy, sanitization, concurrency, Trash, and permanent-deletion coverage; refreshed directory documentation and release assets for WordPress.org deployment.
+
 ## 0.5.5 - 2026-07-22
 
 - Adopted the unique `MindioMagicMCP`, `MINDIO_MAGIC_MCP_`, and `mindio_magic_mcp_` prefixes for plugin-owned globals and persistent identifiers.

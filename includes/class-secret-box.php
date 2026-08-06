@@ -69,6 +69,8 @@ final class Secret_Box {
 	}
 
 	private static function key(): string {
+		// Frozen at its pre-rename value on purpose: changing this context string
+		// would make every already-stored encrypted secret undecryptable.
 		return hash( 'sha256', wp_salt( 'auth' ) . '|flatsome-mcp-secret-box', true );
 	}
 }

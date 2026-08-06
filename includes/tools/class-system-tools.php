@@ -83,7 +83,7 @@ final class System_Tools {
 			'plugin_version'  => MINDIO_MAGIC_MCP_VERSION,
 			'wordpress_version' => get_bloginfo( 'version' ),
 			'php_version'     => PHP_VERSION,
-			'mcp_endpoint'    => rest_url( 'flatsome-mcp/v1/mcp' ),
+			'mcp_endpoint'    => rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/mcp' ),
 			'oauth_metadata'  => home_url( '/.well-known/oauth-authorization-server' ),
 			'locale'          => determine_locale(),
 			'is_rtl'          => is_rtl(),
