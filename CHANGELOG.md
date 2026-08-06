@@ -4,6 +4,8 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added `explain_page`, a structured semantic outline of any built page: detected builder, sections, rows, columns, and elements with stable node IDs, plus heading structure with skipped-level detection, word counts, image alt-text gaps, and internal/external link inventory.
+
 - Added a builder abstraction: one neutral blueprint of sections, rows, columns, and eleven element types renders through Flatsome UX Builder, Elementor, or core blocks behind a single `Page_Builder` contract.
 - Added `list_page_builders`, `create_builder_page`, and `update_builder_page`, with `auto` selection that prefers a site-specific builder over core blocks and keeps the builder an existing page already uses.
 - Reported unsupported elements per builder through the same `render_report` shape the Flatsome tools already emit, instead of dropping them silently.

@@ -72,6 +72,7 @@ final class Plugin {
 		$builders->add( new Elementor_Builder() );
 		$builders->add( new Gutenberg_Builder() );
 		( new Builder_Tools( $registry, $builders ) )->register();
+		( new Page_Analysis_Tools( $registry, $builders ) )->register();
 		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks, $auth ) )->register();
 

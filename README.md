@@ -309,6 +309,22 @@ A blueprint is sections → rows → columns → elements, using a vocabulary ev
 
 Elements that are body copy rather than layout — lists and quotes — ride inside a text component on Flatsome and Elementor, and become real `core/list` and `core/quote` blocks on Gutenberg.
 
+## Reading a built page
+
+`explain_page` returns a structured outline of an existing page so an agent can edit one node instead of regenerating the document. It detects the builder that produced the page and reads through that builder's outline, so it works on Flatsome shortcodes, core blocks, and Elementor documents alike.
+
+The response carries:
+
+- **Builder** — which surface owns the page
+- **Sections → rows → columns → elements** with their stable node IDs, the native shortcode/block/widget name, and a short text excerpt (suppress with `include_text: false`)
+- **Summary** — section, element, and per-type counts plus word count
+- **Headings** — the full outline with `h1_count` and a `skipped_levels` flag
+- **Media** — image inventory with `missing_alt_count`
+- **Links** — internal and external counts with the resolved list
+- **Editing hints** — which tools address this builder's nodes
+
+Analysis runs against the rendered page rather than raw post content, so shortcodes and blocks are both resolved before counting. It pairs with the `render_report` writes already emit: the report says what was just built, `explain_page` says what is there now.
+
 ## Flatsome page generation
 
 `create_flatsome_page` accepts a declarative hierarchy of sections, rows, columns, and strict typed components. Version 0.2 is native-first: it emits the corresponding UX Builder shortcode for titles, rich text, images, buttons, banners, feature and image boxes, message boxes, sliders, banner grids, accordions, tabs, galleries, videos, countdowns, testimonials, team members, pricing tables, logos, dividers, gaps, blog posts, products, product categories, social follow/share links, maps, and search.

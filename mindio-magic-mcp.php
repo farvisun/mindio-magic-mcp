@@ -90,6 +90,7 @@ $mindio_magic_mcp_files = array(
 	'includes/tools/class-webhook-tools.php',
 	'includes/tools/class-flatsome-tools.php',
 	'includes/tools/class-builder-tools.php',
+	'includes/tools/class-page-analysis-tools.php',
 	'includes/tools/class-changeset-tools.php',
 	'includes/tools/class-system-tools.php',
 	'includes/class-admin.php',
