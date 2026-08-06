@@ -58,6 +58,11 @@ final class Tool_Registry {
 					'type'        => 'boolean',
 					'description' => __( 'Preview this call without committing it. Returns the exact post, meta, term, option, comment, and user changes it would make.', 'mindio-magic-mcp' ),
 				);
+				$input_schema['properties']['changeset'] = array(
+					'type'        => 'string',
+					'maxLength'   => 64,
+					'description' => __( 'Journal this call into an open changeset created by begin_changeset, so it can be undone with revert_changeset.', 'mindio-magic-mcp' ),
+				);
 			}
 			$input_schema['properties']['response_locale'] = array(
 				'type'        => 'string',
@@ -195,6 +200,10 @@ final class Tool_Registry {
 				return new \WP_Error( 'forbidden', __( 'Your WordPress user cannot perform this action.', 'mindio-magic-mcp' ) );
 			}
 
+			$changeset_id = isset( $arguments['changeset'] ) && is_string( $arguments['changeset'] )
+				? trim( $arguments['changeset'] )
+				: '';
+
 			if ( ! empty( $arguments['dry_run'] ) ) {
 				if ( empty( $tool['dry_run'] ) ) {
 					return new \WP_Error(
@@ -205,6 +214,27 @@ final class Tool_Registry {
 				$result = ( new Dry_Run() )->run(
 					static fn() => call_user_func( $tool['callback'], $arguments )
 				);
+			} elseif ( '' !== $changeset_id ) {
+				if ( empty( $tool['dry_run'] ) ) {
+					return new \WP_Error(
+						'changeset_unsupported',
+						__( 'This tool changes files or external state that cannot be journalled into a changeset.', 'mindio-magic-mcp' )
+					);
+				}
+				$changeset = new Changeset();
+				$record    = $changeset->get( $changeset_id );
+				if ( ! $record || Changeset::STATUS_OPEN !== $record['status'] ) {
+					return new \WP_Error( 'unknown_changeset', __( 'The changeset does not exist or is no longer open.', 'mindio-magic-mcp' ) );
+				}
+
+				$recorder = new Change_Recorder();
+				$recorder->start();
+				try {
+					$result = call_user_func( $tool['callback'], $arguments );
+					$changeset->record( $changeset_id, $name, $recorder->entries() );
+				} finally {
+					$recorder->stop();
+				}
 			} else {
 				$result = call_user_func( $tool['callback'], $arguments );
 			}

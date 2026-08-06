@@ -37,6 +37,7 @@ final class Plugin {
 		$registry    = new Tool_Registry( $auth );
 		$resources   = new Resource_Registry( $auth );
 		$prompts     = new Prompt_Registry( $auth );
+		$changesets  = new Changeset();
 		$webhooks    = new Webhook_Engine();
 
 		( new Content_Tools( $registry ) )->register();
@@ -64,6 +65,7 @@ final class Plugin {
 		( new Webhook_Tools( $registry, $webhooks ) )->register();
 		$flatsome_catalog = new Flatsome_Component_Catalog();
 		( new Flatsome_Tools( $registry, new Flatsome_Renderer( $flatsome_catalog ), $flatsome_catalog ) )->register();
+		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks ) )->register();
 
 		( new MCP_Resources( $resources, $flatsome_catalog ) )->register();

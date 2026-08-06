@@ -91,6 +91,16 @@ final class Installer {
 		return $wpdb->prefix . 'mindio_magic_mcp_webhook_log';
 	}
 
+	public static function changeset_table(): string {
+		global $wpdb;
+		return $wpdb->prefix . 'mindio_magic_mcp_changesets';
+	}
+
+	public static function changeset_entry_table(): string {
+		global $wpdb;
+		return $wpdb->prefix . 'mindio_magic_mcp_changeset_entries';
+	}
+
 	public static function cleanup_logs(): void {
 		global $wpdb;
 
@@ -146,8 +156,42 @@ final class Installer {
 			KEY created_at (created_at)
 		) $charset;";
 
+		$changeset_sql = 'CREATE TABLE ' . self::changeset_table() . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			changeset_id varchar(64) NOT NULL,
+			label varchar(191) NOT NULL DEFAULT '',
+			status varchar(20) NOT NULL DEFAULT 'open',
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			token_id varchar(64) NOT NULL DEFAULT '',
+			entries int(10) unsigned NOT NULL DEFAULT 0,
+			created_at datetime NOT NULL,
+			updated_at datetime NOT NULL,
+			PRIMARY KEY  (id),
+			UNIQUE KEY changeset_id (changeset_id),
+			KEY status (status),
+			KEY created_at (created_at)
+		) $charset;";
+
+		$changeset_entry_sql = 'CREATE TABLE ' . self::changeset_entry_table() . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			changeset_id varchar(64) NOT NULL,
+			tool varchar(100) NOT NULL DEFAULT '',
+			kind varchar(32) NOT NULL,
+			object_key varchar(191) NOT NULL,
+			operation varchar(20) NOT NULL DEFAULT 'update',
+			target text NULL,
+			before_state longtext NULL,
+			after_state longtext NULL,
+			created_at datetime NOT NULL,
+			PRIMARY KEY  (id),
+			KEY changeset_id (changeset_id),
+			KEY kind (kind)
+		) $charset;";
+
 		dbDelta( $audit_sql );
 		dbDelta( $webhook_sql );
+		dbDelta( $changeset_sql );
+		dbDelta( $changeset_entry_sql );
 	}
 
 	private static function install_site(): void {

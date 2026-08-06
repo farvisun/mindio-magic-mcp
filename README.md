@@ -248,6 +248,23 @@ Tools whose real work happens outside the database do not accept the argument at
 
 Dry runs require a transactional storage engine. On non-InnoDB installations the argument fails closed rather than silently committing. Long field values and change sets above 500 entries are clipped, flagged by `truncated`.
 
+## Changesets
+
+Post revisions only restore post content. A changeset journals the before and after state of everything a group of calls touches — posts, post meta, term assignments, terms, options, comments, and users — so the whole group can be undone as a unit.
+
+```text
+begin_changeset { "label": "Spring campaign copy" }   → { "changeset_id": "cs_…", "status": "open" }
+update_post     { "post_id": 41, "…", "changeset": "cs_…" }
+update_post     { "post_id": 42, "…", "changeset": "cs_…" }
+get_changeset   { "changeset_id": "cs_…" }            → every recorded before/after pair
+close_changeset { "changeset_id": "cs_…" }
+revert_changeset{ "changeset_id": "cs_…", "confirm": true }
+```
+
+Any write tool that supports `dry_run` also accepts `changeset`. Journalling uses the same recorder as previews, so coverage is identical; tools whose effects escape the database are rejected with `changeset_unsupported`.
+
+Reverts replay entries newest first and re-check capabilities per entry, so a credential can never undo more than its WordPress user could have changed directly. Entries it may not touch are reported in `skipped` rather than failing the whole revert. Creates are undone by deletion, deletions by re-insertion at the original ID with meta and terms, and updates by field restore. Closed changesets reject further writes but remain revertible; reverting twice fails with `changeset_reverted`. A changeset holds at most 5,000 entries.
+
 ## Gutenberg editing safety
 
 Gutenberg tools work with structured block trees and numeric index paths. Writes validate every block type against WordPress's live block registry, enforce depth/node limits, save a revision, and accept `expected_modified_gmt` for optimistic concurrency. Posts containing Flatsome or mixed builder content are protected from accidental block serialization; an override requires both `force_non_gutenberg=true` and `confirm=true`. Use the Flatsome tools for those pages whenever possible.

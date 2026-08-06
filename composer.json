@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
-	"test:review-regressions": "@php tests/review-regressions.php",
+    "test:review-regressions": "@php tests/review-regressions.php",
     "test:integration": "@php tests/integration/smoke.php",
     "test:flatsome": "@php tests/integration/flatsome-components.php",
     "test:admin": "@php tests/integration/admin-ui.php",
@@ -18,9 +18,10 @@
     "test:localization": "@php tests/integration/localization.php",
     "test:resources": "@php tests/integration/resources-prompts.php",
     "test:dry-run": "@php tests/integration/dry-run.php",
+    "test:changesets": "@php tests/integration/changesets.php",
     "test": [
       "@lint",
-	  "@test:review-regressions",
+      "@test:review-regressions",
       "@test:integration",
       "@test:flatsome",
       "@test:admin",
@@ -29,7 +30,8 @@
       "@test:seo-providers",
       "@test:localization",
       "@test:resources",
-      "@test:dry-run"
+      "@test:dry-run",
+      "@test:changesets"
     ],
     "build": "bash bin/build-release.sh"
   }

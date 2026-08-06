@@ -26,7 +26,7 @@ if ( defined( 'MINDIO_MAGIC_MCP_FILE' ) ) {
 }
 
 define( 'MINDIO_MAGIC_MCP_VERSION', '0.6.0' );
-define( 'MINDIO_MAGIC_MCP_DB_VERSION', '1' );
+define( 'MINDIO_MAGIC_MCP_DB_VERSION', '2' );
 define( 'MINDIO_MAGIC_MCP_FILE', __FILE__ );
 define( 'MINDIO_MAGIC_MCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MINDIO_MAGIC_MCP_URL', plugin_dir_url( __FILE__ ) );
@@ -42,6 +42,8 @@ $mindio_magic_mcp_files = array(
 	'includes/class-auth.php',
 	'includes/class-rate-limiter.php',
 	'includes/class-audit-log.php',
+	'includes/class-change-recorder.php',
+	'includes/class-changeset.php',
 	'includes/class-dry-run.php',
 	'includes/class-tool-registry.php',
 	'includes/class-resource-registry.php',
@@ -80,6 +82,7 @@ $mindio_magic_mcp_files = array(
 	'includes/tools/class-performance-tools.php',
 	'includes/tools/class-webhook-tools.php',
 	'includes/tools/class-flatsome-tools.php',
+	'includes/tools/class-changeset-tools.php',
 	'includes/tools/class-system-tools.php',
 	'includes/class-admin.php',
 	'includes/class-plugin.php',

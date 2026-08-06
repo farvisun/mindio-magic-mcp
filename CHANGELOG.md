@@ -4,6 +4,10 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added changesets: `begin_changeset`, `list_changesets`, `get_changeset`, `close_changeset`, and `revert_changeset` group write calls under a named ID and undo them as a unit, covering post meta, term assignments, options, comments, and users that post revisions do not reach.
+- Added a `changeset` argument to every previewable write tool, and extracted the shared Change_Recorder that now backs both dry runs and the changeset journal.
+- Re-checked WordPress capabilities per entry during a revert, reporting entries the credential may not touch instead of failing the whole operation.
+
 - Added `dry_run` to every write tool: the call executes inside a database transaction, reports the exact post, meta, term, option, comment, and user changes it would make, and is then rolled back. Outbound HTTP, mail, cron scheduling, and webhook queuing are suppressed for the duration and reported back.
 - Excluded tools whose effects escape a transaction — media writes, plugin and theme installation, WP-CLI, cache purges, and CDN calls — from previewing, and made the argument fail closed on non-transactional storage engines.
 
