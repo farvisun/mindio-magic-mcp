@@ -22,6 +22,7 @@
     "test:policy": "@php tests/integration/credential-policy.php",
     "test:builders": "@php tests/integration/builders.php",
     "test:explain": "@php tests/integration/explain-page.php",
+    "test:approvals": "@php tests/integration/approvals.php",
     "test": [
       "@lint",
       "@test:review-regressions",
@@ -37,7 +38,8 @@
       "@test:changesets",
       "@test:policy",
       "@test:builders",
-      "@test:explain"
+      "@test:explain",
+      "@test:approvals"
     ],
     "build": "bash bin/build-release.sh"
   }

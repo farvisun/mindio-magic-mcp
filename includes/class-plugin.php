@@ -38,6 +38,7 @@ final class Plugin {
 		$resources   = new Resource_Registry( $auth );
 		$prompts     = new Prompt_Registry( $auth );
 		$changesets  = new Changeset();
+		$approvals   = new Approval_Queue();
 		$webhooks    = new Webhook_Engine();
 
 		( new Content_Tools( $registry ) )->register();
@@ -74,6 +75,7 @@ final class Plugin {
 		( new Builder_Tools( $registry, $builders ) )->register();
 		( new Page_Analysis_Tools( $registry, $builders ) )->register();
 		( new Changeset_Tools( $registry, $changesets, $auth ) )->register();
+		( new Approval_Tools( $registry, $approvals ) )->register();
 		( new System_Tools( $registry, $audit, $webhooks, $auth ) )->register();
 
 		( new MCP_Resources( $resources, $flatsome_catalog ) )->register();

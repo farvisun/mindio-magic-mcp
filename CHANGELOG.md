@@ -4,6 +4,10 @@ All notable changes to Mindio Magic MCP are documented here.
 
 ## Unreleased
 
+- Added an optional human approval queue: gated tool calls park as pending requests, an administrator approves or rejects them in a new Approvals tab, and the agent replays the call with the issued approval ID.
+- Bound each approval to a hash of the reviewed arguments so it cannot be reused for a different target, made approvals single-use and expiring, and exempted dry runs from gating.
+- Added read-only `list_approvals` and `get_approval` so agents can poll their own requests without being able to decide them.
+
 - Added `explain_page`, a structured semantic outline of any built page: detected builder, sections, rows, columns, and elements with stable node IDs, plus heading structure with skipped-level detection, word counts, image alt-text gaps, and internal/external link inventory.
 
 - Added a builder abstraction: one neutral blueprint of sections, rows, columns, and eleven element types renders through Flatsome UX Builder, Elementor, or core blocks behind a single `Page_Builder` contract.

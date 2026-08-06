@@ -268,6 +268,27 @@ Tools whose real work happens outside the database do not accept the argument at
 
 Dry runs require a transactional storage engine. On non-InnoDB installations the argument fails closed rather than silently committing. Long field values and change sets above 500 entries are clipped, flagged by `truncated`.
 
+## Approval queue
+
+Some sites will not grant an agent blind write access. With approvals enabled, calls matching the gated patterns park for human review instead of running:
+
+```text
+delete_post { "post_id": 41, "confirm": true }
+  → error approval_required, data: { approval_id: "ap_…", expires_at: "…" }
+
+  (a human approves under Settings → Mindio Magic MCP → Approvals)
+
+delete_post { "post_id": 41, "confirm": true, "approval": "ap_…" }   → executes
+```
+
+Enable it under **Settings**, where the gated patterns and approval lifetime are configured. The defaults gate `delete_*`, `install_*`, `update_settings`, `update_plugin`, `update_theme`, `switch_theme`, `run_wp_cli`, and `revert_changeset`.
+
+An approval is bound to a SHA-256 hash of the exact arguments that were reviewed, so it cannot be reused to delete a different post: mismatched replays fail with `approval_mismatch`. Approvals are single-use (`approval_spent` afterwards), expire if unused within the configured window (`approval_expired`), and cannot be self-issued — only an administrator in the console can decide one. Rejections are permanent (`approval_rejected`).
+
+Dry runs are never gated. Previewing a destructive call changes nothing, so agents can plan against a gated tool and only queue the real call once the diff looks right.
+
+Agents poll with `list_approvals` and `get_approval`; both are read-only, so a credential can watch its request without being able to approve it.
+
 ## Changesets
 
 Post revisions only restore post content. A changeset journals the before and after state of everything a group of calls touches — posts, post meta, term assignments, terms, options, comments, and users — so the whole group can be undone as a unit.

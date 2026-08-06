@@ -101,6 +101,11 @@ final class Installer {
 		return $wpdb->prefix . 'mindio_magic_mcp_changeset_entries';
 	}
 
+	public static function approval_table(): string {
+		global $wpdb;
+		return $wpdb->prefix . 'mindio_magic_mcp_approvals';
+	}
+
 	public static function cleanup_logs(): void {
 		global $wpdb;
 
@@ -188,10 +193,30 @@ final class Installer {
 			KEY kind (kind)
 		) $charset;";
 
+		$approval_sql = 'CREATE TABLE ' . self::approval_table() . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			request_id varchar(64) NOT NULL,
+			tool varchar(100) NOT NULL,
+			arguments longtext NULL,
+			arguments_hash varchar(64) NOT NULL DEFAULT '',
+			status varchar(20) NOT NULL DEFAULT 'pending',
+			requested_by bigint(20) unsigned NOT NULL DEFAULT 0,
+			token_id varchar(64) NOT NULL DEFAULT '',
+			decided_by bigint(20) unsigned NOT NULL DEFAULT 0,
+			created_at datetime NOT NULL,
+			decided_at datetime NULL,
+			expires_at datetime NULL,
+			PRIMARY KEY  (id),
+			UNIQUE KEY request_id (request_id),
+			KEY status (status),
+			KEY created_at (created_at)
+		) $charset;";
+
 		dbDelta( $audit_sql );
 		dbDelta( $webhook_sql );
 		dbDelta( $changeset_sql );
 		dbDelta( $changeset_entry_sql );
+		dbDelta( $approval_sql );
 	}
 
 	private static function install_site(): void {
@@ -215,6 +240,9 @@ final class Installer {
 			'webhook_retention_days' => 14,
 			'allowed_origins'        => array(),
 			'brand_voice'            => '',
+			'approvals_enabled'      => false,
+			'approval_tools'         => array(),
+			'approval_ttl_hours'     => 72,
 			'delete_on_uninstall'    => false,
 			'allow_database_inspection'       => false,
 			'allow_filesystem_read'  => false,

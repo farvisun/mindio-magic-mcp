@@ -53,6 +53,13 @@ final class Tool_Registry {
 
 		if ( 'object' === ( $input_schema['type'] ?? null ) ) {
 			$input_schema['properties'] = (array) ( $input_schema['properties'] ?? array() );
+			if ( empty( $annotations['readOnlyHint'] ) ) {
+				$input_schema['properties']['approval'] = array(
+					'type'        => 'string',
+					'maxLength'   => 64,
+					'description' => __( 'Approval ID issued when this call was parked for review. Only needed for tools the administrator has gated behind human approval.', 'mindio-magic-mcp' ),
+				);
+			}
 			if ( $supports_dry_run ) {
 				$input_schema['properties']['dry_run'] = array(
 					'type'        => 'boolean',
@@ -226,6 +233,34 @@ final class Tool_Registry {
 				? trim( $arguments['changeset'] )
 				: '';
 
+			// Previews change nothing, so they never wait on a human.
+			$approval    = new Approval_Queue();
+			$approval_id = '';
+			if ( empty( $arguments['dry_run'] ) && $approval->requires_approval( $name ) ) {
+				$approval_id = isset( $arguments['approval'] ) && is_string( $arguments['approval'] )
+					? trim( $arguments['approval'] )
+					: '';
+
+				if ( '' === $approval_id ) {
+					$request = $approval->request( $name, $arguments, $this->auth );
+
+					return new \WP_Error(
+						'approval_required',
+						__( 'This call needs administrator approval before it can run. Re-send it with the approval ID once a human has approved it.', 'mindio-magic-mcp' ),
+						array(
+							'approval_id' => $request['request_id'],
+							'status'      => $request['status'],
+							'expires_at'  => $request['expires_at'],
+						)
+					);
+				}
+
+				$claimed = $approval->claim( $approval_id, $name, $arguments );
+				if ( is_wp_error( $claimed ) ) {
+					return $claimed;
+				}
+			}
+
 			if ( ! empty( $arguments['dry_run'] ) ) {
 				if ( empty( $tool['dry_run'] ) ) {
 					return new \WP_Error(
@@ -274,6 +309,10 @@ final class Tool_Registry {
 
 		if ( is_wp_error( $result ) ) {
 			return $result;
+		}
+
+		if ( '' !== $approval_id ) {
+			$approval->mark_executed( $approval_id );
 		}
 
 		return is_array( $result ) ? $result : array( 'result' => $result );

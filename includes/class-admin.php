@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Admin {
-	private const TABS = array( 'overview', 'tools', 'credentials', 'webhooks', 'activity', 'settings' );
+	private const TABS = array( 'overview', 'tools', 'credentials', 'approvals', 'webhooks', 'activity', 'settings' );
 
 	private Auth $auth;
 	private Audit_Log $audit;
@@ -33,6 +33,7 @@ final class Admin {
 		add_action( 'admin_post_mindio_magic_mcp_revoke_key', array( $this, 'revoke_key' ) );
 		add_action( 'admin_post_mindio_magic_mcp_remove_oauth_client', array( $this, 'remove_oauth_client' ) );
 		add_action( 'admin_post_mindio_magic_mcp_save_settings', array( $this, 'save_settings' ) );
+		add_action( 'admin_post_mindio_magic_mcp_decide_approval', array( $this, 'decide_approval' ) );
 		add_action( 'admin_post_mindio_magic_mcp_save_tools', array( $this, 'save_tools' ) );
 		add_action( 'admin_post_mindio_magic_mcp_add_webhook', array( $this, 'add_webhook' ) );
 		add_action( 'admin_post_mindio_magic_mcp_remove_webhook', array( $this, 'remove_webhook' ) );
@@ -99,6 +100,127 @@ final class Admin {
 		);
 		$result  = $this->auth->create_api_key( $user_id, $scope, $label, $policy );
 		$this->flash_result( $result, 'api_key' );
+	}
+
+	public function decide_approval(): void {
+		$this->guard();
+		check_admin_referer( 'mindio_magic_mcp_decide_approval' );
+
+		$request_id = sanitize_text_field( (string) wp_unslash( $_POST['request_id'] ?? '' ) );
+		$decision   = sanitize_key( (string) wp_unslash( $_POST['decision'] ?? '' ) );
+		$approvals  = new Approval_Queue();
+
+		$decided = 'approve' === $decision
+			? $approvals->approve( $request_id )
+			: $approvals->reject( $request_id );
+
+		if ( $decided ) {
+			$this->flash(
+				'success',
+				'approve' === $decision
+					? __( 'Request approved. The agent can now replay the call.', 'mindio-magic-mcp' )
+					: __( 'Request rejected.', 'mindio-magic-mcp' )
+			);
+		} else {
+			$this->flash( 'error', __( 'That request is no longer pending.', 'mindio-magic-mcp' ) );
+		}
+
+		$this->redirect();
+	}
+
+	/** @param array<string,mixed> $settings */
+	private function render_approvals( array $settings ): void {
+		$approvals = new Approval_Queue();
+		$requests  = $approvals->list_requests( '', 100 );
+		$patterns  = (array) ( $settings['approval_tools'] ?? array() );
+		if ( ! $patterns ) {
+			$patterns = Approval_Queue::default_patterns();
+		}
+		?>
+		<section class="mindio-section-heading">
+			<div>
+				<p class="mindio-eyebrow"><?php esc_html_e( 'Human in the loop', 'mindio-magic-mcp' ); ?></p>
+				<h2><?php esc_html_e( 'Approval queue', 'mindio-magic-mcp' ); ?></h2>
+				<p><?php esc_html_e( 'High-risk calls park here instead of running. Approve one and the agent replays it with the issued ID.', 'mindio-magic-mcp' ); ?></p>
+			</div>
+		</section>
+
+		<?php if ( empty( $settings['approvals_enabled'] ) ) : ?>
+			<div class="mindio-callout mindio-callout--info">
+				<span class="dashicons dashicons-info-outline" aria-hidden="true"></span>
+				<p><?php esc_html_e( 'Approvals are switched off, so every permitted call runs immediately. Enable them under Settings.', 'mindio-magic-mcp' ); ?></p>
+			</div>
+		<?php else : ?>
+			<div class="mindio-callout mindio-callout--info">
+				<span class="dashicons dashicons-shield" aria-hidden="true"></span>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: comma-separated tool patterns. */
+						esc_html__( 'Gated tools: %s', 'mindio-magic-mcp' ),
+						esc_html( implode( ', ', $patterns ) )
+					);
+					?>
+				</p>
+			</div>
+		<?php endif; ?>
+
+		<section class="mindio-card mindio-card--table">
+			<div class="mindio-card__header">
+				<div>
+					<p class="mindio-eyebrow"><?php esc_html_e( 'Review', 'mindio-magic-mcp' ); ?></p>
+					<h3><?php esc_html_e( 'Requests', 'mindio-magic-mcp' ); ?></h3>
+				</div>
+			</div>
+			<?php if ( $requests ) : ?>
+				<div class="mindio-table-wrap">
+					<table class="mindio-table">
+						<thead><tr>
+							<th scope="col"><?php esc_html_e( 'Tool', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Arguments', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Requested by', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Status', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><?php esc_html_e( 'Requested', 'mindio-magic-mcp' ); ?></th>
+							<th scope="col"><span class="screen-reader-text"><?php esc_html_e( 'Decision', 'mindio-magic-mcp' ); ?></span></th>
+						</tr></thead>
+						<tbody>
+							<?php foreach ( $requests as $request ) : ?>
+								<tr>
+									<td>
+										<strong><?php echo esc_html( (string) $request['tool'] ); ?></strong>
+										<code class="mindio-subvalue"><?php echo esc_html( (string) $request['request_id'] ); ?></code>
+									</td>
+									<td><code class="mindio-subvalue"><?php echo esc_html( mb_substr( (string) wp_json_encode( $request['arguments'] ), 0, 160 ) ); ?></code></td>
+									<td><?php echo esc_html( $this->user_name( (int) $request['requested_by'] ) ); ?></td>
+									<td>
+										<?php echo esc_html( (string) $request['status'] ); ?>
+										<?php if ( ! empty( $request['expired'] ) && Approval_Queue::STATUS_APPROVED === $request['status'] ) : ?>
+											<span class="mindio-subvalue"><?php esc_html_e( 'expired', 'mindio-magic-mcp' ); ?></span>
+										<?php endif; ?>
+									</td>
+									<td><?php echo esc_html( $this->format_datetime( (string) $request['created_at'] ) ); ?></td>
+									<td class="mindio-table__action">
+										<?php if ( Approval_Queue::STATUS_PENDING === $request['status'] ) : ?>
+											<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+												<input type="hidden" name="action" value="mindio_magic_mcp_decide_approval">
+												<input type="hidden" name="redirect_tab" value="approvals">
+												<input type="hidden" name="request_id" value="<?php echo esc_attr( (string) $request['request_id'] ); ?>">
+												<?php wp_nonce_field( 'mindio_magic_mcp_decide_approval' ); ?>
+												<button class="mindio-button mindio-button--primary" type="submit" name="decision" value="approve"><?php esc_html_e( 'Approve', 'mindio-magic-mcp' ); ?></button>
+												<button class="mindio-button" type="submit" name="decision" value="reject"><?php esc_html_e( 'Reject', 'mindio-magic-mcp' ); ?></button>
+											</form>
+										<?php endif; ?>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			<?php else : ?>
+				<?php $this->render_empty_state( 'dashicons-yes-alt', __( 'Nothing awaiting review', 'mindio-magic-mcp' ), __( 'Gated calls will appear here as agents attempt them.', 'mindio-magic-mcp' ) ); ?>
+			<?php endif; ?>
+		</section>
+		<?php
 	}
 
 	/**
@@ -196,6 +318,9 @@ final class Admin {
 			'webhook_retention_days' => max( 1, min( 365, absint( $_POST['webhook_retention_days'] ?? 14 ) ) ),
 			'allowed_origins'        => array_unique( $origins ),
 			'brand_voice'            => mb_substr( sanitize_textarea_field( (string) wp_unslash( $_POST['brand_voice'] ?? '' ) ), 0, 1000 ),
+			'approvals_enabled'      => ! empty( $_POST['approvals_enabled'] ),
+			'approval_tools'         => $this->policy_lines( (string) wp_unslash( $_POST['approval_tools'] ?? '' ) ),
+			'approval_ttl_hours'     => max( 1, min( 720, absint( $_POST['approval_ttl_hours'] ?? 72 ) ) ),
 			'delete_on_uninstall'    => ! empty( $_POST['delete_on_uninstall'] ),
 			'allow_database_inspection'       => ! empty( $_POST['allow_database_inspection'] ),
 			'allow_filesystem_read'  => ! empty( $_POST['allow_filesystem_read'] ),
@@ -339,6 +464,9 @@ final class Admin {
 						break;
 					case 'activity':
 						$this->render_activity();
+						break;
+					case 'approvals':
+						$this->render_approvals( $settings );
 						break;
 					case 'settings':
 						$this->render_settings( $settings );
@@ -1346,6 +1474,39 @@ final class Admin {
 
 			<section class="mindio-card mindio-settings-group">
 				<div class="mindio-settings-group__intro">
+					<span class="mindio-settings-icon"><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span></span>
+					<div>
+						<h3><?php esc_html_e( 'Human approval', 'mindio-magic-mcp' ); ?></h3>
+						<p><?php esc_html_e( 'Park high-risk calls for review instead of running them immediately.', 'mindio-magic-mcp' ); ?></p>
+					</div>
+				</div>
+				<div class="mindio-settings-group__body">
+					<?php $this->render_switch( 'mindio-approvals', 'approvals_enabled', ! empty( $settings['approvals_enabled'] ), __( 'Require approval for gated tools', 'mindio-magic-mcp' ), __( 'Matching calls return approval_required and wait in the Approvals tab. Dry runs are never gated.', 'mindio-magic-mcp' ) ); ?>
+					<div class="mindio-settings-grid">
+						<div class="mindio-field">
+							<label for="mindio-approval-tools"><?php esc_html_e( 'Gated tools', 'mindio-magic-mcp' ); ?></label>
+							<textarea id="mindio-approval-tools" class="mindio-control mindio-control--code" rows="4" name="approval_tools" dir="ltr" placeholder="delete_*&#10;install_*"><?php echo esc_textarea( implode( "\n", (array) $settings['approval_tools'] ) ); ?></textarea>
+							<small>
+								<?php
+								printf(
+									/* translators: %s: comma-separated default tool patterns. */
+									esc_html__( 'One tool name or prefix pattern per line. Empty uses the defaults: %s', 'mindio-magic-mcp' ),
+									esc_html( implode( ', ', Approval_Queue::default_patterns() ) )
+								);
+								?>
+							</small>
+						</div>
+						<div class="mindio-field">
+							<label for="mindio-approval-ttl"><?php esc_html_e( 'Approval validity', 'mindio-magic-mcp' ); ?></label>
+							<div class="mindio-unit-field"><input id="mindio-approval-ttl" class="mindio-control" type="number" min="1" max="720" name="approval_ttl_hours" value="<?php echo esc_attr( (string) $settings['approval_ttl_hours'] ); ?>"><span><?php esc_html_e( 'hours', 'mindio-magic-mcp' ); ?></span></div>
+							<small><?php esc_html_e( 'An approval that is not used within this window expires unused.', 'mindio-magic-mcp' ); ?></small>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="mindio-card mindio-settings-group">
+				<div class="mindio-settings-group__intro">
 					<span class="mindio-settings-icon"><span class="dashicons dashicons-shield-alt" aria-hidden="true"></span></span>
 					<div>
 						<h3><?php esc_html_e( 'Browser security', 'mindio-magic-mcp' ); ?></h3>
@@ -1644,6 +1805,11 @@ final class Admin {
 				'description' => __( 'Keys & OAuth', 'mindio-magic-mcp' ),
 				'icon'        => 'dashicons-admin-network',
 			),
+			'approvals'   => array(
+				'label'       => __( 'Approvals', 'mindio-magic-mcp' ),
+				'description' => __( 'Human review queue', 'mindio-magic-mcp' ),
+				'icon'        => 'dashicons-yes-alt',
+			),
 			'webhooks'    => array(
 				'label'       => __( 'Webhooks', 'mindio-magic-mcp' ),
 				'description' => __( 'Events & delivery', 'mindio-magic-mcp' ),
@@ -1681,6 +1847,9 @@ final class Admin {
 				'webhook_retention_days' => 14,
 				'allowed_origins'        => array(),
 				'brand_voice'            => '',
+				'approvals_enabled'      => false,
+				'approval_tools'         => array(),
+				'approval_ttl_hours'     => 72,
 				'delete_on_uninstall'    => false,
 				'allow_database_inspection'       => false,
 				'allow_filesystem_read'  => false,
