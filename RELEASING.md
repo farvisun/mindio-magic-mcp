@@ -148,6 +148,25 @@ gh release view v<version>
 from an earlier commit, cancel that run first — otherwise it publishes an archive whose contents
 do not match the tag.
 
+If no workflow run appears at all — `gh run list` shows nothing for your commit even though
+`gh api repos/:owner/:repo/actions/permissions` reports `"enabled": true` and every workflow is
+`active` — Actions is being refused upstream, usually an exhausted account spending limit or a
+hosted-runner capacity failure (`The job was not acquired by Runner of type hosted`). Publish the
+release by hand from the archive you already built and verified in step 4:
+
+```bash
+shasum -a 256 dist/mindio-magic-mcp-<version>.zip > dist/mindio-magic-mcp-<version>.zip.sha256
+gh release create v<version> \
+  dist/mindio-magic-mcp-<version>.zip \
+  dist/mindio-magic-mcp-<version>.zip.sha256 \
+  --title "Mindio Magic MCP v<version>" \
+  --generate-notes
+```
+
+Omit `--target` when the tag is already pushed; passing both is rejected with
+`Release.target_commitish is invalid`. A manually published release is what the workflow would
+have produced, so it does not need to be redone once Actions recovers.
+
 ## 6. Deploy to WordPress.org
 
 WordPress.org distributes from Subversion, not from git. The SVN repository has three top-level
