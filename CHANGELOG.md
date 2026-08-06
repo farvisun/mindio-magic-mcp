@@ -2,7 +2,7 @@
 
 All notable changes to Mindio Magic MCP are documented here.
 
-## Unreleased
+## 0.7.0 - 2026-08-07
 
 - Added audit log export: batches ship to a webhook, syslog, or both every five minutes as newline-delimited JSON, signed with HMAC-SHA256 and tracked by a cursor so records are neither lost nor duplicated.
 - Added anomaly detection over each batch for failure spikes, permission probing, destructive bursts, exhausted budgets, and credentials used from a new address, retained for reading with `get_audit_anomalies` and exposed through the `mindio_magic_mcp_audit_anomaly` action.

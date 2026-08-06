@@ -4,7 +4,7 @@ Tags: mcp, ai, flatsome, automation, oauth
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 0.6.0
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,10 +18,14 @@ Mindio Magic MCP is independently developed and is not affiliated with or endors
 
 Highlights:
 
-* Stateless MCP Streamable HTTP endpoint
+* Stateless MCP Streamable HTTP endpoint with optional server-sent event streaming and progress notifications
+* MCP resources and site-aware prompts alongside tools, including a configurable brand voice
 * API keys, OAuth 2.1 authorization code flow, PKCE S256, and WordPress authentication
-* Hierarchical read-only, editor, and administrator scopes
+* Hierarchical read-only, editor, and administrator scopes, plus per-credential allow/deny patterns and daily call budgets
+* Preview any write with dry_run, group writes into a revertible changeset, and park high-risk calls in a human approval queue
+* One builder-neutral page blueprint that renders through Flatsome UX Builder, Elementor, or core blocks
 * Structured Gutenberg block discovery and revision-safe block-tree editing
+* explain_page semantic outlines with stable node IDs, heading structure, and accessibility gaps
 * Post, media, comments, users, SEO, settings, plugin, theme, webhook, search, and diagnostics tools
 * Official-directory plugin/theme search, installation, updates, deletion, generic theme settings, and Flatsome settings
 * Free integrations for ACF, BetterDocs, Contact Form 7, WooCommerce, Yoast SEO, and Rank Math with fixed operation catalogs
@@ -30,12 +34,13 @@ Highlights:
 * Persian content support and RTL-safe generated layouts
 * Conditional WooCommerce and multisite tools
 * Rate limits, strict schemas, audit logs, SSRF controls, and destructive-action confirmations
-* Responsive flat enterprise admin console with compact 2–4px geometry and separate Overview, Tools, Credentials, Webhooks, Activity, and Settings tabs
+* Audit export to a webhook or syslog every five minutes, with anomaly alerts for failure spikes, permission probing, destructive bursts, exhausted budgets, and credentials used from a new address
+* Responsive flat enterprise admin console with compact 2–4px geometry and separate Overview, Tools, Credentials, Approvals, Webhooks, Activity, and Settings tabs
 * Searchable, grouped per-site tool exposure policy with individual, group, and enable/disable-all controls
 * Expandable per-operation integration policy; reads start enabled and writes start disabled
 * Searchable diagnostics, copy-ready endpoints, accessible controls, and WordPress.org language-pack support
 
-The core single-site plugin registers 81 MCP tool names. Each installed supported integration adds read and write dispatchers; all six integrations add 12 names and 147 fixed operations. Active WooCommerce adds 6 compatible legacy tools and WordPress multisite adds 2 tools.
+The core single-site plugin registers 95 MCP tool names. Each installed supported integration adds read and write dispatchers; all six integrations add 12 names and 147 fixed operations. Active WooCommerce adds 6 compatible legacy tools and WordPress multisite adds 2 tools.
 
 No prompt or content is sent to an external AI provider by default. Generation and translation integrations are opt-in through documented WordPress filters.
 
@@ -119,6 +124,18 @@ Its primary distinction is native-first Flatsome UX Builder generation and editi
 
 == Changelog ==
 
+= 0.7.0 =
+
+* Added MCP resources and site-aware prompts, plus a brand voice setting that flows into both.
+* Added `dry_run` to every previewable write tool: the call runs inside a database transaction, reports the exact changes, and is rolled back.
+* Added changesets that group write calls under one ID and revert them as a unit, covering meta, terms, options, comments, and users.
+* Added per-credential allow/deny tool patterns and daily call budgets, enforced in discovery and execution.
+* Added a builder abstraction so one neutral blueprint renders through Flatsome UX Builder, Elementor, or core blocks.
+* Added `explain_page` for structured page outlines with stable node IDs, heading structure, and accessibility gaps.
+* Added an optional human approval queue with a new Approvals tab; gated calls park for review and replay with an issued approval ID.
+* Added server-sent event streaming with `notifications/progress` when the client sends `Accept: text/event-stream`.
+* Added audit log export to a webhook or syslog with HMAC-SHA256 signing, plus anomaly detection and `export_audit_log`.
+
 = 0.6.0 =
 
 * Renamed the REST namespace to `mindio-magic-mcp/v1` and kept `flatsome-mcp/v1` registered as a deprecated alias.
@@ -132,3 +149,13 @@ Its primary distinction is native-first Flatsome UX Builder generation and editi
 * Added BetterDocs integration coverage and refreshed WordPress.org release assets.
 
 For the complete release history, see https://github.com/farvisun/mindio-magic-mcp/blob/main/CHANGELOG.md.
+
+== Upgrade Notice ==
+
+= 0.7.0 =
+
+Adds MCP resources and prompts, dry-run previews, revertible changesets, per-credential budgets, a multi-builder page blueprint, a human approval queue, SSE streaming, and audit export. Existing credentials keep working; the database schema is upgraded on activation.
+
+= 0.6.0 =
+
+The REST namespace is now mindio-magic-mcp/v1 and the API key header is X-Mindio-Magic-MCP-Key. The previous names stay available, so existing clients keep working, but new clients should use the canonical ones.
