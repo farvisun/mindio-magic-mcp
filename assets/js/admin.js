@@ -1,13 +1,13 @@
 ( function () {
 	'use strict';
 
-	const root = document.querySelector( '[data-fmp-admin]' );
+	const root = document.querySelector( '[data-mindio-admin]' );
 	if ( ! root ) {
 		return;
 	}
 
 	const config = window.MindioMagicMCPAdmin || {};
-	const liveRegion = document.getElementById( 'fmp-copy-status' );
+	const liveRegion = document.getElementById( 'mindio-copy-status' );
 
 	const announce = ( message ) => {
 		if ( ! liveRegion ) {
@@ -64,7 +64,7 @@
 				return;
 			}
 
-			const label = button.querySelector( '.fmp-copy-button__label' );
+			const label = button.querySelector( '.mindio-copy-button__label' );
 			const originalLabel = label ? label.textContent : '';
 			const originalAria = button.getAttribute( 'aria-label' ) || '';
 			const copied = await copyValue( targetValue( target ) );
@@ -226,8 +226,8 @@
 			row.classList.toggle( 'is-exposed', exposed );
 			row.classList.toggle( 'is-disabled', ! exposed );
 			if ( status ) {
-				status.classList.toggle( 'fmp-tool-state--exposed', exposed );
-				status.classList.toggle( 'fmp-tool-state--disabled', ! exposed );
+				status.classList.toggle( 'mindio-tool-state--exposed', exposed );
+				status.classList.toggle( 'mindio-tool-state--disabled', ! exposed );
 				status.textContent = exposed
 					? ( config.toolEnabled || 'Exposed' )
 					: ( config.toolDisabled || 'Disabled' );
@@ -265,8 +265,8 @@
 			operationRow.classList.toggle( 'is-enabled', enabled );
 			operationRow.classList.toggle( 'is-disabled', ! enabled );
 			if ( status ) {
-				status.classList.toggle( 'fmp-operation-state--enabled', enabled );
-				status.classList.toggle( 'fmp-operation-state--disabled', ! enabled );
+				status.classList.toggle( 'mindio-operation-state--enabled', enabled );
+				status.classList.toggle( 'mindio-operation-state--disabled', ! enabled );
 				status.textContent = enabled
 					? ( config.operationEnabled || 'Enabled' )
 					: ( config.operationDisabled || 'Disabled' );

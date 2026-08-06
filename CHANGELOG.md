@@ -10,7 +10,8 @@ All notable changes to Mindio Magic MCP are documented here.
 - Renamed the API key header to `X-Mindio-Magic-MCP-Key`, keeping `X-MagicMCP-Key` and `X-Flatsome-MCP-Key` readable as deprecated inputs.
 - Renamed the outgoing webhook headers to `X-Mindio-Magic-MCP-*` and the user agent to `MindioMagicMCP/<version>`, retaining `X-MagicMCP-*` as deprecated aliases and dropping the `X-Flatsome-MCP-*` aliases.
 - Renamed the admin, frontend, and OAuth asset handles, the OAuth consent page slug, and the media upload temp-file prefix to the plugin's own identity.
-- Left the token, secret box, and option identifiers at their stored values so existing credentials, encrypted secrets, and settings survive the upgrade.
+- Renamed the `fmp-` class and attribute prefix to `mindio-` across the admin console and the OAuth consent screen, along with the integration test helper prefix.
+- Left the token, secret box, and option identifiers at their stored values so existing credentials, encrypted secrets, and settings survive the upgrade, and kept the `fmp-` prefix on the node IDs, RTL class, and fallback classes that are written into generated page content.
 
 ## 0.5.6 - 2026-07-27
 

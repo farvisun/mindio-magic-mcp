@@ -709,6 +709,8 @@ final class Flatsome_Renderer {
 	private function node_id( string $type, string $requested ): string {
 		$type      = sanitize_title( str_replace( '_', '-', $type ) );
 		$requested = sanitize_html_class( strtolower( $requested ) );
+		// The `fmp-` node prefix is frozen: it is written into generated page content
+		// and is the handle agents use to address nodes in already-published pages.
 		if ( preg_match( '/^fmp-' . preg_quote( $type, '/' ) . '-[a-z0-9-]{6,64}$/', $requested ) ) {
 			return $requested;
 		}

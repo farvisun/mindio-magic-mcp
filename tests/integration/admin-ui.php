@@ -17,7 +17,7 @@ if ( ! class_exists( '\MindioMagicMCP\Admin' ) ) {
 }
 
 /** @throws RuntimeException */
-function fmp_admin_assert( bool $condition, string $message ): void {
+function mindio_admin_assert( bool $condition, string $message ): void {
 	if ( ! $condition ) {
 		throw new RuntimeException( $message );
 	}
@@ -65,7 +65,7 @@ final class FMP_Admin_Plugin_Dependency_Fixture extends \MindioMagicMCP\Integrat
 }
 
 $admins = get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ids' ) );
-fmp_admin_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
+mindio_admin_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
 wp_set_current_user( (int) $admins[0] );
 switch_to_locale( 'en_US' );
 
@@ -74,8 +74,8 @@ $dependency_registry = new \MindioMagicMCP\Tool_Registry( $auth );
 ( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'missing_fixture', array( 'missing-fixture/missing.php' ), array( 'missing-fixture' ) ) )->register();
 ( new FMP_Admin_Plugin_Dependency_Fixture( $dependency_registry, 'installed_fixture', array( 'mindio-magic-mcp/mindio-magic-mcp.php' ), array( 'mindio-magic-mcp' ) ) )->register();
 $dependency_catalog = array_column( $dependency_registry->catalog(), null, 'name' );
-fmp_admin_assert( ! isset( $dependency_catalog['missing_fixture_read'] ), 'An integration tool was registered without its plugin dependency.' );
-fmp_admin_assert( isset( $dependency_catalog['installed_fixture_read'] ), 'An installed plugin integration was not registered for policy management.' );
+mindio_admin_assert( ! isset( $dependency_catalog['missing_fixture_read'] ), 'An integration tool was registered without its plugin dependency.' );
+mindio_admin_assert( isset( $dependency_catalog['installed_fixture_read'] ), 'An installed plugin integration was not registered for policy management.' );
 
 $dependency_admin = new \MindioMagicMCP\Admin(
 	$auth,
@@ -87,8 +87,8 @@ $_GET['tab'] = 'tools';
 ob_start();
 $dependency_admin->render();
 $dependency_html = (string) ob_get_clean();
-fmp_admin_assert( str_contains( $dependency_html, 'installed_fixture_read' ), 'Installed integration controls are missing from the tool manager.' );
-fmp_admin_assert( ! str_contains( $dependency_html, 'missing_fixture_read' ), 'Missing integration controls leaked into the tool manager.' );
+mindio_admin_assert( str_contains( $dependency_html, 'installed_fixture_read' ), 'Installed integration controls are missing from the tool manager.' );
+mindio_admin_assert( ! str_contains( $dependency_html, 'missing_fixture_read' ), 'Missing integration controls leaked into the tool manager.' );
 
 $registry = new \MindioMagicMCP\Tool_Registry( $auth );
 $schema   = array( 'type' => 'object', 'properties' => array(), 'additionalProperties' => false );
@@ -131,10 +131,10 @@ try {
 		update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $original_operation_policy, false );
 	}
 }
-fmp_admin_assert( 1 === $policy_summary['exposed'] && 3 === $policy_summary['disabled'], 'Exposure updates did not retain only registered submitted tools.' );
-fmp_admin_assert( 1 === $operation_summary['exposed'] && 1 === $operation_summary['disabled'], 'Operation exposure did not retain only registered submitted operations.' );
-fmp_admin_assert( ! empty( $policy_catalog['create_post']['exposed'] ) && empty( $policy_catalog['upload_media']['exposed'] ), 'The persisted exposure state is not reflected in the registry catalog.' );
-fmp_admin_assert( ! empty( $policy_catalog['integration_read']['operations'][0]['exposed'] ) && empty( $policy_catalog['integration_read']['operations'][1]['exposed'] ), 'The operation policy is not reflected in the registry catalog.' );
+mindio_admin_assert( 1 === $policy_summary['exposed'] && 3 === $policy_summary['disabled'], 'Exposure updates did not retain only registered submitted tools.' );
+mindio_admin_assert( 1 === $operation_summary['exposed'] && 1 === $operation_summary['disabled'], 'Operation exposure did not retain only registered submitted operations.' );
+mindio_admin_assert( ! empty( $policy_catalog['create_post']['exposed'] ) && empty( $policy_catalog['upload_media']['exposed'] ), 'The persisted exposure state is not reflected in the registry catalog.' );
+mindio_admin_assert( ! empty( $policy_catalog['integration_read']['operations'][0]['exposed'] ) && empty( $policy_catalog['integration_read']['operations'][1]['exposed'] ), 'The operation policy is not reflected in the registry catalog.' );
 
 $admin = new \MindioMagicMCP\Admin(
 	$auth,
@@ -160,58 +160,58 @@ foreach ( $tabs as $tab => $expected_copy ) {
 	$html = (string) ob_get_clean();
 	$rendered_tabs[ $tab ] = $html;
 
-	fmp_admin_assert( str_contains( $html, 'data-fmp-admin' ), 'Admin root is missing for tab: ' . $tab );
-	fmp_admin_assert( str_contains( $html, 'aria-label="Mindio Magic MCP sections"' ), 'Accessible tab navigation is missing for tab: ' . $tab );
-	fmp_admin_assert( 1 === substr_count( $html, 'aria-current="page"' ), 'Exactly one active tab was not rendered for tab: ' . $tab );
-	fmp_admin_assert( str_contains( $html, $expected_copy ), 'Expected panel content is missing for tab: ' . $tab );
-	fmp_admin_assert( ! str_contains( $html, ' style="' ), 'Inline styles leaked into the redesigned admin panel.' );
-	fmp_admin_assert( ! str_contains( $html, ' onfocus="' ), 'Inline event handlers leaked into the redesigned admin panel.' );
+	mindio_admin_assert( str_contains( $html, 'data-mindio-admin' ), 'Admin root is missing for tab: ' . $tab );
+	mindio_admin_assert( str_contains( $html, 'aria-label="Mindio Magic MCP sections"' ), 'Accessible tab navigation is missing for tab: ' . $tab );
+	mindio_admin_assert( 1 === substr_count( $html, 'aria-current="page"' ), 'Exactly one active tab was not rendered for tab: ' . $tab );
+	mindio_admin_assert( str_contains( $html, $expected_copy ), 'Expected panel content is missing for tab: ' . $tab );
+	mindio_admin_assert( ! str_contains( $html, ' style="' ), 'Inline styles leaked into the redesigned admin panel.' );
+	mindio_admin_assert( ! str_contains( $html, ' onfocus="' ), 'Inline event handlers leaked into the redesigned admin panel.' );
 }
 
 $tools_html = $rendered_tabs['tools'];
-fmp_admin_assert( str_contains( $tools_html, 'data-tool-manager' ), 'Tool exposure manager is missing.' );
-fmp_admin_assert( str_contains( $tools_html, 'data-tool-enable-all' ) && str_contains( $tools_html, 'data-tool-disable-all' ), 'Tool bulk controls are missing.' );
-fmp_admin_assert( 4 === substr_count( $tools_html, 'name="enabled_tools[]"' ), 'The tool manager did not render every registered tool.' );
-fmp_admin_assert( 2 === substr_count( $tools_html, 'name="enabled_operations[]"' ), 'The tool manager did not render every registered integration operation.' );
-fmp_admin_assert( str_contains( $tools_html, 'data-operation-disclosure' ) && str_contains( $tools_html, 'data-operation-enable-reads' ) && str_contains( $tools_html, 'data-operation-disable-writes' ), 'Granular operation controls are missing.' );
-fmp_admin_assert( str_contains( $tools_html, 'Content and publishing' ) && str_contains( $tools_html, 'Media and SEO' ) && str_contains( $tools_html, 'Operations and diagnostics' ), 'Registered tools were not grouped by domain.' );
-fmp_admin_assert( str_contains( $rendered_tabs['settings'], 'Read-only filesystem inspection' ), 'The filesystem read opt-in setting is missing.' );
-fmp_admin_assert( str_contains( $rendered_tabs['settings'], 'Database schema inspection' ) && ! str_contains( $rendered_tabs['settings'], 'validated SELECT queries' ), 'The fixed-shape database inspection setting is missing.' );
+mindio_admin_assert( str_contains( $tools_html, 'data-tool-manager' ), 'Tool exposure manager is missing.' );
+mindio_admin_assert( str_contains( $tools_html, 'data-tool-enable-all' ) && str_contains( $tools_html, 'data-tool-disable-all' ), 'Tool bulk controls are missing.' );
+mindio_admin_assert( 4 === substr_count( $tools_html, 'name="enabled_tools[]"' ), 'The tool manager did not render every registered tool.' );
+mindio_admin_assert( 2 === substr_count( $tools_html, 'name="enabled_operations[]"' ), 'The tool manager did not render every registered integration operation.' );
+mindio_admin_assert( str_contains( $tools_html, 'data-operation-disclosure' ) && str_contains( $tools_html, 'data-operation-enable-reads' ) && str_contains( $tools_html, 'data-operation-disable-writes' ), 'Granular operation controls are missing.' );
+mindio_admin_assert( str_contains( $tools_html, 'Content and publishing' ) && str_contains( $tools_html, 'Media and SEO' ) && str_contains( $tools_html, 'Operations and diagnostics' ), 'Registered tools were not grouped by domain.' );
+mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Read-only filesystem inspection' ), 'The filesystem read opt-in setting is missing.' );
+mindio_admin_assert( str_contains( $rendered_tabs['settings'], 'Database schema inspection' ) && ! str_contains( $rendered_tabs['settings'], 'validated SELECT queries' ), 'The fixed-shape database inspection setting is missing.' );
 
 $_GET['tab'] = 'unsupported';
 ob_start();
 $admin->render();
 $fallback_html = (string) ob_get_clean();
-fmp_admin_assert( str_contains( $fallback_html, 'System overview' ), 'Unsupported tabs do not fall back to Overview.' );
+mindio_admin_assert( str_contains( $fallback_html, 'System overview' ), 'Unsupported tabs do not fall back to Overview.' );
 
 $_GET['tab'] = array( 'settings' );
 ob_start();
 $admin->render();
 $array_fallback_html = (string) ob_get_clean();
-fmp_admin_assert( str_contains( $array_fallback_html, 'System overview' ), 'Non-scalar tabs do not fall back to Overview.' );
+mindio_admin_assert( str_contains( $array_fallback_html, 'System overview' ), 'Non-scalar tabs do not fall back to Overview.' );
 
 $admin->enqueue_assets( 'settings_page_mindio-magic-mcp' );
-fmp_admin_assert( wp_style_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin stylesheet was not enqueued.' );
-fmp_admin_assert( wp_script_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin script was not enqueued.' );
-fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/css/admin.css' ), 'Admin stylesheet is missing.' );
-fmp_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/js/admin.js' ), 'Admin script is missing.' );
+mindio_admin_assert( wp_style_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin stylesheet was not enqueued.' );
+mindio_admin_assert( wp_script_is( 'mindio-magic-mcp-admin', 'enqueued' ), 'Admin script was not enqueued.' );
+mindio_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/css/admin.css' ), 'Admin stylesheet is missing.' );
+mindio_admin_assert( is_file( MINDIO_MAGIC_MCP_DIR . 'assets/js/admin.js' ), 'Admin script is missing.' );
 
 unload_textdomain( 'mindio-magic-mcp' );
 $development_catalog = dirname( __DIR__, 2 ) . '/languages/mindio-magic-mcp-fa_IR.mo';
-fmp_admin_assert( load_textdomain( 'mindio-magic-mcp', $development_catalog ), 'Persian admin translations could not be loaded.' );
+mindio_admin_assert( load_textdomain( 'mindio-magic-mcp', $development_catalog ), 'Persian admin translations could not be loaded.' );
 $_GET['tab'] = 'settings';
 ob_start();
 $admin->render();
 $persian_html = (string) ob_get_clean();
-fmp_admin_assert( str_contains( $persian_html, 'نمای کلی' ), 'Persian tab navigation is not translated.' );
-fmp_admin_assert( str_contains( $persian_html, 'ذخیرهٔ تغییرات' ), 'Persian settings actions are not translated.' );
+mindio_admin_assert( str_contains( $persian_html, 'نمای کلی' ), 'Persian tab navigation is not translated.' );
+mindio_admin_assert( str_contains( $persian_html, 'ذخیرهٔ تغییرات' ), 'Persian settings actions are not translated.' );
 
 $_GET['tab'] = 'tools';
 ob_start();
 $admin->render();
 $persian_tools_html = (string) ob_get_clean();
-fmp_admin_assert( str_contains( $persian_tools_html, 'نمایش ابزارهای MCP' ), 'Persian tool governance UI is not translated.' );
-fmp_admin_assert( str_contains( $persian_tools_html, 'ذخیرهٔ سیاست ابزارها' ), 'Persian tool policy action is not translated.' );
+mindio_admin_assert( str_contains( $persian_tools_html, 'نمایش ابزارهای MCP' ), 'Persian tool governance UI is not translated.' );
+mindio_admin_assert( str_contains( $persian_tools_html, 'ذخیرهٔ سیاست ابزارها' ), 'Persian tool policy action is not translated.' );
 
 unset( $_GET['tab'] );
 

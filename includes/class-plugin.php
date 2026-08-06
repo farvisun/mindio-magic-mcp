@@ -84,6 +84,8 @@ final class Plugin {
 			return;
 		}
 		$post = get_post();
+		// The `fmp-rtl` class is frozen: it is stored in the content of every
+		// RTL page generated so far, so renaming it would unstyle them.
 		if ( $post && str_contains( $post->post_content, 'fmp-rtl' ) ) {
 			wp_enqueue_style( 'mindio-magic-mcp-frontend', MINDIO_MAGIC_MCP_URL . 'assets/css/frontend.css', array(), MINDIO_MAGIC_MCP_VERSION );
 		}

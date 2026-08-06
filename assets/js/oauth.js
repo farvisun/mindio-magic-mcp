@@ -5,7 +5,7 @@
 ( function () {
 	'use strict';
 
-	const result = document.querySelector( '[data-fmp-oauth-result]' );
+	const result = document.querySelector( '[data-mindio-oauth-result]' );
 	if ( ! result ) {
 		return;
 	}

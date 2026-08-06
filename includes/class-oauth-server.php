@@ -300,12 +300,12 @@ final class OAuth_Server {
 	private function render_authorization_consent( array $client, string $scope, array $params ): void {
 		$client_name = (string) ( $client['client_name'] ?? __( 'MCP Client', 'mindio-magic-mcp' ) );
 		$user        = wp_get_current_user();
-		$this->authorization_page_start( __( 'Authorize MCP Client', 'mindio-magic-mcp' ), 'fmp-oauth-page--consent' );
+		$this->authorization_page_start( __( 'Authorize MCP Client', 'mindio-magic-mcp' ), 'mindio-oauth-page--consent' );
 		?>
-		<main class="fmp-oauth-card" aria-labelledby="fmp-oauth-title">
-			<div class="fmp-oauth-card__heading">
-				<p class="fmp-oauth-eyebrow"><?php esc_html_e( 'Authorization request', 'mindio-magic-mcp' ); ?></p>
-				<h1 id="fmp-oauth-title">
+		<main class="mindio-oauth-card" aria-labelledby="mindio-oauth-title">
+			<div class="mindio-oauth-card__heading">
+				<p class="mindio-oauth-eyebrow"><?php esc_html_e( 'Authorization request', 'mindio-magic-mcp' ); ?></p>
+				<h1 id="mindio-oauth-title">
 					<?php
 					printf(
 						/* translators: %s: OAuth client name. */
@@ -317,8 +317,8 @@ final class OAuth_Server {
 				<p><?php esc_html_e( 'Review the requested access before connecting this client to your WordPress site.', 'mindio-magic-mcp' ); ?></p>
 			</div>
 
-			<div class="fmp-oauth-identity" aria-label="<?php esc_attr_e( 'Signed-in account', 'mindio-magic-mcp' ); ?>">
-				<span class="fmp-oauth-identity__icon" aria-hidden="true">
+			<div class="mindio-oauth-identity" aria-label="<?php esc_attr_e( 'Signed-in account', 'mindio-magic-mcp' ); ?>">
+				<span class="mindio-oauth-identity__icon" aria-hidden="true">
 					<svg viewBox="0 0 24 24" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0H5Z"/></svg>
 				</span>
 				<span>
@@ -327,7 +327,7 @@ final class OAuth_Server {
 				</span>
 			</div>
 
-			<dl class="fmp-oauth-details">
+			<dl class="mindio-oauth-details">
 				<div>
 					<dt><?php esc_html_e( 'Client', 'mindio-magic-mcp' ); ?></dt>
 					<dd><?php echo esc_html( $client_name ); ?></dd>
@@ -342,11 +342,11 @@ final class OAuth_Server {
 				</div>
 			</dl>
 
-			<section class="fmp-oauth-permission" aria-labelledby="fmp-oauth-permission-title">
-				<div class="fmp-oauth-permission__heading">
+			<section class="mindio-oauth-permission" aria-labelledby="mindio-oauth-permission-title">
+				<div class="mindio-oauth-permission__heading">
 					<div>
-						<p class="fmp-oauth-eyebrow"><?php esc_html_e( 'Requested access', 'mindio-magic-mcp' ); ?></p>
-						<h2 id="fmp-oauth-permission-title"><?php echo esc_html( $this->scope_label( $scope ) ); ?></h2>
+						<p class="mindio-oauth-eyebrow"><?php esc_html_e( 'Requested access', 'mindio-magic-mcp' ); ?></p>
+						<h2 id="mindio-oauth-permission-title"><?php echo esc_html( $this->scope_label( $scope ) ); ?></h2>
 					</div>
 					<code><?php echo esc_html( $scope ); ?></code>
 				</div>
@@ -360,21 +360,21 @@ final class OAuth_Server {
 				</ul>
 			</section>
 
-			<div class="fmp-oauth-warning" role="note">
+			<div class="mindio-oauth-warning" role="note">
 				<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2 2 21h20L12 2Zm1 15h-2v-2h2v2Zm0-4h-2V8h2v5Z"/></svg>
 				<p><?php esc_html_e( 'Only approve clients you trust. This client will act with the granted permissions as your current WordPress user.', 'mindio-magic-mcp' ); ?></p>
 			</div>
 
-			<form class="fmp-oauth-actions" method="post">
+			<form class="mindio-oauth-actions" method="post">
 				<?php wp_nonce_field( self::AUTHORIZATION_ACTION ); ?>
 				<?php foreach ( $this->authorization_fields() as $field ) : ?>
 					<input type="hidden" name="<?php echo esc_attr( $field ); ?>" value="<?php echo esc_attr( (string) ( $params[ $field ] ?? '' ) ); ?>">
 				<?php endforeach; ?>
-				<button class="fmp-oauth-button fmp-oauth-button--primary" type="submit" name="decision" value="approve">
+				<button class="mindio-oauth-button mindio-oauth-button--primary" type="submit" name="decision" value="approve">
 					<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m7.7 14.3-4-4 1.4-1.4 2.6 2.6 7.2-7.2 1.4 1.4-8.6 8.6Z"/></svg>
 					<?php esc_html_e( 'Approve and connect', 'mindio-magic-mcp' ); ?>
 				</button>
-				<button class="fmp-oauth-button fmp-oauth-button--secondary" type="submit" name="decision" value="deny"><?php esc_html_e( 'Reject request', 'mindio-magic-mcp' ); ?></button>
+				<button class="mindio-oauth-button mindio-oauth-button--secondary" type="submit" name="decision" value="deny"><?php esc_html_e( 'Reject request', 'mindio-magic-mcp' ); ?></button>
 			</form>
 		</main>
 		<?php
@@ -389,25 +389,25 @@ final class OAuth_Server {
 	private function render_authorization_result( bool $approved, array $client, string $scope, string $redirect_url ): void {
 		$client_name = (string) ( $client['client_name'] ?? __( 'MCP Client', 'mindio-magic-mcp' ) );
 		$title       = $approved ? __( 'Authorization approved', 'mindio-magic-mcp' ) : __( 'Access request rejected', 'mindio-magic-mcp' );
-		$this->authorization_page_start( $title, $approved ? 'fmp-oauth-page--success' : 'fmp-oauth-page--denied' );
+		$this->authorization_page_start( $title, $approved ? 'mindio-oauth-page--success' : 'mindio-oauth-page--denied' );
 		?>
 		<main
-			class="fmp-oauth-card fmp-oauth-card--result"
-			data-fmp-oauth-result
+			class="mindio-oauth-card mindio-oauth-card--result"
+			data-mindio-oauth-result
 			data-redirect-target="<?php echo esc_url( $redirect_url ); ?>"
 			data-redirect-delay="1800"
-			aria-labelledby="fmp-oauth-result-title"
+			aria-labelledby="mindio-oauth-result-title"
 		>
-			<div class="fmp-oauth-result-icon" aria-hidden="true">
+			<div class="mindio-oauth-result-icon" aria-hidden="true">
 				<?php if ( $approved ) : ?>
 					<svg viewBox="0 0 28 28" focusable="false"><path d="m10.7 20.1-6-6 2-2 4 4 10.6-10.6 2 2-12.6 12.6Z"/></svg>
 				<?php else : ?>
 					<svg viewBox="0 0 28 28" focusable="false"><path d="m7.8 5.8 6.2 6.2 6.2-6.2 2 2-6.2 6.2 6.2 6.2-2 2-6.2-6.2-6.2 6.2-2-2 6.2-6.2-6.2-6.2 2-2Z"/></svg>
 				<?php endif; ?>
 			</div>
-			<p class="fmp-oauth-eyebrow"><?php echo esc_html( $approved ? __( 'Authorization complete', 'mindio-magic-mcp' ) : __( 'Request closed', 'mindio-magic-mcp' ) ); ?></p>
-			<h1 id="fmp-oauth-result-title"><?php echo esc_html( $title ); ?></h1>
-			<p class="fmp-oauth-result-copy">
+			<p class="mindio-oauth-eyebrow"><?php echo esc_html( $approved ? __( 'Authorization complete', 'mindio-magic-mcp' ) : __( 'Request closed', 'mindio-magic-mcp' ) ); ?></p>
+			<h1 id="mindio-oauth-result-title"><?php echo esc_html( $title ); ?></h1>
+			<p class="mindio-oauth-result-copy">
 				<?php
 				echo esc_html(
 					$approved
@@ -417,19 +417,19 @@ final class OAuth_Server {
 				?>
 			</p>
 
-			<dl class="fmp-oauth-result-details">
+			<dl class="mindio-oauth-result-details">
 				<div><dt><?php esc_html_e( 'Client', 'mindio-magic-mcp' ); ?></dt><dd><?php echo esc_html( $client_name ); ?></dd></div>
 				<div><dt><?php esc_html_e( 'Access', 'mindio-magic-mcp' ); ?></dt><dd><?php echo esc_html( $approved ? $this->scope_label( $scope ) : __( 'Not granted', 'mindio-magic-mcp' ) ); ?></dd></div>
 			</dl>
 
-			<div class="fmp-oauth-handoff" aria-live="polite">
-				<span class="fmp-oauth-handoff__indicator" aria-hidden="true"></span>
+			<div class="mindio-oauth-handoff" aria-live="polite">
+				<span class="mindio-oauth-handoff__indicator" aria-hidden="true"></span>
 				<span><?php esc_html_e( 'Returning securely to the MCP client…', 'mindio-magic-mcp' ); ?></span>
 			</div>
-			<a class="fmp-oauth-button fmp-oauth-button--primary fmp-oauth-button--full" href="<?php echo esc_url( $redirect_url ); ?>">
+			<a class="mindio-oauth-button mindio-oauth-button--primary mindio-oauth-button--full" href="<?php echo esc_url( $redirect_url ); ?>">
 				<?php esc_html_e( 'Continue to client', 'mindio-magic-mcp' ); ?>
 			</a>
-			<noscript><p class="fmp-oauth-noscript"><?php esc_html_e( 'Automatic return requires JavaScript. Select Continue to finish the authorization flow.', 'mindio-magic-mcp' ); ?></p></noscript>
+			<noscript><p class="mindio-oauth-noscript"><?php esc_html_e( 'Automatic return requires JavaScript. Select Continue to finish the authorization flow.', 'mindio-magic-mcp' ); ?></p></noscript>
 		</main>
 		<?php
 		$this->authorization_page_end( true );
@@ -438,21 +438,21 @@ final class OAuth_Server {
 	private function render_authorization_error( \WP_Error $error ): void {
 		$data   = $error->get_error_data();
 		$status = is_array( $data ) && isset( $data['status'] ) ? (int) $data['status'] : 400;
-		$this->authorization_page_start( __( 'Invalid OAuth request', 'mindio-magic-mcp' ), 'fmp-oauth-page--error', $status );
+		$this->authorization_page_start( __( 'Invalid OAuth request', 'mindio-magic-mcp' ), 'mindio-oauth-page--error', $status );
 		?>
-		<main class="fmp-oauth-card fmp-oauth-card--result" aria-labelledby="fmp-oauth-error-title">
-			<div class="fmp-oauth-result-icon" aria-hidden="true">
+		<main class="mindio-oauth-card mindio-oauth-card--result" aria-labelledby="mindio-oauth-error-title">
+			<div class="mindio-oauth-result-icon" aria-hidden="true">
 				<svg viewBox="0 0 28 28" focusable="false"><path d="M14 3 2.5 24h23L14 3Zm1.4 16.4h-2.8v-2.8h2.8v2.8Zm0-5h-2.8V9h2.8v5.4Z"/></svg>
 			</div>
-			<p class="fmp-oauth-eyebrow"><?php esc_html_e( 'Unable to continue', 'mindio-magic-mcp' ); ?></p>
-			<h1 id="fmp-oauth-error-title"><?php esc_html_e( 'Invalid authorization request', 'mindio-magic-mcp' ); ?></h1>
-			<p class="fmp-oauth-result-copy"><?php echo esc_html( $error->get_error_message() ); ?></p>
-			<div class="fmp-oauth-error-code">
+			<p class="mindio-oauth-eyebrow"><?php esc_html_e( 'Unable to continue', 'mindio-magic-mcp' ); ?></p>
+			<h1 id="mindio-oauth-error-title"><?php esc_html_e( 'Invalid authorization request', 'mindio-magic-mcp' ); ?></h1>
+			<p class="mindio-oauth-result-copy"><?php echo esc_html( $error->get_error_message() ); ?></p>
+			<div class="mindio-oauth-error-code">
 				<span><?php esc_html_e( 'Error code', 'mindio-magic-mcp' ); ?></span>
 				<code><?php echo esc_html( $error->get_error_code() ); ?></code>
 			</div>
-			<p class="fmp-oauth-guidance"><?php esc_html_e( 'Start the connection again from your MCP client. If the problem continues, verify the client URL and OAuth configuration.', 'mindio-magic-mcp' ); ?></p>
-			<a class="fmp-oauth-button fmp-oauth-button--secondary fmp-oauth-button--full" href="<?php echo esc_url( admin_url() ); ?>"><?php esc_html_e( 'Return to WordPress', 'mindio-magic-mcp' ); ?></a>
+			<p class="mindio-oauth-guidance"><?php esc_html_e( 'Start the connection again from your MCP client. If the problem continues, verify the client URL and OAuth configuration.', 'mindio-magic-mcp' ); ?></p>
+			<a class="mindio-oauth-button mindio-oauth-button--secondary mindio-oauth-button--full" href="<?php echo esc_url( admin_url() ); ?>"><?php esc_html_e( 'Return to WordPress', 'mindio-magic-mcp' ); ?></a>
 		</main>
 		<?php
 		$this->authorization_page_end();
@@ -478,11 +478,11 @@ final class OAuth_Server {
 			<title><?php echo esc_html( $title ); ?> · Mindio Magic MCP</title>
 			<?php wp_print_styles( 'mindio-magic-mcp-oauth' ); ?>
 		</head>
-		<body class="fmp-oauth-page <?php echo esc_attr( $body_class ); ?>">
-			<div class="fmp-oauth-shell">
-				<header class="fmp-oauth-header">
-					<div class="fmp-oauth-brand">
-						<span class="fmp-oauth-brand__mark" aria-hidden="true">
+		<body class="mindio-oauth-page <?php echo esc_attr( $body_class ); ?>">
+			<div class="mindio-oauth-shell">
+				<header class="mindio-oauth-header">
+					<div class="mindio-oauth-brand">
+						<span class="mindio-oauth-brand__mark" aria-hidden="true">
 							<svg viewBox="0 0 24 24" focusable="false"><path d="M9.6 15.8 8.2 14.4l6.2-6.2a2.8 2.8 0 0 1 4 4l-3 3-1.4-1.4 3-3a.8.8 0 1 0-1.2-1.2l-6.2 6.2Zm4.8-7.6 1.4 1.4-6.2 6.2a2.8 2.8 0 1 1-4-4l3-3L10 9.9l-3 3A.8.8 0 1 0 8.2 14l6.2-6.2Z"/></svg>
 						</span>
 						<span>
@@ -490,14 +490,14 @@ final class OAuth_Server {
 							<small><?php esc_html_e( 'Secure WordPress authorization', 'mindio-magic-mcp' ); ?></small>
 						</span>
 					</div>
-					<span class="fmp-oauth-protocol"><i aria-hidden="true"></i> OAuth 2.1 + PKCE</span>
+					<span class="mindio-oauth-protocol"><i aria-hidden="true"></i> OAuth 2.1 + PKCE</span>
 				</header>
 		<?php
 	}
 
 	private function authorization_page_end( bool $load_script = false ): void {
 		?>
-				<footer class="fmp-oauth-footer">
+				<footer class="mindio-oauth-footer">
 					<span><?php esc_html_e( 'Protected by WordPress permissions', 'mindio-magic-mcp' ); ?></span>
 					<span><?php esc_html_e( 'Tokens are bound to this MCP endpoint', 'mindio-magic-mcp' ); ?></span>
 				</footer>

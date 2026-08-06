@@ -20,14 +20,14 @@ if ( ! did_action( 'rest_api_init' ) ) {
 }
 
 /** @throws RuntimeException */
-function fmp_assert( bool $condition, string $message ): void {
+function mindio_assert( bool $condition, string $message ): void {
 	if ( ! $condition ) {
 		throw new RuntimeException( $message );
 	}
 }
 
 /** @return array<string,mixed> */
-function fmp_rpc( string $token, string $method, array $params = array(), int $id = 1 ): array {
+function mindio_rpc( string $token, string $method, array $params = array(), int $id = 1 ): array {
 	$request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$request->set_header( 'Authorization', 'Bearer ' . $token );
 	$request->set_header( 'Content-Type', 'application/json' );
@@ -35,19 +35,19 @@ function fmp_rpc( string $token, string $method, array $params = array(), int $i
 	$request->set_header( 'MCP-Protocol-Version', '2025-11-25' );
 	$request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => $id, 'method' => $method, 'params' => $params ) ) );
 	$response = rest_get_server()->dispatch( $request );
-	fmp_assert( 200 === $response->get_status(), 'Unexpected HTTP status: ' . $response->get_status() );
+	mindio_assert( 200 === $response->get_status(), 'Unexpected HTTP status: ' . $response->get_status() );
 	$data = $response->get_data();
-	fmp_assert( is_array( $data ), 'RPC response is not an object.' );
+	mindio_assert( is_array( $data ), 'RPC response is not an object.' );
 	return $data;
 }
 
 $admins = get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ids' ) );
-fmp_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
+mindio_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
 wp_set_current_user( (int) $admins[0] );
 
 $auth       = new \MindioMagicMCP\Auth();
 $credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_ADMIN, 'Integration smoke test' );
-fmp_assert( ! is_wp_error( $credential ), 'Could not create smoke-test credential.' );
+mindio_assert( ! is_wp_error( $credential ), 'Could not create smoke-test credential.' );
 $token   = (string) $credential['token'];
 $page_id = 0;
 $post_id = 0;
@@ -62,37 +62,37 @@ update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
 
 try {
 	$secret_roundtrip = \MindioMagicMCP\Secret_Box::encrypt( 'integration-secret' );
-	fmp_assert( 'integration-secret' === \MindioMagicMCP\Secret_Box::decrypt( $secret_roundtrip ), 'Webhook secret encryption round-trip failed.' );
-	fmp_assert( '' === \MindioMagicMCP\Secret_Box::decrypt( 's1:broken' ), 'Malformed encrypted secret was accepted.' );
+	mindio_assert( 'integration-secret' === \MindioMagicMCP\Secret_Box::decrypt( $secret_roundtrip ), 'Webhook secret encryption round-trip failed.' );
+	mindio_assert( '' === \MindioMagicMCP\Secret_Box::decrypt( 's1:broken' ), 'Malformed encrypted secret was accepted.' );
 	$rate_identity = 'prefix-regression';
 	$rate_bucket   = 'integration';
 	$rate_limiter  = new \MindioMagicMCP\Rate_Limiter();
 	$rate_limiter->consume( $rate_identity, $rate_bucket );
 	$rate_slot = (int) floor( time() / 60 );
 	$rate_key  = 'mindio_magic_mcp_rate_limit_' . md5( $rate_bucket . '|' . $rate_identity . '|' . $rate_slot );
-	fmp_assert( 1 === (int) get_transient( $rate_key ), 'The rate-limit transient does not use the unique plugin prefix.' );
+	mindio_assert( 1 === (int) get_transient( $rate_key ), 'The rate-limit transient does not use the unique plugin prefix.' );
 	delete_transient( $rate_key );
 
-	$initialize = fmp_rpc(
+	$initialize = mindio_rpc(
 		$token,
 		'initialize',
 		array( 'protocolVersion' => '2025-11-25', 'capabilities' => array(), 'clientInfo' => array( 'name' => 'smoke', 'version' => '1' ) )
 	);
-	fmp_assert( '2025-11-25' === $initialize['result']['protocolVersion'], 'MCP negotiation failed.' );
+	mindio_assert( '2025-11-25' === $initialize['result']['protocolVersion'], 'MCP negotiation failed.' );
 
-	$list = fmp_rpc( $token, 'tools/list' );
+	$list = mindio_rpc( $token, 'tools/list' );
 	$tool_names = array_column( $list['result']['tools'], 'name' );
 	foreach ( array( 'create_post', 'upload_media', 'update_meta', 'register_webhook', 'list_flatsome_components', 'create_flatsome_page', 'add_element', 'summarize_content', 'bulk_actions', 'list_database_tables', 'describe_database_table', 'control_cache' ) as $required_tool ) {
-		fmp_assert( in_array( $required_tool, $tool_names, true ), 'Missing tool: ' . $required_tool );
+		mindio_assert( in_array( $required_tool, $tool_names, true ), 'Missing tool: ' . $required_tool );
 	}
-	fmp_assert( ! in_array( 'run_safe_query', $tool_names, true ), 'The request-supplied SQL tool is still exposed.' );
-	fmp_assert( count( $tool_names ) >= 55, 'The base tool registry is incomplete.' );
+	mindio_assert( ! in_array( 'run_safe_query', $tool_names, true ), 'The request-supplied SQL tool is still exposed.' );
+	mindio_assert( count( $tool_names ) >= 55, 'The base tool registry is incomplete.' );
 
 	update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array( 'summarize_content' ), false );
-	$governed_list  = fmp_rpc( $token, 'tools/list' );
+	$governed_list  = mindio_rpc( $token, 'tools/list' );
 	$governed_names = array_column( $governed_list['result']['tools'], 'name' );
-	fmp_assert( ! in_array( 'summarize_content', $governed_names, true ) && in_array( 'create_post', $governed_names, true ), 'Tool discovery did not enforce the administrator exposure policy.' );
-	$disabled_call = fmp_rpc(
+	mindio_assert( ! in_array( 'summarize_content', $governed_names, true ) && in_array( 'create_post', $governed_names, true ), 'Tool discovery did not enforce the administrator exposure policy.' );
+	$disabled_call = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -100,28 +100,28 @@ try {
 			'arguments' => array( 'content' => 'This valid content must not be summarized while the tool is disabled.' ),
 		)
 	);
-	fmp_assert( ! empty( $disabled_call['result']['isError'] ) && 'tool_disabled' === $disabled_call['result']['structuredContent']['error'], 'A disabled tool was callable directly.' );
+	mindio_assert( ! empty( $disabled_call['result']['isError'] ) && 'tool_disabled' === $disabled_call['result']['structuredContent']['error'], 'A disabled tool was callable directly.' );
 	update_option( \MindioMagicMCP\Tool_Registry::EXPOSURE_OPTION, array(), false );
 
-	$component_list = fmp_rpc( $token, 'tools/call', array( 'name' => 'list_flatsome_components', 'arguments' => array() ) );
+	$component_list = mindio_rpc( $token, 'tools/call', array( 'name' => 'list_flatsome_components', 'arguments' => array() ) );
 	$component_data = $component_list['result']['structuredContent'] ?? array();
-	fmp_assert( empty( $component_list['result']['isError'] ) && ! empty( $component_data['flatsome_active'] ) && count( $component_data['components'] ?? array() ) >= 29, 'Flatsome component discovery failed.' );
+	mindio_assert( empty( $component_list['result']['isError'] ) && ! empty( $component_data['flatsome_active'] ) && count( $component_data['components'] ?? array() ) >= 29, 'Flatsome component discovery failed.' );
 
 	$development_catalog = dirname( __DIR__, 2 ) . '/languages/mindio-magic-mcp-fa_IR.mo';
-	fmp_assert( load_textdomain( 'mindio-magic-mcp', $development_catalog ), 'Persian development catalog could not be loaded.' );
+	mindio_assert( load_textdomain( 'mindio-magic-mcp', $development_catalog ), 'Persian development catalog could not be loaded.' );
 	$development_catalog_loader = static function ( string $locale ) use ( $development_catalog ): void {
 		if ( 'fa_IR' === $locale ) {
 			load_textdomain( 'mindio-magic-mcp', $development_catalog );
 		}
 	};
 	add_action( 'change_locale', $development_catalog_loader );
-	$invalid_fa = fmp_rpc( $token, 'tools/call', array( 'name' => 'create_post', 'arguments' => array( 'response_locale' => 'fa_IR' ) ) );
-	fmp_assert( ! empty( $invalid_fa['result']['isError'] ) && str_contains( (string) $invalid_fa['result']['structuredContent']['message'], 'الزامی' ), 'Persian response localization failed.' );
-	$invalid_en = fmp_rpc( $token, 'tools/call', array( 'name' => 'create_post', 'arguments' => array( 'response_locale' => 'en_US' ) ) );
-	fmp_assert( ! empty( $invalid_en['result']['isError'] ) && str_contains( (string) $invalid_en['result']['structuredContent']['message'], 'is required' ), 'Per-call English response localization failed.' );
+	$invalid_fa = mindio_rpc( $token, 'tools/call', array( 'name' => 'create_post', 'arguments' => array( 'response_locale' => 'fa_IR' ) ) );
+	mindio_assert( ! empty( $invalid_fa['result']['isError'] ) && str_contains( (string) $invalid_fa['result']['structuredContent']['message'], 'الزامی' ), 'Persian response localization failed.' );
+	$invalid_en = mindio_rpc( $token, 'tools/call', array( 'name' => 'create_post', 'arguments' => array( 'response_locale' => 'en_US' ) ) );
+	mindio_assert( ! empty( $invalid_en['result']['isError'] ) && str_contains( (string) $invalid_en['result']['structuredContent']['message'], 'is required' ), 'Per-call English response localization failed.' );
 	remove_action( 'change_locale', $development_catalog_loader );
 
-	$summary = fmp_rpc(
+	$summary = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -129,9 +129,9 @@ try {
 			'arguments' => array( 'content' => '<h2>Summary source</h2><p>One two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twenty-one.</p>', 'target_words' => 20 ),
 		)
 	);
-	fmp_assert( empty( $summary['result']['isError'] ) && 'local_extractive' === $summary['result']['structuredContent']['provider'], 'Local automation fallback failed.' );
+	mindio_assert( empty( $summary['result']['isError'] ) && 'local_extractive' === $summary['result']['structuredContent']['provider'], 'Local automation fallback failed.' );
 
-	$media = fmp_rpc(
+	$media = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -143,47 +143,47 @@ try {
 			),
 		)
 	);
-	fmp_assert( empty( $media['result']['isError'] ), 'Media upload failed: ' . wp_json_encode( $media, JSON_UNESCAPED_UNICODE ) );
+	mindio_assert( empty( $media['result']['isError'] ), 'Media upload failed: ' . wp_json_encode( $media, JSON_UNESCAPED_UNICODE ) );
 	$media_id = (int) $media['result']['structuredContent']['media_id'];
-	fmp_assert( $media_id > 0 && wp_attachment_is_image( $media_id ), 'Uploaded media is not an image attachment.' );
-	$media_deleted = fmp_rpc( $token, 'tools/call', array( 'name' => 'delete_media', 'arguments' => array( 'media_id' => $media_id, 'confirm' => true ) ) );
-	fmp_assert( empty( $media_deleted['result']['isError'] ), 'Media deletion failed.' );
+	mindio_assert( $media_id > 0 && wp_attachment_is_image( $media_id ), 'Uploaded media is not an image attachment.' );
+	$media_deleted = mindio_rpc( $token, 'tools/call', array( 'name' => 'delete_media', 'arguments' => array( 'media_id' => $media_id, 'confirm' => true ) ) );
+	mindio_assert( empty( $media_deleted['result']['isError'] ), 'Media deletion failed.' );
 	$media_id = 0;
 
-	$blocked_webhook = fmp_rpc(
+	$blocked_webhook = mindio_rpc(
 		$token,
 		'tools/call',
 		array( 'name' => 'register_webhook', 'arguments' => array( 'name' => 'Blocked local target', 'url' => 'https://127.0.0.1/hook', 'events' => array( 'post_created' ) ) )
 	);
-	fmp_assert( ! empty( $blocked_webhook['result']['isError'] ) && 'private_url' === $blocked_webhook['result']['structuredContent']['error'], 'Webhook SSRF guard failed.' );
+	mindio_assert( ! empty( $blocked_webhook['result']['isError'] ) && 'private_url' === $blocked_webhook['result']['structuredContent']['error'], 'Webhook SSRF guard failed.' );
 
-	$removed_query = fmp_rpc(
+	$removed_query = mindio_rpc(
 		$token,
 		'tools/call',
 		array( 'name' => 'run_safe_query', 'arguments' => array( 'sql' => 'SELECT * FROM ' . $GLOBALS['wpdb']->users ) )
 	);
-	fmp_assert( -32602 === ( $removed_query['error']['code'] ?? null ) && str_contains( (string) ( $removed_query['error']['message'] ?? '' ), 'Unknown tool' ), 'Request-supplied SQL still reached a tool callback: ' . wp_json_encode( $removed_query ) );
+	mindio_assert( -32602 === ( $removed_query['error']['code'] ?? null ) && str_contains( (string) ( $removed_query['error']['message'] ?? '' ), 'Unknown tool' ), 'Request-supplied SQL still reached a tool callback: ' . wp_json_encode( $removed_query ) );
 
 	$database_settings                              = $original_settings;
 	$database_settings['allow_database_inspection'] = true;
 	update_option( 'mindio_magic_mcp_settings', $database_settings, false );
-	$table_list = fmp_rpc(
+	$table_list = mindio_rpc(
 		$token,
 		'tools/call',
 		array( 'name' => 'list_database_tables', 'arguments' => array() )
 	);
 	$table_names = array_column( (array) ( $table_list['result']['structuredContent']['tables'] ?? array() ), 'table' );
-	fmp_assert( empty( $table_list['result']['isError'] ) && in_array( 'posts', $table_names, true ) && ! in_array( 'users', $table_names, true ), 'Prepared database inspection did not preserve the safe table inventory.' );
-	$table_description = fmp_rpc(
+	mindio_assert( empty( $table_list['result']['isError'] ) && in_array( 'posts', $table_names, true ) && ! in_array( 'users', $table_names, true ), 'Prepared database inspection did not preserve the safe table inventory.' );
+	$table_description = mindio_rpc(
 		$token,
 		'tools/call',
 		array( 'name' => 'describe_database_table', 'arguments' => array( 'table' => 'posts' ) )
 	);
 	$column_names = array_column( (array) ( $table_description['result']['structuredContent']['columns'] ?? array() ), 'name' );
-	fmp_assert( empty( $table_description['result']['isError'] ) && in_array( 'ID', $column_names, true ), 'Prepared database schema inspection no longer works.' );
+	mindio_assert( empty( $table_description['result']['isError'] ) && in_array( 'ID', $column_names, true ), 'Prepared database schema inspection no longer works.' );
 	update_option( 'mindio_magic_mcp_settings', $original_settings, false );
 
-	$created = fmp_rpc(
+	$created = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -225,17 +225,17 @@ try {
 			),
 		)
 	);
-	fmp_assert( empty( $created['result']['isError'] ), 'Flatsome page creation returned an error.' );
+	mindio_assert( empty( $created['result']['isError'] ), 'Flatsome page creation returned an error.' );
 	$page = $created['result']['structuredContent'];
 	$page_id = (int) $page['post_id'];
 	$column_id = (string) $page['new_node_ids']['columns'][0];
 	$content = (string) get_post_field( 'post_content', $page_id );
-	fmp_assert( str_contains( $content, '[section' ) && str_contains( $content, '[title' ) && str_contains( $content, '[accordion' ) && str_contains( $content, 'fmp-rtl' ), 'Generated native-first UX Builder content is invalid.' );
-	fmp_assert( ! str_contains( $content, '<h1>' ) && 4 === (int) ( $page['render_report']['native_count'] ?? 0 ) && 0 === (int) ( $page['render_report']['fallback_count'] ?? -1 ), 'Native component reporting or heading rendering failed.' );
+	mindio_assert( str_contains( $content, '[section' ) && str_contains( $content, '[title' ) && str_contains( $content, '[accordion' ) && str_contains( $content, 'fmp-rtl' ), 'Generated native-first UX Builder content is invalid.' );
+	mindio_assert( ! str_contains( $content, '<h1>' ) && 4 === (int) ( $page['render_report']['native_count'] ?? 0 ) && 0 === (int) ( $page['render_report']['fallback_count'] ?? -1 ), 'Native component reporting or heading rendering failed.' );
 	$rendered = do_shortcode( $content );
-	fmp_assert( str_contains( $rendered, '<section' ) && str_contains( $rendered, 'صفحه آزمایشی' ), 'Flatsome did not render the generated shortcodes.' );
+	mindio_assert( str_contains( $rendered, '<section' ) && str_contains( $rendered, 'صفحه آزمایشی' ), 'Flatsome did not render the generated shortcodes.' );
 
-	$added = fmp_rpc(
+	$added = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -248,12 +248,12 @@ try {
 			),
 		)
 	);
-	fmp_assert(
+	mindio_assert(
 		empty( $added['result']['isError'] ) && 1 === (int) ( $added['result']['structuredContent']['render_report']['native_count'] ?? 0 ) && str_contains( (string) get_post_field( 'post_content', $page_id ), '[button' ),
 		'Incremental element insertion failed: ' . wp_json_encode( $added, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
 	);
 
-	$legacy_text = fmp_rpc(
+	$legacy_text = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -261,9 +261,9 @@ try {
 			'arguments' => array( 'post_id' => $page_id, 'column_id' => $column_id, 'element' => array( 'type' => 'text', 'html' => '<p>Legacy</p>' ) ),
 		)
 	);
-	fmp_assert( ! empty( $legacy_text['result']['isError'] ) && 'invalid_arguments' === $legacy_text['result']['structuredContent']['error'], 'The removed text.html contract was still accepted.' );
+	mindio_assert( ! empty( $legacy_text['result']['isError'] ) && 'invalid_arguments' === $legacy_text['result']['structuredContent']['error'], 'The removed text.html contract was still accepted.' );
 
-	$fallback = fmp_rpc(
+	$fallback = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -277,10 +277,10 @@ try {
 		)
 	);
 	$fallback_content = (string) get_post_field( 'post_content', $page_id );
-	fmp_assert( empty( $fallback['result']['isError'] ) && 1 === (int) ( $fallback['result']['structuredContent']['render_report']['fallback_count'] ?? 0 ), 'Explicit HTML fallback was not reported.' );
-	fmp_assert( str_contains( $fallback_content, '[ux_html' ) && ! str_contains( $fallback_content, '<script' ) && ! str_contains( $fallback_content, 'onclick=' ) && str_contains( $fallback_content, '&#91;button&#93;' ), 'HTML fallback sanitization failed.' );
+	mindio_assert( empty( $fallback['result']['isError'] ) && 1 === (int) ( $fallback['result']['structuredContent']['render_report']['fallback_count'] ?? 0 ), 'Explicit HTML fallback was not reported.' );
+	mindio_assert( str_contains( $fallback_content, '[ux_html' ) && ! str_contains( $fallback_content, '<script' ) && ! str_contains( $fallback_content, 'onclick=' ) && str_contains( $fallback_content, '&#91;button&#93;' ), 'HTML fallback sanitization failed.' );
 
-	$seo = fmp_rpc(
+	$seo = mindio_rpc(
 		$token,
 		'tools/call',
 		array(
@@ -296,43 +296,43 @@ try {
 			),
 		)
 	);
-	fmp_assert( empty( $seo['result']['isError'] ) && 'Smoke SEO' === $seo['result']['structuredContent']['meta']['meta_title'], 'SEO metadata round-trip failed.' );
-	fmp_assert( 'generic' === $seo['result']['structuredContent']['provider'], 'The smoke fixture unexpectedly loaded another SEO provider.' );
+	mindio_assert( empty( $seo['result']['isError'] ) && 'Smoke SEO' === $seo['result']['structuredContent']['meta']['meta_title'], 'SEO metadata round-trip failed.' );
+	mindio_assert( 'generic' === $seo['result']['structuredContent']['provider'], 'The smoke fixture unexpectedly loaded another SEO provider.' );
 	global $wp_query;
 	$previous_query = $wp_query;
 	$wp_query       = new WP_Query( array( 'page_id' => $page_id, 'post_status' => 'draft' ) );
 	ob_start();
 	do_action( 'wp_head' );
 	$head_output = (string) ob_get_clean();
-	fmp_assert( str_contains( $head_output, 'Smoke SEO description' ) && str_contains( $head_output, 'application/ld+json' ), 'Plugin-neutral frontend SEO output failed.' );
-	fmp_assert( 'Smoke SEO' === apply_filters( 'pre_get_document_title', '' ), 'Plugin-neutral document title filter failed.' );
-	fmp_assert( home_url( '/mindio-magic-mcp-smoke-canonical/' ) === apply_filters( 'get_canonical_url', get_permalink( $page_id ), get_post( $page_id ) ), 'Plugin-neutral canonical filter failed.' );
+	mindio_assert( str_contains( $head_output, 'Smoke SEO description' ) && str_contains( $head_output, 'application/ld+json' ), 'Plugin-neutral frontend SEO output failed.' );
+	mindio_assert( 'Smoke SEO' === apply_filters( 'pre_get_document_title', '' ), 'Plugin-neutral document title filter failed.' );
+	mindio_assert( home_url( '/mindio-magic-mcp-smoke-canonical/' ) === apply_filters( 'get_canonical_url', get_permalink( $page_id ), get_post( $page_id ) ), 'Plugin-neutral canonical filter failed.' );
 	$wp_query = $previous_query;
 
-	$post = fmp_rpc(
+	$post = mindio_rpc(
 		$token,
 		'tools/call',
 		array( 'name' => 'create_post', 'arguments' => array( 'title' => 'MCP CRUD Smoke Test', 'content' => '<p onclick="alert(1)">Test <strong>content</strong></p><script>alert(1)</script>', 'status' => 'draft' ) )
 	);
-	fmp_assert( empty( $post['result']['isError'] ), 'Post creation failed.' );
+	mindio_assert( empty( $post['result']['isError'] ), 'Post creation failed.' );
 	$post_id = (int) $post['result']['structuredContent']['post_id'];
 	$stored_post_content = (string) get_post_field( 'post_content', $post_id );
-	fmp_assert( str_contains( $stored_post_content, '<strong>content</strong>' ) && ! str_contains( $stored_post_content, '<script' ) && ! str_contains( $stored_post_content, 'onclick=' ), 'Agent-supplied post HTML was not safely filtered.' );
-	$deleted = fmp_rpc( $token, 'tools/call', array( 'name' => 'delete_post', 'arguments' => array( 'post_id' => $post_id, 'force' => true, 'confirm' => true ) ) );
-	fmp_assert( empty( $deleted['result']['isError'] ), 'Post deletion failed.' );
+	mindio_assert( str_contains( $stored_post_content, '<strong>content</strong>' ) && ! str_contains( $stored_post_content, '<script' ) && ! str_contains( $stored_post_content, 'onclick=' ), 'Agent-supplied post HTML was not safely filtered.' );
+	$deleted = mindio_rpc( $token, 'tools/call', array( 'name' => 'delete_post', 'arguments' => array( 'post_id' => $post_id, 'force' => true, 'confirm' => true ) ) );
+	mindio_assert( empty( $deleted['result']['isError'] ), 'Post deletion failed.' );
 	$post_id = 0;
 
 	$read_credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_READ, 'Integration read-only test' );
-	fmp_assert( ! is_wp_error( $read_credential ), 'Could not create read-only credential.' );
-	$read_list = fmp_rpc( (string) $read_credential['token'], 'tools/list' );
+	mindio_assert( ! is_wp_error( $read_credential ), 'Could not create read-only credential.' );
+	$read_list = mindio_rpc( (string) $read_credential['token'], 'tools/list' );
 	$read_names = array_column( $read_list['result']['tools'], 'name' );
-	fmp_assert( ! in_array( 'create_post', $read_names, true ) && in_array( 'list_posts', $read_names, true ), 'Tool discovery did not enforce scope.' );
-	$read_write = fmp_rpc(
+	mindio_assert( ! in_array( 'create_post', $read_names, true ) && in_array( 'list_posts', $read_names, true ), 'Tool discovery did not enforce scope.' );
+	$read_write = mindio_rpc(
 		(string) $read_credential['token'],
 		'tools/call',
 		array( 'name' => 'create_post', 'arguments' => array( 'title' => 'Must not be created' ) )
 	);
-	fmp_assert( ! empty( $read_write['result']['isError'] ) && 'insufficient_scope' === $read_write['result']['structuredContent']['error'], 'Read-only credential performed a write.' );
+	mindio_assert( ! empty( $read_write['result']['isError'] ) && 'insufficient_scope' === $read_write['result']['structuredContent']['error'], 'Read-only credential performed a write.' );
 
 	$origin_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$origin_request->set_header( 'Authorization', 'Bearer ' . $token );
@@ -340,43 +340,43 @@ try {
 	$origin_request->set_header( 'Origin', 'https://untrusted.example' );
 	$origin_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 99, 'method' => 'ping' ) ) );
 	$origin_response = rest_get_server()->dispatch( $origin_request );
-	fmp_assert( 403 === $origin_response->get_status(), 'Untrusted browser Origin was accepted.' );
+	mindio_assert( 403 === $origin_response->get_status(), 'Untrusted browser Origin was accepted.' );
 
 	$legacy_namespace_request = new WP_REST_Request( 'POST', '/' . MINDIO_MAGIC_MCP_LEGACY_REST_NAMESPACE . '/mcp' );
 	$legacy_namespace_request->set_header( 'Authorization', 'Bearer ' . $token );
 	$legacy_namespace_request->set_header( 'Content-Type', 'application/json' );
 	$legacy_namespace_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 98, 'method' => 'ping' ) ) );
 	$legacy_namespace_response = rest_get_server()->dispatch( $legacy_namespace_request );
-	fmp_assert( 200 === $legacy_namespace_response->get_status(), 'Deprecated REST namespace alias stopped responding.' );
+	mindio_assert( 200 === $legacy_namespace_response->get_status(), 'Deprecated REST namespace alias stopped responding.' );
 
 	$legacy_key_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$legacy_key_request->set_header( 'X-Flatsome-MCP-Key', $token );
 	$legacy_key_request->set_header( 'Content-Type', 'application/json' );
 	$legacy_key_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 97, 'method' => 'ping' ) ) );
-	fmp_assert( 200 === rest_get_server()->dispatch( $legacy_key_request )->get_status(), 'Deprecated API key header stopped being accepted.' );
+	mindio_assert( 200 === rest_get_server()->dispatch( $legacy_key_request )->get_status(), 'Deprecated API key header stopped being accepted.' );
 
 	$canonical_key_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$canonical_key_request->set_header( 'X-Mindio-Magic-MCP-Key', $token );
 	$canonical_key_request->set_header( 'Content-Type', 'application/json' );
 	$canonical_key_request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 96, 'method' => 'ping' ) ) );
-	fmp_assert( 200 === rest_get_server()->dispatch( $canonical_key_request )->get_status(), 'Canonical API key header was not accepted.' );
+	mindio_assert( 200 === rest_get_server()->dispatch( $canonical_key_request )->get_status(), 'Canonical API key header was not accepted.' );
 
 	$notification = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$notification->set_header( 'Authorization', 'Bearer ' . $token );
 	$notification->set_header( 'Content-Type', 'application/json' );
 	$notification->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'method' => 'notifications/initialized' ) ) );
-	fmp_assert( 202 === rest_get_server()->dispatch( $notification )->get_status(), 'MCP notification was not accepted.' );
+	mindio_assert( 202 === rest_get_server()->dispatch( $notification )->get_status(), 'MCP notification was not accepted.' );
 
 	wp_set_current_user( 0 );
 	$anonymous = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$anonymous->set_header( 'Content-Type', 'application/json' );
 	$anonymous->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 100, 'method' => 'ping' ) ) );
 	$anonymous_response = rest_get_server()->dispatch( $anonymous );
-	fmp_assert( 401 === $anonymous_response->get_status() && str_contains( (string) $anonymous_response->get_headers()['WWW-Authenticate'], 'oauth-protected-resource' ), 'Unauthenticated request did not receive OAuth discovery metadata.' );
+	mindio_assert( 401 === $anonymous_response->get_status() && str_contains( (string) $anonymous_response->get_headers()['WWW-Authenticate'], 'oauth-protected-resource' ), 'Unauthenticated request did not receive OAuth discovery metadata.' );
 
 	$metadata_request = new WP_REST_Request( 'GET', '/mindio-magic-mcp/v1/oauth/protected-resource' );
 	$metadata_response = rest_get_server()->dispatch( $metadata_request );
-	fmp_assert( 200 === $metadata_response->get_status() && rest_url( 'mindio-magic-mcp/v1/mcp' ) === $metadata_response->get_data()['resource'], 'OAuth protected-resource metadata is invalid.' );
+	mindio_assert( 200 === $metadata_response->get_status() && rest_url( 'mindio-magic-mcp/v1/mcp' ) === $metadata_response->get_data()['resource'], 'OAuth protected-resource metadata is invalid.' );
 
 	$register_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/oauth/register' );
 	$register_request->set_header( 'Content-Type', 'application/json' );
@@ -390,17 +390,17 @@ try {
 	);
 	$register_response = rest_get_server()->dispatch( $register_request );
 	$registered_client = $register_response->get_data();
-	fmp_assert( 201 === $register_response->get_status() && str_starts_with( (string) $registered_client['client_id'], 'fmc_' ), 'OAuth dynamic client registration failed.' );
+	mindio_assert( 201 === $register_response->get_status() && str_starts_with( (string) $registered_client['client_id'], 'fmc_' ), 'OAuth dynamic client registration failed.' );
 	$oauth_client_id = (string) $registered_client['client_id'];
 	$resource = untrailingslashit( rest_url( 'mindio-magic-mcp/v1/mcp' ) );
 	$issued_oauth = $auth->issue_oauth_tokens( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_READ, $oauth_client_id, $resource );
-	fmp_assert( ! is_wp_error( $issued_oauth ), 'OAuth token issuance failed.' );
+	mindio_assert( ! is_wp_error( $issued_oauth ), 'OAuth token issuance failed.' );
 	preg_match( '/^fmo_([a-f0-9]{16})_/', (string) $issued_oauth['access_token'], $oauth_access_match );
 	preg_match( '/^fmr_([a-f0-9]{16})_/', (string) $issued_oauth['refresh_token'], $oauth_refresh_match );
 	$oauth_token_ids[]   = (string) ( $oauth_access_match[1] ?? '' );
 	$oauth_refresh_ids[] = (string) ( $oauth_refresh_match[1] ?? '' );
-	$oauth_ping = fmp_rpc( (string) $issued_oauth['access_token'], 'ping' );
-	fmp_assert( isset( $oauth_ping['result'] ) && is_array( $oauth_ping['result'] ), 'OAuth access token was not accepted by MCP.' );
+	$oauth_ping = mindio_rpc( (string) $issued_oauth['access_token'], 'ping' );
+	mindio_assert( isset( $oauth_ping['result'] ) && is_array( $oauth_ping['result'] ), 'OAuth access token was not accepted by MCP.' );
 
 	$refresh_request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/oauth/token' );
 	$refresh_request->set_body_params(
@@ -413,13 +413,13 @@ try {
 	);
 	$refresh_response = rest_get_server()->dispatch( $refresh_request );
 	$rotated_oauth    = $refresh_response->get_data();
-	fmp_assert( 200 === $refresh_response->get_status() && $issued_oauth['refresh_token'] !== $rotated_oauth['refresh_token'], 'OAuth refresh-token rotation failed.' );
+	mindio_assert( 200 === $refresh_response->get_status() && $issued_oauth['refresh_token'] !== $rotated_oauth['refresh_token'], 'OAuth refresh-token rotation failed.' );
 	preg_match( '/^fmo_([a-f0-9]{16})_/', (string) $rotated_oauth['access_token'], $rotated_access_match );
 	preg_match( '/^fmr_([a-f0-9]{16})_/', (string) $rotated_oauth['refresh_token'], $rotated_refresh_match );
 	$oauth_token_ids[]   = (string) ( $rotated_access_match[1] ?? '' );
 	$oauth_refresh_ids[] = (string) ( $rotated_refresh_match[1] ?? '' );
 	$replay_response = rest_get_server()->dispatch( $refresh_request );
-	fmp_assert( 400 === $replay_response->get_status() && 'invalid_grant' === $replay_response->get_data()['error'], 'A rotated refresh token was accepted twice.' );
+	mindio_assert( 400 === $replay_response->get_status() && 'invalid_grant' === $replay_response->get_data()['error'], 'A rotated refresh token was accepted twice.' );
 
 	echo wp_json_encode(
 		array(

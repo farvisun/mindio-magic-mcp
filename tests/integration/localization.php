@@ -10,7 +10,7 @@
 declare(strict_types=1);
 
 /** @throws RuntimeException */
-function fmp_localization_assert( bool $condition, string $message ): void {
+function mindio_localization_assert( bool $condition, string $message ): void {
 	if ( ! $condition ) {
 		throw new RuntimeException( $message );
 	}
@@ -22,7 +22,7 @@ function fmp_localization_assert( bool $condition, string $message ): void {
  * @return array<int, array{fields: array<string, string>, fuzzy: bool}>
  * @throws RuntimeException When a quoted PO value cannot be decoded.
  */
-function fmp_parse_po( string $path ): array {
+function mindio_parse_po( string $path ): array {
 	$lines   = file( $path, FILE_IGNORE_NEW_LINES );
 	$entries = array();
 	$fields  = array();
@@ -30,7 +30,7 @@ function fmp_parse_po( string $path ): array {
 	$fuzzy   = false;
 	$obsolete = false;
 
-	fmp_localization_assert( false !== $lines, 'Translation catalog could not be read: ' . $path );
+	mindio_localization_assert( false !== $lines, 'Translation catalog could not be read: ' . $path );
 
 	$flush = static function () use ( &$entries, &$fields, &$current, &$fuzzy, &$obsolete ): void {
 		if ( ! $obsolete && array_key_exists( 'msgid', $fields ) ) {
@@ -65,14 +65,14 @@ function fmp_parse_po( string $path ): array {
 		if ( preg_match( '/^(msgctxt|msgid|msgid_plural|msgstr(?:\[\d+\])?)\s+(".*")$/', $line, $matches ) ) {
 			$current = $matches[1];
 			$value   = json_decode( $matches[2], true );
-			fmp_localization_assert( is_string( $value ), 'Invalid PO value in ' . $path . ': ' . $line );
+			mindio_localization_assert( is_string( $value ), 'Invalid PO value in ' . $path . ': ' . $line );
 			$fields[ $current ] = $value;
 			continue;
 		}
 
 		if ( null !== $current && preg_match( '/^(".*")$/', $line, $matches ) ) {
 			$value = json_decode( $matches[1], true );
-			fmp_localization_assert( is_string( $value ), 'Invalid PO continuation in ' . $path . ': ' . $line );
+			mindio_localization_assert( is_string( $value ), 'Invalid PO continuation in ' . $path . ': ' . $line );
 			$fields[ $current ] .= $value;
 		}
 	}
@@ -83,8 +83,8 @@ function fmp_parse_po( string $path ): array {
 }
 
 $plugin_root = dirname( __DIR__, 2 );
-$pot_entries = fmp_parse_po( $plugin_root . '/languages/mindio-magic-mcp.pot' );
-$po_entries  = fmp_parse_po( $plugin_root . '/languages/mindio-magic-mcp-fa_IR.po' );
+$pot_entries = mindio_parse_po( $plugin_root . '/languages/mindio-magic-mcp.pot' );
+$po_entries  = mindio_parse_po( $plugin_root . '/languages/mindio-magic-mcp-fa_IR.po' );
 
 $source_keys = array();
 foreach ( $pot_entries as $entry ) {
@@ -101,7 +101,7 @@ foreach ( $po_entries as $entry ) {
 		continue;
 	}
 
-	fmp_localization_assert( ! $entry['fuzzy'], 'Fuzzy Persian translation remains: ' . $msgid );
+	mindio_localization_assert( ! $entry['fuzzy'], 'Fuzzy Persian translation remains: ' . $msgid );
 
 	$translations = array_filter(
 		$entry['fields'],
@@ -109,9 +109,9 @@ foreach ( $po_entries as $entry ) {
 		ARRAY_FILTER_USE_KEY
 	);
 
-	fmp_localization_assert( ! empty( $translations ), 'Persian translation is missing: ' . $msgid );
+	mindio_localization_assert( ! empty( $translations ), 'Persian translation is missing: ' . $msgid );
 	foreach ( $translations as $translation ) {
-		fmp_localization_assert( '' !== trim( $translation ), 'Persian translation is empty: ' . $msgid );
+		mindio_localization_assert( '' !== trim( $translation ), 'Persian translation is empty: ' . $msgid );
 	}
 
 	$translated_keys[] = ( $entry['fields']['msgctxt'] ?? '' ) . "\x04" . $msgid;
@@ -119,7 +119,7 @@ foreach ( $po_entries as $entry ) {
 
 sort( $source_keys );
 sort( $translated_keys );
-fmp_localization_assert( $source_keys === $translated_keys, 'The Persian catalog does not exactly match the source catalog.' );
+mindio_localization_assert( $source_keys === $translated_keys, 'The Persian catalog does not exactly match the source catalog.' );
 
 echo json_encode(
 	array(

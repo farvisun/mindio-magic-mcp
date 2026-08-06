@@ -23,14 +23,14 @@ if ( ! did_action( 'rest_api_init' ) ) {
 }
 
 /** @throws RuntimeException */
-function fmp_seo_assert( bool $condition, string $message ): void {
+function mindio_seo_assert( bool $condition, string $message ): void {
 	if ( ! $condition ) {
 		throw new RuntimeException( $message );
 	}
 }
 
 /** @return array<string,mixed> */
-function fmp_seo_rpc( string $token, string $method, array $params = array() ): array {
+function mindio_seo_rpc( string $token, string $method, array $params = array() ): array {
 	$request = new WP_REST_Request( 'POST', '/mindio-magic-mcp/v1/mcp' );
 	$request->set_header( 'Authorization', 'Bearer ' . $token );
 	$request->set_header( 'Content-Type', 'application/json' );
@@ -38,17 +38,17 @@ function fmp_seo_rpc( string $token, string $method, array $params = array() ): 
 	$request->set_header( 'MCP-Protocol-Version', '2025-11-25' );
 	$request->set_body( wp_json_encode( array( 'jsonrpc' => '2.0', 'id' => 1, 'method' => $method, 'params' => $params ) ) );
 	$response = rest_get_server()->dispatch( $request );
-	fmp_seo_assert( 200 === $response->get_status(), 'Unexpected MCP HTTP status: ' . $response->get_status() );
+	mindio_seo_assert( 200 === $response->get_status(), 'Unexpected MCP HTTP status: ' . $response->get_status() );
 	$data = $response->get_data();
-	fmp_seo_assert( is_array( $data ), 'MCP response is not an object.' );
+	mindio_seo_assert( is_array( $data ), 'MCP response is not an object.' );
 	return $data;
 }
 
 /** @return array<string,mixed> */
-function fmp_seo_call( string $token, string $tool, array $arguments = array() ): array {
-	$response = fmp_seo_rpc( $token, 'tools/call', array( 'name' => $tool, 'arguments' => $arguments ) );
+function mindio_seo_call( string $token, string $tool, array $arguments = array() ): array {
+	$response = mindio_seo_rpc( $token, 'tools/call', array( 'name' => $tool, 'arguments' => $arguments ) );
 	$result   = (array) ( $response['result'] ?? array() );
-	fmp_seo_assert( empty( $result['isError'] ), $tool . ' failed: ' . wp_json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+	mindio_seo_assert( empty( $result['isError'] ), $tool . ' failed: ' . wp_json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
 	return (array) ( $result['structuredContent']['result'] ?? array() );
 }
 
@@ -75,12 +75,12 @@ if ( empty( $providers ) ) {
 }
 
 $admins = get_users( array( 'role' => 'administrator', 'number' => 1, 'fields' => 'ids' ) );
-fmp_seo_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
+mindio_seo_assert( ! empty( $admins ), 'The WordPress fixture needs an administrator.' );
 wp_set_current_user( (int) $admins[0] );
 
 $auth       = new \MindioMagicMCP\Auth();
 $credential = $auth->create_api_key( (int) $admins[0], \MindioMagicMCP\Auth::SCOPE_ADMIN, 'SEO provider integration test' );
-fmp_seo_assert( ! is_wp_error( $credential ), 'Could not create the SEO provider credential.' );
+mindio_seo_assert( ! is_wp_error( $credential ), 'Could not create the SEO provider credential.' );
 $token = (string) $credential['token'];
 
 $original_policy   = get_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, null );
@@ -96,25 +96,25 @@ try {
 	update_option( \MindioMagicMCP\Tool_Registry::OPERATION_POLICY_OPTION, $policy, false );
 
 	$post_id = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'draft', 'post_title' => 'SEO provider fixture', 'post_content' => 'Provider integration content.' ), true );
-	fmp_seo_assert( ! is_wp_error( $post_id ), 'Could not create the SEO fixture post.' );
+	mindio_seo_assert( ! is_wp_error( $post_id ), 'Could not create the SEO fixture post.' );
 	$post_id = (int) $post_id;
 
-	$listed = fmp_seo_rpc( $token, 'tools/list' );
+	$listed = mindio_seo_rpc( $token, 'tools/list' );
 	$tools  = array_column( (array) ( $listed['result']['tools'] ?? array() ), null, 'name' );
 
 	foreach ( $providers as $tool_prefix => $provider ) {
 		$read_tool  = $tool_prefix . '_read';
 		$write_tool = $tool_prefix . '_write';
-		fmp_seo_assert( isset( $tools[ $read_tool ], $tools[ $write_tool ] ), 'SEO provider tools are missing for ' . $provider['label'] );
-		fmp_seo_assert( array( 'update_post_seo' ) === (array) ( $tools[ $write_tool ]['inputSchema']['properties']['operation']['enum'] ?? array() ), 'SEO write discovery ignored operation policy for ' . $provider['label'] );
+		mindio_seo_assert( isset( $tools[ $read_tool ], $tools[ $write_tool ] ), 'SEO provider tools are missing for ' . $provider['label'] );
+		mindio_seo_assert( array( 'update_post_seo' ) === (array) ( $tools[ $write_tool ]['inputSchema']['properties']['operation']['enum'] ?? array() ), 'SEO write discovery ignored operation policy for ' . $provider['label'] );
 
-		$read = fmp_seo_call( $token, $read_tool, array( 'operation' => 'get_post_seo', 'arguments' => array( 'post_id' => $post_id ) ) );
-		fmp_seo_assert( $post_id === (int) ( $read['post_id'] ?? 0 ), 'SEO provider could not read the fixture post.' );
+		$read = mindio_seo_call( $token, $read_tool, array( 'operation' => 'get_post_seo', 'arguments' => array( 'post_id' => $post_id ) ) );
+		mindio_seo_assert( $post_id === (int) ( $read['post_id'] ?? 0 ), 'SEO provider could not read the fixture post.' );
 
 		$title       = strtoupper( (string) $provider['label'] ) . ' MCP title';
 		$description = 'Description stored through the provider-specific MCP adapter.';
 		$focus       = 'wordpress mcp';
-		$updated     = fmp_seo_call(
+		$updated     = mindio_seo_call(
 			$token,
 			$write_tool,
 			array(
@@ -130,11 +130,11 @@ try {
 			)
 		);
 		$seo = (array) ( $updated['seo'] ?? array() );
-		fmp_seo_assert( $title === ( $seo['title'] ?? null ) && $description === ( $seo['description'] ?? null ) && $focus === ( $seo['focus_keyword'] ?? null ), 'SEO provider round-trip failed for ' . $provider['label'] );
-		fmp_seo_assert( $title === get_post_meta( $post_id, (string) $provider['title_meta'], true ), 'SEO title was not stored in the provider meta key.' );
-		fmp_seo_assert( $description === get_post_meta( $post_id, (string) $provider['description_meta'], true ), 'SEO description was not stored in the provider meta key.' );
-		fmp_seo_assert( $focus === get_post_meta( $post_id, (string) $provider['focus_meta'], true ), 'SEO focus keyword was not stored in the provider meta key.' );
-		fmp_seo_assert( in_array( 'noindex', (array) ( $seo['robots'] ?? array() ), true ) && in_array( 'nofollow', (array) ( $seo['robots'] ?? array() ), true ), 'SEO robots directives did not round-trip.' );
+		mindio_seo_assert( $title === ( $seo['title'] ?? null ) && $description === ( $seo['description'] ?? null ) && $focus === ( $seo['focus_keyword'] ?? null ), 'SEO provider round-trip failed for ' . $provider['label'] );
+		mindio_seo_assert( $title === get_post_meta( $post_id, (string) $provider['title_meta'], true ), 'SEO title was not stored in the provider meta key.' );
+		mindio_seo_assert( $description === get_post_meta( $post_id, (string) $provider['description_meta'], true ), 'SEO description was not stored in the provider meta key.' );
+		mindio_seo_assert( $focus === get_post_meta( $post_id, (string) $provider['focus_meta'], true ), 'SEO focus keyword was not stored in the provider meta key.' );
+		mindio_seo_assert( in_array( 'noindex', (array) ( $seo['robots'] ?? array() ), true ) && in_array( 'nofollow', (array) ( $seo['robots'] ?? array() ), true ), 'SEO robots directives did not round-trip.' );
 	}
 
 	echo wp_json_encode( array( 'ok' => true, 'providers' => array_column( $providers, 'label' ) ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . PHP_EOL;
