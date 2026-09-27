@@ -116,7 +116,7 @@ final class Automation_Tools {
 
 	public function can_read_source( array $args ): bool {
 		if ( ! empty( $args['post_id'] ) ) {
-			return current_user_can( 'read_post', absint( $args['post_id'] ) );
+			return Post_Access::can_read( absint( $args['post_id'] ) );
 		}
 		return isset( $args['content'] ) && is_string( $args['content'] );
 	}

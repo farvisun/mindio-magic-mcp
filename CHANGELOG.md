@@ -2,6 +2,19 @@
 
 All notable changes to Mindio Magic MCP are documented here.
 
+## 0.7.1 - 2026-09-27
+
+- Security: fixed an authenticated (Subscriber+) sensitive data exposure. Core's `read_post` capability ignores post passwords, so any logged-in user could list password-protected posts and read their raw bodies through `get_post`, and excerpts through `search_content`. A new `Post_Access` check now treats a password-protected entry as readable only by users who can edit it, and is applied to `list_posts`, `get_post`, `search_content`, `get_post_blocks`, `explain_page`, `get_flatsome_page`, `summarize_content`, `translate_content`, SEO and ACF readers, the `mindio://post/{id}` and `mindio://posts/{post_type}` resources, and the product-description prompt.
+- Security: `Post_Access::can_read()` also covers two other gaps in `read_post`: revisions and autosaves (readable through the parent and never password-protected themselves) now require `edit_post` on the parent, and published entries of non-viewable post types (Contact Form 7 forms, WooCommerce coupons, submission records) now require `edit_post`. Attachments inherit their parent's password protection.
+- Security: `acf_read` `get_field_value` only resolves selectors that name a real ACF field and rejects protected (`_`-prefixed) meta, since ACF's `get_field()` falls back to raw post meta.
+- Security: `list_posts` constrains unpublished statuses to the caller's own entries in the query itself, so `total` no longer reveals search matches in other authors' drafts.
+- Security: `get_server_status` returns the WordPress and PHP versions only to administrators; `get_post_seo` omits the focus keyword for users who cannot edit the entry; `get_post` returns revision IDs only to editors of the entry.
+- Security: credential allow/deny patterns and daily budgets now also apply to `resources/read` (as `resources_read`) and `prompts/get` (as `prompts_get`).
+- Security: `list_approvals` and `get_approval` only return the caller's own requests unless the caller has `manage_options`; queued requests carry the exact arguments of privileged calls.
+- Security: `list_changesets`, `get_changeset`, `close_changeset`, and `revert_changeset` only reach the caller's own changesets unless the caller has `manage_options`; changeset entries journal before/after snapshots of posts, options, and users.
+- Added `tests/integration/protected-content.php` covering the reported reproduction for both plugin tokens and Application Password identities.
+- Tested up to WordPress 7.1.
+
 ## 0.7.0 - 2026-08-07
 
 - Added audit log export: batches ship to a webhook, syslog, or both every five minutes as newline-delimited JSON, signed with HMAC-SHA256 and tracked by a cursor so records are neither lost nor duplicated.

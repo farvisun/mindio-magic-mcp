@@ -91,10 +91,13 @@ final class System_Tools {
 	public function status( array $args = array() ): array {
 		unset( $args );
 		$theme = wp_get_theme();
+		// Exact software versions are fingerprinting data that core only shows
+		// administrators (Site Health), so other readers receive null.
+		$is_admin = current_user_can( 'manage_options' );
 		return array(
 			'plugin_version'  => MINDIO_MAGIC_MCP_VERSION,
-			'wordpress_version' => get_bloginfo( 'version' ),
-			'php_version'     => PHP_VERSION,
+			'wordpress_version' => $is_admin ? get_bloginfo( 'version' ) : null,
+			'php_version'     => $is_admin ? PHP_VERSION : null,
 			'mcp_endpoint'    => rest_url( MINDIO_MAGIC_MCP_REST_NAMESPACE . '/mcp' ),
 			'oauth_metadata'  => home_url( '/.well-known/oauth-authorization-server' ),
 			'locale'          => determine_locale(),

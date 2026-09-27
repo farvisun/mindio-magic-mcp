@@ -43,7 +43,7 @@ final class Page_Analysis_Tools {
 			array( 'type' => 'object' ),
 			array( $this, 'explain' ),
 			Auth::SCOPE_READ,
-			fn( array $args ): bool => current_user_can( 'read_post', absint( $args['post_id'] ?? 0 ) ),
+			fn( array $args ): bool => Post_Access::can_read( absint( $args['post_id'] ?? 0 ) ),
 			array( 'readOnlyHint' => true, 'idempotentHint' => true )
 		);
 	}
@@ -184,7 +184,7 @@ final class Page_Analysis_Tools {
 	 * Render the page the way a visitor sees it, so shortcodes and blocks both resolve.
 	 */
 	private function rendered_html( \WP_Post $post ): string {
-		$content = (string) apply_filters( 'the_content', $post->post_content );
+		$content = (string) apply_filters( 'the_content', $post->post_content ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter; renders the page as visitors see it.
 
 		return is_string( $content ) ? $content : '';
 	}

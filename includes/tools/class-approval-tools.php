@@ -65,14 +65,16 @@ final class Approval_Tools {
 
 	/** @return array<string,mixed> */
 	public function list_approvals( array $args ): array {
+		$owner    = $this->owner_filter();
 		$requests = $this->approvals->list_requests(
 			(string) ( $args['status'] ?? '' ),
-			absint( $args['limit'] ?? 50 )
+			absint( $args['limit'] ?? 50 ),
+			$owner
 		);
 
 		return array(
 			'count'     => count( $requests ),
-			'pending'   => $this->approvals->pending_count(),
+			'pending'   => $this->approvals->pending_count( $owner ),
 			'approvals' => $requests,
 		);
 	}
@@ -80,10 +82,26 @@ final class Approval_Tools {
 	/** @return array<string,mixed>|\WP_Error */
 	public function get_approval( array $args ) {
 		$request = $this->approvals->get( (string) $args['approval_id'] );
-		if ( ! $request ) {
+		$owner   = $this->owner_filter();
+		// Report someone else's request as unknown so IDs cannot be probed.
+		if ( ! $request || ( 0 !== $owner && $owner !== (int) $request['requested_by'] ) ) {
 			return new \WP_Error( 'unknown_approval', __( 'Unknown approval request.', 'mindio-magic-mcp' ) );
 		}
 
 		return array( 'approval' => $request );
+	}
+
+	/**
+	 * Queued calls hold the exact arguments of other users' privileged tool
+	 * calls, so only administrators may see requests they did not make.
+	 *
+	 * @return int 0 for administrators (no filter), otherwise the current user ID
+	 *             (-1, matching nothing, when no user is set).
+	 */
+	private function owner_filter(): int {
+		if ( current_user_can( 'manage_options' ) ) {
+			return 0;
+		}
+		return get_current_user_id() ?: -1;
 	}
 }

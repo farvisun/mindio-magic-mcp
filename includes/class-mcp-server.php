@@ -302,6 +302,11 @@ final class MCP_Server {
 			return new \WP_Error( 'invalid_arguments', __( 'resources/read requires a uri.', 'mindio-magic-mcp' ) );
 		}
 
+		$allowed = $this->enforce_credential_policy( 'resources_read' );
+		if ( is_wp_error( $allowed ) ) {
+			return $allowed;
+		}
+
 		$start  = hrtime( true );
 		$result = $this->resources->read( $uri );
 		$ms     = (int) round( ( hrtime( true ) - $start ) / 1000000 );
@@ -325,6 +330,11 @@ final class MCP_Server {
 			return new \WP_Error( 'invalid_arguments', __( 'prompts/get requires a prompt name and object arguments.', 'mindio-magic-mcp' ) );
 		}
 
+		$allowed = $this->enforce_credential_policy( 'prompts_get' );
+		if ( is_wp_error( $allowed ) ) {
+			return $allowed;
+		}
+
 		$start  = hrtime( true );
 		$result = $this->prompts->get( $name, $arguments );
 		$ms     = (int) round( ( hrtime( true ) - $start ) / 1000000 );
@@ -338,6 +348,35 @@ final class MCP_Server {
 		);
 
 		return $result;
+	}
+
+	/**
+	 * Apply the credential's allow/deny patterns and daily budget to resource and
+	 * prompt reads, which otherwise bypass the per-tool policy. They are matched
+	 * under the same names the audit log records: `resources_read` and `prompts_get`.
+	 *
+	 * @return true|\WP_Error
+	 */
+	private function enforce_credential_policy( string $name ): bool|\WP_Error {
+		$policy = $this->auth->current_policy();
+		if ( ! $policy->allows_tool( $name ) ) {
+			return new \WP_Error( 'forbidden', __( 'This credential is not permitted to call this tool.', 'mindio-magic-mcp' ) );
+		}
+
+		$budget = $policy->consume( $this->auth->current_token_id() );
+		if ( ! $budget['allowed'] ) {
+			return new \WP_Error(
+				'forbidden',
+				sprintf(
+					/* translators: 1: daily call budget, 2: ISO 8601 reset timestamp. */
+					__( 'This credential has used its daily budget of %1$d calls. It resets at %2$s.', 'mindio-magic-mcp' ),
+					$budget['limit'],
+					$budget['resets_at']
+				)
+			);
+		}
+
+		return true;
 	}
 
 	/** @return array<string,mixed>|\WP_Error */

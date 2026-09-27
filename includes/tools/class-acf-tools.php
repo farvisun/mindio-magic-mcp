@@ -202,7 +202,17 @@ final class ACF_Tools extends Integration_Dispatcher {
 			return new \WP_Error( 'post_not_found', __( 'Post not found.', 'mindio-magic-mcp' ) );
 		}
 		$field = sanitize_text_field( (string) $args['field'] );
-		$value = get_field( $field, $post->ID, array_key_exists( 'format_value', $args ) ? (bool) $args['format_value'] : true );
+		// get_field() falls back to raw post meta for names that are not ACF fields,
+		// which would expose protected (`_`-prefixed) and other plugins' meta. Only
+		// resolve selectors that name a real ACF field.
+		if ( str_starts_with( $field, '_' ) || is_protected_meta( $field, 'post' ) ) {
+			return new \WP_Error( 'acf_field_not_found', __( 'ACF field not found.', 'mindio-magic-mcp' ) );
+		}
+		$field_object = get_field_object( $field, $post->ID, false, false );
+		if ( ! is_array( $field_object ) || empty( $field_object['key'] ) || is_protected_meta( (string) ( $field_object['name'] ?? '' ), 'post' ) ) {
+			return new \WP_Error( 'acf_field_not_found', __( 'ACF field not found.', 'mindio-magic-mcp' ) );
+		}
+		$value = get_field( (string) $field_object['key'], $post->ID, array_key_exists( 'format_value', $args ) ? (bool) $args['format_value'] : true );
 		return array( 'post_id' => $post->ID, 'field' => $field, 'value' => $this->safe_value( $value ) );
 	}
 
@@ -408,7 +418,7 @@ final class ACF_Tools extends Integration_Dispatcher {
 	}
 
 	public function can_read_value( array $args ): bool {
-		return current_user_can( 'read_post', (int) ( $args['post_id'] ?? 0 ) );
+		return Post_Access::can_read( (int) ( $args['post_id'] ?? 0 ) );
 	}
 
 	public function can_edit_value( array $args ): bool {

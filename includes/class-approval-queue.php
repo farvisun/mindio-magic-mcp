@@ -157,36 +157,45 @@ final class Approval_Queue {
 		return is_array( $row ) ? $this->normalize( $row ) : null;
 	}
 
-	/** @return array<int,array<string,mixed>> */
-	public function list_requests( string $status = '', int $limit = 50 ): array {
+	/**
+	 * @param int $requested_by Only return requests made by this user; 0 returns every request.
+	 * @return array<int,array<string,mixed>>
+	 */
+	public function list_requests( string $status = '', int $limit = 50, int $requested_by = 0 ): array {
 		global $wpdb;
 
 		$limit = max( 1, min( 200, $limit ) );
 		$valid = array( self::STATUS_PENDING, self::STATUS_APPROVED, self::STATUS_REJECTED, self::STATUS_EXECUTED );
-
-		if ( in_array( $status, $valid, true ) ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval state must be read live.
-			$rows = $wpdb->get_results(
-				$wpdb->prepare( 'SELECT * FROM %i WHERE status = %s ORDER BY id DESC LIMIT %d', Installer::approval_table(), $status, $limit ),
-				ARRAY_A
-			);
-		} else {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval state must be read live.
-			$rows = $wpdb->get_results(
-				$wpdb->prepare( 'SELECT * FROM %i ORDER BY id DESC LIMIT %d', Installer::approval_table(), $limit ),
-				ARRAY_A
-			);
+		if ( ! in_array( $status, $valid, true ) ) {
+			$status = '';
 		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Approval state must be read live.
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM %i WHERE ( %s = \'\' OR status = %s ) AND ( %d = 0 OR requested_by = %d ) ORDER BY id DESC LIMIT %d',
+				Installer::approval_table(),
+				$status,
+				$status,
+				$requested_by,
+				$requested_by,
+				$limit
+			),
+			ARRAY_A
+		);
 
 		return array_map( array( $this, 'normalize' ), (array) $rows );
 	}
 
-	public function pending_count(): int {
+	/**
+	 * @param int $requested_by Only count requests made by this user; 0 counts every request.
+	 */
+	public function pending_count( int $requested_by = 0 ): int {
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Badge count must be live.
 		return (int) $wpdb->get_var(
-			$wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE status = %s', Installer::approval_table(), self::STATUS_PENDING )
+			$wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE status = %s AND ( %d = 0 OR requested_by = %d )', Installer::approval_table(), self::STATUS_PENDING, $requested_by, $requested_by )
 		);
 	}
 

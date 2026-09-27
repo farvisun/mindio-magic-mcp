@@ -84,7 +84,7 @@ final class MCP_Prompts {
 
 		if ( ctype_digit( $product ) && class_exists( 'WooCommerce' ) ) {
 			$post = get_post( (int) $product );
-			if ( $post instanceof \WP_Post && 'product' === $post->post_type ) {
+			if ( $post instanceof \WP_Post && 'product' === $post->post_type && Post_Access::can_read( $post ) ) {
 				$context .= "\n\nExisting product record:\n" . wp_json_encode(
 					array(
 						'id'           => $post->ID,

@@ -133,7 +133,8 @@ final class Changeset_Tools {
 	public function list( array $arguments ): array {
 		$changesets = $this->changesets->list_changesets(
 			absint( $arguments['limit'] ?? 25 ),
-			(string) ( $arguments['status'] ?? '' )
+			(string) ( $arguments['status'] ?? '' ),
+			$this->owner_filter()
 		);
 
 		return array( 'count' => count( $changesets ), 'changesets' => $changesets );
@@ -142,7 +143,7 @@ final class Changeset_Tools {
 	/** @return array<string,mixed>|\WP_Error */
 	public function get( array $arguments ) {
 		$changeset_id = (string) $arguments['changeset_id'];
-		$changeset    = $this->changesets->get( $changeset_id );
+		$changeset    = $this->accessible_changeset( $changeset_id );
 		if ( ! $changeset ) {
 			return new \WP_Error( 'unknown_changeset', __( 'Unknown changeset.', 'mindio-magic-mcp' ) );
 		}
@@ -153,7 +154,7 @@ final class Changeset_Tools {
 	/** @return array<string,mixed>|\WP_Error */
 	public function close( array $arguments ) {
 		$changeset_id = (string) $arguments['changeset_id'];
-		if ( ! $this->changesets->get( $changeset_id ) ) {
+		if ( ! $this->accessible_changeset( $changeset_id ) ) {
 			return new \WP_Error( 'unknown_changeset', __( 'Unknown changeset.', 'mindio-magic-mcp' ) );
 		}
 		$this->changesets->close( $changeset_id );
@@ -166,7 +167,39 @@ final class Changeset_Tools {
 		if ( empty( $arguments['confirm'] ) ) {
 			return new \WP_Error( 'confirmation_required', __( 'Reverting a changeset requires confirm=true.', 'mindio-magic-mcp' ) );
 		}
+		$changeset_id = (string) $arguments['changeset_id'];
+		if ( ! $this->accessible_changeset( $changeset_id ) ) {
+			return new \WP_Error( 'unknown_changeset', __( 'Unknown changeset.', 'mindio-magic-mcp' ) );
+		}
 
-		return $this->changesets->revert( (string) $arguments['changeset_id'] );
+		return $this->changesets->revert( $changeset_id );
+	}
+
+	/**
+	 * Changeset entries journal before/after snapshots of posts, options, and
+	 * users, so only administrators may reach changesets opened by someone else.
+	 * Another user's changeset is reported as unknown so IDs cannot be probed.
+	 *
+	 * @return array<string,mixed>|null
+	 */
+	private function accessible_changeset( string $changeset_id ): ?array {
+		$changeset = $this->changesets->get( $changeset_id );
+		if ( ! $changeset ) {
+			return null;
+		}
+		$owner = $this->owner_filter();
+
+		return 0 === $owner || $owner === (int) ( $changeset['user_id'] ?? 0 ) ? $changeset : null;
+	}
+
+	/**
+	 * @return int 0 for administrators (no filter), otherwise the current user ID
+	 *             (-1, matching nothing, when no user is set).
+	 */
+	private function owner_filter(): int {
+		if ( current_user_can( 'manage_options' ) ) {
+			return 0;
+		}
+		return get_current_user_id() ?: -1;
 	}
 }

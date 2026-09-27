@@ -3,7 +3,7 @@
  * Plugin Name:       Mindio Magic MCP
  * Plugin URI:        https://github.com/farvisun/mindio-magic-mcp
  * Description:       A secure MCP server for WordPress that supports Flatsome UX Builder, content automation, and site management.
- * Version:           0.7.0
+ * Version:           0.7.1
  * Requires at least: 6.4
  * Requires PHP:      8.0
  * Author:            Mohammad Askari <farvisun@gmail.com>
@@ -25,7 +25,7 @@ if ( defined( 'MINDIO_MAGIC_MCP_FILE' ) ) {
 	return;
 }
 
-define( 'MINDIO_MAGIC_MCP_VERSION', '0.7.0' );
+define( 'MINDIO_MAGIC_MCP_VERSION', '0.7.1' );
 define( 'MINDIO_MAGIC_MCP_DB_VERSION', '3' );
 define( 'MINDIO_MAGIC_MCP_FILE', __FILE__ );
 define( 'MINDIO_MAGIC_MCP_DIR', plugin_dir_path( __FILE__ ) );
@@ -57,6 +57,7 @@ $mindio_magic_mcp_files = array(
 	'includes/class-integration-dispatcher.php',
 	'includes/class-url-guard.php',
 	'includes/class-secret-box.php',
+	'includes/class-post-access.php',
 	'includes/builders/interface-page-builder.php',
 	'includes/builders/class-blueprint.php',
 	'includes/builders/class-page-builder-registry.php',

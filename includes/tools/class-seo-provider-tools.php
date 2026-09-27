@@ -107,6 +107,10 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 		if ( 'rank_math' === $this->provider ) {
 			$data['schemas'] = $this->rank_math_schemas( $post->ID );
 		}
+		// The focus keyword is editorial data never rendered on the front end.
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
+			unset( $data['focus_keyword'] );
+		}
 		return array(
 			'post_id'      => $post->ID,
 			'post_type'    => $post->post_type,
@@ -246,7 +250,7 @@ final class SEO_Provider_Tools extends Integration_Dispatcher {
 	}
 
 	public function can_read_post( array $args ): bool {
-		return current_user_can( 'read_post', (int) ( $args['post_id'] ?? 0 ) );
+		return Post_Access::can_read( (int) ( $args['post_id'] ?? 0 ) );
 	}
 
 	public function can_edit_post( array $args ): bool {

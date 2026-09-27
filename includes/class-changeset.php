@@ -121,24 +121,31 @@ final class Changeset {
 		return is_array( $row ) ? $this->normalize( $row ) : null;
 	}
 
-	/** @return array<int,array<string,mixed>> */
-	public function list_changesets( int $limit = 25, string $status = '' ): array {
+	/**
+	 * @param int $user_id Only return changesets opened by this user; 0 returns every changeset.
+	 * @return array<int,array<string,mixed>>
+	 */
+	public function list_changesets( int $limit = 25, string $status = '', int $user_id = 0 ): array {
 		global $wpdb;
 
 		$limit = max( 1, min( 100, $limit ) );
-		if ( in_array( $status, array( self::STATUS_OPEN, self::STATUS_CLOSED, self::STATUS_REVERTED ), true ) ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Journal reads must be current.
-			$rows = $wpdb->get_results(
-				$wpdb->prepare( 'SELECT * FROM %i WHERE status = %s ORDER BY id DESC LIMIT %d', Installer::changeset_table(), $status, $limit ),
-				ARRAY_A
-			);
-		} else {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Journal reads must be current.
-			$rows = $wpdb->get_results(
-				$wpdb->prepare( 'SELECT * FROM %i ORDER BY id DESC LIMIT %d', Installer::changeset_table(), $limit ),
-				ARRAY_A
-			);
+		if ( ! in_array( $status, array( self::STATUS_OPEN, self::STATUS_CLOSED, self::STATUS_REVERTED ), true ) ) {
+			$status = '';
 		}
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Journal reads must be current.
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				'SELECT * FROM %i WHERE ( %s = \'\' OR status = %s ) AND ( %d = 0 OR user_id = %d ) ORDER BY id DESC LIMIT %d',
+				Installer::changeset_table(),
+				$status,
+				$status,
+				$user_id,
+				$user_id,
+				$limit
+			),
+			ARRAY_A
+		);
 
 		return array_map( array( $this, 'normalize' ), (array) $rows );
 	}
@@ -147,16 +154,19 @@ final class Changeset {
 	public function entries( string $changeset_id, bool $newest_first = false ): array {
 		global $wpdb;
 
-		$order = $newest_first ? 'DESC' : 'ASC';
-		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Order direction is a fixed literal chosen above; journal reads must be current.
-		$rows = $wpdb->get_results(
-			$wpdb->prepare(
-				'SELECT * FROM %i WHERE changeset_id = %s ORDER BY id ' . $order,
-				Installer::changeset_entry_table(),
-				$changeset_id
-			),
-			ARRAY_A
-		);
+		if ( $newest_first ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Journal reads must be current.
+			$rows = $wpdb->get_results(
+				$wpdb->prepare( 'SELECT * FROM %i WHERE changeset_id = %s ORDER BY id DESC', Installer::changeset_entry_table(), $changeset_id ),
+				ARRAY_A
+			);
+		} else {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Journal reads must be current.
+			$rows = $wpdb->get_results(
+				$wpdb->prepare( 'SELECT * FROM %i WHERE changeset_id = %s ORDER BY id ASC', Installer::changeset_entry_table(), $changeset_id ),
+				ARRAY_A
+			);
+		}
 
 		return array_map(
 			static function ( array $row ): array {

@@ -136,7 +136,7 @@ final class Change_Recorder {
 				case self::KIND_META:
 					$summary['meta'][] = array(
 						'post_id'  => (int) $entry['target']['post_id'],
-						'meta_key' => (string) $entry['target']['meta_key'],
+						'meta_key' => (string) $entry['target']['meta_key'], // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Journal summary field, not a query argument.
 						'before'   => $entry['before'],
 						'after'    => $entry['after'],
 					);
@@ -353,7 +353,7 @@ final class Change_Recorder {
 			$this->track(
 				self::KIND_META,
 				$object_id . ':' . $meta_key,
-				array( 'post_id' => $object_id, 'meta_key' => $meta_key ),
+				array( 'post_id' => $object_id, 'meta_key' => $meta_key ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Journal target field, not a query argument.
 				fn() => $this->clip( get_post_meta( $object_id, $meta_key, true ) )
 			);
 		}

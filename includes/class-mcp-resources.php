@@ -234,7 +234,7 @@ final class MCP_Resources {
 		if ( ! $post instanceof \WP_Post ) {
 			return new \WP_Error( 'unknown_resource', __( 'The requested post does not exist.', 'mindio-magic-mcp' ) );
 		}
-		if ( ! current_user_can( 'read_post', $post->ID ) ) {
+		if ( ! Post_Access::can_read( $post ) ) {
 			return new \WP_Error( 'forbidden', __( 'Your WordPress user cannot read this post.', 'mindio-magic-mcp' ) );
 		}
 
@@ -325,7 +325,7 @@ final class MCP_Resources {
 
 		$items = array();
 		foreach ( $query->posts as $post ) {
-			if ( ! current_user_can( 'read_post', $post->ID ) ) {
+			if ( ! Post_Access::can_read( $post ) ) {
 				continue;
 			}
 			$items[] = array(

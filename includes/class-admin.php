@@ -94,8 +94,8 @@ final class Admin {
 		$scope   = sanitize_key( (string) wp_unslash( $_POST['scope'] ?? Auth::SCOPE_READ ) );
 		$label   = sanitize_text_field( (string) wp_unslash( $_POST['label'] ?? '' ) );
 		$policy  = array(
-			'allow'        => $this->policy_lines( (string) wp_unslash( $_POST['policy_allow'] ?? '' ) ),
-			'deny'         => $this->policy_lines( (string) wp_unslash( $_POST['policy_deny'] ?? '' ) ),
+			'allow'        => $this->policy_lines( sanitize_textarea_field( (string) wp_unslash( $_POST['policy_allow'] ?? '' ) ) ),
+			'deny'         => $this->policy_lines( sanitize_textarea_field( (string) wp_unslash( $_POST['policy_deny'] ?? '' ) ) ),
 			'daily_budget' => absint( $_POST['policy_daily_budget'] ?? 0 ),
 		);
 		$result  = $this->auth->create_api_key( $user_id, $scope, $label, $policy );
@@ -319,7 +319,7 @@ final class Admin {
 			'allowed_origins'        => array_unique( $origins ),
 			'brand_voice'            => mb_substr( sanitize_textarea_field( (string) wp_unslash( $_POST['brand_voice'] ?? '' ) ), 0, 1000 ),
 			'approvals_enabled'      => ! empty( $_POST['approvals_enabled'] ),
-			'approval_tools'         => $this->policy_lines( (string) wp_unslash( $_POST['approval_tools'] ?? '' ) ),
+			'approval_tools'         => $this->policy_lines( sanitize_textarea_field( (string) wp_unslash( $_POST['approval_tools'] ?? '' ) ) ),
 			'approval_ttl_hours'     => max( 1, min( 720, absint( $_POST['approval_ttl_hours'] ?? 72 ) ) ),
 			'audit_export_enabled'   => ! empty( $_POST['audit_export_enabled'] ),
 			'audit_export_target'    => in_array( (string) wp_unslash( $_POST['audit_export_target'] ?? 'webhook' ), array( 'webhook', 'syslog', 'both' ), true )

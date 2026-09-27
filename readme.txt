@@ -2,9 +2,9 @@
 Contributors: farvisun
 Tags: mcp, ai, flatsome, automation, oauth
 Requires at least: 6.4
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,16 @@ Its primary distinction is native-first Flatsome UX Builder generation and editi
 
 == Changelog ==
 
+= 0.7.1 =
+
+* Security: fixed an authenticated (Subscriber+) sensitive data exposure. Password-protected posts and pages are no longer listed, searched, or returned by `list_posts`, `get_post`, `search_content`, block/page/Flatsome readers, summaries, SEO and ACF readers, MCP post resources, or prompts unless the caller can edit that entry.
+* Security: revisions and autosaves are only readable by users who can edit the parent entry, and published entries of non-public post types (for example form configurations or coupons) are only readable by users who can edit them.
+* Security: the ACF field reader only resolves real ACF fields and never protected (`_`-prefixed) post meta.
+* Security: `list_approvals` and `get_approval` now only return the caller's own approval requests unless the caller is an administrator.
+* Security: changeset tools now only list, read, close, or revert the caller's own changesets unless the caller is an administrator.
+* Security: `list_posts` no longer reveals matches in other authors' unpublished entries through result totals; exact WordPress and PHP versions, SEO focus keywords, and revision IDs are only returned to users entitled to see them; credential allow lists and daily budgets now also apply to `resources/read` and `prompts/get`.
+* Tested with WordPress 7.1.
+
 = 0.7.0 =
 
 * Added MCP resources and site-aware prompts, plus a brand voice setting that flows into both.
@@ -151,6 +161,10 @@ Its primary distinction is native-first Flatsome UX Builder generation and editi
 For the complete release history, see https://github.com/farvisun/mindio-magic-mcp/blob/main/CHANGELOG.md.
 
 == Upgrade Notice ==
+
+= 0.7.1 =
+
+Security release. Fixes an authenticated (Subscriber+) exposure of password-protected post content and restricts approval requests and changesets to their owners. Update immediately.
 
 = 0.7.0 =
 

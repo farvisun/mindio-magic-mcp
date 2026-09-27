@@ -25,6 +25,7 @@
     "test:approvals": "@php tests/integration/approvals.php",
     "test:streaming": "@php tests/integration/streaming.php",
     "test:audit-export": "@php tests/integration/audit-export.php",
+    "test:protected-content": "@php tests/integration/protected-content.php",
     "test": [
       "@lint",
       "@test:review-regressions",
@@ -43,7 +44,8 @@
       "@test:explain",
       "@test:approvals",
       "@test:streaming",
-      "@test:audit-export"
+      "@test:audit-export",
+      "@test:protected-content"
     ],
     "build": "bash bin/build-release.sh"
   }

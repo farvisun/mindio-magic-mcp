@@ -32,7 +32,7 @@ final class Gutenberg_Tools {
 	}
 
 	public function can_read_post( array $args ): bool {
-		return current_user_can( 'read_post', absint( $args['post_id'] ?? 0 ) );
+		return Post_Access::can_read( absint( $args['post_id'] ?? 0 ) );
 	}
 
 	public function can_edit_post( array $args ): bool {

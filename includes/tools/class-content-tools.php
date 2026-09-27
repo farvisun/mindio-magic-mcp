@@ -135,8 +135,7 @@ final class Content_Tools {
 	}
 
 	public function can_read_post( array $args ): bool {
-		$post = get_post( absint( $args['post_id'] ?? 0 ) );
-		return $post && current_user_can( 'read_post', $post->ID );
+		return Post_Access::can_read_post_arg( $args );
 	}
 
 	public function can_edit_post( array $args ): bool {
@@ -203,8 +202,14 @@ final class Content_Tools {
 		if ( ! $post ) {
 			return new \WP_Error( 'post_not_found', __( 'Post not found.', 'mindio-magic-mcp' ) );
 		}
+		if ( ! Post_Access::can_read( $post ) ) {
+			return new \WP_Error( 'forbidden', __( 'Your WordPress user cannot read this post.', 'mindio-magic-mcp' ) );
+		}
 		$data                 = $this->serialize_post( $post, true );
-		$data['revision_ids'] = wp_get_post_revisions( $post->ID, array( 'fields' => 'ids', 'posts_per_page' => 20 ) );
+		// Core only exposes revisions to users who can edit the entry.
+		$data['revision_ids'] = current_user_can( 'edit_post', $post->ID )
+			? wp_get_post_revisions( $post->ID, array( 'fields' => 'ids', 'posts_per_page' => 20 ) )
+			: array();
 		return $data;
 	}
 
@@ -336,6 +341,16 @@ final class Content_Tools {
 			'order'          => 'asc' === ( $args['order'] ?? 'desc' ) ? 'ASC' : 'DESC',
 			'orderby'        => 'id' === ( $args['orderby'] ?? '' ) ? 'ID' : sanitize_key( (string) ( $args['orderby'] ?? 'date' ) ),
 		);
+		// Constrain the query itself (not just the results) so totals cannot reveal
+		// matches in hidden entries. `perm => readable` limits private entries to
+		// their authors unless the user can read others'; users who cannot edit
+		// others' entries only see their own unpublished entries and no
+		// password-protected ones.
+		$query_args['perm']   = 'readable';
+		$restrict_unpublished = ! current_user_can( $type->cap->edit_others_posts ?? $type->cap->edit_posts );
+		if ( $restrict_unpublished ) {
+			$query_args['has_password'] = false;
+		}
 		if ( ! empty( $args['after'] ) || ! empty( $args['before'] ) ) {
 			$query_args['date_query'] = array(
 				'after'     => sanitize_text_field( (string) ( $args['after'] ?? '' ) ),
@@ -357,9 +372,28 @@ final class Content_Tools {
 			);
 		}
 
-		$query = new \WP_Query( $query_args );
+		$query        = new \WP_Query();
+		$author_where = static function ( string $where, \WP_Query $current ) use ( $query ): string {
+			global $wpdb;
+			if ( $current !== $query ) {
+				return $where;
+			}
+			return $where . $wpdb->prepare( ' AND ( %i.post_status IN ( %s, %s ) OR %i.post_author = %d )', $wpdb->posts, 'publish', 'private', $wpdb->posts, get_current_user_id() );
+		};
+		if ( $restrict_unpublished ) {
+			add_filter( 'posts_where', $author_where, 10, 2 );
+		}
+		try {
+			$query->query( $query_args );
+		} finally {
+			remove_filter( 'posts_where', $author_where, 10 );
+		}
+		$posts = array_filter(
+			$query->posts,
+			static fn( \WP_Post $post ): bool => current_user_can( 'read_post', $post->ID ) && ! Post_Access::is_protected_for_user( $post )
+		);
 		return array(
-			'items'       => array_map( fn( \WP_Post $post ): array => $this->serialize_post( $post, false ), $query->posts ),
+			'items'       => array_values( array_map( fn( \WP_Post $post ): array => $this->serialize_post( $post, false ), $posts ) ),
 			'page'        => $page,
 			'per_page'    => $per_page,
 			'total'       => (int) $query->found_posts,
@@ -473,7 +507,13 @@ final class Content_Tools {
 			'date_gmt'       => $this->post_time_gmt( $post, 'date' ),
 			'modified_gmt'   => $this->post_time_gmt( $post, 'modified' ),
 			'is_flatsome'    => str_contains( $post->post_content, '[section' ) || str_contains( $post->post_content, '[row' ),
+			'password_protected' => '' !== (string) $post->post_password,
 		);
+		// Defense in depth: never serialize a protected body the caller cannot edit.
+		if ( Post_Access::is_protected_for_user( $post ) ) {
+			$data['excerpt'] = '';
+			return $data;
+		}
 		if ( $include_content ) {
 			$data['content'] = $post->post_content;
 		}

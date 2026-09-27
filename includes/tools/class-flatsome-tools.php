@@ -65,7 +65,7 @@ final class Flatsome_Tools {
 			array( 'type' => 'object' ),
 			array( $this, 'get_page' ),
 			Auth::SCOPE_READ,
-			fn( array $args ): bool => current_user_can( 'read_post', absint( $args['post_id'] ?? 0 ) ),
+			fn( array $args ): bool => Post_Access::can_read( absint( $args['post_id'] ?? 0 ) ),
 			array( 'readOnlyHint' => true, 'idempotentHint' => true )
 		);
 		$this->registry->register(

@@ -104,7 +104,20 @@ final class Search_Tools {
 			);
 		}
 
+		// Password-protected bodies are searchable only by users who can edit others' entries.
+		foreach ( $post_types as $post_type ) {
+			$type = get_post_type_object( $post_type );
+			if ( ! $type || ! current_user_can( $type->cap->edit_others_posts ?? $type->cap->edit_posts ) ) {
+				$query_args['has_password'] = false;
+				break;
+			}
+		}
+
 		$query = new \WP_Query( $query_args );
+		$posts = array_filter(
+			$query->posts,
+			static fn( \WP_Post $post ): bool => Post_Access::can_read( $post )
+		);
 		$items = array_map(
 			static function ( \WP_Post $post ): array {
 				$text = wp_strip_all_tags( strip_shortcodes( $post->post_content ) );
@@ -118,10 +131,10 @@ final class Search_Tools {
 					'modified_gmt' => ( $date = get_post_datetime( $post, 'modified' ) ) ? $date->setTimezone( new \DateTimeZone( 'UTC' ) )->format( DATE_ATOM ) : '',
 				);
 			},
-			$query->posts
+			$posts
 		);
 		return array(
-			'items'       => $items,
+			'items'       => array_values( $items ),
 			'page'        => $page,
 			'per_page'    => $per_page,
 			'total'       => (int) $query->found_posts,
